@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="panelFormSignin" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.signIn.SignInFormController">
+   <children>
+      <Label text="Iniciar Sesión">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="62.0" />
+         </VBox.margin>
+      </Label>
+      <VBox>
+         <VBox.margin>
+            <Insets left="50.0" right="50.0" />
+         </VBox.margin>
+         <children>
+            <Label text="Usuario">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="txtUserSignIn" onKeyTyped="#eventKey" prefHeight="37.0" promptText="Ej. Sally">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label text="Contraseña">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <StackPane>
+               <children>
+                  <PasswordField fx:id="txtPasswordSignIn" prefHeight="37.0" promptText="Ej. 1234">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </PasswordField>
+                  <TextField fx:id="txtPasswordSignInMask" prefHeight="37.0" promptText="Ej. 1234" visible="false">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </TextField>
+               </children>
+            </StackPane>
+            <CheckBox fx:id="checkViewPassSignIn" mnemonicParsing="false" text="Ver Contraseña">
+               <font>
+                  <Font size="14.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </CheckBox>
+            <HBox alignment="TOP_CENTER" prefWidth="200.0">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <children>
+                  <Button fx:id="btnSignIn" mnemonicParsing="false" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #111; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Confirmar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+      </VBox>
+   </children>
+</VBox>
