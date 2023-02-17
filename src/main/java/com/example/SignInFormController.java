@@ -7,11 +7,14 @@
  -----------------------------------------------------------------------
 */
 
-package controller.signIn;
+package com.example;
 
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -43,6 +46,29 @@ public class SignInFormController implements Initializable{
         if(c.equalsIgnoreCase(" ")) 
         {
             e.consume();
+        }
+    }
+
+    @FXML
+    public void actionEvent(ActionEvent e)
+    {
+        Object evt = e.getSource();
+
+        if(btnSignIn.equals(evt))
+        {
+            if(!txtUserSignIn.getText().isEmpty() && !txtPasswordSignIn.getText().isEmpty())
+            {
+                String infoSignIn = txtUserSignIn.getText() + ";" + txtPasswordSignIn.getText();
+
+                /* Aqui iria todo lo de enviar la informacion por el canal */
+                //de momento simplemete lo mostramos por pantalla
+                JOptionPane.showMessageDialog(null, infoSignIn, "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
+            }
+            else
+            {
+                //o el campo nombre de usuario o la contraseña estan vacios
+                JOptionPane.showMessageDialog(null, "Debe llenar los campos obligatorios", "ERROR", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }
     
