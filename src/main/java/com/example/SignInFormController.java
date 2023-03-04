@@ -63,6 +63,11 @@ public class SignInFormController implements Initializable{
                 /* Aqui iria todo lo de enviar la informacion por el canal */
                 //de momento simplemete lo mostramos por pantalla
                 JOptionPane.showMessageDialog(null, infoSignIn, "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
+                
+                //de momento nos conectamos aqui, luego ya venemos si el connect en el main o donde
+                WebSocketClient client = new WebSocketClient();
+                client.connect("ws://localhost:8080/endpoint");
+                client.sendMessage(infoSignIn);
             }
             else
             {
