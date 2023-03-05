@@ -49,8 +49,8 @@ public class MenuPrincipalController {
                 stage.setScene(scene);
                 stage.show();
 
-                //Stage old = (Stage) btnSignIn.getScene().getWindow();
-                //old.close();
+                Stage old = (Stage) btnSignIn.getScene().getWindow();
+                old.close();
 
                 //stage.close();
     
