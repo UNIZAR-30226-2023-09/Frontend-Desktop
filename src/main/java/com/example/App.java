@@ -23,7 +23,7 @@ public class App extends Application {
         stage.show();
         */
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/MainView.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/Menu.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
