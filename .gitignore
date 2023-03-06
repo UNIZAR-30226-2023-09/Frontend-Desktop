@@ -1,0 +1,14 @@
+# Carpeta target
+target/
+
+# Archivos de configuración de Eclipse
+.classpath
+.project
+.settings/
+
+# Archivos de registro
+logs/
+
+# Maven Wrapper
+mvnw
+mvnw.cmd
