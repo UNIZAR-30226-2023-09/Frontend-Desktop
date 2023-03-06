@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="panelFormSignUp" alignment="CENTER" prefHeight="474.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.SignUpFormController">
+   <children>
+      <Label text="Formulario de Registro">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <VBox prefWidth="100.0">
+         <children>
+            <Label text="Nombre y Apellidos">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="txtNameSignUp" onKeyTyped="#keyEvent" prefHeight="30.0" promptText="Admin Alvarez">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label text="Correo Electronico">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="txtEmailSignUp" onKeyTyped="#keyEvent" prefHeight="30.0" promptText="Admin@gmail.com">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label text="Usuario">
+               <font>
+                  <Font size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="txtUserSignUp" onKeyTyped="#keyEvent" prefHeight="30.0" promptText="Admin66">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <HBox>
+               <children>
+                  <VBox HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets right="5.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label text="Contraseña">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="txtPassword" onKeyTyped="#keyEvent" promptText="1234" />
+                     </children>
+                  </VBox>
+                  <VBox HBox.hgrow="ALWAYS">
+                     <HBox.margin>
+                        <Insets left="5.0" />
+                     </HBox.margin>
+                     <children>
+                        <Label text="Confirmar Contraseña">
+                           <font>
+                              <Font size="15.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="txtConfirmPassword" onKeyTyped="#keyEvent" prefHeight="30.0" promptText="1234">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </PasswordField>
+                     </children>
+                  </VBox>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="TOP_CENTER">
+               <VBox.margin>
+                  <Insets top="20.0" />
+               </VBox.margin>
+               <children>
+                  <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #111; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Registrar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+         </children>
+         <VBox.margin>
+            <Insets left="30.0" right="30.0" />
+         </VBox.margin>
+      </VBox>
+   </children>
+</VBox>

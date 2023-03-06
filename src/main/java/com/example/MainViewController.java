@@ -8,7 +8,7 @@
 */
 
 
-package controller;
+package com.example;
 
 import java.io.IOException;
 import java.net.URL;
@@ -30,7 +30,7 @@ public class MainViewController implements Initializable{
     @FXML
     private StackPane containerForm;
 
-    private VBox signInForm;
+    private VBox signInForm, signUpForm; 
 
     @FXML
     public void actionEvent(ActionEvent e)
@@ -40,9 +40,11 @@ public class MainViewController implements Initializable{
         if(evt.equals(btnSignIn))
         {
             signInForm.setVisible(true);
+            signUpForm.setVisible(false);
         }
         else if(evt.equals(btnSignUp))
         {
+            signUpForm.setVisible(true);
             signInForm.setVisible(false);
         }
     }
@@ -51,11 +53,16 @@ public class MainViewController implements Initializable{
     public void initialize(URL arg0, ResourceBundle arg1)
     {
         try {
-            signInForm = loadForm("/main/signIn/SignInForm.fxml");
-            containerForm.getChildren().addAll(signInForm);
+            signInForm = loadForm("/com/example/SignInForm.fxml");
+            signUpForm = loadForm("/com/example/SignUpForm.fxml");
+            containerForm.getChildren().addAll(signInForm,signUpForm);
+            //containerForm.getChildren().addAll(signUpForm);
             signInForm.setVisible(true);
+            signUpForm.setVisible(false);
+
         } catch (IOException e) {
             e.printStackTrace();
+            //Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
