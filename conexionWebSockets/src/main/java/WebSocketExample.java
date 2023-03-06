@@ -10,8 +10,12 @@ import org.java_websocket.client.WebSocketClient;
 import org.java_websocket.handshake.ServerHandshake;
 
 public class WebSocketExample {
+    public static final String host = "34.175.156.130";
+    // public static final String port = "8080";
+    // public static final String websocket = "ws://" + host + ":" + port;
+
     public static void main(String[] args) throws URISyntaxException, InterruptedException {
-        String serverUrl = "ws://localhost:8080"; // cambiar por la URL de tu servidor WebSocket
+        String serverUrl =  "ws://"+ host + ":8080"; // cambiar por la URL de tu servidor WebSocket
         
         WebSocketClient client = new WebSocketClient(new URI(serverUrl)) {
             private final CountDownLatch latch = new CountDownLatch(1);
