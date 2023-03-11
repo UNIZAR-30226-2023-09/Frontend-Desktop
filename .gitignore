@@ -1,5 +1,6 @@
 # Carpeta target
 target/
+ConexionServidor/target/
 
 # Archivos de configuración de Eclipse
 .classpath
