@@ -7,9 +7,6 @@
  -----------------------------------------------------------------------
 */
 
-
-package com.example;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -53,8 +50,8 @@ public class MainViewController implements Initializable{
     public void initialize(URL arg0, ResourceBundle arg1)
     {
         try {
-            signInForm = loadForm("/com/example/SignInForm.fxml");
-            signUpForm = loadForm("/com/example/SignUpForm.fxml");
+            signInForm = loadForm("SignInForm.fxml");
+            signUpForm = loadForm("SignUpForm.fxml");
             containerForm.getChildren().addAll(signInForm,signUpForm);
             //containerForm.getChildren().addAll(signUpForm);
             signInForm.setVisible(true);

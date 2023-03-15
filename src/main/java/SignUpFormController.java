@@ -7,8 +7,6 @@
  -----------------------------------------------------------------------
 */
 
-package com.example;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 

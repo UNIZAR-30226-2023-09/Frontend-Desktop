@@ -7,9 +7,6 @@
  -----------------------------------------------------------------------
 */
 
-
-package com.example;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -36,7 +33,7 @@ public class MenuPrincipalController {
         if(btnSignIn.equals(evt))
         {
             try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/MainView.fxml"));
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"));
     
                 Parent root = loader.load();
     

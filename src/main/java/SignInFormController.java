@@ -7,8 +7,6 @@
  -----------------------------------------------------------------------
 */
 
-package com.example;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -65,9 +63,9 @@ public class SignInFormController implements Initializable{
                 JOptionPane.showMessageDialog(null, infoSignIn, "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
                 
                 //de momento nos conectamos aqui, luego ya venemos si el connect en el main o donde
-                WebSocketClient client = new WebSocketClient();
-                client.connect("ws://localhost:8080/endpoint");
-                client.sendMessage(infoSignIn);
+                // WebSocketClient client = new WebSocketClient();
+                // client.connect("ws://localhost:8080/endpoint");
+                // client.sendMessage(infoSignIn);
             }
             else
             {

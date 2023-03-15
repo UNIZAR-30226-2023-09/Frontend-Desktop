@@ -1,5 +1,3 @@
-package com.example;
-
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -23,7 +21,7 @@ public class App extends Application {
         stage.show();
         */
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/MenuPrincipal.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
