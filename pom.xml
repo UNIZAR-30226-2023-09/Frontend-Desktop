@@ -46,7 +46,7 @@
         <configuration>
         <!-- TODO: cambiar a fichero main: HelloFX -->
         <!-- TODO: cambiar a fichero main: App -->
-          <mainClass>HelloFX</mainClass> 
+          <mainClass>App</mainClass> 
         </configuration>
       </plugin>
 	  <plugin>

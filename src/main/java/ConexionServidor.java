@@ -32,12 +32,13 @@ public class ConexionServidor {
         }
 
         // Juego grafico o por terminal
+        GestionPartida.iniciar(client);
         if (grafico) {
             //TODO: Gestion del juego con javaFX
         } else {
             // Gestion del juego por terminal
             try {
-                GestionPartida.partida(client);
+                GestionPartida.partida();
             } catch (URISyntaxException | InterruptedException e) {
                 e.printStackTrace();
             }

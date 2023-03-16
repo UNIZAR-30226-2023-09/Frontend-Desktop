@@ -18,8 +18,11 @@ public class GestionPartida {
     // ***********************************
 
     // Metodos públicos 
-    public static void partida(WebSocketClient _client) throws URISyntaxException, InterruptedException {
+    public static void iniciar(WebSocketClient _client) {
         client = _client;
+    }
+
+    public static void partida() throws URISyntaxException, InterruptedException {
 
         // // ***********************  JUEGO ***********************
         Scanner scanner = new Scanner(System.in);
@@ -70,6 +73,12 @@ public class GestionPartida {
                 break;
             case "INICIO_NO_OK":
                 System.out.println("Error en inicio de sesión");
+                break;
+             case "REGISTRO_OK":
+                System.out.println("Registro correcto");
+                break;
+            case "REGISTRO_NOOK":
+                System.out.println("Error al registrarse");
                 break;
             case "CREADAP_OK":
                 enPartida = true;
