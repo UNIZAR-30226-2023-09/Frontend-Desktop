@@ -70,6 +70,7 @@ public class GestionPartida {
                 nombreUser = partes[1];
                 gemas = Integer.parseInt(partes[2]);
                 sesionIniciada = true;
+                SignInFormController.sesionIniciada = true;
                 break;
             case "INICIO_NO_OK":
                 System.out.println("Error en inicio de sesión");

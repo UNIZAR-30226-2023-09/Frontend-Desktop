@@ -7,6 +7,7 @@
  -----------------------------------------------------------------------
 */
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -15,14 +16,23 @@ import javax.swing.JOptionPane;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class SignInFormController implements Initializable{
+
+    // Variables control estado
+    public static boolean sesionIniciada = false;
+
 
     @FXML
     private TextField txtUserSignIn, txtPasswordSignInMask;
@@ -55,17 +65,59 @@ public class SignInFormController implements Initializable{
         if(btnSignIn.equals(evt))
         {
             if(!txtUserSignIn.getText().isEmpty() && !txtPasswordSignIn.getText().isEmpty())
-            {
-                String infoSignIn = txtUserSignIn.getText() + ";" + txtPasswordSignIn.getText();
+            {   
+                //enviamos un mensaje al servidor con los datos necesarios para iniciar sesion
+                GestionPartida.iniciarSesion(txtUserSignIn.getText(), txtPasswordSignIn.getText());
 
-                /* Aqui iria todo lo de enviar la informacion por el canal */
-                //de momento simplemete lo mostramos por pantalla
-                JOptionPane.showMessageDialog(null, infoSignIn, "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
+                //recibir respuesta
+                ConexionServidor.esperar();
+
+                if (sesionIniciada) {
+                    // Relenar los datos de la sesion
+                    Sesion.nombre = txtUserSignIn.getText();
+                    Sesion.gemas = 0;
+
+                    // Ir al menu principal
+                    try {
+                        FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
+    
+                        Parent root = loader.load();
+            
+                        Scene scene = new Scene(root);
+                        Stage stage = (Stage) btnSignIn.getScene().getWindow();
+    
+                        stage.setScene(scene);
+                        stage.show();
+    
+                        Stage old = (Stage) btnSignIn.getScene().getWindow();
+                        old.close();
+    
+                        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/MenuPrincipal.fxml"));
+                        Parent root = loader.load();
+    
+                        MenuPrincipalController segundoControlador = loader.getController();
+                        segundoControlador.setSesion(sesion);
+    
+                        Scene scene = new Scene(root);
+                        Stage stage = (Stage) btnSignIn.getScene().getWindow();
+                        stage.setScene(scene);
+                        stage.show();
+    
+                        Stage old = (Stage) btnSignIn.getScene().getWindow();
+                        old.close();*/
+    
+                    } catch (IOException e1) {
+                        // TODO Auto-generated catch block
+                        System.err.println(String.format("Error creando ventana: %s", e1.getMessage()));
+                    }
+                }
+                else
+                {
+                    // Mostrar mensaje de error
+                    JOptionPane.showMessageDialog(null, "Datos introducidos no validos", "ERROR", JOptionPane.ERROR_MESSAGE);
+                }
+
                 
-                //de momento nos conectamos aqui, luego ya venemos si el connect en el main o donde
-                // WebSocketClient client = new WebSocketClient();
-                // client.connect("ws://localhost:8080/endpoint");
-                // client.sendMessage(infoSignIn);
             }
             else
             {
