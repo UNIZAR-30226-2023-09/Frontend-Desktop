@@ -31,14 +31,16 @@ public class GestionPartida {
         // TODO: Meter todo esto en una funcion?
         if (dueñoPartida) {
             // Empezar la partida
-            System.out.println("Introduzca un 1 para comenzar la partida: ");
-            String empezar = scanner.nextLine();
-            switch(empezar) {
-                case "1":
-                    empezarPartida(IDPartida);
-                    break;
-                default:
-                    // TODO: Volver a preguntar hasta que quiera empezar
+            while(!empezarPartida) {
+                System.out.println("Introduzca un 1 para comenzar la partida: ");
+                String empezar = scanner.nextLine();
+                switch(empezar) {
+                    case "1":
+                        empezarPartida(IDPartida);
+                        break;
+                    default:
+                        // TODO: Volver a preguntar hasta que quiera empezar
+                }
             }
         } else {
             // Esperar a que empiece
@@ -50,7 +52,17 @@ public class GestionPartida {
         scanner.close();
     }
 
-    private static void empezarPartida(String iDPartida2) {
+    public static void unirsePartida(String _IDPartida) {
+        client.send("unirsePartida," + IDPartida + "," + nombreUser);
+        IDPartida = _IDPartida;
+    }
+
+    public static void crearPartida() {
+        client.send("crearPartida," + nombreUser);
+    }
+
+    public static void empezarPartida(String iDPartida) {
+        client.send("empezarPartida," + iDPartida + "," + nombreUser); 
     }
 
     public static void registrarse(String email, String contrasenya, String nombre) {
@@ -84,6 +96,7 @@ public class GestionPartida {
                 enPartida = true;
                 dueñoPartida = true;
                 IDPartida = partes[1];
+                System.out.println("El id de la partida es:" + IDPartida);
                 break;
             case "CREADAP_NOOK":
                 System.out.println("Error en crear partida");
@@ -93,6 +106,12 @@ public class GestionPartida {
                 break;
             case "UNIRP_NO_OK":
                 System.out.println("Error en unirse a partida");
+                break;
+            case "EMPEZAR_OK":
+                empezarPartida = true;
+                break;
+            case "EMPEZAR_NO_OK":
+                System.out.println("Error en empezar partida");
                 break;
             default:
                 System.out.println("Mensaje no tenido en cuenta: " + message);
@@ -124,6 +143,8 @@ public class GestionPartida {
                         String password = partes[1];
                         String name = partes[2];
                         registrarse(mail, password, name);
+                        // Esperamos a recibir la respuesta del servidor
+                        ConexionServidor.esperar();
                     } else {
                         System.out.println("Debe ingresar los tres valores separados por coma");
                     }
@@ -137,6 +158,8 @@ public class GestionPartida {
                         String mail = partes[0];
                         String password = partes[1];
                         iniciarSesion(mail, password); // Llamada a la función iniciarSesion con los datos obtenidos
+                        // Esperamos a recibir la respuesta del servidor
+                        ConexionServidor.esperar();
                     } else {
                         System.out.println("Debe ingresar los dos valores separados por coma");
                     }
@@ -146,9 +169,6 @@ public class GestionPartida {
                     System.out.println("Elija una opción válida");
                     break;
             }
-        
-            // Esperamos a recibir la respuesta del servidor
-            ConexionServidor.esperar();
         }
     }
 
@@ -175,14 +195,5 @@ public class GestionPartida {
             // Esperamos a recibir la respuesta del servidor
             ConexionServidor.esperar();
         }
-    }
-
-    private static void unirsePartida(String _IDPartida) {
-        client.send("iniciarSesion," + IDPartida + "," + nombreUser);
-        IDPartida = _IDPartida;
-    }
-
-    private static void crearPartida() {
-        client.send("crearPartida," + nombreUser);
     }
 };
