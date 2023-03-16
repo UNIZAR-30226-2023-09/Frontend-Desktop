@@ -11,6 +11,8 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -32,34 +34,8 @@ public class MenuPrincipalController {
 
         if(btnSignIn.equals(evt))
         {
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"));
-    
-                Parent root = loader.load();
-    
-                //MainViewController controlador = loader.getController();
-    
-                Scene scene = new Scene(root);
-                //Stage stage = new Stage();
-                Stage stage = (Stage) btnSignIn.getScene().getWindow();
-    
-                stage.setScene(scene);
-                stage.show();
-
-                Stage old = (Stage) btnSignIn.getScene().getWindow();
-                old.close();
-
-                //stage.close();
-    
-                //stage.setOnCloseRequest(e -> controlador.closeWindow());
-
-                //Stage myStage = (Stage) this.btnSignIn.getScene().getWindow();
-                //myStage.close();
-    
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                e1.printStackTrace();
-            }
+            // Muestra los datos que contiene la clase sesion
+            JOptionPane.showMessageDialog(null, Sesion.nombre, "Bienvenido, eres:", JOptionPane.INFORMATION_MESSAGE);
         }
     }
     
