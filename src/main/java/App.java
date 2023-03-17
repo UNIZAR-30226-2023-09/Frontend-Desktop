@@ -24,7 +24,7 @@ public class App extends Application {
         // True para utilizar interfaz grafica
         ConexionServidor.iniciar(true);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
