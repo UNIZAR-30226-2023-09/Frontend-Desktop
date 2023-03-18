@@ -22,7 +22,7 @@ public class App extends Application {
         */
 
         // True para utilizar interfaz grafica
-        ConexionServidor.iniciar(true);
+        ConexionServidor.iniciar(false);
 
         FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"));
         Parent root = loader.load();

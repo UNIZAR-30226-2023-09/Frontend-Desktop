@@ -1,4 +1,5 @@
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.Scanner;
 import org.java_websocket.client.WebSocketClient;
 
@@ -8,13 +9,22 @@ public class GestionPartida {
     private static boolean sesionIniciada = false;
     private static boolean enPartida = false;
     private static boolean empezarPartida = false;
-    private static boolean dueñoPartida = false;
+    private static boolean dueñoPartida = false; 
+    private static boolean miTurno = false;
     private static WebSocketClient client;
+    private static boolean enCarcel = false;
 
     // ***** Información del usuario *****
     private static String nombreUser = "";
     private static int gemas = 0;
     private static String IDPartida = "";
+    private static String[] ordenJugadores = new String[4];
+    private static int casilla = 1;
+    private static int dinero = 1000;
+    private static int[] dados = new int[2];
+    private static int dineroBote;
+    private static ArrayList<String> propiedades = new ArrayList<String>();
+
     // ***********************************
 
     // Metodos públicos 
@@ -28,26 +38,9 @@ public class GestionPartida {
         Scanner scanner = new Scanner(System.in);
         iniciarSesion(client, scanner);
         menuInicial(client, scanner);
-        // TODO: Meter todo esto en una funcion?
-        if (dueñoPartida) {
-            // Empezar la partida
-            while(!empezarPartida) {
-                System.out.println("Introduzca un 1 para comenzar la partida: ");
-                String empezar = scanner.nextLine();
-                switch(empezar) {
-                    case "1":
-                        empezarPartida(IDPartida);
-                        break;
-                    default:
-                        // TODO: Volver a preguntar hasta que quiera empezar
-                }
-            }
-        } else {
-            // Esperar a que empiece
-            while (!empezarPartida) {
-                ConexionServidor.esperar();
-            }
-        }
+        empezarPartida(client, scanner);
+
+
 
         scanner.close();
     }
@@ -72,6 +65,10 @@ public class GestionPartida {
     public static void iniciarSesion(String email, String contrasenya) {
         client.send("iniciarSesion," + email + "," + contrasenya);
     }
+
+    public static void lanzarDados(String nombreUser, String iDPartida) {
+        client.send("lanzarDados," + nombreUser + "," + iDPartida);
+    }
     
     // Metodo que se encarga de gestionar todos los mensajes recibidos
     public static void gestionMensaje(String message) {
@@ -90,7 +87,7 @@ public class GestionPartida {
              case "REGISTRO_OK":
                 System.out.println("Registro correcto");
                 break;
-            case "REGISTRO_NOOK":
+            case "REGISTRO_NO_OK":
                 System.out.println("Error al registrarse");
                 break;
             case "CREADAP_OK":
@@ -110,10 +107,46 @@ public class GestionPartida {
                 break;
             case "EMPEZAR_OK":
                 empezarPartida = true;
+
+                // Almacenar orden de tiradas
+                ordenJugadores[0] = partes[2];
+                ordenJugadores[1] = partes[3];
+                ordenJugadores[2] = partes[4];
+                ordenJugadores[3] = partes[5];
+
+                // Almacenar posicion inicial y dinero inicial
+                casilla = 1;
+                dinero = 1000;
                 break;
             case "EMPEZAR_NO_OK":
                 System.out.println("Error en empezar partida");
                 break;
+            case "TURNO":
+                miTurno = true;
+                // TODO: ver si sigo en la carcel?
+                break;
+            case "DADOS":
+                dados[0] = Integer.parseInt(partes[1]);
+                dados[1] = Integer.parseInt(partes[2]);
+                casilla =  Integer.parseInt(partes[3]);
+                break;
+            case "NUEVO_DINERO_JUGADOR":
+                dinero = Integer.parseInt(partes[2]);
+                break;
+            case "NUEVO_DINERO_BOTE":
+                dineroBote = Integer.parseInt(partes[1]);
+            case "OBTENER_BOTE":
+                dinero = Integer.parseInt(partes[2]);
+            case "VENDER_OK":
+                propiedades.remove(partes[1]);
+                dinero = Integer.parseInt(partes[2]);
+            case "VENDER_NO_OK":
+                // TODO: ?
+                break;
+            case "DENTRO_CARCEL":
+                enCarcel = true;
+            case "SALIR_CARCEL":
+
             default:
                 System.out.println("Mensaje no tenido en cuenta: " + message);
                 return;
@@ -197,4 +230,54 @@ public class GestionPartida {
             ConexionServidor.esperar();
         }
     }
+
+    private static void empezarPartida(WebSocketClient client, Scanner scanner) {
+        if (dueñoPartida) {
+            // Empezar la partida
+            while(!empezarPartida) {
+                System.out.println("Introduzca un 1 para comenzar la partida: ");
+                String empezar = scanner.nextLine();
+                switch(empezar) {
+                    case "1":
+                        empezarPartida(IDPartida);
+                        break;
+                    default:
+                        // Volver a preguntar hasta que quiera empezar
+                        break;
+                }
+            }
+        } else {
+            // Esperar a que empiece
+            while (!empezarPartida) {
+                ConexionServidor.esperar();
+            }
+        }
+    }
+
+    private static void jugarPartida(WebSocketClient client, Scanner scanner) { 
+        while(enPartida) {
+            while(!miTurno) {
+                // Lanzar los dados
+                lanzarDados(nombreUser,IDPartida);
+                // Esperamos a recibir la respuesta del servidor
+                ConexionServidor.esperar();
+                
+                // Actualizar posicion jugador y hacer accion correspondiente
+
+                // Puedo recibir :
+                //  - Casilla para comprar
+                //  - Casilla suerte/cajacomunidad
+                //  - Ir a la carcel
+                //  - Propiedad que ya tiene dueño
+                //  - Casillas banco y casino
+
+
+                // Finalizamos el turno
+                miTurno = false;
+            }
+            // Esperamos a recibir la respuesta del servidor
+            ConexionServidor.esperar();
+        }
+    }
+    
 };
