@@ -45,6 +45,11 @@ public class SignInFormController implements Initializable{
 
     @FXML
     private Button btnSignIn;
+
+    private boolean verificarTipoEmail(String email)
+    {
+        return email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
+    }
     
     @FXML
     public void eventKey(KeyEvent e)
@@ -65,59 +70,64 @@ public class SignInFormController implements Initializable{
         if(btnSignIn.equals(evt))
         {
             if(!txtUserSignIn.getText().isEmpty() && !txtPasswordSignIn.getText().isEmpty())
-            {   
-                //enviamos un mensaje al servidor con los datos necesarios para iniciar sesion
-                GestionPartida.iniciarSesion(txtUserSignIn.getText(), txtPasswordSignIn.getText());
+            {
+                if(verificarTipoEmail(txtUserSignIn.getText()))
+                {
+                    //enviamos un mensaje al servidor con los datos necesarios para iniciar sesion
+                    GestionPartida.iniciarSesion(txtUserSignIn.getText(), txtPasswordSignIn.getText());
 
-                //recibir respuesta
-                ConexionServidor.esperar();
+                    //recibir respuesta
+                    ConexionServidor.esperar();
 
-                if (sesionIniciada) {
-                    // Relenar los datos de la sesion
-                    Sesion.nombre = txtUserSignIn.getText();
-                    Sesion.gemas = 0;
+                    if (sesionIniciada) {
+                        // Relenar los datos de la sesion
+                        Sesion.nombre = txtUserSignIn.getText();
+                        Sesion.gemas = 0;
 
-                    // Ir al menu principal
-                    try {
-                        FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
-    
-                        Parent root = loader.load();
-            
-                        Scene scene = new Scene(root);
-                        Stage stage = (Stage) btnSignIn.getScene().getWindow();
-    
-                        stage.setScene(scene);
-                        stage.show();
-    
-                        Stage old = (Stage) btnSignIn.getScene().getWindow();
-                        old.close();
-    
-                        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/MenuPrincipal.fxml"));
-                        Parent root = loader.load();
-    
-                        MenuPrincipalController segundoControlador = loader.getController();
-                        segundoControlador.setSesion(sesion);
-    
-                        Scene scene = new Scene(root);
-                        Stage stage = (Stage) btnSignIn.getScene().getWindow();
-                        stage.setScene(scene);
-                        stage.show();
-    
-                        Stage old = (Stage) btnSignIn.getScene().getWindow();
-                        old.close();*/
-    
-                    } catch (IOException e1) {
-                        // TODO Auto-generated catch block
-                        System.err.println(String.format("Error creando ventana: %s", e1.getMessage()));
+                        // Ir al menu principal
+                        try {
+                            FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
+        
+                            Parent root = loader.load();
+                
+                            Scene scene = new Scene(root);
+                            Stage stage = (Stage) btnSignIn.getScene().getWindow();
+        
+                            stage.setScene(scene);
+                            stage.show();
+        
+                            Stage old = (Stage) btnSignIn.getScene().getWindow();
+                            old.close();
+        
+                            /*FXMLLoader loader = new FXMLLoader(getClass().getResource("/com/example/MenuPrincipal.fxml"));
+                            Parent root = loader.load();
+        
+                            MenuPrincipalController segundoControlador = loader.getController();
+                            segundoControlador.setSesion(sesion);
+        
+                            Scene scene = new Scene(root);
+                            Stage stage = (Stage) btnSignIn.getScene().getWindow();
+                            stage.setScene(scene);
+                            stage.show();
+        
+                            Stage old = (Stage) btnSignIn.getScene().getWindow();
+                            old.close();*/
+        
+                        } catch (IOException e1) {
+                            // TODO Auto-generated catch block
+                            System.err.println(String.format("Error creando ventana: %s", e1.getMessage()));
+                        }
+                    }
+                    else
+                    {
+                        // Mostrar mensaje de error
+                        JOptionPane.showMessageDialog(null, "Datos introducidos no validos", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 else
                 {
-                    // Mostrar mensaje de error
-                    JOptionPane.showMessageDialog(null, "Datos introducidos no validos", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "En correo debe introducir un email valido", "ERROR", JOptionPane.ERROR_MESSAGE);
                 }
-
-                
             }
             else
             {
