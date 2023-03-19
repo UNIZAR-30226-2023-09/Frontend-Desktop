@@ -6,19 +6,25 @@
  * Descripción: Fichero controlador de la vista del formulario para hacer sign in
  -----------------------------------------------------------------------
 */
-
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 public class SignUpFormController implements Initializable{
 
@@ -61,16 +67,15 @@ public class SignUpFormController implements Initializable{
                     if(verificarTipoEmail(txtEmailSignUp.getText()))
                     {
                         //enviamos el mensaje
-                        //GestionPartida.registrarse(txtEmailSignUp.getText(), txtPassword.getText(), txtNameSignUp.getText());
+                        GestionPartida.registrarse(txtEmailSignUp.getText(), txtPassword.getText(), txtNameSignUp.getText());
 
                         //recibir respuesta
-                        /*
                         ConexionServidor.esperar();
 
                         if(cuentaRegistrada)
                         {
                             // Relenar los datos de la sesion
-                            Sesion.nombre = txtUserSignUn.getText();
+                            Sesion.nombre = txtUserSignUp.getText();
                             Sesion.gemas = 0;
 
                             // Ir al menu principal
@@ -97,8 +102,6 @@ public class SignUpFormController implements Initializable{
                         {
                             JOptionPane.showMessageDialog(null, "Datos introducidos no validos", "ERROR", JOptionPane.ERROR_MESSAGE);
                         }
-                        */
-                        JOptionPane.showMessageDialog(null, "BIENNNNN", "ERROR", JOptionPane.ERROR_MESSAGE);
                     }
                     else
                     {
