@@ -21,6 +21,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 
 public class SignUpFormController implements Initializable{
+
+    public static boolean cuentaRegistrada = false;
     
     @FXML
     private TextField txtNameSignUp, txtEmailSignUp, txtUserSignUp;
@@ -29,7 +31,12 @@ public class SignUpFormController implements Initializable{
     private PasswordField txtPassword, txtConfirmPassword;
 
     @FXML
-    private Button btnSignUp; 
+    private Button btnSignUp;
+
+    private boolean verificarTipoEmail(String email)
+    {
+        return email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
+    }
 
     @FXML
     public void keyEvent(KeyEvent e){
@@ -50,13 +57,53 @@ public class SignUpFormController implements Initializable{
             if(!txtNameSignUp.getText().isEmpty() && !txtEmailSignUp.getText().isEmpty() && !txtUserSignUp.getText().isEmpty() && !txtPassword.getText().isEmpty()&& !txtConfirmPassword.getText().isEmpty())
             {
                 if(txtConfirmPassword.getText().equals(txtPassword.getText())){
+
+                    if(verificarTipoEmail(txtEmailSignUp.getText()))
+                    {
+                        //enviamos el mensaje
+                        //GestionPartida.registrarse(txtEmailSignUp.getText(), txtPassword.getText(), txtNameSignUp.getText());
+
+                        //recibir respuesta
+                        /*
+                        ConexionServidor.esperar();
+
+                        if(cuentaRegistrada)
+                        {
+                            // Relenar los datos de la sesion
+                            Sesion.nombre = txtUserSignUn.getText();
+                            Sesion.gemas = 0;
+
+                            // Ir al menu principal
+                            try {
+                                FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
+            
+                                Parent root = loader.load();
                     
-                    String infoSignIn = txtEmailSignUp.getText(); //anañdir cosas a enviar
-
-                    // Aqui iria todo lo de enviar la informacion por el canal
-                    //de momento simplemete lo mostramos por pantalla
-                    JOptionPane.showMessageDialog(null, infoSignIn, "Bienvenido", JOptionPane.INFORMATION_MESSAGE);
-
+                                Scene scene = new Scene(root);
+                                Stage stage = (Stage) btnSignUp.getScene().getWindow();
+            
+                                stage.setScene(scene);
+                                stage.show();
+            
+                                Stage old = (Stage) btnSignUp.getScene().getWindow();
+                                old.close();
+            
+                            } catch (IOException e1) {
+                                // TODO Auto-generated catch block
+                                System.err.println(String.format("Error creando ventana: %s", e1.getMessage()));
+                            }
+                        }
+                        else
+                        {
+                            JOptionPane.showMessageDialog(null, "Datos introducidos no validos", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        }
+                        */
+                        JOptionPane.showMessageDialog(null, "BIENNNNN", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
+                    else
+                    {
+                        JOptionPane.showMessageDialog(null, "En correo debe introducir un email valido", "ERROR", JOptionPane.ERROR_MESSAGE);
+                    }
                 }
                 else{
                     JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "ERROR", JOptionPane.ERROR_MESSAGE);
