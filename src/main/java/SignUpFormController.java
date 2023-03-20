@@ -45,17 +45,8 @@ public class SignUpFormController implements Initializable{
     }
 
     @FXML
-    public void keyEvent(KeyEvent e){
-        String c = e.getCharacter();
-
-        if(c.equalsIgnoreCase(" ")){
-            e.consume();
-        }
-    }
-
-    @FXML
-    public void actionEvent(ActionEvent e){
-        
+    public void actionEvent(ActionEvent e) throws IOException
+    {    
         Object evt = e.getSource();
 
         if(btnSignUp.equals(evt)){

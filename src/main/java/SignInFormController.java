@@ -18,6 +18,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -50,20 +51,9 @@ public class SignInFormController implements Initializable{
     {
         return email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
     }
-    
-    @FXML
-    public void eventKey(KeyEvent e)
-    {
-        String c = e.getCharacter();
-
-        if(c.equalsIgnoreCase(" ")) 
-        {
-            e.consume();
-        }
-    }
 
     @FXML
-    public void actionEvent(ActionEvent e)
+    public void actionEvent(ActionEvent e) throws IOException
     {
         Object evt = e.getSource();
 
@@ -140,16 +130,6 @@ public class SignInFormController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         maskPassword(txtPasswordSignIn, txtPasswordSignInMask, checkViewPassSignIn);
-        /*
-        txtUserSignIn.addEventFilter(KeyEvent.KEY_TYPED, new EventHandler<KeyEvent>() {
-
-            @Override
-            public void handle(KeyEvent event) {
-                if(event.getCharacter().equals(" ")) event.consume();
-            }
-            
-        });
-        */
     }
 
     public void maskPassword(PasswordField pass, TextField text, CheckBox check)

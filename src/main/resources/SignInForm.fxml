@@ -34,7 +34,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="txtUserSignIn" onKeyTyped="#eventKey" prefHeight="37.0" promptText="sally@unizar.es">
+            <TextField fx:id="txtUserSignIn" prefHeight="37.0" promptText="sally@unizar.es">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -52,7 +52,7 @@
             </Label>
             <StackPane>
                <children>
-                  <PasswordField fx:id="txtPasswordSignIn" onKeyTyped="#eventKey" prefHeight="37.0" promptText="1234">
+                  <PasswordField fx:id="txtPasswordSignIn" prefHeight="37.0" promptText="1234">
                      <font>
                         <Font size="14.0" />
                      </font>
