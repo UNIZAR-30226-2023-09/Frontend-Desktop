@@ -88,6 +88,8 @@ public class GestionPartida {
                 break;
              case "REGISTRO_OK":
                 System.out.println("Registro correcto");
+                // Si hemos creado la cuenta correctamente
+                SignUpFormController.cuentaRegistrada = true;
                 break;
             case "REGISTRO_NO_OK":
                 System.out.println("Error al registrarse");

@@ -24,19 +24,11 @@
    <children>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" style="-fx-background-color: #30373e;" GridPane.halignment="CENTER" GridPane.hgrow="ALWAYS" GridPane.valignment="CENTER" GridPane.vgrow="ALWAYS">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="218.0" fitWidth="219.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@logo.png" />
                </image>
             </ImageView>
-            <Label text="Bienvenido a OtterFortune" textAlignment="CENTER" textFill="WHITE" wrapText="true">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="40.0" right="40.0" />
-               </VBox.margin>
-            </Label>
             <Label text="¿Eres nuevo? Crea una cuenta ahora" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                <font>
                   <Font size="20.0" />
@@ -53,12 +45,12 @@
                   <Insets left="40.0" right="40.0" />
                </padding>
                <children>
-                  <Button fx:id="btnSignIn" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Sign In" textFill="WHITE">
+                  <Button fx:id="btnSignIn" mnemonicParsing="false" onAction="#actionEvent" prefHeight="45.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Iniciar Sesion" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Sign Up" textFill="WHITE">
+                  <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#actionEvent" prefHeight="45.0" prefWidth="100.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Crear Cuenta" textAlignment="CENTER" textFill="WHITE" wrapText="true">
                      <HBox.margin>
                         <Insets left="10.0" />
                      </HBox.margin>
