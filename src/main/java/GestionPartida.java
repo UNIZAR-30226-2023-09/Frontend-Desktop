@@ -13,6 +13,7 @@ public class GestionPartida {
     private static boolean miTurno = false;
     private static WebSocketClient client;
     private static boolean enCarcel = false;
+    private static int turnosCarcel = 0;
 
     // ***** Información del usuario *****
     private static String nombreUser = "";
@@ -24,6 +25,8 @@ public class GestionPartida {
     private static int[] dados = new int[2];
     private static int dineroBote;
     private static ArrayList<String> propiedades = new ArrayList<String>();
+    private static boolean comprarPropiedad;
+    private static String propiedadAComprar = "";
 
     // ***********************************
 
@@ -39,14 +42,12 @@ public class GestionPartida {
         iniciarSesion(client, scanner);
         menuInicial(client, scanner);
         empezarPartida(client, scanner);
-
-
-
+        jugarPartida(client, scanner);
         scanner.close();
     }
 
     public static void unirsePartida(String _IDPartida) {
-        client.send("unirsePartida," + IDPartida + "," + nombreUser);
+        client.send("unirsePartida," + _IDPartida + "," + nombreUser);
         IDPartida = _IDPartida;
     }
 
@@ -72,6 +73,7 @@ public class GestionPartida {
     
     // Metodo que se encarga de gestionar todos los mensajes recibidos
     public static void gestionMensaje(String message) {
+        System.out.println(message);
         String[] partes = message.split(",");
         switch (partes[0]) {
             case "INICIO_OK":
@@ -107,6 +109,7 @@ public class GestionPartida {
                 break;
             case "EMPEZAR_OK":
                 empezarPartida = true;
+                enPartida = true;
 
                 // Almacenar orden de tiradas
                 ordenJugadores[0] = partes[2];
@@ -129,24 +132,46 @@ public class GestionPartida {
                 dados[0] = Integer.parseInt(partes[1]);
                 dados[1] = Integer.parseInt(partes[2]);
                 casilla =  Integer.parseInt(partes[3]);
+                if (Integer.parseInt(partes[3]) > 0) {
+                    enCarcel = true;
+                    turnosCarcel = Integer.parseInt(partes[3]);
+                } else {
+                    enCarcel = false;
+                    turnosCarcel = 0;
+                }
                 break;
             case "NUEVO_DINERO_JUGADOR":
                 dinero = Integer.parseInt(partes[2]);
                 break;
             case "NUEVO_DINERO_BOTE":
                 dineroBote = Integer.parseInt(partes[1]);
+                break;
             case "OBTENER_BOTE":
                 dinero = Integer.parseInt(partes[2]);
+                break;
             case "VENDER_OK":
                 propiedades.remove(partes[1]);
                 dinero = Integer.parseInt(partes[2]);
+                break;
             case "VENDER_NO_OK":
                 // TODO: ?
                 break;
+            case "QUIERES_COMPRAR_PROPIEDAD":
+                comprarPropiedad = true;
+                propiedadAComprar = partes[1];
+                break;
             case "DENTRO_CARCEL":
                 enCarcel = true;
+                System.out.println("Estas en la carcel durante " + partes[1]);
+                break;
             case "SALIR_CARCEL":
-
+                break;
+            case "NADA":
+                break;
+            case "NUEVO_DINERO_ALQUILER":
+                System.out.println("Has caido en la propiedad de otro jugador. Tu nuevo saldo es: " + partes[1]);
+                dinero = Integer.parseInt(partes[1]);
+                break;
             default:
                 System.out.println("Mensaje no tenido en cuenta: " + message);
                 return;
@@ -240,6 +265,7 @@ public class GestionPartida {
                 switch(empezar) {
                     case "1":
                         empezarPartida(IDPartida);
+                        ConexionServidor.esperar();
                         break;
                     default:
                         // Volver a preguntar hasta que quiera empezar
@@ -255,13 +281,28 @@ public class GestionPartida {
     }
 
     private static void jugarPartida(WebSocketClient client, Scanner scanner) { 
+        System.out.println("Empieza la partida");
         while(enPartida) {
+            System.out.println("Esperando turno ");
             while(!miTurno) {
+                mostrarInfoJugador();
+                System.out.println("Es tu turno, lanzando dados ");
                 // Lanzar los dados
                 lanzarDados(nombreUser,IDPartida);
                 // Esperamos a recibir la respuesta del servidor
                 ConexionServidor.esperar();
                 
+                // Si no sigo este turno en la carcel
+                if (!enCarcel) {
+                    if (comprarPropiedad) {
+                        System.out.println("Introduzca un 1 si desea comprar la propiedad: " + propiedadAComprar);
+                        if (scanner.nextLine().equals("1")) {
+                            comprarPropiedad(client);
+                        }
+                        comprarPropiedad = false;
+                    }
+                    
+                }
                 // Actualizar posicion jugador y hacer accion correspondiente
 
                 // Puedo recibir :
@@ -270,14 +311,33 @@ public class GestionPartida {
                 //  - Ir a la carcel
                 //  - Propiedad que ya tiene dueño
                 //  - Casillas banco y casino
-
-
-                // Finalizamos el turno
+                finTurno(client);
                 miTurno = false;
             }
             // Esperamos a recibir la respuesta del servidor
+            // Finalizamos el turno
             ConexionServidor.esperar();
         }
     }
-    
+
+    public static void finTurno(WebSocketClient client) {
+        client.send("finTurno");
+    }
+
+    public static void comprarPropiedad(WebSocketClient client) {
+        client.send("SI_COMPRAR_PROPIEDAD," + nombreUser + "," + IDPartida);
+    }
+
+    private static void mostrarInfoJugador() {
+        System.out.println("+-----------------------------------------+");
+        System.out.println(String.format("| %-20s | %10s |", "Nombre", nombreUser));
+        System.out.println("+----------------------+------------------+");
+        System.out.println(String.format("| %-20s | %,10d |", "Dinero", dinero));
+        System.out.println("+----------------------+------------------+");
+        System.out.println(String.format("| %-20s | %10d |", "Casilla actual", casilla));
+        System.out.println("+----------------------+------------------+");
+        System.out.println(String.format("| %-20s | %,10d |", "Dinero en el bote", dinero));
+        System.out.println("+-----------------------------------------+");
+    }
+        
 };

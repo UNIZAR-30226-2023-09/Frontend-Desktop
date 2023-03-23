@@ -47,7 +47,6 @@ public class ConexionServidor {
 
     // Libera el semaforo
     public static void liberar() {
-        System.out.println("Liberando semaforo");
         semaphore.release();
     }
 
