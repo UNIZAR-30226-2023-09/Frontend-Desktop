@@ -26,7 +26,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="txtNameSignUp" onKeyTyped="#keyEvent" prefHeight="30.0" promptText="Sally Floyd">
+            <TextField fx:id="txtNameSignUp" prefHeight="30.0" promptText="Sally Floyd">
                <font>
                   <Font size="14.0" />
                </font>
@@ -39,7 +39,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="txtEmailSignUp" onKeyTyped="#keyEvent" prefHeight="30.0" promptText="sally@unizar.es">
+            <TextField fx:id="txtEmailSignUp" prefHeight="30.0" promptText="sally@unizar.es">
                <font>
                   <Font size="14.0" />
                </font>
@@ -52,7 +52,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </Label>
-            <TextField fx:id="txtUserSignUp" onKeyTyped="#keyEvent" prefHeight="30.0" promptText="sally">
+            <TextField fx:id="txtUserSignUp" prefHeight="30.0" promptText="sally">
                <font>
                   <Font size="14.0" />
                </font>
@@ -69,7 +69,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="txtPassword" onKeyTyped="#keyEvent" prefHeight="30.0" promptText="1234" />
+                        <PasswordField fx:id="txtPassword" prefHeight="30.0" promptText="1234" />
                      </children>
                   </VBox>
                   <VBox HBox.hgrow="ALWAYS">
@@ -82,7 +82,7 @@
                               <Font size="15.0" />
                            </font>
                         </Label>
-                        <PasswordField fx:id="txtConfirmPassword" onKeyTyped="#keyEvent" prefHeight="30.0" promptText="1234">
+                        <PasswordField fx:id="txtConfirmPassword" prefHeight="30.0" promptText="1234">
                            <font>
                               <Font size="14.0" />
                            </font>

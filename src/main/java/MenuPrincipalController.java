@@ -25,17 +25,35 @@ import javafx.stage.Stage;
 public class MenuPrincipalController {
 
     @FXML
-    private Button btnSignIn;
+    private Button btnSignOut;
 
     @FXML
     public void actionEvent(ActionEvent e)
     {
         Object evt = e.getSource();
 
-        if(btnSignIn.equals(evt))
+        if(btnSignOut.equals(evt))
         {
-            // Muestra los datos que contiene la clase sesion
-            JOptionPane.showMessageDialog(null, Sesion.nombre, "Bienvenido, eres:", JOptionPane.INFORMATION_MESSAGE);
+            // cerrar la sesion
+            // Ir al menu principal
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"));
+
+                Parent root = loader.load();
+    
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) btnSignOut.getScene().getWindow();
+
+                stage.setScene(scene);
+                stage.show();
+
+                Stage old = (Stage) btnSignOut.getScene().getWindow();
+                old.close();
+
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                System.err.println(String.format("Error creando ventana: %s", e1.getMessage()));
+            }
         }
     }
     
