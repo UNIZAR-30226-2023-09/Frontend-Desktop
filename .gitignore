@@ -12,3 +12,4 @@ logs/
 # Maven Wrapper
 mvnw
 mvnw.cmd
+.DS_Store
