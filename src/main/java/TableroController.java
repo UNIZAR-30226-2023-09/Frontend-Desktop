@@ -95,6 +95,9 @@ public class TableroController implements Initializable{
                 String coordenadas = DatosPartida.mapaPropiedades.get(posi);
                 System.out.println(coordenadas);
 
+                user1.setLayoutX(500);
+                user1.setLayoutY(500);
+
 
                 //hacer desaparecer la ficha
 
