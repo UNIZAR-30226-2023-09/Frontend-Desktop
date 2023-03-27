@@ -9,7 +9,7 @@ public class GestionPartida {
     private static boolean sesionIniciada = false;
     private static boolean enPartida = false;
     private static boolean empezarPartida = false;
-    private static boolean dueñoPartida = false; 
+    private static boolean dueñoPartida = false;
     private static boolean miTurno = false;
     private static WebSocketClient client;
     private static boolean enCarcel = false;
@@ -30,14 +30,14 @@ public class GestionPartida {
 
     // ***********************************
 
-    // Metodos públicos 
+    // Metodos públicos
     public static void iniciar(WebSocketClient _client) {
         client = _client;
     }
 
     public static void partida() throws URISyntaxException, InterruptedException {
 
-        // // ***********************  JUEGO ***********************
+        // // *********************** JUEGO ***********************
         Scanner scanner = new Scanner(System.in);
         iniciarSesion(client, scanner);
         menuInicial(client, scanner);
@@ -56,7 +56,7 @@ public class GestionPartida {
     }
 
     public static void empezarPartida(String iDPartida) {
-        client.send("empezarPartida," + iDPartida + "," + nombreUser); 
+        client.send("empezarPartida," + iDPartida + "," + nombreUser);
     }
 
     public static void registrarse(String email, String contrasenya, String nombre) {
@@ -70,7 +70,7 @@ public class GestionPartida {
     public static void lanzarDados(String nombreUser, String iDPartida) {
         client.send("lanzarDados," + nombreUser + "," + iDPartida);
     }
-    
+
     // Metodo que se encarga de gestionar todos los mensajes recibidos
     public static void gestionMensaje(String message) {
         System.out.println(message);
@@ -86,7 +86,7 @@ public class GestionPartida {
             case "INICIO_NO_OK":
                 System.out.println("Error en inicio de sesión");
                 break;
-             case "REGISTRO_OK":
+            case "REGISTRO_OK":
                 System.out.println("Registro correcto");
                 // Si hemos creado la cuenta correctamente
                 SignUpFormController.cuentaRegistrada = true;
@@ -133,7 +133,7 @@ public class GestionPartida {
             case "DADOS":
                 dados[0] = Integer.parseInt(partes[1]);
                 dados[1] = Integer.parseInt(partes[2]);
-                casilla =  Integer.parseInt(partes[3]);
+                casilla = Integer.parseInt(partes[3]);
                 if (Integer.parseInt(partes[3]) > 0) {
                     enCarcel = true;
                     turnosCarcel = Integer.parseInt(partes[3]);
@@ -183,8 +183,9 @@ public class GestionPartida {
 
     // Metodos privados de gestion del juego por terminal
 
-    // *************  INICIO SESION *************
-    private static void iniciarSesion(WebSocketClient client, Scanner scanner) throws URISyntaxException, InterruptedException {
+    // ************* INICIO SESION *************
+    private static void iniciarSesion(WebSocketClient client, Scanner scanner)
+            throws URISyntaxException, InterruptedException {
         String[] partes;
         String input;
         while (!sesionIniciada) {
@@ -192,7 +193,7 @@ public class GestionPartida {
             System.out.println("1 - Registrarse[mail,password,name] ");
             System.out.println("2 - Iniciar Sesion[mail,password]");
             String mensaje = scanner.nextLine();
-            switch(mensaje) {
+            switch (mensaje) {
                 case "1":
                     // Registrarse
                     System.out.println("Rellene los campos: [mail,password,name]: ");
@@ -233,8 +234,9 @@ public class GestionPartida {
         }
     }
 
-    // *************  MENU INICIAL *************
-    private static void menuInicial (WebSocketClient client, Scanner scanner) throws URISyntaxException, InterruptedException {
+    // ************* MENU INICIAL *************
+    private static void menuInicial(WebSocketClient client, Scanner scanner)
+            throws URISyntaxException, InterruptedException {
         System.out.println("Bienvenido: " + nombreUser + ". Que desea hacer: ");
         System.out.println("1 - Crear partida");
         System.out.println("2 - Unirse a partida");
@@ -261,10 +263,10 @@ public class GestionPartida {
     private static void empezarPartida(WebSocketClient client, Scanner scanner) {
         if (dueñoPartida) {
             // Empezar la partida
-            while(!empezarPartida) {
+            while (!empezarPartida) {
                 System.out.println("Introduzca un 1 para comenzar la partida: ");
                 String empezar = scanner.nextLine();
-                switch(empezar) {
+                switch (empezar) {
                     case "1":
                         empezarPartida(IDPartida);
                         ConexionServidor.esperar();
@@ -282,18 +284,18 @@ public class GestionPartida {
         }
     }
 
-    private static void jugarPartida(WebSocketClient client, Scanner scanner) { 
+    private static void jugarPartida(WebSocketClient client, Scanner scanner) {
         System.out.println("Empieza la partida");
-        while(enPartida) {
+        while (enPartida) {
             System.out.println("Esperando turno ");
-            while(!miTurno) {
+            while (!miTurno) {
                 mostrarInfoJugador();
                 System.out.println("Es tu turno, lanzando dados ");
                 // Lanzar los dados
-                lanzarDados(nombreUser,IDPartida);
+                lanzarDados(nombreUser, IDPartida);
                 // Esperamos a recibir la respuesta del servidor
                 ConexionServidor.esperar();
-                
+
                 // Si no sigo este turno en la carcel
                 if (!enCarcel) {
                     if (comprarPropiedad) {
@@ -303,16 +305,16 @@ public class GestionPartida {
                         }
                         comprarPropiedad = false;
                     }
-                    
+
                 }
                 // Actualizar posicion jugador y hacer accion correspondiente
 
                 // Puedo recibir :
-                //  - Casilla para comprar
-                //  - Casilla suerte/cajacomunidad
-                //  - Ir a la carcel
-                //  - Propiedad que ya tiene dueño
-                //  - Casillas banco y casino
+                // - Casilla para comprar
+                // - Casilla suerte/cajacomunidad
+                // - Ir a la carcel
+                // - Propiedad que ya tiene dueño
+                // - Casillas banco y casino
                 finTurno(client);
                 miTurno = false;
             }
@@ -341,5 +343,5 @@ public class GestionPartida {
         System.out.println(String.format("| %-20s | %,10d |", "Dinero en el bote", dinero));
         System.out.println("+-----------------------------------------+");
     }
-        
+
 };
