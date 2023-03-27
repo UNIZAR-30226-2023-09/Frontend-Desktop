@@ -1,4 +1,5 @@
-
+import java.util.HashMap;
+import java.util.Map;
 
 public class DatosPartida {
     
@@ -7,8 +8,61 @@ public class DatosPartida {
     public static boolean esMiTurnoDados;
 
     public static int vecesLanzadoDados;
+
+    public static int casilla;
+
+    public static int casillaPrevia;
+
+    public static boolean estoyCarcel;
     
     public static String nombreUser;
 
     public static String IDPartida;
+
+    public static Map<String, String> mapaPropiedades = new HashMap<>();
+
+    static {
+        mapaPropiedades.put("Pos1", "100x,0y");
+        mapaPropiedades.put("Pos2", "200x,0y");
+        mapaPropiedades.put("Pos3", "300x,0y");
+        mapaPropiedades.put("Pos4", "400x,0y");
+        mapaPropiedades.put("Pos5", "500x,0y");
+        mapaPropiedades.put("Pos6", "600x,0y");
+        mapaPropiedades.put("Pos7", "700x,0y");
+        mapaPropiedades.put("Pos8", "800x,0y");
+        mapaPropiedades.put("Pos9", "900x,0y");
+        mapaPropiedades.put("Pos10", "1000x,0y");
+        mapaPropiedades.put("Pos11", "100x,100y");
+        mapaPropiedades.put("Pos12", "200x,100y");
+        mapaPropiedades.put("Pos13", "300x,100y");
+        mapaPropiedades.put("Pos14", "400x,100y");
+        mapaPropiedades.put("Pos15", "500x,100y");
+        mapaPropiedades.put("Pos16", "600x,100y");
+        mapaPropiedades.put("Pos17", "700x,100y");
+        mapaPropiedades.put("Pos18", "800x,100y");
+        mapaPropiedades.put("Pos19", "900x,1000yy");
+        mapaPropiedades.put("Pos20", "1000x,200y");
+        mapaPropiedades.put("Pos21", "100x,300y");
+        mapaPropiedades.put("Pos22", "200x,300y");
+        mapaPropiedades.put("Pos23", "300x,300y");
+        mapaPropiedades.put("Pos24", "400x,300y");
+        mapaPropiedades.put("Pos25", "500x,300y");
+        mapaPropiedades.put("Pos26", "600x,300y");
+        mapaPropiedades.put("Pos27", "700x,300y");
+        mapaPropiedades.put("Pos28", "800x,300y");
+        mapaPropiedades.put("Pos29", "900x,300y");
+        mapaPropiedades.put("Pos30", "1000x,300y");
+        mapaPropiedades.put("Pos31", "100x,400y");
+        mapaPropiedades.put("Pos32", "200x,400y");
+        mapaPropiedades.put("Pos33", "300x,400y");
+        mapaPropiedades.put("Pos34", "400x,400y");
+        mapaPropiedades.put("Pos35", "500x,400y");
+        mapaPropiedades.put("Pos36", "600x,400y");
+        mapaPropiedades.put("Pos37", "700x,400y");
+        mapaPropiedades.put("Pos38", "800x,400y");
+        mapaPropiedades.put("Pos39", "900x,400y");
+        mapaPropiedades.put("Pos40", "1000x,400y");
+
+
+    }
 }

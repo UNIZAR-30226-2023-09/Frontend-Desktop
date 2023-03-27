@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 public class TableroController implements Initializable{
     
     @FXML
-    private ImageView dado1, dado2;
+    private ImageView dado1, dado2, user1;
 
     private VBox listaJugadores, listaPropiedades, chat; 
 
@@ -72,69 +72,6 @@ public class TableroController implements Initializable{
                 threadL.start();
                 threadR.start();
 
-
-                //
-                /* 
-                switch (DatosPartida.dados[0]) {
-                    case 1:
-                        File file01 = new File("src/main/resources/Dice1.png");
-                        dado1.setImage(new Image(file01.toURI().toString()));
-                        break;
-                    case 2:
-                        File file02 = new File("src/main/resources/Dice1.png");
-                        dado1.setImage(new Image(file02.toURI().toString()));
-                        break;
-                    case 3:
-                        File file03 = new File("src/main/resources/Dice1.png");
-                        dado1.setImage(new Image(file03.toURI().toString()));
-                        break;
-                    case 4:
-                        File file04 = new File("src/main/resources/Dice1.png");
-                        dado1.setImage(new Image(file04.toURI().toString()));
-                        break;
-                    case 5:
-                        File file05 = new File("src/main/resources/Dice1.png");
-                        dado1.setImage(new Image(file05.toURI().toString()));
-                        break;
-                    case 6:
-                        File file06 = new File("src/main/resources/Dice1.png");
-                        dado1.setImage(new Image(file06.toURI().toString()));
-                        break;
-                    default:
-                        break;
-                }
-
-                switch (DatosPartida.dados[1]) {
-                    case 1:
-                        File file01 = new File("src/main/resources/Dice1.png");
-                        dado2.setImage(new Image(file01.toURI().toString()));
-                        break;
-                    case 2:
-                        File file02 = new File("src/main/resources/Dice1.png");
-                        dado2.setImage(new Image(file02.toURI().toString()));
-                        break;
-                    case 3:
-                        File file03 = new File("src/main/resources/Dice1.png");
-                        dado2.setImage(new Image(file03.toURI().toString()));
-                        break;
-                    case 4:
-                        File file04 = new File("src/main/resources/Dice1.png");
-                        dado2.setImage(new Image(file04.toURI().toString()));
-                        break;
-                    case 5:
-                        File file05 = new File("src/main/resources/Dice1.png");
-                        dado2.setImage(new Image(file05.toURI().toString()));
-                        break;
-                    case 6:
-                        File file06 = new File("src/main/resources/Dice1.png");
-                        dado2.setImage(new Image(file06.toURI().toString()));
-                        break;
-                    default:
-                        break;
-
-                }
-                */
-
                 if(DatosPartida.dados[0] == DatosPartida.dados[1]){
                     DatosPartida.esMiTurnoDados =true;
                     DatosPartida.vecesLanzadoDados++;
@@ -145,7 +82,24 @@ public class TableroController implements Initializable{
 
                 if(DatosPartida.vecesLanzadoDados >= 2){
                     //TOCA IR A LA CAAAARCEL
+                    DatosPartida.estoyCarcel=true;
+                    //habra que mirar algo con la logica de moro para esto, o mandar un mensaje o que contabilicen en el send las veces que llevamos seguidas lanzando
+
                 }
+            }
+            if(DatosPartida.estoyCarcel = false){
+                //OPCIONES PARA HACER EL MOVIMIENTO:
+                //-TENEMOS REFLEJADA EN UN VECTOR LA POSICION DE CADA CASILLA-> RESTAR CASILLA-POSICION ACTUAL Y RECORRER EL CAMINO SABIENDO QUE CADA CASILLA ES X PX
+                
+                String posi = "Pos"+String.valueOf(DatosPartida.casilla);
+                String coordenadas = DatosPartida.mapaPropiedades.get(posi);
+                System.out.println(coordenadas);
+
+
+                //hacer desaparecer la ficha
+
+                //hacerla aparecer en la casilla que es
+
             }
         }
            
