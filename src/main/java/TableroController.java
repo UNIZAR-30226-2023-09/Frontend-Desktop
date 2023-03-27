@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 public class TableroController implements Initializable{
     
     @FXML
-    private ImageView dado1, dado2, user1;
+    private ImageView dado1, dado2;
 
     private VBox listaJugadores, listaPropiedades, chat; 
 
@@ -82,27 +82,10 @@ public class TableroController implements Initializable{
 
                 if(DatosPartida.vecesLanzadoDados >= 2){
                     //TOCA IR A LA CAAAARCEL
-                    DatosPartida.estoyCarcel=true;
+                    //DatosPartida.estoyCarcel=true;
                     //habra que mirar algo con la logica de moro para esto, o mandar un mensaje o que contabilicen en el send las veces que llevamos seguidas lanzando
 
                 }
-            }
-            if(DatosPartida.estoyCarcel = false){
-                //OPCIONES PARA HACER EL MOVIMIENTO:
-                //-TENEMOS REFLEJADA EN UN VECTOR LA POSICION DE CADA CASILLA-> RESTAR CASILLA-POSICION ACTUAL Y RECORRER EL CAMINO SABIENDO QUE CADA CASILLA ES X PX
-                
-                String posi = "Pos"+String.valueOf(DatosPartida.casilla);
-                String coordenadas = DatosPartida.mapaPropiedades.get(posi);
-                System.out.println(coordenadas);
-
-                user1.setLayoutX(500);
-                user1.setLayoutY(500);
-
-
-                //hacer desaparecer la ficha
-
-                //hacerla aparecer en la casilla que es
-
             }
         }
            

@@ -139,14 +139,14 @@ public class GestionPartida {
                 DatosPartida.dados[0] = Integer.parseInt(partes[1]);
                 DatosPartida.dados[1] = Integer.parseInt(partes[2]);
                 casilla = Integer.parseInt(partes[3]);
-                DatosPartida.casilla = Integer.parseInt(partes[3]);
-                if (Integer.parseInt(partes[4]) > 0) {
+                //DatosPartida.casilla = Integer.parseInt(partes[3]);
+                if (Integer.parseInt(partes[3]) > 0) {
                     enCarcel = true;
-                    DatosPartida.estoyCarcel =true;
-                    turnosCarcel = Integer.parseInt(partes[4]);
+                    //DatosPartida.estoyCarcel =true;
+                    turnosCarcel = Integer.parseInt(partes[3]);
                 } else {
                     enCarcel = false;
-                    DatosPartida.estoyCarcel =false;
+                    //DatosPartida.estoyCarcel =false;
                     turnosCarcel = 0;
                 }
                 break;
