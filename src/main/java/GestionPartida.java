@@ -79,6 +79,7 @@ public class GestionPartida {
             case "INICIO_OK":
                 // Si hemos iniciado sesión correctamente
                 nombreUser = partes[1];
+                DatosPartida.nombreUser = partes[1];
                 gemas = Integer.parseInt(partes[2]);
                 sesionIniciada = true;
                 SignInFormController.sesionIniciada = true;
@@ -98,6 +99,7 @@ public class GestionPartida {
                 enPartida = true;
                 dueñoPartida = true;
                 IDPartida = partes[1];
+                DatosPartida.IDPartida = partes[1];
                 System.out.println("El id de la partida es:" + IDPartida);
                 break;
             case "CREADAP_NOOK":
@@ -128,11 +130,14 @@ public class GestionPartida {
                 break;
             case "TURNO":
                 miTurno = true;
+                DatosPartida.esMiTurnoDados =true;
                 // TODO: ver si sigo en la carcel?
                 break;
             case "DADOS":
                 dados[0] = Integer.parseInt(partes[1]);
                 dados[1] = Integer.parseInt(partes[2]);
+                DatosPartida.dados[0] = Integer.parseInt(partes[1]);
+                DatosPartida.dados[1] = Integer.parseInt(partes[2]);
                 casilla = Integer.parseInt(partes[3]);
                 if (Integer.parseInt(partes[3]) > 0) {
                     enCarcel = true;

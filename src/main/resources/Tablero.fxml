@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+
+<GridPane prefHeight="600.0" prefWidth="1057.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TableroController">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="839.0" minWidth="10.0" prefWidth="800.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="0.0" prefWidth="257.0" />
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+   </rowConstraints>
+   <children>
+      <Pane prefHeight="200.0" prefWidth="200.0">
+         <children>
+            <ImageView fx:id="tablero" fitHeight="600.0" fitWidth="802.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@background1.jpg" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="dado1" fitHeight="104.0" fitWidth="90.0" layoutX="284.0" layoutY="248.0" onMouseClicked="#tirarDados" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Dice3.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="dado2" fitHeight="109.0" fitWidth="90.0" layoutX="435.0" layoutY="248.0" onMouseClicked="#tirarDados" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Dice5.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+      <VBox fx:id="datosPartida" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+         <children>
+            <VBox fx:id="listaJugadores" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="LIsta jugadores">
+                     <padding>
+                        <Insets left="90.0" top="90.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="listaPropiedades" prefHeight="200.0" prefWidth="100.0">
+               <children>
+                  <Label text="LIsta propiedades">
+                     <padding>
+                        <Insets left="90.0" top="90.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+            <VBox fx:id="chat" prefHeight="301.0" prefWidth="282.0">
+               <children>
+                  <Label text="CHAT">
+                     <padding>
+                        <Insets left="120.0" top="140.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+         </children>
+      </VBox>
+   </children>
+</GridPane>
