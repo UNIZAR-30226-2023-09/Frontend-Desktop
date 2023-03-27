@@ -38,13 +38,13 @@ public class TableroController implements Initializable{
                         System.out.println("Dado 1 agitandose");
                         try {
                             for (int i = 0; i < 15; i++) {
-                                File file = new File("rc/main/resources/Dice" + (random.nextInt(6)+1)+".png");
+                                File file = new File("src/main/resources/Dice" + (random.nextInt(6)+1)+".png");
                                 dado1.setImage(new Image(file.toURI().toString()));
                                 Thread.sleep(50);
                             }
-                            File file = new File("rc/main/resources/Dice" + DatosPartida.dados[0]+".png");
+                            File file = new File("src/main/resources/Dice" + DatosPartida.dados[0] + ".png");
                             dado1.setImage(new Image(file.toURI().toString()));
-                            
+                            System.out.println("Dado 1 ");
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -56,13 +56,13 @@ public class TableroController implements Initializable{
                         System.out.println("TDado 1 agitandose");
                         try {
                             for (int i = 0; i < 15; i++) {
-                                File file = new File("rc/main/resources/Dice" + (random.nextInt(6)+1)+".png");
+                                File file = new File("src/main/resources/Dice" + (random.nextInt(6)+1)+".png");
                                 dado2.setImage(new Image(file.toURI().toString()));
                                 Thread.sleep(50);
                             }
-                            File file = new File("rc/main/resources/Dice" + DatosPartida.dados[1]+".png");
+                            File file = new File("src/main/resources/Dice"+ DatosPartida.dados[1] + ".png");
                             dado2.setImage(new Image(file.toURI().toString()));
-                            
+                            System.out.println("Dado 2");
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }

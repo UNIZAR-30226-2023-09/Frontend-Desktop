@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 public class MenuPrincipalController {
 
     @FXML
-    private Button btnSignOut;
+    private Button btnSignOut, btnUnirse;
 
     @FXML
     public void actionEvent(ActionEvent e)
@@ -48,6 +48,28 @@ public class MenuPrincipalController {
                 stage.show();
 
                 Stage old = (Stage) btnSignOut.getScene().getWindow();
+                old.close();
+
+            } catch (IOException e1) {
+                // TODO Auto-generated catch block
+                System.err.println(String.format("Error creando ventana: %s", e1.getMessage()));
+            }
+        }
+        else if(btnUnirse.equals(evt))
+        {
+            // Ir al menu principal
+            try {
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("Tablero.fxml"));
+
+                Parent root = loader.load();
+    
+                Scene scene = new Scene(root);
+                Stage stage = (Stage) btnUnirse.getScene().getWindow();
+
+                stage.setScene(scene);
+                stage.show();
+
+                Stage old = (Stage) btnUnirse.getScene().getWindow();
                 old.close();
 
             } catch (IOException e1) {
