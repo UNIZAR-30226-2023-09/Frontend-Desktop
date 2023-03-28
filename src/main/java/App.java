@@ -18,19 +18,11 @@ public class App extends Application {
         // True para utilizar interfaz grafica
         ConexionServidor.iniciar(true);
 
-        scene = new Scene(loadFXML("MainView")/*, 640, 480*/);
+        scene = new Scene(loadFXML("MainView"));
         stage.setScene(scene);
-        //stage.setFullScreen(true);
-        //stage.setResizable(false);
-        stage.show();
-
-        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
-        stage.setScene(scene);
-        stage.setFullScreen(true);
+        stage.setMaximized(true);
         stage.setResizable(false);
-        stage.show();*/
+        stage.show();
     }
 
     static void setRoot(String fxml) throws IOException {
