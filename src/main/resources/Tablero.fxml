@@ -1,11 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.VBox?>
 
-<GridPane prefHeight="600.0" prefWidth="1057.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TableroController">
+<GridPane alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TableroController">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="839.0" minWidth="10.0" prefWidth="800.0" />
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="0.0" prefWidth="257.0" />
@@ -14,28 +20,32 @@
       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <Pane prefHeight="200.0" prefWidth="200.0">
+      <AnchorPane>
          <children>
-            <ImageView fx:id="tablero" fitHeight="600.0" fitWidth="802.0" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@background1.jpg" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="dado1" fitHeight="104.0" fitWidth="90.0" layoutX="284.0" layoutY="248.0" onMouseClicked="#tirarDados" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Dice3.png" />
-               </image>
-            </ImageView>
-            <ImageView fx:id="dado2" fitHeight="109.0" fitWidth="90.0" layoutX="435.0" layoutY="248.0" onMouseClicked="#tirarDados" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@Dice5.png" />
-               </image>
-            </ImageView>
+            <Pane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+               <children>
+                  <ImageView fx:id="tablero" fitHeight="600.0" fitWidth="802.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@background1.jpg" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="dado1" fitHeight="104.0" fitWidth="90.0" layoutX="284.0" layoutY="248.0" onMouseClicked="#tirarDados" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Dice3.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fx:id="dado2" fitHeight="109.0" fitWidth="90.0" layoutX="435.0" layoutY="248.0" onMouseClicked="#tirarDados" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@Dice5.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </Pane>
          </children>
-      </Pane>
-      <VBox fx:id="datosPartida" prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
+      </AnchorPane>
+      <VBox fx:id="datosPartida" GridPane.columnIndex="1">
          <children>
-            <VBox fx:id="listaJugadores" prefHeight="200.0" prefWidth="100.0">
+            <VBox fx:id="listaJugadores">
                <children>
                   <Label text="LIsta jugadores">
                      <padding>
@@ -44,7 +54,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="listaPropiedades" prefHeight="200.0" prefWidth="100.0">
+            <VBox fx:id="listaPropiedades">
                <children>
                   <Label text="LIsta propiedades">
                      <padding>
@@ -53,7 +63,7 @@
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="chat" prefHeight="301.0" prefWidth="282.0">
+            <VBox fx:id="chat">
                <children>
                   <Label text="CHAT">
                      <padding>
