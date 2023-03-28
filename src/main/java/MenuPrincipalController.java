@@ -28,54 +28,19 @@ public class MenuPrincipalController {
     private Button btnSignOut, btnUnirse;
 
     @FXML
-    public void actionEvent(ActionEvent e)
+    public void actionEvent(ActionEvent e) throws IOException
     {
         Object evt = e.getSource();
 
         if(btnSignOut.equals(evt))
         {
             // cerrar la sesion
-            // Ir al menu principal
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"));
-
-                Parent root = loader.load();
-    
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) btnSignOut.getScene().getWindow();
-
-                stage.setScene(scene);
-                stage.show();
-
-                Stage old = (Stage) btnSignOut.getScene().getWindow();
-                old.close();
-
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                System.err.println(String.format("Error creando ventana: %s", e1.getMessage()));
-            }
+            App.setRoot("MainView");
         }
         else if(btnUnirse.equals(evt))
         {
-            // Ir al menu principal
-            try {
-                FXMLLoader loader = new FXMLLoader(getClass().getResource("Tablero.fxml"));
-
-                Parent root = loader.load();
-    
-                Scene scene = new Scene(root);
-                Stage stage = (Stage) btnUnirse.getScene().getWindow();
-
-                stage.setScene(scene);
-                stage.show();
-
-                Stage old = (Stage) btnUnirse.getScene().getWindow();
-                old.close();
-
-            } catch (IOException e1) {
-                // TODO Auto-generated catch block
-                System.err.println(String.format("Error creando ventana: %s", e1.getMessage()));
-            }
+            // abrir el tablero
+            App.setRoot("Tablero");
         }
     }
     

@@ -15,20 +15,22 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        /*
-        scene = new Scene(loadFXML("secondary"), 640, 480);
-        stage.setScene(scene);
-        stage.show();
-        */
-
         // True para utilizar interfaz grafica
         ConexionServidor.iniciar(true);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"));
+        scene = new Scene(loadFXML("MainView")/*, 640, 480*/);
+        stage.setScene(scene);
+        //stage.setFullScreen(true);
+        //stage.setResizable(false);
+        stage.show();
+
+        /*FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"));
         Parent root = loader.load();
         Scene scene = new Scene(root);
         stage.setScene(scene);
-        stage.show();
+        stage.setFullScreen(true);
+        stage.setResizable(false);
+        stage.show();*/
     }
 
     static void setRoot(String fxml) throws IOException {
