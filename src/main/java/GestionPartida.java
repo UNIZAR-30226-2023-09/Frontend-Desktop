@@ -134,9 +134,9 @@ public class GestionPartida {
                 dados[0] = Integer.parseInt(partes[1]);
                 dados[1] = Integer.parseInt(partes[2]);
                 casilla = Integer.parseInt(partes[3]);
-                if (Integer.parseInt(partes[3]) > 0) {
+                if (Integer.parseInt(partes[4]) > 0) {
                     enCarcel = true;
-                    turnosCarcel = Integer.parseInt(partes[3]);
+                    turnosCarcel = Integer.parseInt(partes[4]);
                 } else {
                     enCarcel = false;
                     turnosCarcel = 0;
