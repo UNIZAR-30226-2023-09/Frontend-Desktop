@@ -70,24 +70,7 @@ public class SignUpFormController implements Initializable{
                             Sesion.gemas = 0;
 
                             // Ir al menu principal
-                            try {
-                                FXMLLoader loader = new FXMLLoader(getClass().getResource("MenuPrincipal.fxml"));
-            
-                                Parent root = loader.load();
-                    
-                                Scene scene = new Scene(root);
-                                Stage stage = (Stage) btnSignUp.getScene().getWindow();
-            
-                                stage.setScene(scene);
-                                stage.show();
-            
-                                Stage old = (Stage) btnSignUp.getScene().getWindow();
-                                old.close();
-            
-                            } catch (IOException e1) {
-                                // TODO Auto-generated catch block
-                                System.err.println(String.format("Error creando ventana: %s", e1.getMessage()));
-                            }
+                            App.setRoot("MenuPrincipal");
                         }
                         else
                         {

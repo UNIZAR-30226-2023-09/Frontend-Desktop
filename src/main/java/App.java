@@ -15,19 +15,13 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        /*
-        scene = new Scene(loadFXML("secondary"), 640, 480);
-        stage.setScene(scene);
-        stage.show();
-        */
-
         // True para utilizar interfaz grafica
-        ConexionServidor.iniciar(false);
+        ConexionServidor.iniciar(true);
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("MainView.fxml"));
-        Parent root = loader.load();
-        Scene scene = new Scene(root);
+        scene = new Scene(loadFXML("MainView"));
         stage.setScene(scene);
+        stage.setMaximized(true);
+        stage.setResizable(false);
         stage.show();
     }
 
