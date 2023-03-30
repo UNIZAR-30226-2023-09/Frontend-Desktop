@@ -1,0 +1,7 @@
+.tableroImg
+{
+    -fx-background-image: url('./background1.jpg');
+    /*-fx-background-repeat: no-repeat;*/
+    -fx-background-size: cover; /* Para ajustar el tamaño de la imagen al contenedor*/
+    -fx-position: absolute;
+}

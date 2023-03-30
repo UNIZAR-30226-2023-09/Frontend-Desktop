@@ -28,9 +28,9 @@ public class TableroController implements Initializable{
             DatosPartida.esMiTurnoDados =false;
             if(imagenDado.getId().equals("dado1") || imagenDado.getId().equals("dado2")) {
                 //PASAR CON WEB SOCKETS QUE QUEREMOS LANZAR DADOS, funcion que tiene que hacer moro?
-                GestionPartida.lanzarDados(DatosPartida.nombreUser, DatosPartida.IDPartida);
+                //GestionPartida.lanzarDados(DatosPartida.nombreUser, DatosPartida.IDPartida);
 
-                ConexionServidor.esperar();
+                //ConexionServidor.esperar();
 
                 //tengo ya el valor en DatosPartida.dados[]
                 Thread threadL = new Thread(){
@@ -42,8 +42,8 @@ public class TableroController implements Initializable{
                                 dado1.setImage(new Image(file.toURI().toString()));
                                 Thread.sleep(50);
                             }
-                            File file = new File("src/main/resources/Dice" + DatosPartida.dados[0] + ".png");
-                            dado1.setImage(new Image(file.toURI().toString()));
+                            //File file = new File("src/main/resources/Dice" + DatosPartida.dados[0] + ".png");
+                            //dado1.setImage(new Image(file.toURI().toString()));
                             System.out.println("Dado 1 ");
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -60,8 +60,8 @@ public class TableroController implements Initializable{
                                 dado2.setImage(new Image(file.toURI().toString()));
                                 Thread.sleep(50);
                             }
-                            File file = new File("src/main/resources/Dice"+ DatosPartida.dados[1] + ".png");
-                            dado2.setImage(new Image(file.toURI().toString()));
+                            //File file = new File("src/main/resources/Dice"+ DatosPartida.dados[1] + ".png");
+                            //dado2.setImage(new Image(file.toURI().toString()));
                             System.out.println("Dado 2");
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -72,7 +72,7 @@ public class TableroController implements Initializable{
                 threadL.start();
                 threadR.start();
 
-                if(DatosPartida.dados[0] == DatosPartida.dados[1]){
+                /*if(DatosPartida.dados[0] == DatosPartida.dados[1]){
                     DatosPartida.esMiTurnoDados =true;
                     DatosPartida.vecesLanzadoDados++;
                 }
@@ -86,6 +86,7 @@ public class TableroController implements Initializable{
                     //habra que mirar algo con la logica de moro para esto, o mandar un mensaje o que contabilicen en el send las veces que llevamos seguidas lanzando
 
                 }
+                */
             }
         }
            
