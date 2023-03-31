@@ -26,7 +26,7 @@
                   <Image url="@Dice5.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="47.0" fitWidth="68.0" layoutX="638.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="user1" fitHeight="47.0" fitWidth="68.0" layoutX="638.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@triangle.png" />
                </image>

@@ -13,7 +13,7 @@ import javafx.scene.layout.VBox;
 public class TableroController implements Initializable{
     
     @FXML
-    private ImageView dado1, dado2;
+    private ImageView dado1, dado2, user1;
 
     private VBox listaJugadores, listaPropiedades, chat; 
 
@@ -98,12 +98,14 @@ public class TableroController implements Initializable{
                 String coordenadas = DatosPartida.mapaPropiedades.get(posi);
                 System.out.println(coordenadas);
 
-                user1.setLayoutX(500);
-                user1.setLayoutY(500);
+                String[] partes = coordenadas.split(",");
+                int x = Integer.parseInt(partes[0]);
+                int y = Integer.parseInt(partes[1]);
+                
+                user1.setLayoutX(x);
+                user1.setLayoutY(y);
 
-
-
-                //hacer desaparecer la ficha
+                //hacer desaparecer la ficha, habra que hacer una pausa para que terminen primero los dados
 
                 //hacerla aparecer en la casilla que es
 
