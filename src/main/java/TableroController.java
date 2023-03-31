@@ -88,6 +88,28 @@ public class TableroController implements Initializable{
                 }
                 */
             }
+
+            /*
+            if(DatosPartida.estoyCarcel = false){
+                //OPCIONES PARA HACER EL MOVIMIENTO:
+                //-TENEMOS REFLEJADA EN UN VECTOR LA POSICION DE CADA CASILLA-> RESTAR CASILLA-POSICION ACTUAL Y RECORRER EL CAMINO SABIENDO QUE CADA CASILLA ES X PX
+                
+                String posi = "Pos"+String.valueOf(DatosPartida.casilla);
+                String coordenadas = DatosPartida.mapaPropiedades.get(posi);
+                System.out.println(coordenadas);
+
+                user1.setLayoutX(500);
+                user1.setLayoutY(500);
+
+
+
+                //hacer desaparecer la ficha
+
+                //hacerla aparecer en la casilla que es
+
+            }
+            
+             */
         }
            
     }
