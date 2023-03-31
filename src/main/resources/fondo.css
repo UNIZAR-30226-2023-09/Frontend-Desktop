@@ -9,3 +9,17 @@
     -fx-background-size: cover; /* Para ajustar el tamaño de la imagen al contenedor*/
     -fx-position: absolute;
 }
+
+.blur-box {
+    -fx-background-color: rgba(255, 255, 255, 0.5);
+    /*-fx-effect: blur 10px;*/
+    -fx-pref-width: 300px;
+    -fx-pref-height: 450px;
+    -fx-min-width: 300px;
+    -fx-min-height: 450px;
+    -fx-max-width: 300px;
+    -fx-max-height: 450px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
