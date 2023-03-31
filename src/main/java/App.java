@@ -16,11 +16,11 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         // True para utilizar interfaz grafica
-        ConexionServidor.iniciar(false);
+        ConexionServidor.iniciar(true);
 
-        scene = new Scene(loadFXML("MainView"));
+        scene = new Scene(loadFXML("MainView"), 1200, 980);
         stage.setScene(scene);
-        stage.setMaximized(true);
+        //stage.setMaximized(true);
         stage.setResizable(false);
         stage.show();
     }

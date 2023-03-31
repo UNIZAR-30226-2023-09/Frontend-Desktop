@@ -60,7 +60,7 @@ public class TableroController implements Initializable{
                                 dado2.setImage(new Image(file.toURI().toString()));
                                 Thread.sleep(50);
                             }
-                            //File file = new File("src/main/resources/Dice"+ DatosPartida.dados[1] + ".png");
+                            //File file = new File("src/main/resources/Dice"+ GestionPartida.dados[1] + ".png");
                             //dado2.setImage(new Image(file.toURI().toString()));
                             System.out.println("Dado 2");
                         } catch (InterruptedException e) {
