@@ -28,7 +28,7 @@ public class TableroController implements Initializable{
             DatosPartida.esMiTurnoDados =false;
             if(imagenDado.getId().equals("dado1") || imagenDado.getId().equals("dado2")) {
                 //PASAR CON WEB SOCKETS QUE QUEREMOS LANZAR DADOS, funcion que tiene que hacer moro?
-                //GestionPartida.lanzarDados(DatosPartida.nombreUser, DatosPartida.IDPartida);
+                //GestionPartida.lanzarDados(GestionPartida.nombreUser, GestionPartida.IDPartida);
 
                 //ConexionServidor.esperar();
 
@@ -42,7 +42,7 @@ public class TableroController implements Initializable{
                                 dado1.setImage(new Image(file.toURI().toString()));
                                 Thread.sleep(50);
                             }
-                            //File file = new File("src/main/resources/Dice" + DatosPartida.dados[0] + ".png");
+                            //File file = new File("src/main/resources/Dice" + GestionPartida.dados[0] + ".png");
                             //dado1.setImage(new Image(file.toURI().toString()));
                             System.out.println("Dado 1 ");
                         } catch (InterruptedException e) {
@@ -72,7 +72,7 @@ public class TableroController implements Initializable{
                 threadL.start();
                 threadR.start();
 
-                /*if(DatosPartida.dados[0] == DatosPartida.dados[1]){
+                /*if(GestionPartida.dados[0] == GestionPartida.dados[1]){
                     DatosPartida.esMiTurnoDados =true;
                     DatosPartida.vecesLanzadoDados++;
                 }
@@ -94,7 +94,7 @@ public class TableroController implements Initializable{
                 //OPCIONES PARA HACER EL MOVIMIENTO:
                 //-TENEMOS REFLEJADA EN UN VECTOR LA POSICION DE CADA CASILLA-> RESTAR CASILLA-POSICION ACTUAL Y RECORRER EL CAMINO SABIENDO QUE CADA CASILLA ES X PX
                 
-                String posi = "Pos"+String.valueOf(DatosPartida.casilla);
+                String posi = "Pos"+String.valueOf(GestionPartida.casilla);
                 String coordenadas = DatosPartida.mapaPropiedades.get(posi);
                 System.out.println(coordenadas);
 

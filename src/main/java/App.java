@@ -1,10 +1,10 @@
+import java.io.IOException;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.io.IOException;
 
 /**
  * JavaFX App
@@ -18,7 +18,7 @@ public class App extends Application {
         // True para utilizar interfaz grafica
         ConexionServidor.iniciar(true);
 
-        scene = new Scene(loadFXML("MainView"), 1700, 948);
+        scene = new Scene(loadFXML("MainView"), 1620, 890);
         stage.setScene(scene);
         //stage.setMaximized(true);
         stage.setResizable(false);
