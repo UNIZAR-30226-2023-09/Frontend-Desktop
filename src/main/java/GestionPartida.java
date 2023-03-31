@@ -6,27 +6,27 @@ import org.java_websocket.client.WebSocketClient;
 public class GestionPartida {
 
     // ***** Información de estado partida *****
-    private static boolean sesionIniciada = false;
-    private static boolean enPartida = false;
-    private static boolean empezarPartida = false;
-    private static boolean dueñoPartida = false;
-    private static boolean miTurno = false;
-    private static WebSocketClient client;
-    private static boolean enCarcel = false;
-    private static int turnosCarcel = 0;
+    public static boolean sesionIniciada = false;
+    public static boolean enPartida = false;
+    public static boolean empezarPartida = false;
+    public static boolean dueñoPartida = false;
+    public static boolean miTurno = false;
+    public static WebSocketClient client;
+    public static boolean enCarcel = false;
+    public static int turnosCarcel = 0;
 
     // ***** Información del usuario *****
-    private static String nombreUser = "";
-    private static int gemas = 0;
-    private static String IDPartida = "";
-    private static String[] ordenJugadores = new String[4];
-    private static int casilla = 1;
-    private static int dinero = 1000;
-    private static int[] dados = new int[2];
-    private static int dineroBote;
-    private static ArrayList<String> propiedades = new ArrayList<String>();
-    private static boolean comprarPropiedad;
-    private static String propiedadAComprar = "";
+    public static String nombreUser = "";
+    public static int gemas = 0;
+    public static String IDPartida = "";
+    public static String[] ordenJugadores = new String[4];
+    public static int casilla = 1;
+    public static int dinero = 1000;
+    public static int[] dados = new int[2];
+    public static int dineroBote;
+    public static ArrayList<String> propiedades = new ArrayList<String>();
+    public static boolean comprarPropiedad;
+    public static String propiedadAComprar = "";
 
     // ***********************************
 
@@ -47,7 +47,7 @@ public class GestionPartida {
     }
 
     public static void unirsePartida(String _IDPartida) {
-        client.send("unirsePartida," + _IDPartida + "," + nombreUser);
+        client.send("unirsePartida," + nombreUser + "," + _IDPartida);
         IDPartida = _IDPartida;
     }
 

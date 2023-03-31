@@ -16,7 +16,7 @@ public class App extends Application {
     @Override
     public void start(Stage stage) throws IOException {
         // True para utilizar interfaz grafica
-        ConexionServidor.iniciar(true);
+        ConexionServidor.iniciar(false);
 
         scene = new Scene(loadFXML("MainView"));
         stage.setScene(scene);
