@@ -18,7 +18,7 @@ public class App extends Application {
         // True para utilizar interfaz grafica
         ConexionServidor.iniciar(true);
 
-        scene = new Scene(loadFXML("MainView"), 1200, 980);
+        scene = new Scene(loadFXML("MainView"), 1700, 948);
         stage.setScene(scene);
         //stage.setMaximized(true);
         stage.setResizable(false);
