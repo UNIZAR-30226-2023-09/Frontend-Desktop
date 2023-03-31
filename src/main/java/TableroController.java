@@ -27,12 +27,10 @@ public class TableroController implements Initializable{
         if(DatosPartida.esMiTurnoDados =true){
             DatosPartida.esMiTurnoDados =false;
             if(imagenDado.getId().equals("dado1") || imagenDado.getId().equals("dado2")) {
-                //PASAR CON WEB SOCKETS QUE QUEREMOS LANZAR DADOS, funcion que tiene que hacer moro?
                 //GestionPartida.lanzarDados(GestionPartida.nombreUser, GestionPartida.IDPartida);
 
                 //ConexionServidor.esperar();
 
-                //tengo ya el valor en DatosPartida.dados[]
                 Thread threadL = new Thread(){
                     public void run(){
                         System.out.println("Dado 1 agitandose");
@@ -90,9 +88,7 @@ public class TableroController implements Initializable{
             }
 
             /*
-            if(DatosPartida.estoyCarcel = false){
-                //OPCIONES PARA HACER EL MOVIMIENTO:
-                //-TENEMOS REFLEJADA EN UN VECTOR LA POSICION DE CADA CASILLA-> RESTAR CASILLA-POSICION ACTUAL Y RECORRER EL CAMINO SABIENDO QUE CADA CASILLA ES X PX
+            if(DatosPartida.estoyCarcel = false){ 
                 
                 String posi = "Pos"+String.valueOf(GestionPartida.casilla);
                 String coordenadas = DatosPartida.mapaPropiedades.get(posi);
