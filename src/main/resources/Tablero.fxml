@@ -1,49 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
 
-<GridPane alignment="CENTER" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TableroController">
+<GridPane xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TableroController">
    <columnConstraints>
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="839.0" minWidth="10.0" prefWidth="800.0" />
-      <ColumnConstraints hgrow="SOMETIMES" maxWidth="475.0" minWidth="0.0" prefWidth="257.0" />
+      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+      <ColumnConstraints />
    </columnConstraints>
    <rowConstraints>
       <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
    </rowConstraints>
    <children>
-      <AnchorPane>
+      <AnchorPane prefHeight="948.0" prefWidth="1264.0" styleClass="tableroImg" stylesheets="@tablero.css">
          <children>
-            <Pane AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-               <children>
-                  <ImageView fx:id="tablero" fitHeight="600.0" fitWidth="802.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@background1.jpg" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="dado1" fitHeight="104.0" fitWidth="90.0" layoutX="284.0" layoutY="248.0" onMouseClicked="#tirarDados" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Dice3.png" />
-                     </image>
-                  </ImageView>
-                  <ImageView fx:id="dado2" fitHeight="109.0" fitWidth="90.0" layoutX="435.0" layoutY="248.0" onMouseClicked="#tirarDados" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@Dice5.png" />
-                     </image>
-                  </ImageView>
-               </children>
-            </Pane>
+            <ImageView fx:id="dado1" fitHeight="104.0" fitWidth="90.0" layoutX="505.0" layoutY="440.0" onMouseClicked="#tirarDados" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Dice3.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="dado2" fitHeight="109.0" fitWidth="90.0" layoutX="716.0" layoutY="440.0" onMouseClicked="#tirarDados" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@Dice5.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="user1" fitHeight="47.0" fitWidth="68.0" layoutX="638.0" layoutY="235.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@triangle.png" />
+               </image>
+            </ImageView>
          </children>
       </AnchorPane>
-      <VBox fx:id="datosPartida" GridPane.columnIndex="1">
+      <VBox fx:id="datosPartida" prefWidth="500.0" GridPane.columnIndex="1">
          <children>
             <VBox fx:id="listaJugadores">
                <children>

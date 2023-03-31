@@ -2,3 +2,10 @@
 {
     -fx-background-color: linear-gradient(to right, #0d3eaa, #50a6ea);
 }
+
+.backgroundImg
+{
+    -fx-background-image: url('./fondoMenu.jpg');
+    -fx-background-size: cover; /* Para ajustar el tamaño de la imagen al contenedor*/
+    -fx-position: absolute;
+}
