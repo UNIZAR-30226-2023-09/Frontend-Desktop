@@ -40,7 +40,7 @@ public class MenuPrincipalController {
         else if(btnUnirse.equals(evt))
         {
             // abrir el tablero
-            App.setRoot("Tablero");
+            App.setRoot("UnirsePartida");
         }
     }
     
