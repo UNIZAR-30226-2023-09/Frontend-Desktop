@@ -26,7 +26,7 @@ import javafx.stage.Stage;
 public class MenuPrincipalController implements Initializable {
 
     @FXML
-    private Button btnSignOut, btnUnirse;
+    private Button btnSignOut, btnUnirse, btnTienda;
 
     @FXML
     private Label lblNombre, lblGemas;
@@ -51,6 +51,11 @@ public class MenuPrincipalController implements Initializable {
         {
             // abrir el tablero
             App.setRoot("UnirsePartida");
+        }
+        else if(btnTienda.equals(evt))
+        {
+            // abrir el tablero
+            App.setRoot("Tienda");
         }
     }
 }

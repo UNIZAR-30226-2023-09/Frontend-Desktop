@@ -65,7 +65,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Tienda" textFill="WHITE">
+                  <Button fx:id="btnTienda" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Tienda" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
