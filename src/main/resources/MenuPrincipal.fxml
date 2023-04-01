@@ -37,7 +37,7 @@
             </Label>
             <VBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Button fx:id="btnSignOut" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Cerrar Sesion" textFill="WHITE" VBox.vgrow="ALWAYS">
+                  <Button fx:id="btnSignOut" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@fondo.css" text="Cerrar Sesion" textFill="#684411" VBox.vgrow="ALWAYS">
                      <VBox.margin>
                         <Insets top="30.0" />
                      </VBox.margin>
@@ -45,27 +45,27 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Crear Partida" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@fondo.css" text="Crear Partida" textFill="#684411">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnUnirse" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Unirse a Partida" textFill="WHITE">
+                  <Button fx:id="btnUnirse" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@fondo.css" text="Unirse a Partida" textFill="#684411">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Crear Torneo" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@fondo.css" text="Crear Torneo" textFill="#684411">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Unirse a Torneo" textFill="WHITE">
+                  <Button mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@fondo.css" text="Unirse a Torneo" textFill="#684411">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button fx:id="btnTienda" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Tienda" textFill="WHITE">
+                  <Button fx:id="btnTienda" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@fondo.css" text="Tienda" textFill="#684411">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>

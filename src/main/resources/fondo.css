@@ -11,7 +11,7 @@
 }
 
 .blur-box {
-    -fx-background-color: rgba(200, 200, 200, 0.5);
+    -fx-background-color: rgba(125, 125, 125, 0.7);
     /*-fx-effect: blur 10px;*/
     -fx-pref-width: 300px;
     -fx-pref-height: 500px;
@@ -22,4 +22,10 @@
     -fx-border-color: white;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
+}
+
+.dorado
+{
+    -fx-gold: linear-gradient(to bottom, #dabf66 , #947631, #f7d778, #f7d161);
+    -fx-background-color: -fx-gold;
 }
