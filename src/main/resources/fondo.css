@@ -11,15 +11,17 @@
 }
 
 .blur-box {
-    -fx-background-color: rgba(255, 255, 255, 0.5);
+    -fx-background-color: rgba(200, 200, 200, 0.5);
     /*-fx-effect: blur 10px;*/
     -fx-pref-width: 300px;
-    -fx-pref-height: 450px;
+    -fx-pref-height: 500px;
     -fx-min-width: 300px;
-    -fx-min-height: 450px;
+    -fx-min-height: 500px;
     -fx-max-width: 300px;
-    -fx-max-height: 450px;
+    -fx-max-height: 500px;
     -fx-border-color: white;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;
+    /*-fx-background-position-y: 200px;*/
+    -fx-background-position: center 20;
 }

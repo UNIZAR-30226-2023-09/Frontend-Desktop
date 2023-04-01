@@ -24,7 +24,7 @@
       <VBox alignment="CENTER" />
       <VBox alignment="CENTER" prefHeight="700.0" prefWidth="540.0" styleClass="blur-box" stylesheets="@fondo.css" GridPane.columnIndex="1" GridPane.halignment="CENTER">
          <children>
-            <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@otter.png" />
                </image>
