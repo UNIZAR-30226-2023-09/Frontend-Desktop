@@ -20,12 +20,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class MenuPrincipalController {
+public class MenuPrincipalController implements Initializable {
 
     @FXML
     private Button btnSignOut, btnUnirse;
+
+    @FXML
+    private Label lblNombre, lblGemas;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        lblNombre.setText(Sesion.nombre);
+        lblGemas.setText(Integer.toString(GestionPartida.gemas) + " gemas");
+    }
 
     @FXML
     public void actionEvent(ActionEvent e) throws IOException
@@ -43,6 +53,5 @@ public class MenuPrincipalController {
             App.setRoot("UnirsePartida");
         }
     }
-    
 }
 
