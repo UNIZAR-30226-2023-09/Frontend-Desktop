@@ -13,7 +13,7 @@ import javafx.scene.control.Label;
 public class TiendaController implements Initializable {
     
     @FXML
-    private Button btnSkin1, btnSkin2, btnSkin3, btnSkin4;
+    private Button btnSkin1, btnSkin2, btnSkin3, btnSkin4, btnVolver;
 
     @FXML
     private Label lblNombre, lblGemas;
@@ -60,6 +60,10 @@ public class TiendaController implements Initializable {
         else if(btnSkin4.equals(evt))
         {
             comprarSkin("Skin4", 30);
+        }
+        else if(btnVolver.equals(evt))
+        {
+            App.setRoot("MenuPrincipal");
         }
     }
 }

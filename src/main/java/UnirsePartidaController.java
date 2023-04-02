@@ -11,7 +11,7 @@ import javafx.scene.control.Label;
 public class UnirsePartidaController implements Initializable{
 
     @FXML
-    private Button btnUnirse, btnCancelar;
+    private Button btnUnirse, btnVolver;
 
     @FXML
     private Label lblNombre, lblGemas;
@@ -32,7 +32,7 @@ public class UnirsePartidaController implements Initializable{
             // abrir el tablero
             App.setRoot("Tablero");
         }
-        else if(btnCancelar.equals(evt))
+        else if(btnVolver.equals(evt))
         {
             // volver al menu
             App.setRoot("MenuPrincipal");

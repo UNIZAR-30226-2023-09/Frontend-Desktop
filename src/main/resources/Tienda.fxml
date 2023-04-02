@@ -12,14 +12,22 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1620.0" styleClass="backgroundImg" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TiendaController">
    <children>
-      <HBox alignment="TOP_RIGHT" layoutX="198.0" layoutY="22.0" style="-fx-background-color: #5d08fa;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER" layoutX="198.0" layoutY="22.0" prefWidth="1620.0" style="-fx-background-color: #5d08fa;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
+            <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#actionEvent" prefHeight="20.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Volver" textFill="WHITE">
+               <HBox.margin>
+                  <Insets right="595.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
             <Label text="TIENDA" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
                <HBox.margin>
-                  <Insets right="575.0" top="12.0" />
+                  <Insets right="550.0" />
                </HBox.margin>
             </Label>
             <VBox alignment="TOP_RIGHT">
