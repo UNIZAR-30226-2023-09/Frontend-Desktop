@@ -61,7 +61,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btnSkin1" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@tienda.css" text="Comprar" textFill="#684411">
+            <Button fx:id="btnSkin1" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@tienda.css" text="Comprar" textFill="#684411">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -88,7 +88,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btnSkin2" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@tienda.css" text="Comprar" textFill="#684411">
+            <Button fx:id="btnSkin2" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@tienda.css" text="Comprar" textFill="#684411">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -115,7 +115,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btnSkin4" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@tienda.css" text="Comprar" textFill="#684411">
+            <Button fx:id="btnSkin4" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@tienda.css" text="Comprar" textFill="#684411">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
@@ -142,7 +142,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Button fx:id="btnSkin3" mnemonicParsing="false" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@tienda.css" text="Comprar" textFill="#684411">
+            <Button fx:id="btnSkin3" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@tienda.css" text="Comprar" textFill="#684411">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
