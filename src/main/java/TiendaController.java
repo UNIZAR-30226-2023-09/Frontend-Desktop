@@ -1,15 +1,28 @@
 import java.io.IOException;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 import javax.swing.JOptionPane;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 
-public class TiendaController {
+public class TiendaController implements Initializable {
     
     @FXML
     private Button btnSkin1, btnSkin2, btnSkin3, btnSkin4;
+
+    @FXML
+    private Label lblNombre, lblGemas;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        lblNombre.setText(Sesion.nombre);
+        lblGemas.setText(Integer.toString(GestionPartida.gemas));
+    }
 
     private void comprarSkin(String skinName, int precio)
     {
