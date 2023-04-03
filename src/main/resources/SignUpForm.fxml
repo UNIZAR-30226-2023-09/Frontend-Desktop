@@ -9,128 +9,111 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="panelFormSignUp" alignment="CENTER" prefHeight="411.0" prefWidth="482.0" styleClass="blur-box-ajustable" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignUpFormController">
+<VBox fx:id="panelFormSignup" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="482.0" styleClass="blur-box-ajustable" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignUpFormController">
    <children>
-      <Label text="Formulario de Registro" textFill="WHITE">
+      <Label text="Crear Cuenta" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
          <VBox.margin>
-            <Insets top="10.0" />
+            <Insets bottom="5.0" top="20.0" />
          </VBox.margin>
       </Label>
       <VBox>
+         <VBox.margin>
+            <Insets left="45.0" right="45.0" />
+         </VBox.margin>
          <children>
             <Label text="Nombre y Apellidos" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font size="20.0" />
                </font>
-               <VBox.margin>
-                  <Insets left="20.0" top="20.0" />
-               </VBox.margin>
             </Label>
-            <TextField fx:id="txtNameSignUp" promptText="Sally Floyd">
+            <TextField fx:id="txtNameSignUp" prefHeight="37.0" promptText="Sally Floyd">
                <font>
                   <Font size="14.0" />
                </font>
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </VBox.margin>
-            </TextField>
-            <Label text="Correo Electronico" textFill="WHITE">
-               <font>
-                  <Font size="15.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="20.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="txtEmailSignUp" prefHeight="30.0" promptText="sally@unizar.es">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </VBox.margin>
             </TextField>
             <Label text="Usuario" textFill="WHITE">
                <font>
-                  <Font size="15.0" />
+                  <Font size="20.0" />
                </font>
-               <VBox.margin>
-                  <Insets left="20.0" top="10.0" />
-               </VBox.margin>
-            </Label>
-            <TextField fx:id="txtUserSignUp" prefHeight="30.0" promptText="sally">
-               <font>
-                  <Font size="14.0" />
-               </font>
-               <VBox.margin>
-                  <Insets left="20.0" right="20.0" />
-               </VBox.margin>
-            </TextField>
-            <HBox>
-               <children>
-                  <VBox HBox.hgrow="ALWAYS">
-                     <HBox.margin>
-                        <Insets right="5.0" />
-                     </HBox.margin>
-                     <children>
-                        <Label text="Contraseña" textFill="WHITE">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets left="20.0" />
-                           </VBox.margin>
-                        </Label>
-                        <PasswordField fx:id="txtPassword" prefHeight="30.0" promptText="1234">
-                           <VBox.margin>
-                              <Insets left="20.0" />
-                           </VBox.margin></PasswordField>
-                     </children>
-                  </VBox>
-                  <VBox HBox.hgrow="ALWAYS">
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                     <children>
-                        <Label text="Confirmar Contraseña" textFill="WHITE">
-                           <font>
-                              <Font size="15.0" />
-                           </font>
-                        </Label>
-                        <PasswordField fx:id="txtConfirmPassword" prefHeight="30.0" promptText="1234">
-                           <font>
-                              <Font size="14.0" />
-                           </font>
-                           <VBox.margin>
-                              <Insets right="20.0" />
-                           </VBox.margin>
-                        </PasswordField>
-                     </children>
-                  </VBox>
-               </children>
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
+            </Label>
+            <TextField fx:id="txtUserSignUp" prefHeight="37.0" promptText="Sally">
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <Label text="Correo Electronico" textFill="WHITE">
+               <font>
+                  <Font size="20.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <TextField fx:id="txtEmailSignUp" prefHeight="37.0" promptText="sally@unizar.es">
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
+            </TextField>
+            <HBox>
+               <children>
+                  <VBox>
+                     <children>
+                        <Label text="Contraseña" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="txtPassword" prefHeight="37.0" promptText="1234">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </PasswordField>
+                     </children>
+                  </VBox>
+                  <VBox>
+                     <children>
+                        <Label text="Repetir Contraseña" textFill="WHITE">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <PasswordField fx:id="txtConfirmPassword" prefHeight="37.0" promptText="1234">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </PasswordField>
+                     </children>
+                     <HBox.margin>
+                        <Insets left="10.0" />
+                     </HBox.margin>
+                  </VBox>
+               </children>
             </HBox>
-            <HBox alignment="TOP_CENTER">
+            <HBox alignment="TOP_CENTER" prefWidth="200.0">
                <VBox.margin>
                   <Insets top="20.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="100.0" style="-fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@fondo.css" text="Registrar" textFill="#684411">
+                  <Button fx:id="btnSignUp" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="100.0" style="-fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@fondo.css" text="Confirmar" textFill="#684411">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
+                     <HBox.margin>
+                        <Insets bottom="10.0" />
+                     </HBox.margin>
                   </Button>
                </children>
             </HBox>
          </children>
-         <VBox.margin>
-            <Insets left="30.0" right="30.0" />
-         </VBox.margin>
       </VBox>
    </children>
 </VBox>
