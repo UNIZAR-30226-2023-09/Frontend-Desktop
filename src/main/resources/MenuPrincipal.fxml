@@ -45,7 +45,7 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@fondo.css" text="Crear Partida" textFill="#684411">
+                  <Button fx:id="btnCrear" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@fondo.css" text="Crear Partida" textFill="#684411">
                      <font>
                         <Font name="System Bold" size="15.0" />
                      </font>
