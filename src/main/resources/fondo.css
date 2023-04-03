@@ -26,8 +26,8 @@
 
 .blur-box-ajustable {
     -fx-background-color: rgba(125, 125, 125, 0.7);
-    /*-fx-pref-width: 482px;
-    -fx-pref-height: 411px;*/
+    -fx-pref-width: 482px;
+    -fx-pref-height: 411px;
     -fx-border-color: white;
     -fx-border-width: 2px;
     -fx-border-radius: 5px;

@@ -57,7 +57,7 @@
                         <Font size="14.0" />
                      </font>
                   </PasswordField>
-                  <TextField fx:id="txtPasswordSignInMask" prefHeight="37.0" promptText="Ej. 1234" visible="false">
+                  <TextField fx:id="txtPasswordSignInMask" prefHeight="37.0" promptText="1234" visible="false">
                      <font>
                         <Font size="14.0" />
                      </font>

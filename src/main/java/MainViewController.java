@@ -53,13 +53,11 @@ public class MainViewController implements Initializable{
             signInForm = loadForm("SignInForm.fxml");
             signUpForm = loadForm("SignUpForm.fxml");
             containerForm.getChildren().addAll(signInForm,signUpForm);
-            //containerForm.getChildren().addAll(signUpForm);
             signInForm.setVisible(true);
             signUpForm.setVisible(false);
 
         } catch (IOException e) {
             e.printStackTrace();
-            //Logger.getLogger(MainViewController.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
