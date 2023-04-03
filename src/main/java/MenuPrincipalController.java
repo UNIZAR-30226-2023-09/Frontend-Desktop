@@ -20,12 +20,22 @@ import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
-public class MenuPrincipalController {
+public class MenuPrincipalController implements Initializable {
 
     @FXML
-    private Button btnSignOut, btnUnirse;
+    private Button btnSignOut, btnUnirse, btnTienda, btnCrear;
+
+    @FXML
+    private Label lblNombre, lblGemas;
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        lblNombre.setText(Sesion.nombre);
+        lblGemas.setText(Integer.toString(GestionPartida.gemas));
+    }
 
     @FXML
     public void actionEvent(ActionEvent e) throws IOException
@@ -37,12 +47,21 @@ public class MenuPrincipalController {
             // cerrar la sesion
             App.setRoot("MainView");
         }
+        else if(btnCrear.equals(evt))
+        {
+            // crear una partida
+            App.setRoot("CrearPartida");
+        }
         else if(btnUnirse.equals(evt))
         {
-            // abrir el tablero
-            App.setRoot("Tablero");
+            // unirse a una partida
+            App.setRoot("UnirsePartida");
+        }
+        else if(btnTienda.equals(evt))
+        {
+            // abrir la tienda
+            App.setRoot("Tienda");
         }
     }
-    
 }
 

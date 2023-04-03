@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="890.0" prefWidth="1620.0" styleClass="backgroundImg" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TiendaController">
+   <children>
+      <HBox alignment="CENTER" layoutX="198.0" layoutY="22.0" prefWidth="1620.0" style="-fx-background-color: #5d08fa;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+            <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#actionEvent" prefHeight="20.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Volver" textFill="WHITE">
+               <HBox.margin>
+                  <Insets right="595.0" />
+               </HBox.margin>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Button>
+            <Label text="TIENDA" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+               <HBox.margin>
+                  <Insets right="550.0" />
+               </HBox.margin>
+            </Label>
+            <VBox alignment="TOP_RIGHT">
+               <children>
+                  <Label fx:id="lblNombre" text="Nombre Usuario" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblGemas" contentDisplay="RIGHT" text="X" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                     <graphic>
+                        <ImageView fitHeight="27.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@gema.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </Label>
+               </children>
+               <HBox.margin>
+                  <Insets bottom="5.0" right="10.0" />
+               </HBox.margin>
+            </VBox>
+         </children>
+      </HBox>
+      <VBox alignment="CENTER" layoutX="465.0" layoutY="245.0" prefHeight="250.0" prefWidth="250.0" styleClass="blur" stylesheets="@tienda.css">
+         <children>
+            <Label text="Nombre skin" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="97.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@triangle.png" />
+               </image>
+            </ImageView>
+            <Label contentDisplay="RIGHT" text="Precio" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@gema.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Button fx:id="btnSkin1" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@tienda.css" text="Comprar" textFill="#684411">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="931.0" layoutY="245.0" prefHeight="250.0" prefWidth="250.0" styleClass="blur" stylesheets="@tienda.css">
+         <children>
+            <Label text="Nombre skin" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="97.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@triangle.png" />
+               </image>
+            </ImageView>
+            <Label contentDisplay="RIGHT" text="Precio" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@gema.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Button fx:id="btnSkin2" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@tienda.css" text="Comprar" textFill="#684411">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="931.0" layoutY="563.0" prefHeight="250.0" prefWidth="250.0" styleClass="blur" stylesheets="@tienda.css">
+         <children>
+            <Label text="Nombre skin" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="97.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@triangle.png" />
+               </image>
+            </ImageView>
+            <Label contentDisplay="RIGHT" text="Precio" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@gema.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Button fx:id="btnSkin4" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@tienda.css" text="Comprar" textFill="#684411">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+      <VBox alignment="CENTER" layoutX="465.0" layoutY="563.0" prefHeight="250.0" prefWidth="250.0" styleClass="blur" stylesheets="@tienda.css">
+         <children>
+            <Label text="Nombre skin" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="97.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@triangle.png" />
+               </image>
+            </ImageView>
+            <Label contentDisplay="RIGHT" text="Precio" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="27.0" fitWidth="94.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@gema.png" />
+                     </image>
+                  </ImageView>
+               </graphic>
+            </Label>
+            <Button fx:id="btnSkin3" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="150.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@tienda.css" text="Comprar" textFill="#684411">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="30.0" />
+               </VBox.margin>
+            </Button>
+         </children>
+      </VBox>
+   </children>
+</AnchorPane>

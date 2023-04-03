@@ -9,3 +9,23 @@
     -fx-background-size: cover; /* Para ajustar el tamaño de la imagen al contenedor*/
     -fx-position: absolute;
 }
+
+.blur-box {
+    -fx-background-color: rgba(125, 125, 125, 0.7);
+    /*-fx-effect: blur 10px;*/
+    -fx-pref-width: 300px;
+    -fx-pref-height: 500px;
+    -fx-min-width: 300px;
+    -fx-min-height: 500px;
+    -fx-max-width: 300px;
+    -fx-max-height: 500px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+.dorado
+{
+    -fx-gold: linear-gradient(to bottom, #dabf66 , #947631, #f7d778, #f7d161);
+    -fx-background-color: -fx-gold;
+}

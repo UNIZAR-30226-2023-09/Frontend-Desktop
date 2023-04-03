@@ -1,0 +1,12 @@
+.blur {
+    -fx-background-color: rgba(125, 125, 125, 0.7);
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
+.dorado
+{
+    -fx-gold: linear-gradient(to bottom, #dabf66 , #947631, #f5d061, #f0cb5c);
+    -fx-background-color: -fx-gold;
+}

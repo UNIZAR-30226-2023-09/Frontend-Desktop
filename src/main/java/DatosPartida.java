@@ -1,8 +1,8 @@
+import java.util.HashMap;
+import java.util.Map;
 
 public class DatosPartida {
     
-    //public static int[] dados = new int[2];
-
     public static boolean esMiTurnoDados;
 
     public static int vecesLanzadoDados;
@@ -13,12 +13,7 @@ public class DatosPartida {
 
     public static boolean estoyCarcel;
     
-    //public static String nombreUser;
-
-    //public static String IDPartida;
-
-    /*
-    public static int[] posicionesMonopoly;
+    //public static int[] posicionesMonopoly;
 
     public static Map<String, String> mapaPropiedades = new HashMap<>();
 
@@ -35,37 +30,87 @@ public class DatosPartida {
         mapaPropiedades.put("Pos10", "195,862");
         mapaPropiedades.put("Pos11", "14,862");
         mapaPropiedades.put("Pos12", "56,765");
-        mapaPropiedades.put("Pos13", "300x,100y");
-        mapaPropiedades.put("Pos14", "400x,100y");
-        mapaPropiedades.put("Pos15", "500x,100y");
-        mapaPropiedades.put("Pos16", "600x,100y");
-        mapaPropiedades.put("Pos17", "700x,100y");
-        mapaPropiedades.put("Pos18", "800x,100y");
-        mapaPropiedades.put("Pos19", "900x,1000yy");
-        mapaPropiedades.put("Pos20", "1000x,200y");
-        mapaPropiedades.put("Pos21", "100x,300y");
-        mapaPropiedades.put("Pos22", "200x,300y");
-        mapaPropiedades.put("Pos23", "300x,300y");
-        mapaPropiedades.put("Pos24", "400x,300y");
-        mapaPropiedades.put("Pos25", "500x,300y");
-        mapaPropiedades.put("Pos26", "600x,300y");
-        mapaPropiedades.put("Pos27", "700x,300y");
-        mapaPropiedades.put("Pos28", "800x,300y");
-        mapaPropiedades.put("Pos29", "900x,300y");
-        mapaPropiedades.put("Pos30", "1000x,300y");
-        mapaPropiedades.put("Pos31", "100x,400y");
-        mapaPropiedades.put("Pos32", "200x,400y");
-        mapaPropiedades.put("Pos33", "300x,400y");
-        mapaPropiedades.put("Pos34", "400x,400y");
-        mapaPropiedades.put("Pos35", "500x,400y");
-        mapaPropiedades.put("Pos36", "600x,400y");
-        mapaPropiedades.put("Pos37", "700x,400y");
-        mapaPropiedades.put("Pos38", "800x,400y");
-        mapaPropiedades.put("Pos39", "900x,400y");
-        mapaPropiedades.put("Pos40", "1000x,400y");
+        mapaPropiedades.put("Pos13", "56,688");
+        mapaPropiedades.put("Pos14", "56,606");
+        mapaPropiedades.put("Pos15", "56,530");
+        mapaPropiedades.put("Pos16", "56,451");
+        mapaPropiedades.put("Pos17", "56,374");
+        mapaPropiedades.put("Pos18", "56,294");
+        mapaPropiedades.put("Pos19", "56,216");
+        mapaPropiedades.put("Pos20", "56,140");
+        mapaPropiedades.put("Pos21", "56,35");
+        mapaPropiedades.put("Pos22", "197,35");
+        mapaPropiedades.put("Pos23", "298,35");
+        mapaPropiedades.put("Pos24", "402,35");
+        mapaPropiedades.put("Pos25", "505,35");
+        mapaPropiedades.put("Pos26", "609,35");
+        mapaPropiedades.put("Pos27", "716,35");
+        mapaPropiedades.put("Pos28", "816,35");
+        mapaPropiedades.put("Pos29", "917,35");
+        mapaPropiedades.put("Pos30", "1018,35");
+        mapaPropiedades.put("Pos31", "1161,35");
+        mapaPropiedades.put("Pos32", "1161,140");
+        mapaPropiedades.put("Pos33", "1161,216");
+        mapaPropiedades.put("Pos34", "1161,295");
+        mapaPropiedades.put("Pos35", "1161,371");
+        mapaPropiedades.put("Pos36", "1161,451");
+        mapaPropiedades.put("Pos37", "1161,530");
+        mapaPropiedades.put("Pos38", "1161,608");
+        mapaPropiedades.put("Pos39", "1161,684");
+        mapaPropiedades.put("Pos40", "1161,763");
 
 
     }
-     */
+     
+
+    /* EN CASO DE NECESITAR LAS CASILLA PARA PRUEBAS ANTES DE QUE FUNCIONE EL JUGAR PARTIDA
+    public static Map<String, Boolean> propiedadesAdquiridas = new HashMap<>();
+
+    static {
+        propiedadesAdquiridas.put("Pos1", false);
+        propiedadesAdquiridas.put("Pos2", false);
+        propiedadesAdquiridas.put("Pos3", false);
+        propiedadesAdquiridas.put("Pos4", false);
+        propiedadesAdquiridas.put("Pos5", false);
+        propiedadesAdquiridas.put("Pos6", false);
+        propiedadesAdquiridas.put("Pos7", false);
+        propiedadesAdquiridas.put("Pos8", false);
+        propiedadesAdquiridas.put("Pos9", false);
+        propiedadesAdquiridas.put("Pos10", false);
+        propiedadesAdquiridas.put("Pos11", false);
+        propiedadesAdquiridas.put("Pos12", false);
+        propiedadesAdquiridas.put("Pos13", false);
+        propiedadesAdquiridas.put("Pos14", false);
+        propiedadesAdquiridas.put("Pos15", false);
+        propiedadesAdquiridas.put("Pos16", false);
+        propiedadesAdquiridas.put("Pos17", false);
+        propiedadesAdquiridas.put("Pos18", false);
+        propiedadesAdquiridas.put("Pos19", false);
+        propiedadesAdquiridas.put("Pos20", false);
+        propiedadesAdquiridas.put("Pos21", false);
+        propiedadesAdquiridas.put("Pos22", false);
+        propiedadesAdquiridas.put("Pos23", false);
+        propiedadesAdquiridas.put("Pos24", false);
+        propiedadesAdquiridas.put("Pos25", false);
+        propiedadesAdquiridas.put("Pos26", false);
+        propiedadesAdquiridas.put("Pos27", false);
+        propiedadesAdquiridas.put("Pos28", false);
+        propiedadesAdquiridas.put("Pos29", false);
+        propiedadesAdquiridas.put("Pos30", false);
+        propiedadesAdquiridas.put("Pos31", false);
+        propiedadesAdquiridas.put("Pos32", false);
+        propiedadesAdquiridas.put("Pos33", false);
+        propiedadesAdquiridas.put("Pos34", false);
+        propiedadesAdquiridas.put("Pos35", false);
+        propiedadesAdquiridas.put("Pos36", false);
+        propiedadesAdquiridas.put("Pos37", false);
+        propiedadesAdquiridas.put("Pos38", false);
+        propiedadesAdquiridas.put("Pos39", false);
+        propiedadesAdquiridas.put("Pos40", false);
+
+
+    }
+    */
+    
 
 }

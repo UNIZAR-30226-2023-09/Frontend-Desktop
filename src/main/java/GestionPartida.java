@@ -142,10 +142,9 @@ public class GestionPartida {
             case "DADOS":
                 dados[0] = Integer.parseInt(partes[1]);
                 dados[1] = Integer.parseInt(partes[2]);
-                // DatosPartida.dados[0] = Integer.parseInt(partes[1]);
-                // DatosPartida.dados[1] = Integer.parseInt(partes[2]);
+
                 casilla = Integer.parseInt(partes[3]);
-                // DatosPartida.casilla = Integer.parseInt(partes[3]);
+
                 if (Integer.parseInt(partes[4]) > 0) {
                     enCarcel = true;
                     // DatosPartida.estoyCarcel =true;
