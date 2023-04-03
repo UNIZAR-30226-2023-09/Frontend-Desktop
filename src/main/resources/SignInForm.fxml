@@ -11,9 +11,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="panelFormSignin" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="482.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignInFormController">
+<VBox fx:id="panelFormSignin" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="482.0" styleClass="blur-box-ajustable" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignInFormController">
    <children>
-      <Label text="Iniciar Sesión">
+      <Label text="Iniciar Sesión" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -26,7 +26,7 @@
             <Insets left="50.0" right="50.0" />
          </VBox.margin>
          <children>
-            <Label text="Correo Electronico">
+            <Label text="Correo Electronico" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -42,7 +42,7 @@
                   <Font size="14.0" />
                </font>
             </TextField>
-            <Label text="Contraseña">
+            <Label text="Contraseña" textFill="WHITE">
                <font>
                   <Font size="20.0" />
                </font>
@@ -64,7 +64,7 @@
                   </TextField>
                </children>
             </StackPane>
-            <CheckBox fx:id="checkViewPassSignIn" mnemonicParsing="false" text="Ver Contraseña">
+            <CheckBox fx:id="checkViewPassSignIn" mnemonicParsing="false" text="Ver Contraseña" textFill="WHITE">
                <font>
                   <Font size="14.0" />
                </font>
@@ -77,7 +77,7 @@
                   <Insets top="20.0" />
                </VBox.margin>
                <children>
-                  <Button fx:id="btnSignIn" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: #111; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Confirmar" textFill="WHITE">
+                  <Button fx:id="btnSignIn" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="100.0" style="-fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@fondo.css" text="Confirmar" textFill="#684411">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
