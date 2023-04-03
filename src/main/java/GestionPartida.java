@@ -23,7 +23,7 @@ public class GestionPartida {
     public static int casilla = 1;
     public static int dinero = 1000;
     public static int[] dados = new int[2];
-    public static int dineroBote;
+    public static int dineroBote = 0;
     public static ArrayList<String> propiedades = new ArrayList<String>();
     public static boolean comprarPropiedad;
     public static String propiedadAComprar = "";
@@ -69,6 +69,14 @@ public class GestionPartida {
 
     public static void lanzarDados(String nombreUser, String iDPartida) {
         client.send("lanzarDados," + nombreUser + "," + iDPartida);
+    }
+
+    public static void finTurno(WebSocketClient client) {
+        client.send("finTurno," + nombreUser + "," + IDPartida);
+    }
+
+    public static void comprarPropiedad(WebSocketClient client) {
+        client.send("SI_COMPRAR_PROPIEDAD," + nombreUser + "," + IDPartida);
     }
 
     // Metodo que se encarga de gestionar todos los mensajes recibidos
@@ -134,13 +142,13 @@ public class GestionPartida {
             case "DADOS":
                 dados[0] = Integer.parseInt(partes[1]);
                 dados[1] = Integer.parseInt(partes[2]);
-                //DatosPartida.dados[0] = Integer.parseInt(partes[1]);
-                //DatosPartida.dados[1] = Integer.parseInt(partes[2]);
+                // DatosPartida.dados[0] = Integer.parseInt(partes[1]);
+                // DatosPartida.dados[1] = Integer.parseInt(partes[2]);
                 casilla = Integer.parseInt(partes[3]);
-                //DatosPartida.casilla = Integer.parseInt(partes[3]);
+                // DatosPartida.casilla = Integer.parseInt(partes[3]);
                 if (Integer.parseInt(partes[4]) > 0) {
                     enCarcel = true;
-                    //DatosPartida.estoyCarcel =true;
+                    // DatosPartida.estoyCarcel =true;
                     turnosCarcel = Integer.parseInt(partes[4]);
                 } else {
                     enCarcel = false;
@@ -296,7 +304,8 @@ public class GestionPartida {
             System.out.println("Esperando turno ");
             while (!miTurno) {
                 mostrarInfoJugador();
-                System.out.println("Es tu turno, lanzando dados ");
+                System.out.println("Es tu turno, pulsa cualquier tecla para lanzandr los dados ");
+                scanner.nextLine();
                 // Lanzar los dados
                 lanzarDados(nombreUser, IDPartida);
                 // Esperamos a recibir la respuesta del servidor
@@ -330,14 +339,6 @@ public class GestionPartida {
         }
     }
 
-    public static void finTurno(WebSocketClient client) {
-        client.send("finTurno");
-    }
-
-    public static void comprarPropiedad(WebSocketClient client) {
-        client.send("SI_COMPRAR_PROPIEDAD," + nombreUser + "," + IDPartida);
-    }
-
     private static void mostrarInfoJugador() {
         System.out.println("+-----------------------------------------+");
         System.out.println(String.format("| %-20s | %10s |", "Nombre", nombreUser));
@@ -346,7 +347,7 @@ public class GestionPartida {
         System.out.println("+----------------------+------------------+");
         System.out.println(String.format("| %-20s | %10d |", "Casilla actual", casilla));
         System.out.println("+----------------------+------------------+");
-        System.out.println(String.format("| %-20s | %,10d |", "Dinero en el bote", dinero));
+        System.out.println(String.format("| %-20s | %,10d |", "Dinero en el bote", dineroBote));
         System.out.println("+-----------------------------------------+");
     }
 
