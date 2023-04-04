@@ -1,9 +1,11 @@
 import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -113,16 +115,25 @@ public class TableroController implements Initializable{
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources)
+    public void initialize(URL arg0, ResourceBundle arg1)
     {
     
-        //listaJugadores = loadForm("SignInForm.fxml");
-        //listaPropiedades = loadForm("SignUpForm.fxml");
-        //chat = loadForm("SignUpForm.fxml");
-          
-
+        try {
+            listaJugadores = loadForm("ListaJugadores.fxml");
+            //listaPropiedades = loadForm("SignUpForm.fxml");
+            //chat = loadForm("SignUpForm.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
        
     }
+
+    private VBox loadForm(String ur1) throws IOException
+    {
+        return (VBox) FXMLLoader.load(getClass().getResource(ur1));
+    }
+
+   
 
     
 }

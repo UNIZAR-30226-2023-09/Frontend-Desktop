@@ -33,29 +33,21 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <VBox fx:id="datosPartida" prefWidth="500.0" GridPane.columnIndex="1">
+      <VBox fx:id="datosPartida" alignment="TOP_CENTER" prefWidth="500.0" GridPane.columnIndex="1">
          <children>
-            <VBox fx:id="listaJugadores">
+            <VBox fx:id="listaJugadores" alignment="TOP_CENTER" prefHeight="411.0" prefWidth="482.0" />
+            <VBox fx:id="listaPropiedades" alignment="CENTER" prefHeight="263.0" prefWidth="500.0">
                <children>
-                  <Label text="LIsta jugadores">
+                  <Label prefHeight="169.0" prefWidth="206.0" text="LIsta propiedades">
                      <padding>
                         <Insets left="90.0" top="90.0" />
                      </padding>
                   </Label>
                </children>
             </VBox>
-            <VBox fx:id="listaPropiedades">
+            <VBox fx:id="chat" alignment="BOTTOM_CENTER" prefHeight="109.0" prefWidth="500.0">
                <children>
-                  <Label text="LIsta propiedades">
-                     <padding>
-                        <Insets left="90.0" top="90.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </VBox>
-            <VBox fx:id="chat">
-               <children>
-                  <Label text="CHAT">
+                  <Label alignment="TOP_CENTER" text="CHAT">
                      <padding>
                         <Insets left="120.0" top="140.0" />
                      </padding>
