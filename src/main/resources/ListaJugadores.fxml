@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="346.0" prefWidth="500.0" styleClass="blur-box-ajustable" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ListaJu">
    <children>
@@ -19,7 +20,7 @@
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
                <children>
-                  <Label fx:id="Jugador1" text="Jugador 1">
+                  <Label fx:id="lblJ1" text="Jugador 1">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -32,7 +33,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="Dinero1" text="Dinero 1">
+                  <Label fx:id="lblD1" text="Dinero 1">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -52,7 +53,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
                <children>
-                  <Label fx:id="Jugador2" text="Jugador 2">
+                  <Label fx:id="lblJ2" text="Jugador 2">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -65,7 +66,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="Dinero2" text="Dinero 2">
+                  <Label fx:id="lblD2" text="Dinero 2">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -85,7 +86,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <Label fx:id="Jugador3" text="Jugador 3">
+                  <Label fx:id="lblJ3" text="Jugador 3">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -98,7 +99,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="Dinero3" text="Dinero 3">
+                  <Label fx:id="lblD3" text="Dinero 3">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -118,7 +119,7 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
                <children>
-                  <Label fx:id="Jugador4" text="Jugador 4">
+                  <Label fx:id="lblJ4" text="Jugador 4">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -131,7 +132,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="Dinero4" text="Dinero 4">
+                  <Label fx:id="lblD4" text="Dinero 4">
                      <font>
                         <Font size="20.0" />
                      </font>
