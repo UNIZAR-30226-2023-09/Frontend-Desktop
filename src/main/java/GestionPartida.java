@@ -25,8 +25,10 @@ public class GestionPartida {
     public static int[] dados = new int[2];
     public static int dineroBote = 0;
     public static ArrayList<String> propiedades = new ArrayList<String>();
-    public static boolean comprarPropiedad;
-    public static String propiedadAComprar = "";
+    public static boolean comprarPropiedad = false;
+    public static String propiedadAComprar;
+    public static boolean meToca = false;
+    private static boolean compraRealizada;
 
     // ***********************************
 
@@ -75,8 +77,8 @@ public class GestionPartida {
         client.send("finTurno," + nombreUser + "," + IDPartida);
     }
 
-    public static void comprarPropiedad(WebSocketClient client) {
-        client.send("SI_COMPRAR_PROPIEDAD," + nombreUser + "," + IDPartida);
+    public static void comprarPropiedad(WebSocketClient client, String propiedad) {
+        client.send("SI_COMPRAR_PROPIEDAD," + nombreUser + "," + propiedad + "," + IDPartida);
     }
 
     // Metodo que se encarga de gestionar todos los mensajes recibidos
@@ -154,6 +156,7 @@ public class GestionPartida {
                     // DatosPartida.estoyCarcel =false;
                     turnosCarcel = 0;
                 }
+                meToca = false;
                 break;
             case "NUEVO_DINERO_JUGADOR":
                 dinero = Integer.parseInt(partes[2]);
@@ -173,6 +176,7 @@ public class GestionPartida {
                 break;
             case "QUIERES_COMPRAR_PROPIEDAD":
                 comprarPropiedad = true;
+                // TODO: Mandarme el int de la propiedad no el nombre desde el server
                 propiedadAComprar = partes[1];
                 break;
             case "DENTRO_CARCEL":
@@ -181,7 +185,18 @@ public class GestionPartida {
                 break;
             case "SALIR_CARCEL":
                 break;
+            case "CASILLA":
+                meToca = true;
+                break;
             case "NADA":
+                break;
+            case "COMPRAR_OK":
+                propiedades.add(partes[2]);
+                dinero = Integer.parseInt(partes[3]);
+                compraRealizada = true;
+                break;
+            case "COMPRAR_NO_OK":
+                compraRealizada = true;
                 break;
             case "NUEVO_DINERO_ALQUILER":
                 System.out.println("Has caido en la propiedad de otro jugador. Tu nuevo saldo es: " + partes[1]);
@@ -301,7 +316,7 @@ public class GestionPartida {
         System.out.println("Empieza la partida");
         while (enPartida) {
             System.out.println("Esperando turno ");
-            while (!miTurno) {
+            if (miTurno) {
                 mostrarInfoJugador();
                 System.out.println("Es tu turno, pulsa cualquier tecla para lanzandr los dados ");
                 scanner.nextLine();
@@ -310,12 +325,21 @@ public class GestionPartida {
                 // Esperamos a recibir la respuesta del servidor
                 ConexionServidor.esperar();
 
-                // Si no sigo este turno en la carcel
+                // Esperar hasta que me hayan llegado todos los mensajes que espero del servidor
+                while (!meToca) {
+                    ConexionServidor.esperar();
+                }
                 if (!enCarcel) {
                     if (comprarPropiedad) {
-                        System.out.println("Introduzca un 1 si desea comprar la propiedad: " + propiedadAComprar);
+                        System.out.println("Introduzca un 1 si desea comprar la propiedad: " + String.valueOf(
+                                propiedadAComprar));
                         if (scanner.nextLine().equals("1")) {
-                            comprarPropiedad(client);
+                            // TODO: Pasar la propiedad para enviarla
+                            comprarPropiedad(client, propiedadAComprar);
+                            while (!compraRealizada) {
+                                ConexionServidor.esperar();
+                            }
+                            compraRealizada = false;
                         }
                         comprarPropiedad = false;
                     }

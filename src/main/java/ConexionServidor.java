@@ -1,3 +1,4 @@
+
 // Este fichero es el main del ejecutable de la aplicación
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -7,16 +8,17 @@ import org.java_websocket.handshake.ServerHandshake;
 import java.util.concurrent.Semaphore;
 
 public class ConexionServidor {
-    private static final String host = "34.175.156.130";
-    private static String serverUrl =  "ws://"+ host + ":8080";
+    // private static final String host = "34.175.156.130";
+    private static final String host = "localhost";
+    private static String serverUrl = "ws://" + host + ":8080";
     private static WebSocketClient client;
     private static Semaphore semaphore = new Semaphore(0); // Semaforo de concurrencia
 
-    // Si grafico es true se jugara con la interfaz grafica, sino se jugara 
+    // Si grafico es true se jugara con la interfaz grafica, sino se jugara
     // con la terminal
     public static void iniciar(boolean grafico) {
         try {
-            client = new ClienteWebSocket(new URI(serverUrl),new CountDownLatch(1));
+            client = new ClienteWebSocket(new URI(serverUrl), new CountDownLatch(1));
         } catch (URISyntaxException e) {
             e.printStackTrace();
         }
@@ -34,7 +36,7 @@ public class ConexionServidor {
         // Juego grafico o por terminal
         GestionPartida.iniciar(client);
         if (grafico) {
-            //TODO: Gestion del juego con javaFX
+            // TODO: Gestion del juego con javaFX
         } else {
             // Gestion del juego por terminal
             try {
@@ -62,29 +64,29 @@ public class ConexionServidor {
     // Gestion de la conexion con webSockets
     private static class ClienteWebSocket extends WebSocketClient {
         private final CountDownLatch latch;
-    
+
         public ClienteWebSocket(URI serverUri, CountDownLatch latch) {
             super(serverUri);
             this.latch = latch;
         }
-    
+
         @Override
         public void onOpen(ServerHandshake handshakeData) {
             System.out.println("Conectado al servidor");
             latch.countDown();
         }
-        
+
         // Funcion que gestiona todos los mensajes recibidos
         @Override
         public void onMessage(String message) {
             GestionPartida.gestionMensaje(message);
         }
-    
+
         @Override
         public void onClose(int code, String reason, boolean remote) {
             System.out.println("Conexión cerrada con código " + code + " y razón: " + reason);
         }
-    
+
         @Override
         public void onError(Exception ex) {
             ex.printStackTrace();
