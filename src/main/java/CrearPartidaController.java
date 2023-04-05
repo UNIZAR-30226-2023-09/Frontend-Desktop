@@ -2,7 +2,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javax.lang.model.util.ElementScanner14;
 import javax.swing.JOptionPane;
 
 import javafx.event.ActionEvent;
@@ -25,7 +24,7 @@ public class CrearPartidaController implements Initializable{
         lblGemas.setText(Integer.toString(GestionPartida.gemas));
         lblCodigo.setText(GestionPartida.IDPartida);
     }
-    
+
     @FXML
     public void actionEvent(ActionEvent e) throws IOException
     {
