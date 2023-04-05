@@ -38,3 +38,11 @@
     -fx-gold: linear-gradient(to bottom, #dabf66 , #947631, #f7d778, #f7d161);
     -fx-background-color: -fx-gold;
 }
+
+.scroll-pane{
+    -fx-background-color:transparent;
+ }
+
+.scroll-pane .viewport {
+    -fx-background-color: transparent;
+}
