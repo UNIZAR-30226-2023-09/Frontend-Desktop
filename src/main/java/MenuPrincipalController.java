@@ -47,7 +47,6 @@ public class MenuPrincipalController implements Initializable {
         } else if (btnCrear.equals(evt)) {
             // crear una partida
             App.setRoot("CrearPartida");
-        } else if (btnUnirse.equals(evt)) {
         } else if (btnCrear.equals(evt)) {
             // poner codigo de la partida
             GestionPartida.crearPartida();

@@ -12,7 +12,7 @@ import javafx.stage.WindowEvent;
  * JavaFX App
  */
 public class App extends Application {
-    private static boolean grafico = false;
+    private static boolean grafico = true;
     private static boolean verbose = false;
 
     private static Scene scene;
