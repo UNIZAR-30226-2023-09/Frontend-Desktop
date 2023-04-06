@@ -29,11 +29,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class SignInFormController implements Initializable{
+public class SignInFormController implements Initializable {
 
     // Variables control estado
     public static boolean sesionIniciada = false;
-
 
     @FXML
     private TextField txtUserSignIn, txtPasswordSignInMask;
@@ -47,26 +46,21 @@ public class SignInFormController implements Initializable{
     @FXML
     private Button btnSignIn;
 
-    private boolean verificarTipoEmail(String email)
-    {
+    private boolean verificarTipoEmail(String email) {
         return email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
     }
 
     @FXML
-    public void actionEvent(ActionEvent e) throws IOException
-    {
+    public void actionEvent(ActionEvent e) throws IOException {
         Object evt = e.getSource();
 
-        if(btnSignIn.equals(evt))
-        {
-            if(!txtUserSignIn.getText().isEmpty() && !txtPasswordSignIn.getText().isEmpty())
-            {
-                if(verificarTipoEmail(txtUserSignIn.getText()))
-                {
-                    //enviamos un mensaje al servidor con los datos necesarios para iniciar sesion
+        if (btnSignIn.equals(evt)) {
+            if (!txtUserSignIn.getText().isEmpty() && !txtPasswordSignIn.getText().isEmpty()) {
+                if (verificarTipoEmail(txtUserSignIn.getText())) {
+                    // enviamos un mensaje al servidor con los datos necesarios para iniciar sesion
                     GestionPartida.iniciarSesion(txtUserSignIn.getText(), txtPasswordSignIn.getText());
 
-                    //recibir respuesta
+                    // recibir respuesta
                     ConexionServidor.esperar();
 
                     if (sesionIniciada) {
@@ -76,33 +70,29 @@ public class SignInFormController implements Initializable{
 
                         // Ir al menu principal
                         App.setRoot("MenuPrincipal");
-                    }
-                    else
-                    {
+                    } else {
                         // Mostrar mensaje de error
-                        JOptionPane.showMessageDialog(null, "Datos introducidos no validos", "ERROR", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(null, "Datos introducidos no validos", "ERROR",
+                                JOptionPane.ERROR_MESSAGE);
                     }
+                } else {
+                    JOptionPane.showMessageDialog(null, "En correo debe introducir un email valido", "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
                 }
-                else
-                {
-                    JOptionPane.showMessageDialog(null, "En correo debe introducir un email valido", "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
-            }
-            else
-            {
-                //o el campo nombre de usuario o la contraseña estan vacios
-                JOptionPane.showMessageDialog(null, "Debe llenar los campos obligatorios", "ERROR", JOptionPane.ERROR_MESSAGE);
+            } else {
+                // o el campo nombre de usuario o la contraseña estan vacios
+                JOptionPane.showMessageDialog(null, "Debe llenar los campos obligatorios", "ERROR",
+                        JOptionPane.ERROR_MESSAGE);
             }
         }
     }
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         maskPassword(txtPasswordSignIn, txtPasswordSignInMask, checkViewPassSignIn);
     }
 
-    public void maskPassword(PasswordField pass, TextField text, CheckBox check)
-    {
+    public void maskPassword(PasswordField pass, TextField text, CheckBox check) {
         text.setVisible(false);
         text.setManaged(false);
 
@@ -111,5 +101,5 @@ public class SignInFormController implements Initializable{
 
         text.textProperty().bindBidirectional(pass.textProperty());
     }
-    
+
 }

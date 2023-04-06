@@ -5,6 +5,8 @@ import org.java_websocket.client.WebSocketClient;
 
 public class GestionPartida {
 
+    private static boolean verbose = false;
+
     // ***** Información de estado partida *****
     public static boolean sesionIniciada = false;
     public static boolean enPartida = false;
@@ -20,6 +22,8 @@ public class GestionPartida {
     public static int gemas = 0;
     public static String IDPartida = "";
     public static String[] ordenJugadores = new String[4];
+    public static String[] posicionesJugadores = { "1", "1", "1", "1" };
+    public static int[] dineroJugadores = { 1000, 1000, 1000, 1000 };
     public static int casilla = 1;
     public static int dinero = 1000;
     public static int[] dados = new int[2];
@@ -28,8 +32,14 @@ public class GestionPartida {
     public static boolean comprarPropiedad = false;
     public static String propiedadAComprar;
     public static boolean meToca = false;
-    private static boolean compraRealizada;
+    public static boolean compraRealizada;
 
+    private final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
+            "AeropuertoNarita", "Tokio", "Kioto", "Superpoder", "Osaka", "Carcel", "Roma", "Milan", "Casino", "Napoles",
+            "Aeropuerto Heathrow", "Londres", "Superpoder", "Manchester", "Edimburgo", "Bote", "Madrid",
+            "Barcelona", "Treasure", "Zaragoza", "AeropuertoOrly", "Paris", "Banco", "Marsella",
+            "Lyon", "IrCarcel", "Toronto", "Vancouver", "Treasure", "Ottawa", "AeropuertoDeLosAngeles",
+            "NuevaYork", "LosAngeles", "LuxuryTax", "Chicago" };
     // ***********************************
 
     // Metodos públicos
@@ -37,8 +47,9 @@ public class GestionPartida {
         client = _client;
     }
 
-    public static void partida() throws URISyntaxException, InterruptedException {
+    public static void partida(boolean _verbose) throws URISyntaxException, InterruptedException {
 
+        verbose = _verbose;
         // // *********************** JUEGO ***********************
         Scanner scanner = new Scanner(System.in);
         iniciarSesion(client, scanner);
@@ -83,7 +94,9 @@ public class GestionPartida {
 
     // Metodo que se encarga de gestionar todos los mensajes recibidos
     public static void gestionMensaje(String message) {
-        System.out.println(message);
+        if (verbose) {
+            System.out.println(message);
+        }
         String[] partes = message.split(",");
         switch (partes[0]) {
             case "INICIO_OK":
@@ -172,11 +185,9 @@ public class GestionPartida {
                 dinero = Integer.parseInt(partes[2]);
                 break;
             case "VENDER_NO_OK":
-                // TODO: ?
                 break;
             case "QUIERES_COMPRAR_PROPIEDAD":
                 comprarPropiedad = true;
-                // TODO: Mandarme el int de la propiedad no el nombre desde el server
                 propiedadAComprar = partes[1];
                 break;
             case "DENTRO_CARCEL":
@@ -191,7 +202,7 @@ public class GestionPartida {
             case "NADA":
                 break;
             case "COMPRAR_OK":
-                propiedades.add(partes[2]);
+                propiedades.add(tablero[Integer.parseInt(partes[2])]);
                 dinero = Integer.parseInt(partes[3]);
                 compraRealizada = true;
                 break;
@@ -315,10 +326,10 @@ public class GestionPartida {
     private static void jugarPartida(WebSocketClient client, Scanner scanner) {
         System.out.println("Empieza la partida");
         while (enPartida) {
-            System.out.println("Esperando turno ");
             if (miTurno) {
+                limpiarTerminal();
                 mostrarInfoJugador();
-                System.out.println("Es tu turno, pulsa cualquier tecla para lanzandr los dados ");
+                System.out.println("Es tu turno, pulsa cualquier tecla para lanzar los dados ");
                 scanner.nextLine();
                 // Lanzar los dados
                 lanzarDados(nombreUser, IDPartida);
@@ -331,10 +342,9 @@ public class GestionPartida {
                 }
                 if (!enCarcel) {
                     if (comprarPropiedad) {
-                        System.out.println("Introduzca un 1 si desea comprar la propiedad: " + String.valueOf(
-                                propiedadAComprar));
+                        System.out.println("Introduzca un 1 si desea comprar la propiedad: "
+                                + tablero[Integer.parseInt(propiedadAComprar)] + String.valueOf(propiedadAComprar));
                         if (scanner.nextLine().equals("1")) {
-                            // TODO: Pasar la propiedad para enviarla
                             comprarPropiedad(client, propiedadAComprar);
                             while (!compraRealizada) {
                                 ConexionServidor.esperar();
@@ -355,6 +365,7 @@ public class GestionPartida {
                 // - Casillas banco y casino
                 finTurno(client);
                 miTurno = false;
+                System.out.println("Esperando turno");
             }
             // Esperamos a recibir la respuesta del servidor
             // Finalizamos el turno
@@ -362,16 +373,79 @@ public class GestionPartida {
         }
     }
 
+    // private static void mostrarInfoJugador() {
+    // System.out.println("+-----------------------------------------+");
+    // System.out.println("| PARTIDA #" + IDPartida + " |");
+    // System.out.println("+-----------------------------------------+");
+    // System.out.println("| JUGADORES PARTICIPANTES |");
+    // System.out.println("+----------------------+------------------+");
+    // for (int i = 0; i < ordenJugadores.length; i++) {
+    // System.out.println(String.format("| %-20s | %10s |", "Jugador #" + (i + 1),
+    // ordenJugadores[i]));
+    // }
+    // System.out.println("+----------------------+------------------+");
+    // System.out.println("+-----------------------------------------+");
+    // System.out.println(String.format("| %-20s | %10s |", "Nombre", nombreUser));
+    // System.out.println("+----------------------+------------------+");
+    // System.out.println(String.format("| %-20s | %,10d |", "Dinero", dinero));
+    // System.out.println("+----------------------+------------------+");
+    // System.out.println(String.format("| %-20s | %10s |", "Casilla actual",
+    // tablero[casilla]));
+    // System.out.println("+----------------------+------------------+");
+    // System.out.println(String.format("| %-20s | %,10d |", "Dinero en el bote",
+    // dineroBote));
+    // System.out.println("+----------------------+------------------+");
+
+    // // Mostrar propiedades del jugador
+    // if (propiedades.isEmpty()) {
+    // System.out.println(String.format("| %-20s | %10s |", "Propiedades",
+    // "Ninguna"));
+    // } else {
+    // System.out.print("| Propiedades | ");
+    // for (String propiedad : propiedades) {
+    // System.out.print(propiedad + ", ");
+    // }
+    // System.out.println("|");
+    // }
+
+    // System.out.println("+-----------------------------------------+");
+    // }
+
     private static void mostrarInfoJugador() {
-        System.out.println("+-----------------------------------------+");
-        System.out.println(String.format("| %-20s | %10s |", "Nombre", nombreUser));
-        System.out.println("+----------------------+------------------+");
-        System.out.println(String.format("| %-20s | %,10d |", "Dinero", dinero));
-        System.out.println("+----------------------+------------------+");
-        System.out.println(String.format("| %-20s | %10d |", "Casilla actual", casilla));
-        System.out.println("+----------------------+------------------+");
-        System.out.println(String.format("| %-20s | %,10d |", "Dinero en el bote", dineroBote));
-        System.out.println("+-----------------------------------------+");
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("|                          PARTIDA #" + IDPartida + "                         |");
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("|                     JUGADORES PARTICIPANTES                  |");
+        System.out.println("+----------------------+----------------------+----------------+");
+        System.out.println("|   NOMBRE JUGADOR     |     CASILLA ACTUAL   |      DINERO    |");
+        System.out.println("+----------------------+----------------------+----------------+");
+        for (int i = 0; i < ordenJugadores.length; i++) {
+            System.out.println(String.format("| %-20s | %-20s | %,14d |", ordenJugadores[i],
+                    tablero[Integer.parseInt(posicionesJugadores[i])], dineroJugadores[i]));
+        }
+        System.out.println("+----------------------+----------------------+----------------+");
+        System.out.println(String.format("| %-20s | %-20s | %,14d |", "Dinero en el bote", "", dineroBote));
+        System.out.println("+----------------------+----------------------+----------------+");
+
+        // Mostrar propiedades del jugador
+        System.out.println("+--------------------------------------------------------------+");
+        System.out.println("|                          PROPIEDADES                         |");
+        System.out.println("+--------------------------------------------------------------+");
+        if (propiedades.size() == 0) {
+            System.out.println("|                          Ninguna                             |");
+        } else {
+            for (String propiedad : propiedades) {
+                System.out.printf("|%1$-62s|\n",
+                        String.format("%1$" + ((64 + propiedad.length()) / 2) + "s", propiedad));
+
+            }
+        }
+        System.out.println("+--------------------------------------------------------------+");
+    }
+
+    private static void limpiarTerminal() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
 
 };

@@ -8,7 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class UnirsePartidaController implements Initializable{
+public class UnirsePartidaController implements Initializable {
 
     @FXML
     private Button btnUnirse, btnVolver;
@@ -21,19 +21,15 @@ public class UnirsePartidaController implements Initializable{
         lblNombre.setText(Sesion.nombre);
         lblGemas.setText(Integer.toString(GestionPartida.gemas));
     }
-    
+
     @FXML
-    public void actionEvent(ActionEvent e) throws IOException
-    {
+    public void actionEvent(ActionEvent e) throws IOException {
         Object evt = e.getSource();
 
-        if(btnUnirse.equals(evt))
-        {
+        if (btnUnirse.equals(evt)) {
             // abrir el tablero
             App.setRoot("Tablero");
-        }
-        else if(btnVolver.equals(evt))
-        {
+        } else if (btnVolver.equals(evt)) {
             // volver al menu
             App.setRoot("MenuPrincipal");
         }

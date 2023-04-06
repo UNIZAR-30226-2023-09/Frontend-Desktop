@@ -19,7 +19,7 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
-public class MainViewController implements Initializable{
+public class MainViewController implements Initializable {
 
     @FXML
     private Button btnSignIn, btnSignUp;
@@ -27,32 +27,27 @@ public class MainViewController implements Initializable{
     @FXML
     private StackPane containerForm;
 
-    private VBox signInForm, signUpForm; 
+    private VBox signInForm, signUpForm;
 
     @FXML
-    public void actionEvent(ActionEvent e)
-    {
+    public void actionEvent(ActionEvent e) {
         Object evt = e.getSource();
-        
-        if(evt.equals(btnSignIn))
-        {
+
+        if (evt.equals(btnSignIn)) {
             signInForm.setVisible(true);
             signUpForm.setVisible(false);
-        }
-        else if(evt.equals(btnSignUp))
-        {
+        } else if (evt.equals(btnSignUp)) {
             signUpForm.setVisible(true);
             signInForm.setVisible(false);
         }
     }
 
     @Override
-    public void initialize(URL arg0, ResourceBundle arg1)
-    {
+    public void initialize(URL arg0, ResourceBundle arg1) {
         try {
             signInForm = loadForm("SignInForm.fxml");
             signUpForm = loadForm("SignUpForm.fxml");
-            containerForm.getChildren().addAll(signInForm,signUpForm);
+            containerForm.getChildren().addAll(signInForm, signUpForm);
             signInForm.setVisible(true);
             signUpForm.setVisible(false);
 
@@ -61,9 +56,8 @@ public class MainViewController implements Initializable{
         }
     }
 
-    private VBox loadForm(String ur1) throws IOException
-    {
+    private VBox loadForm(String ur1) throws IOException {
         return (VBox) FXMLLoader.load(getClass().getResource(ur1));
     }
-    
+
 }

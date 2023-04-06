@@ -1,3 +1,4 @@
+
 /*
  -----------------------------------------------------------------------
  * Fichero: SignUpFormController.java
@@ -26,10 +27,10 @@ import javafx.scene.input.KeyEvent;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 
-public class SignUpFormController implements Initializable{
+public class SignUpFormController implements Initializable {
 
     public static boolean cuentaRegistrada = false;
-    
+
     @FXML
     private TextField txtNameSignUp, txtEmailSignUp, txtUserSignUp;
 
@@ -39,58 +40,53 @@ public class SignUpFormController implements Initializable{
     @FXML
     private Button btnSignUp;
 
-    private boolean verificarTipoEmail(String email)
-    {
+    private boolean verificarTipoEmail(String email) {
         return email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
     }
 
     @FXML
-    public void actionEvent(ActionEvent e) throws IOException
-    {    
+    public void actionEvent(ActionEvent e) throws IOException {
         Object evt = e.getSource();
 
-        if(btnSignUp.equals(evt)){
+        if (btnSignUp.equals(evt)) {
 
-            if(!txtNameSignUp.getText().isEmpty() && !txtEmailSignUp.getText().isEmpty() && !txtUserSignUp.getText().isEmpty() && !txtPassword.getText().isEmpty()&& !txtConfirmPassword.getText().isEmpty())
-            {
-                if(txtConfirmPassword.getText().equals(txtPassword.getText())){
+            if (!txtNameSignUp.getText().isEmpty() && !txtEmailSignUp.getText().isEmpty()
+                    && !txtUserSignUp.getText().isEmpty() && !txtPassword.getText().isEmpty()
+                    && !txtConfirmPassword.getText().isEmpty()) {
+                if (txtConfirmPassword.getText().equals(txtPassword.getText())) {
 
-                    if(verificarTipoEmail(txtEmailSignUp.getText()))
-                    {
-                        //enviamos el mensaje
-                        GestionPartida.registrarse(txtEmailSignUp.getText(), txtPassword.getText(), txtNameSignUp.getText());
+                    if (verificarTipoEmail(txtEmailSignUp.getText())) {
+                        // enviamos el mensaje
+                        GestionPartida.registrarse(txtEmailSignUp.getText(), txtPassword.getText(),
+                                txtNameSignUp.getText());
 
-                        //recibir respuesta
+                        // recibir respuesta
                         ConexionServidor.esperar();
 
-                        if(cuentaRegistrada)
-                        {
+                        if (cuentaRegistrada) {
                             // Relenar los datos de la sesion
                             Sesion.nombre = txtUserSignUp.getText();
                             Sesion.gemas = 0;
 
                             // Ir al menu principal
                             App.setRoot("MenuPrincipal");
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Datos introducidos no validos", "ERROR",
+                                    JOptionPane.ERROR_MESSAGE);
                         }
-                        else
-                        {
-                            JOptionPane.showMessageDialog(null, "Datos introducidos no validos", "ERROR", JOptionPane.ERROR_MESSAGE);
-                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "En correo debe introducir un email valido", "ERROR",
+                                JOptionPane.ERROR_MESSAGE);
                     }
-                    else
-                    {
-                        JOptionPane.showMessageDialog(null, "En correo debe introducir un email valido", "ERROR", JOptionPane.ERROR_MESSAGE);
-                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
                 }
-                else{
-                    JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden", "ERROR", JOptionPane.ERROR_MESSAGE);
-                }
-                    
-            }
-            else
-            {
-                //o el campo nombre de usuario o la contraseña estan vacios
-                JOptionPane.showMessageDialog(null, "Debe llenar los campos obligatorios", "ERROR", JOptionPane.ERROR_MESSAGE);
+
+            } else {
+                // o el campo nombre de usuario o la contraseña estan vacios
+                JOptionPane.showMessageDialog(null, "Debe llenar los campos obligatorios", "ERROR",
+                        JOptionPane.ERROR_MESSAGE);
             }
         }
     }
@@ -98,7 +94,6 @@ public class SignUpFormController implements Initializable{
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         // TODO Auto-generated method stub
-        
+
     }
 }
-

@@ -1,26 +1,41 @@
 import java.io.IOException;
 
 import javafx.application.Application;
+import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.WindowEvent;
 
 /**
  * JavaFX App
  */
 public class App extends Application {
+    private static boolean grafico = false;
+    private static boolean verbose = false;
 
     private static Scene scene;
 
     @Override
     public void start(Stage stage) throws IOException {
         // True para utilizar interfaz grafica
-        ConexionServidor.iniciar(true);
+        ConexionServidor.iniciar(grafico, verbose);
 
         scene = new Scene(loadFXML("MainView"), 1620, 890);
+
+        // Agrega un evento para cuando se cierre cualquier ventana
+        // Agrega un evento para cuando se cierre cualquier ventana
+        // scene.getWindow().setOnCloseRequest(new EventHandler<WindowEvent>() {
+        // public void handle(WindowEvent we) {
+        // System.out.println("Se ha cerrado una ventana");
+        // ConexionServidor.cerrarConexion();
+        // System.exit(0);
+        // }
+        // });
+
         stage.setScene(scene);
-        //stage.setMaximized(true);
+        // stage.setMaximized(true);
         stage.setResizable(false);
         stage.show();
     }

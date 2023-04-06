@@ -38,30 +38,21 @@ public class MenuPrincipalController implements Initializable {
     }
 
     @FXML
-    public void actionEvent(ActionEvent e) throws IOException
-    {
+    public void actionEvent(ActionEvent e) throws IOException {
         Object evt = e.getSource();
 
-        if(btnSignOut.equals(evt))
-        {
+        if (btnSignOut.equals(evt)) {
             // cerrar la sesion
             App.setRoot("MainView");
-        }
-        else if(btnCrear.equals(evt))
-        {
+        } else if (btnCrear.equals(evt)) {
             // crear una partida
             App.setRoot("CrearPartida");
-        }
-        else if(btnUnirse.equals(evt))
-        {
+        } else if (btnUnirse.equals(evt)) {
             // unirse a una partida
             App.setRoot("UnirsePartida");
-        }
-        else if(btnTienda.equals(evt))
-        {
+        } else if (btnTienda.equals(evt)) {
             // abrir la tienda
             App.setRoot("Tienda");
         }
     }
 }
-

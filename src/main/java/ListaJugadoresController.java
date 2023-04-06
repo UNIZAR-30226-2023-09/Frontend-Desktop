@@ -14,16 +14,15 @@ import java.util.ResourceBundle;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
-
 public class ListaJugadoresController implements Initializable {
-    
+
     @FXML
     private Label Jugador1, Dinero1, Jugador2, Dinero2, Jugador3, Dinero3, Jugador4, Dinero4;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
-        
+
     }
-    
+
 }
