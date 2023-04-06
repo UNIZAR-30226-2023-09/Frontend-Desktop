@@ -10,8 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="890.0" prefWidth="1620.0" styleClass="backgroundImg" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuPrincipalController">
+<AnchorPane prefHeight="900.0" prefWidth="1500.0" styleClass="backgroundImg" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuPrincipalController">
    <children>
       <HBox alignment="CENTER_RIGHT" layoutX="1429.0" style="-fx-background-color: #5d08fa;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -47,13 +46,13 @@
             </VBox>
          </children>
       </HBox>
-      <Label text="Bienvenido" textFill="WHITE" AnchorPane.rightAnchor="718.0" AnchorPane.topAnchor="7.0">
+      <Label layoutX="655.0" layoutY="105.0" text="Bienvenido" textFill="WHITE" AnchorPane.leftAnchor="655.0" AnchorPane.rightAnchor="654.0" AnchorPane.topAnchor="7.0">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
       </Label>
       <VBox alignment="CENTER" />
-      <VBox alignment="CENTER" layoutX="660.0" layoutY="195.0" styleClass="blur-box" stylesheets="@fondo.css">
+      <VBox alignment="CENTER" layoutX="600.0" layoutY="220.0" styleClass="blur-box" stylesheets="@fondo.css" AnchorPane.bottomAnchor="180.0" AnchorPane.leftAnchor="600.0" AnchorPane.rightAnchor="600.0" AnchorPane.topAnchor="220.0">
          <children>
             <ImageView fitHeight="150.0" fitWidth="180.0" pickOnBounds="true" preserveRatio="true">
                <image>
