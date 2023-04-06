@@ -130,7 +130,7 @@ public class TableroController implements Initializable {
             listaJugadores = loadForm("ListaJugadores.fxml");
             // listaPropiedades = loadForm("SignUpForm.fxml");
             // chat = loadForm("SignUpForm.fxml");
-            datosPartida.getChildren().addAll(listaJugadores);
+            datosPartida.getChildren().add(listaJugadores);
         } catch (IOException e) {
             e.printStackTrace();
         }

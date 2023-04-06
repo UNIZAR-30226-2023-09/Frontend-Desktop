@@ -20,7 +20,7 @@ public class App extends Application {
         // True para utilizar interfaz grafica
         ConexionServidor.iniciar(grafico, verbose);
 
-        scene = new Scene(loadFXML("MainView"), 1220, 1000);
+        scene = new Scene(loadFXML("MainView"), 1500, 900);
 
         // Agrega un evento para cuando se cierre cualquier ventana
         // Agrega un evento para cuando se cierre cualquier ventana
