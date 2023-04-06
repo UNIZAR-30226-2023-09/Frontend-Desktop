@@ -165,49 +165,49 @@ public class DatosPartida {
     public static Map<String, String> mapaPropiedades4 = new HashMap<>();
 
     static {
-        mapaPropiedades4.put("Pos1", "835,790");
-        mapaPropiedades4.put("Pos2", "731,790");
-        mapaPropiedades4.put("Pos3", "658,790");
-        mapaPropiedades4.put("Pos4", "592,790");
-        mapaPropiedades4.put("Pos5", "525,790");
-        mapaPropiedades4.put("Pos6", "455,790");
-        mapaPropiedades4.put("Pos7", "384,790");
-        mapaPropiedades4.put("Pos8", "314,790");
-        mapaPropiedades4.put("Pos9", "245,790");
-        mapaPropiedades4.put("Pos10", "175,790");
-        mapaPropiedades4.put("Pos11", "21,830");
+        mapaPropiedades4.put("Pos1", "835,835");
+        mapaPropiedades4.put("Pos2", "731,845");
+        mapaPropiedades4.put("Pos3", "658,845");
+        mapaPropiedades4.put("Pos4", "592,845");
+        mapaPropiedades4.put("Pos5", "525,845");
+        mapaPropiedades4.put("Pos6", "455,845");
+        mapaPropiedades4.put("Pos7", "384,845");
+        mapaPropiedades4.put("Pos8", "314,845");
+        mapaPropiedades4.put("Pos9", "245,845");
+        mapaPropiedades4.put("Pos10", "175,845");
+        mapaPropiedades4.put("Pos11", "100,845");
 
-        mapaPropiedades4.put("Pos12", "80,730");
-        mapaPropiedades4.put("Pos13", "80,660");
-        mapaPropiedades4.put("Pos14", "80,593");
-        mapaPropiedades4.put("Pos15", "80,521");
-        mapaPropiedades4.put("Pos16", "80,450");
-        mapaPropiedades4.put("Pos17", "80,385");
-        mapaPropiedades4.put("Pos18", "80,312");
-        mapaPropiedades4.put("Pos19", "80,242");
-        mapaPropiedades4.put("Pos20", "80,173");
-        mapaPropiedades4.put("Pos21", "30,73");
+        mapaPropiedades4.put("Pos12", "20,730");
+        mapaPropiedades4.put("Pos13", "20,660");
+        mapaPropiedades4.put("Pos14", "20,593");
+        mapaPropiedades4.put("Pos15", "20,521");
+        mapaPropiedades4.put("Pos16", "20,450");
+        mapaPropiedades4.put("Pos17", "20,385");
+        mapaPropiedades4.put("Pos18", "20,312");
+        mapaPropiedades4.put("Pos19", "20,242");
+        mapaPropiedades4.put("Pos20", "20,173");
+        mapaPropiedades4.put("Pos21", "30,30");
 
-        mapaPropiedades4.put("Pos22", "140,75");
-        mapaPropiedades4.put("Pos23", "208,75");
-        mapaPropiedades4.put("Pos24", "276,75");
-        mapaPropiedades4.put("Pos25", "342,75");
-        mapaPropiedades4.put("Pos26", "417,75");
-        mapaPropiedades4.put("Pos27", "484,75");
-        mapaPropiedades4.put("Pos28", "556,75");
-        mapaPropiedades4.put("Pos29", "624,75");
-        mapaPropiedades4.put("Pos30", "695,75");
-        mapaPropiedades4.put("Pos31", "835,75");
+        mapaPropiedades4.put("Pos22", "140,25");
+        mapaPropiedades4.put("Pos23", "208,25");
+        mapaPropiedades4.put("Pos24", "276,25");
+        mapaPropiedades4.put("Pos25", "342,25");
+        mapaPropiedades4.put("Pos26", "417,25");
+        mapaPropiedades4.put("Pos27", "484,25");
+        mapaPropiedades4.put("Pos28", "556,25");
+        mapaPropiedades4.put("Pos29", "624,25");
+        mapaPropiedades4.put("Pos30", "695,25");
+        mapaPropiedades4.put("Pos31", "835,25");
 
-        mapaPropiedades4.put("Pos32", "790,140");
-        mapaPropiedades4.put("Pos33", "790,208");
-        mapaPropiedades4.put("Pos34", "790,277");
-        mapaPropiedades4.put("Pos35", "790,347");
-        mapaPropiedades4.put("Pos36", "790,417");
-        mapaPropiedades4.put("Pos37", "790,486");
-        mapaPropiedades4.put("Pos38", "790,556");
-        mapaPropiedades4.put("Pos39", "790,628");
-        mapaPropiedades4.put("Pos40", "790,695");
+        mapaPropiedades4.put("Pos32", "845,140");
+        mapaPropiedades4.put("Pos33", "845,208");
+        mapaPropiedades4.put("Pos34", "845,277");
+        mapaPropiedades4.put("Pos35", "845,347");
+        mapaPropiedades4.put("Pos36", "845,417");
+        mapaPropiedades4.put("Pos37", "845,486");
+        mapaPropiedades4.put("Pos38", "845,556");
+        mapaPropiedades4.put("Pos39", "845,628");
+        mapaPropiedades4.put("Pos40", "845,695");
 
     }
 
