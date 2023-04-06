@@ -125,7 +125,6 @@ public class TableroController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-
         try {
             listaJugadores = loadForm("ListaJugadores.fxml");
             // listaPropiedades = loadForm("SignUpForm.fxml");
@@ -134,7 +133,6 @@ public class TableroController implements Initializable {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private VBox loadForm(String ur1) throws IOException {
