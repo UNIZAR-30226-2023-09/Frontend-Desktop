@@ -1,12 +1,10 @@
 import java.io.IOException;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.WindowEvent;
 
 /**
  * JavaFX App
@@ -22,7 +20,7 @@ public class App extends Application {
         // True para utilizar interfaz grafica
         ConexionServidor.iniciar(grafico, verbose);
 
-        scene = new Scene(loadFXML("MainView"), 1620, 890);
+        scene = new Scene(loadFXML("MainView"), 1500, 900);
 
         // Agrega un evento para cuando se cierre cualquier ventana
         // Agrega un evento para cuando se cierre cualquier ventana
@@ -38,6 +36,11 @@ public class App extends Application {
         // stage.setMaximized(true);
         stage.setResizable(false);
         stage.show();
+    }
+
+    @Override
+    public void stop() {
+        ConexionServidor.cerrarConexion();
     }
 
     static void setRoot(String fxml) throws IOException {

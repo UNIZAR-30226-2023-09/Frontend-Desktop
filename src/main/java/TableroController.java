@@ -17,7 +17,10 @@ public class TableroController implements Initializable {
     @FXML
     private ImageView dado1, dado2, user1;
 
-    private VBox listaJugadores, listaPropiedades, chat;
+    @FXML
+    private VBox datosPartida;
+
+    private VBox listaJugadores/*, listaPropiedades, chat*/;
 
     Random random = new Random();
 
@@ -122,15 +125,14 @@ public class TableroController implements Initializable {
 
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
-
         try {
             listaJugadores = loadForm("ListaJugadores.fxml");
             // listaPropiedades = loadForm("SignUpForm.fxml");
             // chat = loadForm("SignUpForm.fxml");
+            datosPartida.getChildren().add(listaJugadores);
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     private VBox loadForm(String ur1) throws IOException {
