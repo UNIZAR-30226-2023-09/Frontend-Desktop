@@ -15,49 +15,101 @@ public class DatosPartida {
 
     // public static int[] posicionesMonopoly;
 
-    public static Map<String, String> mapaPropiedades = new HashMap<>();
+    public static Map<String, String> mapaPropiedades1 = new HashMap<>();
 
     static {
-        mapaPropiedades.put("Pos1", "1156,862");
-        mapaPropiedades.put("Pos2", "1023,862");
-        mapaPropiedades.put("Pos3", "924,862");
-        mapaPropiedades.put("Pos4", "816,862");
-        mapaPropiedades.put("Pos5", "714,862");
-        mapaPropiedades.put("Pos6", "609,862");
-        mapaPropiedades.put("Pos7", "505,862");
-        mapaPropiedades.put("Pos8", "400,862");
-        mapaPropiedades.put("Pos9", "298,862");
-        mapaPropiedades.put("Pos10", "195,862");
-        mapaPropiedades.put("Pos11", "14,862");
-        mapaPropiedades.put("Pos12", "56,765");
-        mapaPropiedades.put("Pos13", "56,688");
-        mapaPropiedades.put("Pos14", "56,606");
-        mapaPropiedades.put("Pos15", "56,530");
-        mapaPropiedades.put("Pos16", "56,451");
-        mapaPropiedades.put("Pos17", "56,374");
-        mapaPropiedades.put("Pos18", "56,294");
-        mapaPropiedades.put("Pos19", "56,216");
-        mapaPropiedades.put("Pos20", "56,140");
-        mapaPropiedades.put("Pos21", "56,35");
-        mapaPropiedades.put("Pos22", "197,35");
-        mapaPropiedades.put("Pos23", "298,35");
-        mapaPropiedades.put("Pos24", "402,35");
-        mapaPropiedades.put("Pos25", "505,35");
-        mapaPropiedades.put("Pos26", "609,35");
-        mapaPropiedades.put("Pos27", "716,35");
-        mapaPropiedades.put("Pos28", "816,35");
-        mapaPropiedades.put("Pos29", "917,35");
-        mapaPropiedades.put("Pos30", "1018,35");
-        mapaPropiedades.put("Pos31", "1161,35");
-        mapaPropiedades.put("Pos32", "1161,140");
-        mapaPropiedades.put("Pos33", "1161,216");
-        mapaPropiedades.put("Pos34", "1161,295");
-        mapaPropiedades.put("Pos35", "1161,371");
-        mapaPropiedades.put("Pos36", "1161,451");
-        mapaPropiedades.put("Pos37", "1161,530");
-        mapaPropiedades.put("Pos38", "1161,608");
-        mapaPropiedades.put("Pos39", "1161,684");
-        mapaPropiedades.put("Pos40", "1161,763");
+        mapaPropiedades1.put("Pos1", "780,790");
+        mapaPropiedades1.put("Pos2", "690,790");
+        mapaPropiedades1.put("Pos3", "626,790");
+        mapaPropiedades1.put("Pos4", "557,790");
+        mapaPropiedades1.put("Pos5", "484,790");
+        mapaPropiedades1.put("Pos6", "417,790");
+        mapaPropiedades1.put("Pos7", "349,790");
+        mapaPropiedades1.put("Pos8", "276,790");
+        mapaPropiedades1.put("Pos9", "208,790");
+        mapaPropiedades1.put("Pos10", "137,790");
+        mapaPropiedades1.put("Pos11", "21,790");
+
+        mapaPropiedades1.put("Pos12", "80,695");
+        mapaPropiedades1.put("Pos13", "80,629");
+        mapaPropiedades1.put("Pos14", "80,556");
+        mapaPropiedades1.put("Pos15", "80,488");
+        mapaPropiedades1.put("Pos16", "80,417");
+        mapaPropiedades1.put("Pos17", "80,348");
+        mapaPropiedades1.put("Pos18", "80,277");
+        mapaPropiedades1.put("Pos19", "80,207");
+        mapaPropiedades1.put("Pos20", "80,138");
+        mapaPropiedades1.put("Pos21", "80,73");
+
+        mapaPropiedades1.put("Pos22", "175,75");
+        mapaPropiedades1.put("Pos23", "242,75");
+        mapaPropiedades1.put("Pos24", "312,75");
+        mapaPropiedades1.put("Pos25", "385,75");
+        mapaPropiedades1.put("Pos26", "450,75");
+        mapaPropiedades1.put("Pos27", "525,75");
+        mapaPropiedades1.put("Pos28", "593,75");
+        mapaPropiedades1.put("Pos29", "660,75");
+        mapaPropiedades1.put("Pos30", "730,75");
+        mapaPropiedades1.put("Pos31", "791,75");
+
+        mapaPropiedades1.put("Pos32", "790,174");
+        mapaPropiedades1.put("Pos33", "790,243");
+        mapaPropiedades1.put("Pos34", "790,312");
+        mapaPropiedades1.put("Pos35", "790,382");
+        mapaPropiedades1.put("Pos36", "790,450");
+        mapaPropiedades1.put("Pos37", "790,522");
+        mapaPropiedades1.put("Pos38", "790,592");
+        mapaPropiedades1.put("Pos39", "790,662");
+        mapaPropiedades1.put("Pos40", "790,729");
+
+    }
+
+    public static Map<String, String> mapaPropiedades2 = new HashMap<>();
+
+    static {
+        mapaPropiedades2.put("Pos1", "835,790");
+        mapaPropiedades2.put("Pos2", "731,790");
+        mapaPropiedades2.put("Pos3", "658,790");
+        mapaPropiedades2.put("Pos4", "592,790");
+        mapaPropiedades2.put("Pos5", "525,790");
+        mapaPropiedades2.put("Pos6", "455,790");
+        mapaPropiedades2.put("Pos7", "384,790");
+        mapaPropiedades2.put("Pos8", "314,790");
+        mapaPropiedades2.put("Pos9", "245,790");
+        mapaPropiedades2.put("Pos10", "175,790");
+        mapaPropiedades2.put("Pos11", "21,830");
+
+        mapaPropiedades2.put("Pos12", "80,730");
+        mapaPropiedades2.put("Pos13", "80,660");
+        mapaPropiedades2.put("Pos14", "80,593");
+        mapaPropiedades2.put("Pos15", "80,521");
+        mapaPropiedades2.put("Pos16", "80,450");
+        mapaPropiedades2.put("Pos17", "80,385");
+        mapaPropiedades2.put("Pos18", "80,312");
+        mapaPropiedades2.put("Pos19", "80,242");
+        mapaPropiedades2.put("Pos20", "80,173");
+        mapaPropiedades2.put("Pos21", "30,73");
+
+        mapaPropiedades2.put("Pos22", "140,75");
+        mapaPropiedades2.put("Pos23", "208,75");
+        mapaPropiedades2.put("Pos24", "276,75");
+        mapaPropiedades2.put("Pos25", "342,75");
+        mapaPropiedades2.put("Pos26", "417,75");
+        mapaPropiedades2.put("Pos27", "484,75");
+        mapaPropiedades2.put("Pos28", "556,75");
+        mapaPropiedades2.put("Pos29", "624,75");
+        mapaPropiedades2.put("Pos30", "695,75");
+        mapaPropiedades2.put("Pos31", "835,75");
+
+        mapaPropiedades2.put("Pos32", "790,140");
+        mapaPropiedades2.put("Pos33", "790,208");
+        mapaPropiedades2.put("Pos34", "790,277");
+        mapaPropiedades2.put("Pos35", "790,347");
+        mapaPropiedades2.put("Pos36", "790,417");
+        mapaPropiedades2.put("Pos37", "790,486");
+        mapaPropiedades2.put("Pos38", "790,556");
+        mapaPropiedades2.put("Pos39", "790,628");
+        mapaPropiedades2.put("Pos40", "790,695");
 
     }
 
