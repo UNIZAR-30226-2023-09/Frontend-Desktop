@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
 public class TableroController implements Initializable {
 
     @FXML
-    private ImageView dado1, dado2, user1;
+    private ImageView dado1, dado2, user1, user2, user3, user4;
 
     @FXML
     private VBox datosPartida;
@@ -26,16 +26,16 @@ public class TableroController implements Initializable {
 
     @FXML
     public void tirarDados(MouseEvent e) // HAY QUE COMPROBAR QUE SEA NUESTRO TURNO
-    {
+    {   
         ImageView imagenDado = (ImageView) e.getSource();
 
         if (DatosPartida.esMiTurnoDados = true) {
             DatosPartida.esMiTurnoDados = false;
             if (imagenDado.getId().equals("dado1") || imagenDado.getId().equals("dado2")) {
-                // GestionPartida.lanzarDados(GestionPartida.nombreUser,
-                // GestionPartida.IDPartida);
+                GestionPartida.lanzarDados(GestionPartida.nombreUser,
+                GestionPartida.IDPartida);
 
-                // ConexionServidor.esperar();
+                ConexionServidor.esperar();
 
                 Thread threadL = new Thread() {
                     public void run() {
@@ -46,9 +46,8 @@ public class TableroController implements Initializable {
                                 dado1.setImage(new Image(file.toURI().toString()));
                                 Thread.sleep(50);
                             }
-                            // File file = new File("src/main/resources/Dice" + GestionPartida.dados[0] +
-                            // ".png");
-                            // dado1.setImage(new Image(file.toURI().toString()));
+                            File file = new File("src/main/resources/Dice" + GestionPartida.dados[0] + ".png");
+                            dado1.setImage(new Image(file.toURI().toString()));
                             System.out.println("Dado 1 ");
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -65,9 +64,8 @@ public class TableroController implements Initializable {
                                 dado2.setImage(new Image(file.toURI().toString()));
                                 Thread.sleep(50);
                             }
-                            // File file = new File("src/main/resources/Dice"+ GestionPartida.dados[1] +
-                            // ".png");
-                            // dado2.setImage(new Image(file.toURI().toString()));
+                            File file = new File("src/main/resources/Dice"+ GestionPartida.dados[1] + ".png");
+                            dado2.setImage(new Image(file.toURI().toString()));
                             System.out.println("Dado 2");
                         } catch (InterruptedException e) {
                             e.printStackTrace();
@@ -97,28 +95,57 @@ public class TableroController implements Initializable {
                  */
             }
 
-            /*
-             * if(DatosPartida.estoyCarcel = false){
-             * 
-             * String posi = "Pos"+String.valueOf(GestionPartida.casilla);
-             * String coordenadas = DatosPartida.mapaPropiedades.get(posi);
-             * System.out.println(coordenadas);
-             * 
-             * String[] partes = coordenadas.split(",");
-             * int x = Integer.parseInt(partes[0]);
-             * int y = Integer.parseInt(partes[1]);
-             * 
-             * user1.setLayoutX(x);
-             * user1.setLayoutY(y);
-             * 
-             * //hacer desaparecer la ficha, habra que hacer una pausa para que terminen
-             * primero los dados
-             * 
-             * //hacerla aparecer en la casilla que es
-             * 
-             * }
-             * 
-             */
+            
+            if(DatosPartida.estoyCarcel = false){
+                
+                String posi = "Pos"+String.valueOf(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]);
+                Integer jug = GestionPartida.indiceJugador;
+                String coordenadas;
+                switch (jug) {
+                        case 1:
+                            coordenadas = DatosPartida.mapaPropiedades1.get(posi);
+                            break;
+                        case 2:
+                            coordenadas = DatosPartida.mapaPropiedades2.get(posi);
+                            break;
+                        case 3:
+                            coordenadas = DatosPartida.mapaPropiedades3.get(posi);
+                            break;
+                        case 4:
+                            coordenadas = DatosPartida.mapaPropiedades4.get(posi);
+                            break;
+                        default:
+                            coordenadas = "ERROR";
+                            System.out.println("ERROR CASILLA");
+                            break;
+                }
+
+                System.out.println(coordenadas);
+                
+                String[] partes = coordenadas.split(",");
+                int x = Integer.parseInt(partes[0]);
+                int y = Integer.parseInt(partes[1]);
+                
+
+                switch (jug) {
+                    case 1:
+                        user1.setLayoutX(x);
+                        user1.setLayoutY(y);
+                    case 2:
+                        user2.setLayoutX(x);
+                        user2.setLayoutY(y);
+                    case 3:
+                        user3.setLayoutX(x);
+                        user3.setLayoutY(y);
+                    case 4:
+                        user4.setLayoutX(x);
+                        user4.setLayoutY(y);  
+                }
+                
+                
+            }
+             
+            
         }
 
     }
