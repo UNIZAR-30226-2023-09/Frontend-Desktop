@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="890.0" prefWidth="1620.0" styleClass="backgroundImg" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CrearPartidaController">
+<AnchorPane prefHeight="900.0" prefWidth="1500.0" styleClass="backgroundImg" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="CrearPartidaController">
    <children>
       <HBox alignment="CENTER" prefWidth="1620.0" style="-fx-background-color: #5d08fa;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
@@ -19,22 +19,17 @@
                   <Font name="System Bold" size="15.0" />
                </font>
                <HBox.margin>
-                  <Insets right="490.0" />
+                  <Insets left="10.0" right="1200.0" />
                </HBox.margin></Button>
-            <Label text="Crear Partida" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="30.0" />
-               </font>
-               <HBox.margin>
-                  <Insets right="460.0" />
-               </HBox.margin>
-            </Label>
             <VBox alignment="TOP_RIGHT">
                <children>
-                  <Label fx:id="lblNombre" text="Nombre Usuario" textFill="WHITE">
+                  <Label fx:id="lblNombre" text="Nombre" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets />
+                     </VBox.margin>
                   </Label>
                   <Label fx:id="lblGemas" contentDisplay="RIGHT" text="X" textFill="WHITE">
                      <padding>
@@ -58,7 +53,7 @@
             </VBox>
          </children>
       </HBox>
-      <VBox alignment="CENTER" layoutX="660.0" layoutY="195.0" styleClass="blur-box" stylesheets="@fondo.css">
+      <VBox alignment="CENTER" layoutX="600.0" layoutY="193.0" styleClass="blur-box" stylesheets="@fondo.css">
          <children>
             <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -100,5 +95,10 @@
             </VBox>
          </children>
       </VBox>
+      <Label layoutX="612.0" layoutY="99.0" text="CREAR PARTIDA" textFill="WHITE" AnchorPane.leftAnchor="612.0" AnchorPane.rightAnchor="612.0" AnchorPane.topAnchor="12.0">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>
