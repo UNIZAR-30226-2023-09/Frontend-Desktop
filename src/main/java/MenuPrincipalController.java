@@ -48,6 +48,21 @@ public class MenuPrincipalController implements Initializable {
             // crear una partida
             App.setRoot("CrearPartida");
         } else if (btnUnirse.equals(evt)) {
+        } else if (btnCrear.equals(evt)) {
+            // poner codigo de la partida
+            GestionPartida.crearPartida();
+
+            // esperamos respuesta
+            ConexionServidor.esperar();
+
+            if (GestionPartida.enPartida && GestionPartida.dueñoPartida) {
+                // crear una partida
+                App.setRoot("CrearPartida");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha podido crear la partida", "ERROR",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } else if (btnUnirse.equals(evt)) {
             // unirse a una partida
             App.setRoot("UnirsePartida");
         } else if (btnTienda.equals(evt)) {

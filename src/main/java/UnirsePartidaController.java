@@ -2,11 +2,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javax.swing.JOptionPane;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 
 public class UnirsePartidaController implements Initializable {
 
@@ -15,6 +18,9 @@ public class UnirsePartidaController implements Initializable {
 
     @FXML
     private Label lblNombre, lblGemas;
+
+    @FXML
+    private TextField txtCodigo;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -30,8 +36,24 @@ public class UnirsePartidaController implements Initializable {
             // abrir el tablero
             App.setRoot("Tablero");
         } else if (btnVolver.equals(evt)) {
-            // volver al menu
-            App.setRoot("MenuPrincipal");
+            if (btnUnirse.equals(evt)) {
+                // enviamos el codigo al servidor
+                GestionPartida.unirsePartida(txtCodigo.toString());
+
+                // esperamos la respuesta
+                ConexionServidor.esperar();
+
+                if (GestionPartida.enPartida) {
+                    // abrir el tablero
+                    App.setRoot("Tablero");
+                } else {
+                    JOptionPane.showMessageDialog(null, "EL codigo introducido no es valido", "ERROR",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            } else if (btnVolver.equals(evt)) {
+                // volver al menu
+                App.setRoot("MenuPrincipal");
+            }
         }
     }
 }

@@ -17,12 +17,43 @@ import javafx.fxml.Initializable;
 public class ListaJugadoresController implements Initializable {
 
     @FXML
-    private Label Jugador1, Dinero1, Jugador2, Dinero2, Jugador3, Dinero3, Jugador4, Dinero4;
+    private Label lblJ1, lblJ2, lblJ3, lblJ4,
+            lblD1, lblD2, lblD3, lblD4;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
 
+        lblJ1.setText(Sesion.nombre);
+        lblD1.setText(Integer.toString(GestionPartida.dinero));
+    }
+
+    public void actualizarInfo(int numJugador, String nombre, int dinero) {
+        switch (numJugador) {
+            case 1:
+                lblJ1.setText(Sesion.nombre);
+                lblD1.setText(Integer.toString(GestionPartida.dinero));
+                break;
+
+            case 2:
+                lblJ2.setText(Sesion.nombre);
+                lblD2.setText(Integer.toString(GestionPartida.dinero));
+                break;
+
+            case 3:
+                lblJ3.setText(Sesion.nombre);
+                lblD3.setText(Integer.toString(GestionPartida.dinero));
+                break;
+
+            case 4:
+                lblJ4.setText(Sesion.nombre);
+                lblD4.setText(Integer.toString(GestionPartida.dinero));
+                break;
+
+            default:
+                System.out.println("No existen tantos jugadores");
+                break;
+        }
     }
 
 }

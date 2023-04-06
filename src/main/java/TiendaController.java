@@ -13,7 +13,7 @@ import javafx.scene.control.Label;
 public class TiendaController implements Initializable {
 
     @FXML
-    private Button btnSkin1, btnSkin2, btnSkin3, btnSkin4, btnVolver;
+    private Button btnSkin1, btnSkin2, btnSkin3, btnSkin4, btnSkin5, btnSkin6, btnSkin7, btnSkin8, btnVolver;
 
     @FXML
     private Label lblNombre, lblGemas;
