@@ -10,8 +10,8 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-    private static boolean grafico = true;
-    private static boolean verbose = false;
+    private static boolean grafico = false;
+    private static boolean verbose = true;
 
     private static Scene scene;
 
@@ -39,8 +39,7 @@ public class App extends Application {
     }
 
     @Override
-    public void stop()
-    {
+    public void stop() {
         ConexionServidor.cerrarConexion();
     }
 

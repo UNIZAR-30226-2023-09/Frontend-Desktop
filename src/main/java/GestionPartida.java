@@ -16,6 +16,7 @@ public class GestionPartida {
     public static WebSocketClient client;
     public static boolean enCarcel = false;
     public static int turnosCarcel = 0;
+    public static int indiceJugador = -1;
 
     // ***** Información del usuario *****
     public static String nombreUser = "";
@@ -24,11 +25,10 @@ public class GestionPartida {
     public static String[] ordenJugadores = new String[4];
     public static String[] posicionesJugadores = { "1", "1", "1", "1" };
     public static int[] dineroJugadores = { 1000, 1000, 1000, 1000 };
-    public static int casilla = 1;
-    public static int dinero = 1000;
     public static int[] dados = new int[2];
     public static int dineroBote = 0;
-    public static ArrayList<String> propiedades = new ArrayList<String>();
+    public static ArrayList<ArrayList<String>> vectorDePropiedades = new ArrayList<ArrayList<String>>();
+
     public static boolean comprarPropiedad = false;
     public static String propiedadAComprar;
     public static boolean meToca = false;
@@ -45,6 +45,10 @@ public class GestionPartida {
     // Metodos públicos
     public static void iniciar(WebSocketClient _client) {
         client = _client;
+        vectorDePropiedades.add(new ArrayList<String>());
+        vectorDePropiedades.add(new ArrayList<String>());
+        vectorDePropiedades.add(new ArrayList<String>());
+        vectorDePropiedades.add(new ArrayList<String>());
     }
 
     public static void partida(boolean _verbose) throws URISyntaxException, InterruptedException {
@@ -136,29 +140,31 @@ public class GestionPartida {
                 empezarPartida = true;
                 enPartida = true;
 
+                indiceJugador = Integer.parseInt(partes[2]);
                 // Almacenar orden de tiradas
-                ordenJugadores[0] = partes[2];
-                ordenJugadores[1] = partes[3];
-                ordenJugadores[2] = partes[4];
-                ordenJugadores[3] = partes[5];
+                ordenJugadores[0] = partes[3];
+                ordenJugadores[1] = partes[4];
+                ordenJugadores[2] = partes[5];
+                ordenJugadores[3] = partes[6];
 
                 // Almacenar posicion inicial y dinero inicial
-                casilla = 1;
-                dinero = 1000;
+                for (int i = 0; i < 4; i++) {
+                    posicionesJugadores[i] = "1";
+                    dineroJugadores[i] = 1000;
+                }
                 break;
             case "EMPEZAR_NO_OK":
                 System.out.println("Error en empezar partida");
                 break;
             case "TURNO":
                 miTurno = true;
-                DatosPartida.esMiTurnoDados = true;
                 // TODO: ver si sigo en la carcel?
                 break;
             case "DADOS":
                 dados[0] = Integer.parseInt(partes[1]);
                 dados[1] = Integer.parseInt(partes[2]);
 
-                casilla = Integer.parseInt(partes[3]);
+                posicionesJugadores[indiceJugador] = partes[3];
 
                 if (Integer.parseInt(partes[4]) > 0) {
                     enCarcel = true;
@@ -169,20 +175,19 @@ public class GestionPartida {
                     // DatosPartida.estoyCarcel =false;
                     turnosCarcel = 0;
                 }
-                meToca = false;
                 break;
             case "NUEVO_DINERO_JUGADOR":
-                dinero = Integer.parseInt(partes[2]);
+                dineroJugadores[indiceJugador] = Integer.parseInt(partes[2]);
                 break;
             case "NUEVO_DINERO_BOTE":
                 dineroBote = Integer.parseInt(partes[1]);
                 break;
             case "OBTENER_BOTE":
-                dinero = Integer.parseInt(partes[2]);
+                dineroJugadores[indiceJugador] = Integer.parseInt(partes[2]);
                 break;
             case "VENDER_OK":
-                propiedades.remove(partes[1]);
-                dinero = Integer.parseInt(partes[2]);
+                vectorDePropiedades.get(indiceJugador).remove(partes[1]);
+                dineroJugadores[indiceJugador] = Integer.parseInt(partes[2]);
                 break;
             case "VENDER_NO_OK":
                 break;
@@ -202,16 +207,35 @@ public class GestionPartida {
             case "NADA":
                 break;
             case "COMPRAR_OK":
-                propiedades.add(tablero[Integer.parseInt(partes[2])]);
-                dinero = Integer.parseInt(partes[3]);
+                vectorDePropiedades.get(indiceJugador).add(tablero[Integer.parseInt(partes[2])]);
+                dineroJugadores[indiceJugador] = Integer.parseInt(partes[3]);
                 compraRealizada = true;
                 break;
             case "COMPRAR_NO_OK":
                 compraRealizada = true;
                 break;
             case "NUEVO_DINERO_ALQUILER":
-                System.out.println("Has caido en la propiedad de otro jugador. Tu nuevo saldo es: " + partes[1]);
-                dinero = Integer.parseInt(partes[1]);
+                dineroJugadores[indiceJugador] = Integer.parseInt(partes[1]);
+                break;
+            case "ACTUALIZAR_USUARIO":
+                int indice = -1;
+                String jugador = partes[1];
+                for (int i = 0; i < 4; i++) {
+                    if (jugador.equals(ordenJugadores[i])) {
+                        indice = i;
+                    }
+                }
+                dineroJugadores[indice] = Integer.parseInt(partes[2]);
+                posicionesJugadores[indice] = partes[3];
+                ArrayList<String> lista = new ArrayList<String>();
+                for (int i = 4; i < partes.length; i++) {
+                    if (!partes[i].equals("null")) {
+                        int propiedad = Integer.parseInt(partes[i].substring(9));
+                        lista.add(tablero[propiedad]);
+                    }
+                }
+                vectorDePropiedades.get(indice).clear();
+                vectorDePropiedades.get(indice).addAll(lista);
                 break;
             default:
                 System.out.println("Mensaje no tenido en cuenta: " + message);
@@ -340,6 +364,7 @@ public class GestionPartida {
                 while (!meToca) {
                     ConexionServidor.esperar();
                 }
+                meToca = false;
                 if (!enCarcel) {
                     if (comprarPropiedad) {
                         System.out.println("Introduzca un 1 si desea comprar la propiedad: "
@@ -355,14 +380,7 @@ public class GestionPartida {
                     }
 
                 }
-                // Actualizar posicion jugador y hacer accion correspondiente
 
-                // Puedo recibir :
-                // - Casilla para comprar
-                // - Casilla suerte/cajacomunidad
-                // - Ir a la carcel
-                // - Propiedad que ya tiene dueño
-                // - Casillas banco y casino
                 finTurno(client);
                 miTurno = false;
                 System.out.println("Esperando turno");
@@ -372,44 +390,6 @@ public class GestionPartida {
             ConexionServidor.esperar();
         }
     }
-
-    // private static void mostrarInfoJugador() {
-    // System.out.println("+-----------------------------------------+");
-    // System.out.println("| PARTIDA #" + IDPartida + " |");
-    // System.out.println("+-----------------------------------------+");
-    // System.out.println("| JUGADORES PARTICIPANTES |");
-    // System.out.println("+----------------------+------------------+");
-    // for (int i = 0; i < ordenJugadores.length; i++) {
-    // System.out.println(String.format("| %-20s | %10s |", "Jugador #" + (i + 1),
-    // ordenJugadores[i]));
-    // }
-    // System.out.println("+----------------------+------------------+");
-    // System.out.println("+-----------------------------------------+");
-    // System.out.println(String.format("| %-20s | %10s |", "Nombre", nombreUser));
-    // System.out.println("+----------------------+------------------+");
-    // System.out.println(String.format("| %-20s | %,10d |", "Dinero", dinero));
-    // System.out.println("+----------------------+------------------+");
-    // System.out.println(String.format("| %-20s | %10s |", "Casilla actual",
-    // tablero[casilla]));
-    // System.out.println("+----------------------+------------------+");
-    // System.out.println(String.format("| %-20s | %,10d |", "Dinero en el bote",
-    // dineroBote));
-    // System.out.println("+----------------------+------------------+");
-
-    // // Mostrar propiedades del jugador
-    // if (propiedades.isEmpty()) {
-    // System.out.println(String.format("| %-20s | %10s |", "Propiedades",
-    // "Ninguna"));
-    // } else {
-    // System.out.print("| Propiedades | ");
-    // for (String propiedad : propiedades) {
-    // System.out.print(propiedad + ", ");
-    // }
-    // System.out.println("|");
-    // }
-
-    // System.out.println("+-----------------------------------------+");
-    // }
 
     private static void mostrarInfoJugador() {
         System.out.println("+--------------------------------------------------------------+");
@@ -431,15 +411,20 @@ public class GestionPartida {
         System.out.println("+--------------------------------------------------------------+");
         System.out.println("|                          PROPIEDADES                         |");
         System.out.println("+--------------------------------------------------------------+");
-        if (propiedades.size() == 0) {
-            System.out.println("|                          Ninguna                             |");
-        } else {
-            for (String propiedad : propiedades) {
-                System.out.printf("|%1$-62s|\n",
-                        String.format("%1$" + ((64 + propiedad.length()) / 2) + "s", propiedad));
-
+        for (int i = 0; i < vectorDePropiedades.size(); i++) {
+            ArrayList<String> propiedades = vectorDePropiedades.get(i);
+            System.out.printf("Propiedades del jugador %d:\n", i + 1);
+            if (propiedades.size() == 0) {
+                System.out.println("|                          Ninguna                             |");
+            } else {
+                for (String propiedad : propiedades) {
+                    System.out.printf("|%1$-62s|\n",
+                            String.format("%1$" + ((64 + propiedad.length()) / 2) + "s", propiedad));
+                }
             }
+            System.out.println(); // Salto de línea para separar las propiedades de cada jugador
         }
+
         System.out.println("+--------------------------------------------------------------+");
     }
 
