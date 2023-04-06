@@ -25,35 +25,35 @@ public class ListaJugadoresController implements Initializable {
         // TODO Auto-generated method stub
 
         lblJ1.setText(Sesion.nombre);
-        lblD1.setText(Integer.toString(GestionPartida.dinero));
+        // lblD1.setText(Integer.toString(GestionPartida.dinero));
     }
 
-    public void actualizarInfo(int numJugador, String nombre, int dinero) {
-        switch (numJugador) {
-            case 1:
-                lblJ1.setText(Sesion.nombre);
-                lblD1.setText(Integer.toString(GestionPartida.dinero));
-                break;
+    // public void actualizarInfo(int numJugador, String nombre, int dinero) {
+    // switch (numJugador) {
+    // case 1:
+    // lblJ1.setText(Sesion.nombre);
+    // lblD1.setText(Integer.toString(GestionPartida.dinero));
+    // break;
 
-            case 2:
-                lblJ2.setText(Sesion.nombre);
-                lblD2.setText(Integer.toString(GestionPartida.dinero));
-                break;
+    // case 2:
+    // lblJ2.setText(Sesion.nombre);
+    // lblD2.setText(Integer.toString(GestionPartida.dinero));
+    // break;
 
-            case 3:
-                lblJ3.setText(Sesion.nombre);
-                lblD3.setText(Integer.toString(GestionPartida.dinero));
-                break;
+    // case 3:
+    // lblJ3.setText(Sesion.nombre);
+    // lblD3.setText(Integer.toString(GestionPartida.dinero));
+    // break;
 
-            case 4:
-                lblJ4.setText(Sesion.nombre);
-                lblD4.setText(Integer.toString(GestionPartida.dinero));
-                break;
+    // case 4:
+    // lblJ4.setText(Sesion.nombre);
+    // lblD4.setText(Integer.toString(GestionPartida.dinero));
+    // break;
 
-            default:
-                System.out.println("No existen tantos jugadores");
-                break;
-        }
-    }
+    // default:
+    // System.out.println("No existen tantos jugadores");
+    // break;
+    // }
+    // }
 
 }

@@ -13,7 +13,7 @@ import javafx.stage.WindowEvent;
  */
 public class App extends Application {
     private static boolean grafico = false;
-    private static boolean verbose = false;
+    private static boolean verbose = true;
 
     private static Scene scene;
 
