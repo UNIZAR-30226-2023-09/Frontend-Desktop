@@ -1,5 +1,6 @@
 import java.net.URISyntaxException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Scanner;
 import org.java_websocket.client.WebSocketClient;
 
@@ -17,6 +18,8 @@ public class GestionPartida {
     public static boolean enCarcel = false;
     public static int turnosCarcel = 0;
     public static int indiceJugador = -1;
+    public static int CuentaInfoRecibida = 3;
+    public static int dineroEnBanco = 0;
 
     // ***** Información del usuario *****
     public static String nombreUser = "";
@@ -33,6 +36,16 @@ public class GestionPartida {
     public static String propiedadAComprar;
     public static boolean meToca = false;
     public static boolean compraRealizada;
+
+    private static boolean dadosDobles = false;
+
+    private static String precioPropiedadAComprar;
+
+    private static boolean apostarDinero;
+
+    private static boolean enBanco;
+
+    private static boolean respuestaBanco;
 
     private final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
             "AeropuertoNarita", "Tokio", "Kioto", "Superpoder", "Osaka", "Carcel", "Roma", "Milan", "Casino", "Napoles",
@@ -96,6 +109,18 @@ public class GestionPartida {
         client.send("SI_COMPRAR_PROPIEDAD," + nombreUser + "," + propiedad + "," + IDPartida);
     }
 
+    public static void apostarDinero(WebSocketClient client, String dineroApostar) {
+        client.send("APOSTAR," + nombreUser + "," + IDPartida + "," + dineroApostar);
+    }
+
+    private static void retirarDinero(WebSocketClient client2, int cantidad) {
+        client.send("SACAR," + nombreUser + "," + IDPartida + "," + Integer.toString(cantidad));
+    }
+
+    private static void depositarDinero(WebSocketClient client2, int cantidad) {
+        client.send("METER," + nombreUser + "," + IDPartida + "," + Integer.toString(cantidad));
+    }
+
     // Metodo que se encarga de gestionar todos los mensajes recibidos
     public static void gestionMensaje(String message) {
         if (verbose) {
@@ -152,6 +177,9 @@ public class GestionPartida {
                     posicionesJugadores[i] = "1";
                     dineroJugadores[i] = 1000;
                 }
+
+                dineroEnBanco = 0;
+                CuentaInfoRecibida = 3;
                 break;
             case "EMPEZAR_NO_OK":
                 System.out.println("Error en empezar partida");
@@ -163,6 +191,7 @@ public class GestionPartida {
             case "DADOS":
                 dados[0] = Integer.parseInt(partes[1]);
                 dados[1] = Integer.parseInt(partes[2]);
+                dadosDobles = dados[0] == dados[1];
 
                 posicionesJugadores[indiceJugador] = partes[3];
 
@@ -194,10 +223,10 @@ public class GestionPartida {
             case "QUIERES_COMPRAR_PROPIEDAD":
                 comprarPropiedad = true;
                 propiedadAComprar = partes[1];
+                precioPropiedadAComprar = partes[4];
                 break;
             case "DENTRO_CARCEL":
                 enCarcel = true;
-                System.out.println("Estas en la carcel durante " + partes[1]);
                 break;
             case "SALIR_CARCEL":
                 break;
@@ -218,6 +247,7 @@ public class GestionPartida {
                 dineroJugadores[indiceJugador] = Integer.parseInt(partes[1]);
                 break;
             case "ACTUALIZAR_USUARIO":
+                CuentaInfoRecibida++;
                 int indice = -1;
                 String jugador = partes[1];
                 for (int i = 0; i < 4; i++) {
@@ -236,6 +266,32 @@ public class GestionPartida {
                 }
                 vectorDePropiedades.get(indice).clear();
                 vectorDePropiedades.get(indice).addAll(lista);
+                break;
+            case "DINERO_APOSTAR":
+                // He caido en la casilla del banco
+                apostarDinero = true;
+                break;
+            case "ACCION_BANCO":
+                enBanco = true;
+                dineroEnBanco = Integer.parseInt(partes[3]);
+                break;
+            case "SACAR_DINERO_BANCO_NO_OK":
+                respuestaBanco = true;
+                break;
+            case "SACAR_DINERO_BANCO":
+                respuestaBanco = true;
+                dineroEnBanco = Integer.parseInt(partes[3]);
+                dineroJugadores[indiceJugador] = Integer.parseInt(partes[4]);
+                break;
+            case "APOSTAR_OK":
+                dineroJugadores[indiceJugador] = Integer.parseInt(partes[2]);
+                break;
+            case "APOSTAR_NOOK":
+                break;
+            case "METER_DINERO_BANCO":
+                dineroEnBanco = Integer.parseInt(partes[3]);
+                dineroJugadores[indiceJugador] = Integer.parseInt(partes[4]);
+                respuestaBanco = true;
                 break;
             default:
                 System.out.println("Mensaje no tenido en cuenta: " + message);
@@ -347,39 +403,19 @@ public class GestionPartida {
         }
     }
 
+    // Bucle de juego de una partida
     private static void jugarPartida(WebSocketClient client, Scanner scanner) {
         System.out.println("Empieza la partida");
         while (enPartida) {
             if (miTurno) {
-                limpiarTerminal();
-                mostrarInfoJugador();
-                System.out.println("Es tu turno, pulsa cualquier tecla para lanzar los dados ");
-                scanner.nextLine();
-                // Lanzar los dados
-                lanzarDados(nombreUser, IDPartida);
-                // Esperamos a recibir la respuesta del servidor
-                ConexionServidor.esperar();
-
-                // Esperar hasta que me hayan llegado todos los mensajes que espero del servidor
-                while (!meToca) {
+                while (CuentaInfoRecibida < 3) {
                     ConexionServidor.esperar();
                 }
-                meToca = false;
-                if (!enCarcel) {
-                    if (comprarPropiedad) {
-                        System.out.println("Introduzca un 1 si desea comprar la propiedad: "
-                                + tablero[Integer.parseInt(propiedadAComprar)] + String.valueOf(propiedadAComprar));
-                        if (scanner.nextLine().equals("1")) {
-                            comprarPropiedad(client, propiedadAComprar);
-                            while (!compraRealizada) {
-                                ConexionServidor.esperar();
-                            }
-                            compraRealizada = false;
-                        }
-                        comprarPropiedad = false;
-                    }
-
-                }
+                do {
+                    limpiarTerminal();
+                    lanzarLosDados(scanner);
+                    JugarTurno(client, scanner);
+                } while (dadosDobles);
 
                 finTurno(client);
                 miTurno = false;
@@ -389,6 +425,149 @@ public class GestionPartida {
             // Finalizamos el turno
             ConexionServidor.esperar();
         }
+    }
+
+    private static void lanzarLosDados(Scanner scanner) {
+        CuentaInfoRecibida = 0;
+        mostrarInfoJugador();
+        if (dadosDobles) {
+            System.out.print("Has sacado dados dobles, ");
+        }
+        System.out.print("Pulsa cualquier tecla para lanzar los dados: ");
+        scanner.nextLine();
+        // Lanzar los dados
+        lanzarDados(nombreUser, IDPartida);
+        // Esperamos a recibir la respuesta del servidor
+        ConexionServidor.esperar();
+
+        // Esperar hasta que me hayan llegado todos los mensajes que espero del servidor
+        while (!meToca) {
+            ConexionServidor.esperar();
+        }
+        meToca = false;
+
+        // Mostrar el valor de los dados
+        System.out.println("+----------------------+----------------------+----------------+");
+        System.out
+                .println(String.format("| %-20s | %-20d | %-14d |", "Resultado dados", dados[0], dados[1]));
+        System.out.println("+----------------------+----------------------+----------------+");
+    }
+
+    // Gestiona la entrada salida necesaria para jugar un turno
+    private static void JugarTurno(WebSocketClient client, Scanner scanner) {
+        if (!enCarcel) {
+            if (comprarPropiedad) {
+                gestionCompraPropiedad(client, scanner);
+            } else if (apostarDinero) {
+                gestionApuestaDinero(client, scanner);
+            } else if (enBanco) {
+                gestionBanco(client, scanner);
+            }
+
+            // TODO: Añadir demas opciones: edificar, subastar, etc
+
+        }
+    }
+
+    private static void gestionBanco(WebSocketClient client, Scanner scanner) {
+        System.out.println(
+                "Ha caido en la casilla del banco. Que operacion desea realizar:");
+        System.out.println("1- Depositar dinero");
+        System.out.println("2- Retirar dinero");
+        System.out.println("3- No realizar ninguna operacion");
+        String mensaje = scanner.nextLine();
+        int cantidad;
+        switch (mensaje) {
+            case "1":
+                cantidad = convertirStringAEnteroValido(client, scanner);
+                if (cantidad > dineroJugadores[indiceJugador]) {
+                    System.out.println("No tiene tanto dinero");
+                } else {
+                    depositarDinero(client, cantidad);
+                }
+                break;
+            case "2":
+                cantidad = convertirStringAEnteroValido(client, scanner);
+                if (cantidad > dineroEnBanco) {
+                    System.out.println("No tiene tanto dinero en el banco");
+                } else {
+                    retirarDinero(client, cantidad);
+                }
+                break;
+            case "3":
+                break;
+            default:
+                System.out.println("No ha seleccionado una opción válida");
+                break;
+        }
+        enBanco = false;
+
+        // Esperar la respuesta del servidor
+        while (!respuestaBanco) {
+            ConexionServidor.esperar();
+        }
+        respuestaBanco = false;
+    }
+
+    private static int convertirStringAEnteroValido(WebSocketClient client, Scanner scanner) {
+        boolean valido;
+        do {
+            System.out.println("Introduzca una cantidad valida");
+            String cantidad = scanner.nextLine();
+            try {
+                int numero = Integer.parseInt(cantidad);
+                valido = true;
+                if (numero > 0) {
+                    return numero;
+                } else {
+                    System.out.println("Ha decidio no retirar dinero");
+                    return 0;
+                }
+            } catch (NumberFormatException e) {
+                System.out.println(
+                        "El String '" + cantidad + "' no puede ser convertido a un entero.");
+                valido = false;
+            }
+        } while (!valido);
+        return -1;
+    }
+
+    private static void gestionApuestaDinero(WebSocketClient client, Scanner scanner) {
+        boolean valido = true;
+        do {
+            System.out.println(
+                    "Ha caido en la casilla del casino. Cuanto dinero desea apostar? (0 si no desea apostar)");
+            String dineroApostar = scanner.nextLine();
+            try {
+                int numero = Integer.parseInt(dineroApostar);
+                valido = true;
+                if (numero > 0) {
+                    apostarDinero(client, dineroApostar);
+                } else {
+                    System.out.println("Ha decidio no apostar dinero");
+                }
+            } catch (NumberFormatException e) {
+                System.out.println(
+                        "El String '" + dineroApostar + "' no puede ser convertido a un entero.");
+                valido = false;
+            }
+        } while (!valido);
+
+        apostarDinero = false;
+    }
+
+    private static void gestionCompraPropiedad(WebSocketClient client, Scanner scanner) {
+        System.out.println("Introduzca un 1 si desea comprar la propiedad: "
+                + tablero[Integer.parseInt(propiedadAComprar)] + "(" + String.valueOf(propiedadAComprar) + ")"
+                + " por " + precioPropiedadAComprar + "€?");
+        if (scanner.nextLine().equals("1")) {
+            comprarPropiedad(client, propiedadAComprar);
+            while (!compraRealizada) {
+                ConexionServidor.esperar();
+            }
+            compraRealizada = false;
+        }
+        comprarPropiedad = false;
     }
 
     private static void mostrarInfoJugador() {
@@ -405,6 +584,7 @@ public class GestionPartida {
         }
         System.out.println("+----------------------+----------------------+----------------+");
         System.out.println(String.format("| %-20s | %-20s | %,14d |", "Dinero en el bote", "", dineroBote));
+        System.out.println(String.format("| %-20s | %-20s | %,14d |", "Dinero en el banco", "", dineroEnBanco));
         System.out.println("+----------------------+----------------------+----------------+");
 
         // Mostrar propiedades del jugador
@@ -418,8 +598,10 @@ public class GestionPartida {
                 System.out.println("|                          Ninguna                             |");
             } else {
                 for (String propiedad : propiedades) {
+                    int numeroPropiedad = Arrays.asList(tablero).indexOf(propiedad);
                     System.out.printf("|%1$-62s|\n",
-                            String.format("%1$" + ((64 + propiedad.length()) / 2) + "s", propiedad));
+                            String.format("%1$" + ((64 + propiedad.length()) / 2) + "s",
+                                    propiedad + " (" + numeroPropiedad + ")"));
                 }
             }
             System.out.println(); // Salto de línea para separar las propiedades de cada jugador
