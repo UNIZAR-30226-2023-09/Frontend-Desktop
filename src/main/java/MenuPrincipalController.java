@@ -24,7 +24,7 @@ import javafx.scene.control.Label;
 import javafx.stage.Stage;
 
 public class MenuPrincipalController implements Initializable {
-
+    
     @FXML
     private Button btnSignOut, btnUnirse, btnTienda, btnCrear;
 
@@ -45,9 +45,6 @@ public class MenuPrincipalController implements Initializable {
             // cerrar la sesion
             App.setRoot("MainView");
         } else if (btnCrear.equals(evt)) {
-            // crear una partida
-            App.setRoot("CrearPartida");
-        } else if (btnCrear.equals(evt)) {
             // poner codigo de la partida
             GestionPartida.crearPartida();
 
@@ -55,6 +52,10 @@ public class MenuPrincipalController implements Initializable {
             ConexionServidor.esperar();
 
             if (GestionPartida.enPartida && GestionPartida.dueñoPartida) {
+
+                System.out.print(GestionPartida.IDPartida);
+
+
                 // crear una partida
                 App.setRoot("CrearPartida");
             } else {
