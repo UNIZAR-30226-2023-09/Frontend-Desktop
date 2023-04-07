@@ -11,23 +11,14 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javax.swing.JOptionPane;
-
 import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyEvent;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 public class SignInFormController implements Initializable {
 
@@ -45,6 +36,9 @@ public class SignInFormController implements Initializable {
 
     @FXML
     private Button btnSignIn;
+
+    @FXML
+    private Label lblError;
 
     private boolean verificarTipoEmail(String email) {
         return email.matches("^[\\w-_\\.+]*[\\w-_\\.]\\@([\\w]+\\.)+[\\w]+[\\w]$");
@@ -71,18 +65,14 @@ public class SignInFormController implements Initializable {
                         // Ir al menu principal
                         App.setRoot("MenuPrincipal");
                     } else {
-                        // Mostrar mensaje de error
-                        JOptionPane.showMessageDialog(null, "Datos introducidos no validos", "ERROR",
-                                JOptionPane.ERROR_MESSAGE);
+                        lblError.setText("Datos introducidos no validos");
                     }
                 } else {
-                    JOptionPane.showMessageDialog(null, "En correo debe introducir un email valido", "ERROR",
-                            JOptionPane.ERROR_MESSAGE);
+                    lblError.setText("Introduzca un correo valido");
                 }
             } else {
                 // o el campo nombre de usuario o la contraseña estan vacios
-                JOptionPane.showMessageDialog(null, "Debe llenar los campos obligatorios", "ERROR",
-                        JOptionPane.ERROR_MESSAGE);
+                lblError.setText("Debe rellernar todos los campos");            
             }
         }
     }

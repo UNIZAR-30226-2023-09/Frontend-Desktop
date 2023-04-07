@@ -72,6 +72,14 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </CheckBox>
+            <Label fx:id="lblError" textFill="RED">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
             <HBox alignment="TOP_CENTER" prefWidth="200.0">
                <VBox.margin>
                   <Insets top="20.0" />
