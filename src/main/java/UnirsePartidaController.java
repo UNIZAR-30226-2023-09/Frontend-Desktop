@@ -33,27 +33,21 @@ public class UnirsePartidaController implements Initializable {
         Object evt = e.getSource();
 
         if (btnUnirse.equals(evt)) {
-            // abrir el tablero
-            App.setRoot("Tablero");
-        } else if (btnVolver.equals(evt)) {
-            if (btnUnirse.equals(evt)) {
-                // enviamos el codigo al servidor
-                GestionPartida.unirsePartida(txtCodigo.toString());
+            // enviamos el codigo al servidor
+            GestionPartida.unirsePartida(txtCodigo.toString());
 
-                // esperamos la respuesta
-                ConexionServidor.esperar();
+            // esperamos la respuesta
+            ConexionServidor.esperar();
 
-                if (GestionPartida.enPartida) {
-                    // abrir el tablero
-                    App.setRoot("Tablero");
-                } else {
-                    JOptionPane.showMessageDialog(null, "EL codigo introducido no es valido", "ERROR",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            } else if (btnVolver.equals(evt)) {
-                // volver al menu
-                App.setRoot("MenuPrincipal");
+            if (GestionPartida.enPartida) {
+                // abrir el tablero
+                App.setRoot("Tablero");
+            } else {
+                JOptionPane.showMessageDialog(null, "EL codigo introducido no es valido", "ERROR",
+                        JOptionPane.ERROR_MESSAGE);
             }
+        } else if (btnVolver.equals(evt)) {
+            App.setRoot("MenuPrincipal");
         }
     }
 }

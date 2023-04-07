@@ -30,26 +30,20 @@ public class CrearPartidaController implements Initializable {
         Object evt = e.getSource();
 
         if (btnEmpezar.equals(evt)) {
-            // abrir el tablero
-            App.setRoot("Tablero");
-        } else if (btnVolver.equals(evt)) {
-            if (btnEmpezar.equals(evt)) {
-                GestionPartida.empezarPartida(GestionPartida.IDPartida);
+            GestionPartida.empezarPartida(GestionPartida.IDPartida);
 
-                ConexionServidor.esperar();
+            ConexionServidor.esperar();
 
-                if (GestionPartida.empezarPartida && GestionPartida.enPartida) {
-                    // abrir el tablero
-                    App.setRoot("Tablero");
-                } else {
-                    JOptionPane.showMessageDialog(null, "No se ha podido iniciar la partida", "ERROR",
-                            JOptionPane.ERROR_MESSAGE);
-                }
-            } else if (btnVolver.equals(evt)) {
-                // volver al menu
-                App.setRoot("MenuPrincipal");
+            if (GestionPartida.empezarPartida && GestionPartida.enPartida) {
+                // abrir el tablero
+                App.setRoot("Tablero");
+            } else {
+                JOptionPane.showMessageDialog(null, "No se ha podido iniciar la partida", "ERROR",
+                        JOptionPane.ERROR_MESSAGE);
             }
+        } else if (btnVolver.equals(evt)) {
+            // volver al menu
+            App.setRoot("MenuPrincipal");
         }
-
     }
 }
