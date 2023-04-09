@@ -4,12 +4,15 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 
 public class TableroController implements Initializable {
@@ -20,7 +23,13 @@ public class TableroController implements Initializable {
     @FXML
     private VBox datosPartida;
 
-    private VBox listaJugadores, listaPropiedades/*, chat*/;
+    private VBox listaJugadores, listaPropiedades, chat;
+
+    @FXML
+    private Button btnChat;
+
+    @FXML
+    private StackPane containerForm;
 
     Random random = new Random();
 
@@ -155,8 +164,14 @@ public class TableroController implements Initializable {
         try {
             listaJugadores = loadForm("ListaJugadores.fxml");
             listaPropiedades = loadForm("ListaPropiedades.fxml");
-            // chat = loadForm("SignUpForm.fxml");
+            chat = loadForm("Chat.fxml");
+
+            datosPartida = new VBox();
             datosPartida.getChildren().addAll(listaJugadores, listaPropiedades);
+
+            containerForm.getChildren().addAll(datosPartida, chat);
+            datosPartida.setVisible(true);
+            chat.setVisible(false);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -164,6 +179,16 @@ public class TableroController implements Initializable {
 
     private VBox loadForm(String ur1) throws IOException {
         return (VBox) FXMLLoader.load(getClass().getResource(ur1));
+    }
+
+    @FXML
+    public void actionEvent(ActionEvent e) {
+        Object evt = e.getSource();
+
+        if (evt.equals(btnChat)) {
+            datosPartida.setVisible(!datosPartida.isVisible());
+            chat.setVisible(!chat.isVisible());
+        }
     }
 
 }

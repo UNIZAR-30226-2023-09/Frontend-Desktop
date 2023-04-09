@@ -1,7 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
 <GridPane prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TableroController">
    <columnConstraints>
@@ -36,6 +44,14 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <VBox fx:id="datosPartida" alignment="TOP_CENTER" prefWidth="600.0" GridPane.columnIndex="1" />
+      <VBox alignment="BOTTOM_RIGHT" prefWidth="600.0" GridPane.columnIndex="1">
+         <children>
+            <StackPane fx:id="containerForm" prefHeight="850.0" prefWidth="600.0" />
+            <Button fx:id="btnChat" maxWidth="150.0" mnemonicParsing="false" onAction="#actionEvent" prefHeight="150.0" text="Chat">
+               <VBox.margin>
+                  <Insets right="10.0" />
+               </VBox.margin>
+            </Button>
+         </children></VBox>
    </children>
 </GridPane>

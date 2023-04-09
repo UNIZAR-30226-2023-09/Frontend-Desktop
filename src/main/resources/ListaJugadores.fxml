@@ -8,9 +8,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="listaJugadores" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ListaJugadoresController">
+<VBox fx:id="listaJugadores" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ListaJugadoresController">
    <children>
-      <Label alignment="CENTER" prefHeight="80.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8px;" text="Lista Jugadores:" textFill="WHITE">
+      <Label alignment="CENTER" prefHeight="75.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8px;" text="Lista Jugadores:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -18,175 +18,173 @@
             <Insets bottom="5.0" top="10.0" />
          </VBox.margin>
       </Label>
-      <VBox prefHeight="265.0" prefWidth="600.0" style="-fx-background-color: white;">
+      <VBox alignment="CENTER" prefHeight="265.0" prefWidth="600.0" style="-fx-background-color: white;">
          <children>
-            <HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
-                     <children>
-                        <ImageView fitHeight="102.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@skins/BAXTER.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="lblJ1" text="Jugador 1">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <Label text=":">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lblD1" text="1">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
-                        <Label text="€">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
-                     <children>
-                        <ImageView fitHeight="102.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@skins/BAXTER.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="lblJ2" text="Jugador 2">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <Label text=":">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lblD2" text="1">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
-                        <Label text="€">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
+                  <ImageView fitHeight="110.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@skins/BAXTER.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblJ1" text="Jugador 1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblD1" text="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="€">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
+               <children>
+                  <ImageView fitHeight="110.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@skins/BAXTER.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblJ2" text="Jugador 2">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblD2" text="1">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="€">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
                </children>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="10.0" />
                </VBox.margin>
             </HBox>
-            <HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
                <children>
-                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
-                     <children>
-                        <ImageView fitHeight="102.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@skins/BAXTER.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="lblJ3" text="Jugador 3">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <Label text=":">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lblD3" text="3">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
-                        <Label text="€">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
-                  <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
-                     <children>
-                        <ImageView fitHeight="102.0" fitWidth="92.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@skins/BAXTER.png" />
-                           </image>
-                        </ImageView>
-                        <Label fx:id="lblJ4" text="Jugador 4">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <padding>
-                              <Insets left="20.0" />
-                           </padding>
-                        </Label>
-                        <Label text=":">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="lblD4" text="4">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <padding>
-                              <Insets left="10.0" />
-                           </padding>
-                        </Label>
-                        <Label text="€">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                           <padding>
-                              <Insets left="5.0" />
-                           </padding>
-                        </Label>
-                     </children>
-                  </HBox>
+                  <ImageView fitHeight="110.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@skins/BAXTER.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblJ3" text="Jugador 3">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblD3" text="3">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="€">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
                </children>
                <VBox.margin>
-                  <Insets top="20.0" />
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
+               <children>
+                  <ImageView fitHeight="110.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@skins/BAXTER.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="lblJ4" text="Jugador 4">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="20.0" />
+                     </padding>
+                  </Label>
+                  <Label text=":">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblD4" text="4">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="10.0" />
+                     </padding>
+                  </Label>
+                  <Label text="€">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
                </VBox.margin>
             </HBox>
          </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
       </VBox>
    </children>
 </VBox>
