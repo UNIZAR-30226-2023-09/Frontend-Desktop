@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="listaJugadores" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ListaPropiedadesController">
+<VBox fx:id="listaJugadores" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ListaPropiedadesController">
    <children>
-      <Label alignment="CENTER" prefHeight="75.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8px;" text="Lista Propiedades:" textFill="WHITE">
+      <Label alignment="CENTER" prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8px;" text="Lista Propiedades:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -19,7 +19,7 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <ScrollPane hbarPolicy="NEVER" prefWidth="600.0" style="-fx-background-color: white;" vbarPolicy="NEVER">
+      <ScrollPane hbarPolicy="NEVER" prefWidth="600.0" styleClass="viewport" stylesheets="@fondo.css" vbarPolicy="NEVER" VBox.vgrow="NEVER">
          <content>
             <VBox fx:id="propiedades" prefWidth="600.0" spacing="5.0" style="-fx-background-color: transparent;">
                <children>
@@ -228,7 +228,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@banderas/FRANCIA.png" />
+                              <Image url="@banderas/SPAIN.png" />
                            </image>
                         </ImageView>
                         <Label text="Paris">
@@ -242,7 +242,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@banderas/FRANCIA.png" />
+                              <Image url="@banderas/SPAIN.png" />
                            </image>
                         </ImageView>
                         <Label text="Marsella">
@@ -256,7 +256,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@banderas/FRANCIA.png" />
+                              <Image url="@banderas/SPAIN.png" />
                            </image>
                         </ImageView>
                         <Label text="Lyon">
@@ -344,6 +344,48 @@
                            </image>
                         </ImageView>
                         <Label text="Chicago">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/SPAIN.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Aeropuerto Narita">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/SPAIN.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Aeropuerto Orly">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/SPAIN.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Aeropuerto de Los Angeles">
                            <font>
                               <Font size="20.0" />
                            </font>

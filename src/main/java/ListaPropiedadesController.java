@@ -24,13 +24,13 @@ public class ListaPropiedadesController implements Initializable {
 
     private int numPropiedades = 0;
 
-    private final int NUM_PROPIEDADES = 2;
+    private final int NUM_PROPIEDADES = 26;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         for(int i=1; i<=NUM_PROPIEDADES; i++)
         {
-            propiedades.getChildren().get(i).setVisible(false);
+            propiedades.getChildren().get(i).setVisible(true);
         }
     }
 

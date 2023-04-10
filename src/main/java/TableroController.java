@@ -224,7 +224,7 @@ public class TableroController implements Initializable {
             datosPartida.setVisible(true);
             chat.setVisible(false);
 
-            partida();
+           // partida();
             /* 
             timeline = new Timeline();
             Duration interval = Duration.seconds(3);
