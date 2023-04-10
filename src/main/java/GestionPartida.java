@@ -1,6 +1,7 @@
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 import org.java_websocket.client.WebSocketClient;
 
@@ -31,6 +32,8 @@ public class GestionPartida {
     public static int[] dados = new int[2];
     public static int dineroBote = 0;
     public static ArrayList<ArrayList<String>> vectorDePropiedades = new ArrayList<ArrayList<String>>();
+    public static List<String> nombresPropiedades = new ArrayList<>();
+    public static List<String> preciosPropiedades = new ArrayList<>();
 
     public static boolean comprarPropiedad = false;
     public static String propiedadAComprar;
@@ -46,6 +49,8 @@ public class GestionPartida {
     private static boolean enBanco;
 
     private static boolean respuestaBanco;
+
+    private static boolean finMenu;
 
     private final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
             "AeropuertoNarita", "Tokio", "Kioto", "Superpoder", "Osaka", "Carcel", "Roma", "Milan", "Casino", "Napoles",
@@ -293,6 +298,17 @@ public class GestionPartida {
                 dineroJugadores[indiceJugador] = Integer.parseInt(partes[4]);
                 respuestaBanco = true;
                 break;
+            case "EDIFICAR":
+                nombresPropiedades.clear();
+                preciosPropiedades.clear();
+
+                for (int i = 1; i < partes.length; i++) {
+                    String[] prop = partes[i].split(":");
+                    nombresPropiedades.add(prop[0]);
+                    preciosPropiedades.add(prop[1]);
+                }
+
+                break;
             default:
                 System.out.println("Mensaje no tenido en cuenta: " + message);
                 return;
@@ -417,7 +433,7 @@ public class GestionPartida {
                     JugarTurno(client, scanner);
                 } while (dadosDobles);
 
-                finTurno(client);
+                menuTurno(client, scanner);
                 miTurno = false;
                 System.out.println("Esperando turno");
             }
@@ -463,10 +479,62 @@ public class GestionPartida {
             } else if (enBanco) {
                 gestionBanco(client, scanner);
             }
-
-            // TODO: Añadir demas opciones: edificar, subastar, etc
-
         }
+    }
+
+    private static void menuTurno(WebSocketClient client, Scanner scanner) {
+        while (!finMenu) {
+            System.out.println("Es tu turno, " + nombreUser + ". ¿Qué deseas hacer?");
+            System.out.println("1 - Edificar");
+            System.out.println("2 - Intercambiar propiedad");
+            System.out.println("3 - Acabar turno");
+            String opcion = scanner.nextLine();
+            switch (opcion) {
+                case "1":
+                    edificar(client, scanner);
+                    break;
+                case "2":
+                    intercambiarPropiedad();
+                    break;
+                case "3":
+                    finTurno(client);
+                    finMenu = true;
+                    break;
+                default:
+                    System.out.println("Opción inválida");
+                    break;
+            }
+        }
+        finMenu = false;
+    }
+
+    private static void acabarTurno() {
+    }
+
+    private static void intercambiarPropiedad() {
+    }
+
+    private static void edificar(WebSocketClient client, Scanner scanner) {
+        System.out.println("Seleccione una propiedad para edificar:");
+        for (int i = 0; i < nombresPropiedades.size(); i++) {
+            String precio = preciosPropiedades.get(i);
+            System.out.println((i + 1) + " - " + nombresPropiedades.get(i) + " (" + precio + ")");
+        }
+        System.out.println("0 - Volver al menú anterior");
+
+        int opcion = scanner.nextInt();
+        if (opcion == 0) {
+            return;
+        }
+        if (opcion > 0 && opcion <= nombresPropiedades.size()) {
+            String propiedadElegida = nombresPropiedades.get(opcion - 1);
+            edificarPropiedad(propiedadElegida);
+        } else {
+            System.out.println("Opción inválida");
+        }
+    }
+
+    private static void edificarPropiedad(String propiedadElegida) {
     }
 
     private static void gestionBanco(WebSocketClient client, Scanner scanner) {
