@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 
 
@@ -43,7 +45,7 @@ public class TableroController implements Initializable {
     {   
         ImageView imagenDado = (ImageView) e.getSource();
         //while(GestionPartida.enPartida){
-
+            ConexionServidor.esperar();
             if (GestionPartida.miTurno == true) {
 
                 System.out.println("miTurno?");
@@ -61,8 +63,9 @@ public class TableroController implements Initializable {
                 
                 }
 
-                dado1.setDisable(false);
-                dado2.setDisable(false);
+                //dado1.setDisable(false);
+                //dado2.setDisable(false);
+                GestionPartida.CuentaInfoRecibida = 0;
 
                 do {
                     if (imagenDado.getId().equals("dado1") || imagenDado.getId().equals("dado2")) {
@@ -205,7 +208,7 @@ public class TableroController implements Initializable {
             datosPartida.setVisible(true);
             chat.setVisible(false);
 
-            /*
+            
             timeline = new Timeline();
             Duration interval = Duration.seconds(1);
             KeyFrame keyFrame = new KeyFrame(interval, event -> {
@@ -216,7 +219,7 @@ public class TableroController implements Initializable {
             timeline.getKeyFrames().add(keyFrame);
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
-              */
+            
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -236,7 +239,7 @@ public class TableroController implements Initializable {
             chat.setVisible(!chat.isVisible());
         }
     }
-    /* 
+    
     private boolean estamosActualizando = false;
 
     private void actualizar(){
@@ -294,6 +297,6 @@ public class TableroController implements Initializable {
             estamosActualizando = false;       
         }
 
-    }*/
+    }
 
 }
