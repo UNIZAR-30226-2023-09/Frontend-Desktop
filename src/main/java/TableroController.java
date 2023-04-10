@@ -3,8 +3,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Semaphore;
 
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,6 +17,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
 
 
 
@@ -38,13 +40,13 @@ public class TableroController implements Initializable {
 
     Random random = new Random();
     
-    CountDownLatch latch = new CountDownLatch(1);
+    private static Semaphore semaphore = new Semaphore(0); // Semaforo de concurrencia
 
     private Timeline timeline;
 
     private void partida(){
         ConexionServidor.esperar();  
-        //while          
+        while(GestionPartida.enPartida){          
             //ConexionServidor.esperar();       //HABRA QUE PONERLO DONDE PEREZ
             dado1.setDisable(true);
             dado2.setDisable(true);
@@ -62,9 +64,7 @@ public class TableroController implements Initializable {
                     
                     //ESPERAR A QUE TIRE DADOS
                     try {
-                        System.out.println("pre?2");
-                        latch.await();
-                        System.out.println("post?2");
+                        semaphore.acquire();
                     } catch (InterruptedException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
@@ -78,7 +78,7 @@ public class TableroController implements Initializable {
 
             }
             ConexionServidor.esperar();
-        //}    
+        }    
     }
 
     @FXML
@@ -92,7 +92,7 @@ public class TableroController implements Initializable {
             GestionPartida.lanzarDados(GestionPartida.nombreUser,GestionPartida.IDPartida);
 
             ConexionServidor.esperar();
-            latch.countDown();
+            semaphore.release();
 
             Thread threadL = new Thread() {
                 public void run() {
@@ -226,9 +226,8 @@ public class TableroController implements Initializable {
             };
             threadIni.start();
 
-            //Platform.runLater(() -> partida());
 
-            /* 
+             
             timeline = new Timeline();
             Duration interval = Duration.seconds(3);
             KeyFrame keyFrame = new KeyFrame(interval, event -> {
@@ -240,7 +239,7 @@ public class TableroController implements Initializable {
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
              
-            */ 
+             
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -315,6 +314,11 @@ public class TableroController implements Initializable {
                         System.out.println("ERROR CASILLA2");
                         break;
                 }       
+            }
+            try {
+                Thread.sleep(1000); //TODAVIA NO FUNCIONA BIEN
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
             }
             estamosActualizando = false;       
         }
