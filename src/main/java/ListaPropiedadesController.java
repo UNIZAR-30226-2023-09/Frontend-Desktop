@@ -30,11 +30,11 @@ public class ListaPropiedadesController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         for(int i=1; i<=NUM_PROPIEDADES; i++)
         {
-            propiedades.getChildren().get(i).setVisible(true);
+            propiedades.getChildren().get(i).setVisible(false);
         }
     }
 
-    public void agnadirPropiedad()
+    public void agnadirPropiedad(int num_propiedad)
     {
         if(numPropiedades == 0)
         {
@@ -43,15 +43,17 @@ public class ListaPropiedadesController implements Initializable {
         }
 
         // mostrar la nueva propiedad
+        propiedades.getChildren().get(num_propiedad).setVisible(true);
 
         numPropiedades++;
     }
 
-    public void eliminarPropiedad()
+    public void eliminarPropiedad(int num_propiedad)
     {
         numPropiedades--;
 
         // ocultar la propiedad que ya no tenemos
+        propiedades.getChildren().get(num_propiedad).setVisible(false);
 
         if(numPropiedades == 0)
         {

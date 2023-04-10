@@ -47,7 +47,7 @@ public class TableroController implements Initializable {
     private void partida(){
         ConexionServidor.esperar();  
         while(GestionPartida.enPartida){          
-            ////ConexionServidor.esperar();       //HABRA QUE PONERLO DONDE PEREZ
+            //ConexionServidor.esperar();       //HABRA QUE PONERLO DONDE PEREZ
             dado1.setDisable(true);
             dado2.setDisable(true);
             if (GestionPartida.miTurno == true) {
@@ -218,8 +218,16 @@ public class TableroController implements Initializable {
             datosPartida.setVisible(true);
             chat.setVisible(false);
 
-            partida();
-            /* 
+
+            Thread threadIni = new Thread() {
+                public void run() {   
+                    partida();
+                }
+            };
+            threadIni.start();
+
+
+             
             timeline = new Timeline();
             Duration interval = Duration.seconds(3);
             KeyFrame keyFrame = new KeyFrame(interval, event -> {
