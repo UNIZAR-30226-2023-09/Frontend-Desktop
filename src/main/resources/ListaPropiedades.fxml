@@ -3,6 +3,9 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -18,23 +21,335 @@
       </Label>
       <ScrollPane hbarPolicy="NEVER" prefWidth="600.0" style="-fx-background-color: white;" vbarPolicy="NEVER">
          <content>
-            <VBox fx:id="propiedades" prefWidth="600.0" style="-fx-background-color: transparent;">
+            <VBox fx:id="propiedades" prefWidth="600.0" spacing="5.0" style="-fx-background-color: transparent;">
                <children>
                   <Label fx:id="lblVacia" text="Todavia no tiene propiedades">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label text="Peru">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label text="Colombia">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/MEXICO.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Guadalajara">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/MEXICO.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Monterrey">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/JAPON.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Tokio">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/JAPON.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Kioto">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/JAPON.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Osaka">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/SPAIN.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Roma">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/SPAIN.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Milan">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/SPAIN.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Napoles">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/ENG.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Londres">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/ENG.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Manchester">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/ENG.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Edimburgo">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/SPAIN.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Madrid">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/SPAIN.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Barcelona">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/SPAIN.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Zaragoza">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/FRANCIA.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Paris">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/FRANCIA.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Marsella">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="48.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/FRANCIA.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Lyon">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/CANADA.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Toronto">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/CANADA.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Vancouver">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/CANADA.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Ottawa">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/EEUU.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label text="Nueva York">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/EEUU.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label text="Los Angeles">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/EEUU.jpg" />
+                           </image>
+                        </ImageView>
+                        <Label text="Chicago">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </HBox>
                </children>
                <padding>
                   <Insets left="5.0" />
