@@ -45,7 +45,7 @@ public class TableroController implements Initializable {
     {   
         ImageView imagenDado = (ImageView) e.getSource();
         //while(GestionPartida.enPartida){
-            ConexionServidor.esperar();
+            //ConexionServidor.esperar();
             if (GestionPartida.miTurno == true) {
 
                 System.out.println("miTurno?");
