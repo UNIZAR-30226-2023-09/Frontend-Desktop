@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="panelFormSignup" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="411.0" prefWidth="482.0" styleClass="blur-box-ajustable" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignUpFormController">
+<VBox fx:id="panelFormSignup" alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="550.0" styleClass="blur-box-SignUp" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SignUpFormController">
    <children>
       <Label text="Crear Cuenta" textFill="WHITE">
          <font>
@@ -98,6 +98,14 @@
                   </VBox>
                </children>
             </HBox>
+            <Label fx:id="lblError" textFill="RED">
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+            </Label>
             <HBox alignment="TOP_CENTER" prefWidth="200.0">
                <VBox.margin>
                   <Insets top="20.0" />

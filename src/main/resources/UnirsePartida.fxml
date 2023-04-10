@@ -81,6 +81,14 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
+                  <Label textFill="RED">
+                     <VBox.margin>
+                        <Insets top="10.0" />
+                     </VBox.margin>
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </Label>
                   <Button fx:id="btnUnirse" mnemonicParsing="false" onAction="#actionEvent" prefHeight="20.0" prefWidth="175.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Unirse" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="15.0" />

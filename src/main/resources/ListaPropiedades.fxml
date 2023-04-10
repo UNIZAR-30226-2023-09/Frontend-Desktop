@@ -2,13 +2,13 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="listaJugadores" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="346.0" prefWidth="500.0" styleClass="blur-box-ajustable" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ListaPropiedadesController">
+<VBox fx:id="listaJugadores" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ListaPropiedadesController">
    <children>
-      <Label text="Lista Propiedades:" textFill="WHITE">
+      <Label alignment="CENTER" prefHeight="75.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8px;" text="Lista Propiedades:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
@@ -16,141 +16,24 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <VBox prefHeight="200.0" prefWidth="478.0">
-         <children>
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
+      <ScrollPane hbarPolicy="NEVER" prefHeight="276.0" prefWidth="600.0" style="-fx-background-color: white;" vbarPolicy="NEVER">
+         <content>
+            <VBox prefWidth="600.0" style="-fx-background-color: transparent;">
                <children>
-                  <Label fx:id="lblJ1" text="Jugador 1">
+                  <Label text="Todavia no tiene propiedades">
                      <font>
                         <Font size="20.0" />
                      </font>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
-                  <Label text=":">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lblD1" text="Dinero 1">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label text="€">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
                   </Label>
                </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
-               <children>
-                  <Label fx:id="lblJ2" text="Jugador 2">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
-                  <Label text=":">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lblD2" text="Dinero 2">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label text="€">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
-               <children>
-                  <Label fx:id="lblJ3" text="Jugador 3">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
-                  <Label text=":">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lblD3" text="Dinero 3">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label text="€">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
-               <children>
-                  <Label fx:id="lblJ4" text="Jugador 4">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets left="20.0" />
-                     </padding>
-                  </Label>
-                  <Label text=":">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lblD4" text="Dinero 4">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label text="€">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets left="5.0" />
-                     </padding>
-                  </Label>
-               </children>
-            </HBox>
-         </children>
-      </VBox>
+               <padding>
+                  <Insets left="5.0" />
+               </padding>
+            </VBox>
+         </content>
+         <VBox.margin>
+            <Insets top="5.0" />
+         </VBox.margin>
+      </ScrollPane>
    </children>
 </VBox>

@@ -2,24 +2,31 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="listaJugadores" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="346.0" prefWidth="500.0" styleClass="blur-box-ajustable" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ListaJugadoresController">
+<VBox fx:id="listaJugadores" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ListaJugadoresController">
    <children>
-      <Label text="Lista Jugadores:" textFill="WHITE">
+      <Label alignment="CENTER" prefHeight="75.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8px;" text="Lista Jugadores:" textFill="WHITE">
          <font>
             <Font name="System Bold" size="30.0" />
          </font>
          <VBox.margin>
-            <Insets />
+            <Insets bottom="5.0" top="10.0" />
          </VBox.margin>
       </Label>
-      <VBox prefHeight="200.0" prefWidth="478.0">
+      <VBox alignment="CENTER" prefHeight="265.0" prefWidth="600.0" style="-fx-background-color: white;">
          <children>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
                <children>
+                  <ImageView fitHeight="110.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@skins/BAXTER.png" />
+                     </image>
+                  </ImageView>
                   <Label fx:id="lblJ1" text="Jugador 1">
                      <font>
                         <Font size="20.0" />
@@ -33,7 +40,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblD1" text="Dinero 1">
+                  <Label fx:id="lblD1" text="1">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -53,6 +60,11 @@
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
                <children>
+                  <ImageView fitHeight="110.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@skins/BAXTER.png" />
+                     </image>
+                  </ImageView>
                   <Label fx:id="lblJ2" text="Jugador 2">
                      <font>
                         <Font size="20.0" />
@@ -66,7 +78,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblD2" text="Dinero 2">
+                  <Label fx:id="lblD2" text="1">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -83,9 +95,17 @@
                      </padding>
                   </Label>
                </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="200.0">
+            <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
                <children>
+                  <ImageView fitHeight="110.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@skins/BAXTER.png" />
+                     </image>
+                  </ImageView>
                   <Label fx:id="lblJ3" text="Jugador 3">
                      <font>
                         <Font size="20.0" />
@@ -99,7 +119,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblD3" text="Dinero 3">
+                  <Label fx:id="lblD3" text="3">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -116,9 +136,17 @@
                      </padding>
                   </Label>
                </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </HBox>
             <HBox alignment="CENTER_LEFT" prefHeight="50.0" prefWidth="478.0">
                <children>
+                  <ImageView fitHeight="110.0" fitWidth="100.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@skins/BAXTER.png" />
+                     </image>
+                  </ImageView>
                   <Label fx:id="lblJ4" text="Jugador 4">
                      <font>
                         <Font size="20.0" />
@@ -132,7 +160,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblD4" text="Dinero 4">
+                  <Label fx:id="lblD4" text="4">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -149,8 +177,14 @@
                      </padding>
                   </Label>
                </children>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
             </HBox>
          </children>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
       </VBox>
    </children>
 </VBox>
