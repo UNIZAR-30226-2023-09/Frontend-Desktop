@@ -4,7 +4,6 @@ import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.CountDownLatch;
-import java.util.concurrent.Semaphore;
 
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
@@ -17,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+
 
 
 
@@ -38,22 +38,14 @@ public class TableroController implements Initializable {
 
     Random random = new Random();
     
-    private boolean esperandoTirar = true;
-
-    private static Semaphore semaphore = new Semaphore(0); // Semaforo de concurrencia
-
     CountDownLatch latch = new CountDownLatch(1);
-
-    
 
     private Timeline timeline;
 
     private void partida(){
-
-        latch.countDown();
-
-        while(GestionPartida.enPartida){
-            ConexionServidor.esperar();       //HABRA QUE PONERLO DONDE PEREZ
+        ConexionServidor.esperar();  
+        //while          
+            //ConexionServidor.esperar();       //HABRA QUE PONERLO DONDE PEREZ
             dado1.setDisable(true);
             dado2.setDisable(true);
             if (GestionPartida.miTurno == true) {
@@ -67,14 +59,17 @@ public class TableroController implements Initializable {
                 do {
                     dado1.setDisable(false);
                     dado2.setDisable(false);
-
+                    
+                    //ESPERAR A QUE TIRE DADOS
                     try {
+                        System.out.println("pre?2");
                         latch.await();
+                        System.out.println("post?2");
                     } catch (InterruptedException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                    System.out.println("lanceLosDados");
+                    
 
                 } while(GestionPartida.dadosDobles);
                 
@@ -83,15 +78,14 @@ public class TableroController implements Initializable {
 
             }
             ConexionServidor.esperar();
-        }    
+        //}    
     }
 
     @FXML
     public void tirarDados(MouseEvent e) // HAY QUE COMPROBAR QUE SEA NUESTRO TURNO
     {   
-        //dado1.setDisable(true);
-        //dado2.setDisable(true);
-        System.out.println("entro2");
+        dado1.setDisable(true);
+        dado2.setDisable(true);
         GestionPartida.CuentaInfoRecibida = 0;
         ImageView imagenDado = (ImageView) e.getSource();
         if (imagenDado.getId().equals("dado1") || imagenDado.getId().equals("dado2")) {
@@ -224,7 +218,16 @@ public class TableroController implements Initializable {
             datosPartida.setVisible(true);
             chat.setVisible(false);
 
-            partida();
+
+            Thread threadIni = new Thread() {
+                public void run() {   
+                    partida();
+                }
+            };
+            threadIni.start();
+
+            //Platform.runLater(() -> partida());
+
             /* 
             timeline = new Timeline();
             Duration interval = Duration.seconds(3);
@@ -244,6 +247,7 @@ public class TableroController implements Initializable {
         }
     }
 
+ 
     private VBox loadForm(String ur1) throws IOException {
         return (VBox) FXMLLoader.load(getClass().getResource(ur1));
     }
