@@ -40,7 +40,7 @@ public class GestionPartida {
     public static boolean meToca = false;
     public static boolean compraRealizada;
 
-    private static boolean dadosDobles = false;
+    public static boolean dadosDobles = false;
 
     private static String precioPropiedadAComprar;
 
