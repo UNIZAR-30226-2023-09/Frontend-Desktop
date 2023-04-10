@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="listaJugadores" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ListaPropiedadesController">
+<VBox fx:id="listaJugadores" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ListaPropiedadesController">
    <children>
       <Label alignment="CENTER" prefHeight="75.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8px;" text="Lista Propiedades:" textFill="WHITE">
          <font>
@@ -16,11 +16,21 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <ScrollPane hbarPolicy="NEVER" prefHeight="276.0" prefWidth="600.0" style="-fx-background-color: white;" vbarPolicy="NEVER">
+      <ScrollPane hbarPolicy="NEVER" prefWidth="600.0" style="-fx-background-color: white;" vbarPolicy="NEVER">
          <content>
-            <VBox prefWidth="600.0" style="-fx-background-color: transparent;">
+            <VBox fx:id="propiedades" prefWidth="600.0" style="-fx-background-color: transparent;">
                <children>
-                  <Label text="Todavia no tiene propiedades">
+                  <Label fx:id="lblVacia" text="Todavia no tiene propiedades">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="Peru">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="Colombia">
                      <font>
                         <Font size="20.0" />
                      </font>
@@ -29,6 +39,9 @@
                <padding>
                   <Insets left="5.0" />
                </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
             </VBox>
          </content>
          <VBox.margin>
