@@ -3,9 +3,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
-import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.Semaphore;
 
+import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -17,6 +17,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.util.Duration;
+
 
 
 
@@ -38,22 +40,14 @@ public class TableroController implements Initializable {
 
     Random random = new Random();
     
-    private boolean esperandoTirar = true;
-
     private static Semaphore semaphore = new Semaphore(0); // Semaforo de concurrencia
-
-    CountDownLatch latch = new CountDownLatch(1);
-
-    
 
     private Timeline timeline;
 
     private void partida(){
-
-        latch.countDown();
-
-        while(GestionPartida.enPartida){
-            //ConexionServidor.esperar();       //HABRA QUE PONERLO DONDE PEREZ
+        ConexionServidor.esperar();  
+        while(GestionPartida.enPartida){          
+            ////ConexionServidor.esperar();       //HABRA QUE PONERLO DONDE PEREZ
             dado1.setDisable(true);
             dado2.setDisable(true);
             if (GestionPartida.miTurno == true) {
@@ -67,14 +61,15 @@ public class TableroController implements Initializable {
                 do {
                     dado1.setDisable(false);
                     dado2.setDisable(false);
-
+                    
+                    //ESPERAR A QUE TIRE DADOS
                     try {
-                        latch.await();
+                        semaphore.acquire();
                     } catch (InterruptedException e) {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                    System.out.println("lanceLosDados");
+                    
 
                 } while(GestionPartida.dadosDobles);
                 
@@ -89,16 +84,15 @@ public class TableroController implements Initializable {
     @FXML
     public void tirarDados(MouseEvent e) // HAY QUE COMPROBAR QUE SEA NUESTRO TURNO
     {   
-        //dado1.setDisable(true);
-        //dado2.setDisable(true);
-        System.out.println("entro2");
+        dado1.setDisable(true);
+        dado2.setDisable(true);
         GestionPartida.CuentaInfoRecibida = 0;
         ImageView imagenDado = (ImageView) e.getSource();
         if (imagenDado.getId().equals("dado1") || imagenDado.getId().equals("dado2")) {
             GestionPartida.lanzarDados(GestionPartida.nombreUser,GestionPartida.IDPartida);
 
             ConexionServidor.esperar();
-            latch.countDown();
+            semaphore.release();
 
             Thread threadL = new Thread() {
                 public void run() {
@@ -224,7 +218,7 @@ public class TableroController implements Initializable {
             datosPartida.setVisible(true);
             chat.setVisible(false);
 
-           // partida();
+            partida();
             /* 
             timeline = new Timeline();
             Duration interval = Duration.seconds(3);
@@ -237,13 +231,14 @@ public class TableroController implements Initializable {
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
              
-            */ 
+             
 
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+ 
     private VBox loadForm(String ur1) throws IOException {
         return (VBox) FXMLLoader.load(getClass().getResource(ur1));
     }
@@ -311,6 +306,11 @@ public class TableroController implements Initializable {
                         System.out.println("ERROR CASILLA2");
                         break;
                 }       
+            }
+            try {
+                Thread.sleep(1000); //TODAVIA NO FUNCIONA BIEN
+            } catch (InterruptedException ex) {
+                ex.printStackTrace();
             }
             estamosActualizando = false;       
         }
