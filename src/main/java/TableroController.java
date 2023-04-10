@@ -3,8 +3,9 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.Random;
 import java.util.ResourceBundle;
+import java.util.concurrent.CountDownLatch;
+import java.util.concurrent.Semaphore;
 
-import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -16,7 +17,6 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.util.Duration;
 
 
 
@@ -37,21 +37,26 @@ public class TableroController implements Initializable {
     private StackPane containerForm;
 
     Random random = new Random();
+    
+    private boolean esperandoTirar = true;
+
+    private static Semaphore semaphore = new Semaphore(0); // Semaforo de concurrencia
+
+    CountDownLatch latch = new CountDownLatch(1);
+
+    
 
     private Timeline timeline;
 
     private void partida(){
 
-        //while(GestionPartida.enPartida){
-            //ConexionServidor.esperar();       //HABRA QUE PONERLO DONDE PEREZ
+        latch.countDown();
+
+        while(GestionPartida.enPartida){
+            ConexionServidor.esperar();       //HABRA QUE PONERLO DONDE PEREZ
             dado1.setDisable(true);
             dado2.setDisable(true);
             if (GestionPartida.miTurno == true) {
-
-                System.out.println("miTurno?");
-                System.out.println(GestionPartida.miTurno);
-                System.out.println("cuentaInfoRecibida?");
-                System.out.println(GestionPartida.CuentaInfoRecibida);
 
                 while (GestionPartida.CuentaInfoRecibida < 3) {
                     System.out.println("cuentaInfoRecibida?2");
@@ -62,29 +67,30 @@ public class TableroController implements Initializable {
                 do {
                     dado1.setDisable(false);
                     dado2.setDisable(false);
-                    
-                    //tirarDados(e); //ImageView imagenDado  MouseEvent e
-                    ConexionServidor.esperar();
-                    //while(esperandoTirar){}
-                    //dado1.setDisable(true);
-                    //dado2.setDisable(true);
+
+                    try {
+                        latch.await();
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    System.out.println("lanceLosDados");
+
                 } while(GestionPartida.dadosDobles);
                 
                 GestionPartida.finTurno(GestionPartida.client);
                 GestionPartida.miTurno = false;
-                System.out.println("finTurno?");
-                System.out.println(GestionPartida.miTurno);
-                System.out.println(" ");
-                System.out.println(" ");
 
             }
             ConexionServidor.esperar();
-        //}    
+        }    
     }
 
     @FXML
     public void tirarDados(MouseEvent e) // HAY QUE COMPROBAR QUE SEA NUESTRO TURNO
     {   
+        //dado1.setDisable(true);
+        //dado2.setDisable(true);
         System.out.println("entro2");
         GestionPartida.CuentaInfoRecibida = 0;
         ImageView imagenDado = (ImageView) e.getSource();
@@ -92,6 +98,7 @@ public class TableroController implements Initializable {
             GestionPartida.lanzarDados(GestionPartida.nombreUser,GestionPartida.IDPartida);
 
             ConexionServidor.esperar();
+            latch.countDown();
 
             Thread threadL = new Thread() {
                 public void run() {
@@ -190,6 +197,7 @@ public class TableroController implements Initializable {
                         break;
                 }
             }
+            
         }
         while (!GestionPartida.meToca) {
             ConexionServidor.esperar();
@@ -217,7 +225,7 @@ public class TableroController implements Initializable {
             chat.setVisible(false);
 
             partida();
-            
+            /* 
             timeline = new Timeline();
             Duration interval = Duration.seconds(3);
             KeyFrame keyFrame = new KeyFrame(interval, event -> {
@@ -228,7 +236,8 @@ public class TableroController implements Initializable {
             timeline.getKeyFrames().add(keyFrame);
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
-              
+             
+            */ 
 
         } catch (IOException e) {
             e.printStackTrace();
