@@ -48,7 +48,7 @@ public class TableroController implements Initializable {
 
                 Thread threadL = new Thread() {
                     public void run() {
-                        System.out.println("Dado 1 agitandose");
+                        
                         try {
                             for (int i = 0; i < 15; i++) {
                                 File file = new File("src/main/resources/Dice" + (random.nextInt(6) + 1) + ".png");
@@ -57,7 +57,6 @@ public class TableroController implements Initializable {
                             }
                             File file = new File("src/main/resources/Dice" + GestionPartida.dados[0] + ".png");
                             dado1.setImage(new Image(file.toURI().toString()));
-                            System.out.println("Dado 1 ");
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -66,7 +65,7 @@ public class TableroController implements Initializable {
 
                 Thread threadR = new Thread() {
                     public void run() {
-                        System.out.println("TDado 1 agitandose");
+                        
                         try {
                             for (int i = 0; i < 15; i++) {
                                 File file = new File("src/main/resources/Dice" + (random.nextInt(6) + 1) + ".png");
@@ -75,7 +74,6 @@ public class TableroController implements Initializable {
                             }
                             File file = new File("src/main/resources/Dice"+ GestionPartida.dados[1] + ".png");
                             dado2.setImage(new Image(file.toURI().toString()));
-                            System.out.println("Dado 2");
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -102,58 +100,63 @@ public class TableroController implements Initializable {
                  * 
                  * }
                  */
-            }
 
-            
-            if(DatosPartida.estoyCarcel = false){
-                
-                String posi = "Pos"+String.valueOf(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]);
-                Integer jug = GestionPartida.indiceJugador;
-                String coordenadas;
-                switch (jug) {
+
+                if(GestionPartida.enCarcel == false){    
+
+                    String posi = "Pos" + String.valueOf(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]);
+                    Integer jug = GestionPartida.indiceJugador;
+                    String coordenadas;
+                    switch (jug) {
+                            case 0:
+                                coordenadas = DatosPartida.mapaPropiedades1.get(posi);
+                                break;
+                            case 1:
+                                coordenadas = DatosPartida.mapaPropiedades2.get(posi);
+                                break;
+                            case 2:
+                                coordenadas = DatosPartida.mapaPropiedades3.get(posi);
+                                break;
+                            case 3:
+                                coordenadas = DatosPartida.mapaPropiedades4.get(posi);
+                                break;
+                            default:
+                                coordenadas = "ERROR";
+                                System.out.println("ERROR CASILLA1");
+                                break;
+                    }
+                    
+                    String[] partes = coordenadas.split(",");
+                    int x = Integer.parseInt(partes[0]);
+                    int y = Integer.parseInt(partes[1]);
+                    
+                    System.out.println(jug);
+
+                    switch (jug) {
+                        case 0:
+                            user1.setLayoutX(x);
+                            user1.setLayoutY(y);
+                            break;
                         case 1:
-                            coordenadas = DatosPartida.mapaPropiedades1.get(posi);
+                            user2.setLayoutX(x);
+                            user2.setLayoutY(y);
                             break;
                         case 2:
-                            coordenadas = DatosPartida.mapaPropiedades2.get(posi);
+                            user3.setLayoutX(x);
+                            user3.setLayoutY(y);
                             break;
                         case 3:
-                            coordenadas = DatosPartida.mapaPropiedades3.get(posi);
-                            break;
-                        case 4:
-                            coordenadas = DatosPartida.mapaPropiedades4.get(posi);
-                            break;
+                            user4.setLayoutX(x);
+                            user4.setLayoutY(y); 
+                            break; 
                         default:
-                            coordenadas = "ERROR";
-                            System.out.println("ERROR CASILLA");
+                            System.out.println("ERROR CASILLA2");
                             break;
+                    }
+                    
+                    
                 }
-
-                System.out.println(coordenadas);
-                
-                String[] partes = coordenadas.split(",");
-                int x = Integer.parseInt(partes[0]);
-                int y = Integer.parseInt(partes[1]);
-                
-
-                switch (jug) {
-                    case 1:
-                        user1.setLayoutX(x);
-                        user1.setLayoutY(y);
-                    case 2:
-                        user2.setLayoutX(x);
-                        user2.setLayoutY(y);
-                    case 3:
-                        user3.setLayoutX(x);
-                        user3.setLayoutY(y);
-                    case 4:
-                        user4.setLayoutX(x);
-                        user4.setLayoutY(y);  
-                }
-                
-                
-            }
-             
+            }   
             
         }
 
