@@ -44,9 +44,9 @@ public class GestionPartida {
 
     private static String precioPropiedadAComprar;
 
-    private static boolean apostarDinero;
+    public static boolean apostarDinero;
 
-    private static boolean enBanco;
+    public static boolean enBanco;
 
     private static boolean respuestaBanco;
 
