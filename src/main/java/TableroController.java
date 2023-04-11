@@ -30,7 +30,7 @@ public class TableroController implements Initializable {
     @FXML
     private VBox datosPartida;
 
-    private VBox listaJugadores, listaPropiedades, chat;
+    private VBox listaJugadores, listaPropiedades, chat, propiedad;
 
     @FXML
     private Button btnChat;
@@ -75,6 +75,9 @@ public class TableroController implements Initializable {
                     if (!GestionPartida.enCarcel) {
                         if (GestionPartida.comprarPropiedad) {
                             //AQUI PONER QUE LA PANTALLA DE COMPRA SE INICIE
+                            datosPartida.setVisible(false);
+                            chat.setVisible(false);
+                            propiedad.setVisible(true);
                             //SEMAFORO DE COMPRA
                         } else if (GestionPartida.apostarDinero) {
                             //AQUI PONER QUE LA PANTALLA DE CASINO
@@ -246,15 +249,17 @@ public class TableroController implements Initializable {
             listaJugadores = loadForm("ListaJugadores.fxml");
             listaPropiedades = loadForm("ListaPropiedades.fxml");
             chat = loadForm("Chat.fxml");
+            propiedad = loadForm("CompraPropiedad.fxml");
 
             datosPartida = new VBox();
             datosPartida.getChildren().addAll(listaJugadores, listaPropiedades);
 
             //HAY QUE AÑADIR AQUI EL VBOX COMPRA.CASINO Y BANCO
 
-            containerForm.getChildren().addAll(datosPartida, chat);
+            containerForm.getChildren().addAll(datosPartida, chat, propiedad);
             datosPartida.setVisible(true);
             chat.setVisible(false);
+            propiedad.setVisible(false);
 
 
             Thread threadIni = new Thread() {
