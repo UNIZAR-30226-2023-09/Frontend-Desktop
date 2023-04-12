@@ -42,7 +42,7 @@ public class GestionPartida {
 
     public static boolean dadosDobles = false;
 
-    private static String precioPropiedadAComprar;
+    public static String precioPropiedadAComprar;
 
     public static boolean apostarDinero;
 
@@ -52,7 +52,7 @@ public class GestionPartida {
 
     private static boolean finMenu;
 
-    private final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
+    public final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
             "AeropuertoNarita", "Tokio", "Kioto", "Superpoder", "Osaka", "Carcel", "Roma", "Milan", "Casino", "Napoles",
             "Aeropuerto Heathrow", "Londres", "Superpoder", "Manchester", "Edimburgo", "Bote", "Madrid",
             "Barcelona", "Treasure", "Zaragoza", "AeropuertoOrly", "Paris", "Banco", "Marsella",
