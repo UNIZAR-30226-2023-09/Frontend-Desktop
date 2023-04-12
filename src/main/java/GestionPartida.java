@@ -183,6 +183,10 @@ public class GestionPartida {
                 empezarPartida = true;
                 enPartida = true;
 
+                //
+                enCarcel = false;
+                //
+
                 indiceJugador = Integer.parseInt(partes[2]);
                 // Almacenar orden de tiradas
                 ordenJugadores[0] = partes[3];
