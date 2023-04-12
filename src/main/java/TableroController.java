@@ -79,6 +79,16 @@ public class TableroController implements Initializable {
                             //AQUI PONER QUE LA PANTALLA DE COMPRA SE INICIE
                             
                             //SEMAFORO DE COMPRA
+                            try {
+                                ComprarPropiedadController.semaphoreComprar.acquire();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            //VUELTA A COMO ESTABAMOS
+                            datosPartida.setVisible(true);
+                            chat.setVisible(false);
+                            propiedad.setVisible(false);
+
                         } else if (GestionPartida.apostarDinero) {
                             //AQUI PONER QUE LA PANTALLA DE CASINO
                             //SEMAFORO DE CASINO
