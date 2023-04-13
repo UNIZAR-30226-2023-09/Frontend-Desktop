@@ -36,6 +36,33 @@ public class ListaJugadoresController implements Initializable {
         lblD4.setText(Integer.toString(GestionPartida.dineroJugadores[3]));
     }
 
+    public void actualizarInfo(int numJugador, String nombre, int dinero) {
+        switch (numJugador) {
+            case 1:
+                lblJ1.setText(Sesion.nombre);
+                lblD1.setText(Integer.toString(GestionPartida.dineroJugadores[0]));
+                break;
+
+            case 2:
+                lblJ2.setText(Sesion.nombre);
+                lblD2.setText(Integer.toString(GestionPartida.dineroJugadores[1]));
+                break;
+
+            case 3:
+                lblJ3.setText(Sesion.nombre);
+                lblD3.setText(Integer.toString(GestionPartida.dineroJugadores[2]));
+                break;
+
+            case 4:
+                lblJ4.setText(Sesion.nombre);
+                lblD4.setText(Integer.toString(GestionPartida.dineroJugadores[3]));
+                break;
+
+            default:
+                System.out.println("No existen tantos jugadores");
+                break;
+        }
+    }
 
     // public void actualizarInfo(int numJugador, String nombre, int dinero) {
     // switch (numJugador) {
@@ -44,25 +71,25 @@ public class ListaJugadoresController implements Initializable {
     // lblD1.setText(Integer.toString(GestionPartida.dinero));
     // break;
 
-    // case 2:
-    // lblJ2.setText(Sesion.nombre);
-    // lblD2.setText(Integer.toString(GestionPartida.dinero));
-    // break;
+            case 2:
+                lblJ2.setText(Sesion.nombre);
+                lblD2.setText(Integer.toString(GestionPartida.dineroJugadores[1]));
+                break;
 
-    // case 3:
-    // lblJ3.setText(Sesion.nombre);
-    // lblD3.setText(Integer.toString(GestionPartida.dinero));
-    // break;
+            case 3:
+                lblJ3.setText(Sesion.nombre);
+                lblD3.setText(Integer.toString(GestionPartida.dineroJugadores[2]));
+                break;
 
-    // case 4:
-    // lblJ4.setText(Sesion.nombre);
-    // lblD4.setText(Integer.toString(GestionPartida.dinero));
-    // break;
+            case 4:
+                lblJ4.setText(Sesion.nombre);
+                lblD4.setText(Integer.toString(GestionPartida.dineroJugadores[3]));
+                break;
 
-    // default:
-    // System.out.println("No existen tantos jugadores");
-    // break;
-    // }
-    // }
+            default:
+                System.out.println("No existen tantos jugadores");
+                break;
+        }
+    }
 
 }
