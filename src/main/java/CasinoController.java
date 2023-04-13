@@ -65,7 +65,7 @@ public class CasinoController implements Initializable{
                 {
                     int dineroAntes = GestionPartida.dineroEnBanco;
                     // enviar msj de mirar si gana
-                    GestionPartida.apostarDinero(GestionPartida.client, txtDinero.toString());
+                    GestionPartida.apostarDinero(txtDinero.toString());
         
                     // Inicia la animación de rotación
                     RotateTransition rotacion = new RotateTransition(Duration.seconds(2), imgRule);

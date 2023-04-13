@@ -100,7 +100,7 @@ public class TableroController implements Initializable {
 
                 } while(GestionPartida.dadosDobles);
                 
-                GestionPartida.finTurno(GestionPartida.client);
+                GestionPartida.finTurno();
                 GestionPartida.miTurno = false;
 
             }
@@ -235,12 +235,13 @@ public class TableroController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         try {
             listaJugadores = loadForm("ListaJugadores.fxml");
-            listaPropiedades = loadForm("ListaPropiedades.fxml");
+            //listaPropiedades = loadForm("ListaPropiedades.fxml");
             chat = loadForm("Chat.fxml");
             propiedad = loadForm("CompraPropiedad.fxml");
 
             datosPartida = new VBox();
-            datosPartida.getChildren().addAll(listaJugadores, listaPropiedades);
+            datosPartida.getChildren().addAll(listaJugadores);
+            //datosPartida.getChildren().addAll(listaJugadores, listaPropiedades);
 
             //HAY QUE AÑADIR AQUI EL VBOX COMPRA.CASINO Y BANCO
 

@@ -29,7 +29,7 @@ public class ComprarPropiedadController implements Initializable{
 
         if (btnComprar.equals(evt)) {
              
-            GestionPartida.comprarPropiedad(GestionPartida.client, GestionPartida.propiedadAComprar);
+            GestionPartida.comprarPropiedad(GestionPartida.propiedadAComprar);
             while (!GestionPartida.compraRealizada) {
                 ConexionServidor.esperar();
             }
