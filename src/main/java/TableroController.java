@@ -70,25 +70,25 @@ public class TableroController implements Initializable {
                         e.printStackTrace();
                     }
                     
+                    ConexionServidor.esperar(); 
                     //AQUI VAMOS A GESTIONAR EN QUE CASILLA HEMOS CAIDO PARA COMPRAR, BANCO Y CASINO
-                    
+
                     if (!GestionPartida.enCarcel) {
                         if (GestionPartida.comprarPropiedad) {
                             //AQUI PONER QUE LA PANTALLA DE COMPRA SE INICIE
                             ComprarPropiedadController.gestionarCompraPropiedad();
-                            
                             //SEMAFORO DE COMPRA
                             try {
                                 ComprarPropiedadController.semaphoreComprar.acquire();
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-                            /* 
+                             
                             //VUELTA A COMO ESTABAMOS
                             datosPartida.setVisible(true);
                             chat.setVisible(false);
                             propiedad.setVisible(false);
-                            */
+                            
                         } else if (GestionPartida.apostarDinero) {
                             //AQUI PONER QUE LA PANTALLA DE CASINO
                             //SEMAFORO DE CASINO
@@ -100,34 +100,14 @@ public class TableroController implements Initializable {
 
                 } while(GestionPartida.dadosDobles);
                 
+                System.out.println(" FIN DE TURNI PUTAS ");
+                
                 GestionPartida.finTurno(GestionPartida.client);
                 GestionPartida.miTurno = false;
 
             }
             ConexionServidor.esperar();
         }    
-    }
-
-
-    @FXML
-    public void comprarPropiedad(MouseEvent e){
-        /* 
-        System.out.println("Introduzca un 1 si desea comprar la propiedad: "
-                + tablero[Integer.parseInt(propiedadAComprar)] + "(" + String.valueOf(propiedadAComprar) + ")"
-                + " por " + precioPropiedadAComprar + "€?");
-        if (scanner.nextLine().equals("1")) {
-            comprarPropiedad(client, propiedadAComprar);
-            while (!compraRealizada) {
-                ConexionServidor.esperar();
-            }
-            compraRealizada = false;
-        }
-        comprarPropiedad = false;
-        */
-
-        //MOSTRAR: QUE CARTA ES Y SU PRECIO
-        //ESPERAR AL BOTON DE COMPRA O RECHAZO
-        //DESBLOQUEAR SEMAFORO
     }
 
     @FXML
