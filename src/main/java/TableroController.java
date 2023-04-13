@@ -100,8 +100,6 @@ public class TableroController implements Initializable {
 
                 } while(GestionPartida.dadosDobles);
                 
-                System.out.println(" FIN DE TURNI PUTAS ");
-                
                 GestionPartida.finTurno(GestionPartida.client);
                 GestionPartida.miTurno = false;
 

@@ -10,8 +10,8 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
-import javafx.scene.control.Label;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 public class ListaJugadoresController implements Initializable {
 
@@ -23,9 +23,19 @@ public class ListaJugadoresController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
 
-        lblJ1.setText(Sesion.nombre);
-        // lblD1.setText(Integer.toString(GestionPartida.dinero));
+        lblJ1.setText(GestionPartida.ordenJugadores[0]);
+        lblD1.setText(Integer.toString(GestionPartida.dineroJugadores[0]));
+
+        lblJ2.setText(GestionPartida.ordenJugadores[1]);
+        lblD2.setText(Integer.toString(GestionPartida.dineroJugadores[1]));
+
+        lblJ3.setText(GestionPartida.ordenJugadores[2]);
+        lblD3.setText(Integer.toString(GestionPartida.dineroJugadores[2]));
+
+        lblJ4.setText(GestionPartida.ordenJugadores[3]);
+        lblD4.setText(Integer.toString(GestionPartida.dineroJugadores[3]));
     }
+
 
     // public void actualizarInfo(int numJugador, String nombre, int dinero) {
     // switch (numJugador) {
