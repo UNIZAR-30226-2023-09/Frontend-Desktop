@@ -42,17 +42,19 @@ public class GestionPartida {
 
     public static boolean dadosDobles = false;
 
-    private static String precioPropiedadAComprar;
+    public static String precioPropiedadAComprar;
 
     public static boolean apostarDinero;
 
     public static boolean enBanco;
 
-    private static boolean respuestaBanco;
+    public static boolean respuestaBanco;
 
-    private static boolean finMenu;
+    public static boolean finMenu;
 
-    private final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
+    public static boolean esperarListaEdificar;
+
+    public final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
             "AeropuertoNarita", "Tokio", "Kioto", "Superpoder", "Osaka", "Carcel", "Roma", "Milan", "Casino", "Napoles",
             "Aeropuerto Heathrow", "Londres", "Superpoder", "Manchester", "Edimburgo", "Bote", "Madrid",
             "Barcelona", "Treasure", "Zaragoza", "AeropuertoOrly", "Paris", "Banco", "Marsella",
@@ -118,12 +120,23 @@ public class GestionPartida {
         client.send("APOSTAR," + nombreUser + "," + IDPartida + "," + dineroApostar);
     }
 
-    private static void retirarDinero(WebSocketClient client2, int cantidad) {
+    public static void retirarDinero(WebSocketClient client2, int cantidad) {
         client.send("SACAR," + nombreUser + "," + IDPartida + "," + Integer.toString(cantidad));
     }
 
-    private static void depositarDinero(WebSocketClient client2, int cantidad) {
+    public static void depositarDinero(WebSocketClient client2, int cantidad) {
         client.send("METER," + nombreUser + "," + IDPartida + "," + Integer.toString(cantidad));
+    }
+
+    public static void quieroEdificar(WebSocketClient client2, Scanner scanner) {
+        client2.send("QUIERO_EDIFICAR," + nombreUser + "," + IDPartida);
+    }
+
+    public static void edificarPropiedad(WebSocketClient client2, Scanner scanner, int propiedadElegida) {
+        String propiedad = nombresPropiedades.get(propiedadElegida);
+        String precio = preciosPropiedades.get(propiedadElegida);
+        client2.send("EDIFICAR," + nombreUser + "," + IDPartida + "," +
+                propiedad + "-" + precio);
     }
 
     // Metodo que se encarga de gestionar todos los mensajes recibidos
@@ -306,12 +319,17 @@ public class GestionPartida {
                 nombresPropiedades.clear();
                 preciosPropiedades.clear();
 
-                for (int i = 1; i < partes.length; i++) {
-                    String[] prop = partes[i].split(":");
-                    nombresPropiedades.add(prop[0]);
+                for (int i = 2; i < partes.length; i++) {
+                    String[] prop = partes[i].split("-");
+                    nombresPropiedades.add(prop[0].substring(9));
                     preciosPropiedades.add(prop[1]);
                 }
-
+                esperarListaEdificar = true;
+                break;
+            case "EDIFICAR_OK":
+                dineroJugadores[indiceJugador] = Integer.parseInt(partes[2]);
+                break;
+            case "EDIFICAR_NOOK":
                 break;
             default:
                 System.out.println("Mensaje no tenido en cuenta: " + message);
@@ -512,17 +530,21 @@ public class GestionPartida {
         finMenu = false;
     }
 
-    private static void acabarTurno() {
-    }
-
     private static void intercambiarPropiedad() {
     }
 
     private static void edificar(WebSocketClient client, Scanner scanner) {
+        quieroEdificar(client, scanner);
+        while (!esperarListaEdificar) {
+            ConexionServidor.esperar();
+        }
+        esperarListaEdificar = false;
         System.out.println("Seleccione una propiedad para edificar:");
         for (int i = 0; i < nombresPropiedades.size(); i++) {
             String precio = preciosPropiedades.get(i);
-            System.out.println((i + 1) + " - " + nombresPropiedades.get(i) + " (" + precio + ")");
+            String numProp = nombresPropiedades.get(i);
+            System.out.println(
+                    (i + 1) + " - " + tablero[Integer.parseInt(numProp)] + " (" + precio + ")");
         }
         System.out.println("0 - Volver al menú anterior");
 
@@ -531,14 +553,10 @@ public class GestionPartida {
             return;
         }
         if (opcion > 0 && opcion <= nombresPropiedades.size()) {
-            String propiedadElegida = nombresPropiedades.get(opcion - 1);
-            edificarPropiedad(propiedadElegida);
+            edificarPropiedad(client, scanner, opcion - 1);
         } else {
             System.out.println("Opción inválida");
         }
-    }
-
-    private static void edificarPropiedad(String propiedadElegida) {
     }
 
     private static void gestionBanco(WebSocketClient client, Scanner scanner) {
@@ -685,6 +703,16 @@ public class GestionPartida {
     private static void limpiarTerminal() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
+    }
+
+    private static int obtenerIndiceDeCasilla(String nombreCasilla) {
+        for (int i = 0; i < tablero.length; i++) {
+            if (tablero[i].equals(nombreCasilla)) {
+                return i;
+            }
+        }
+        // Si no se encuentra el nombre de la casilla en el tablero, devolvemos -1
+        return -1;
     }
 
 };

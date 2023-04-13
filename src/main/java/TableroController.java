@@ -28,9 +28,9 @@ public class TableroController implements Initializable {
     private ImageView dado1, dado2, user1, user2, user3, user4;
 
     @FXML
-    private VBox datosPartida;
+    public static VBox datosPartida;
 
-    private VBox listaJugadores, listaPropiedades, chat, propiedad;
+    public static VBox listaJugadores, listaPropiedades, chat, propiedad;
 
     @FXML
     private Button btnChat;
@@ -71,14 +71,24 @@ public class TableroController implements Initializable {
                     }
                     
                     //AQUI VAMOS A GESTIONAR EN QUE CASILLA HEMOS CAIDO PARA COMPRAR, BANCO Y CASINO
-
+                    
                     if (!GestionPartida.enCarcel) {
                         if (GestionPartida.comprarPropiedad) {
                             //AQUI PONER QUE LA PANTALLA DE COMPRA SE INICIE
-                            datosPartida.setVisible(false);
-                            chat.setVisible(false);
-                            propiedad.setVisible(true);
+                            ComprarPropiedadController.gestionarCompraPropiedad();
+                            
                             //SEMAFORO DE COMPRA
+                            try {
+                                ComprarPropiedadController.semaphoreComprar.acquire();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            /* 
+                            //VUELTA A COMO ESTABAMOS
+                            datosPartida.setVisible(true);
+                            chat.setVisible(false);
+                            propiedad.setVisible(false);
+                            */
                         } else if (GestionPartida.apostarDinero) {
                             //AQUI PONER QUE LA PANTALLA DE CASINO
                             //SEMAFORO DE CASINO
