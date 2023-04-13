@@ -11,6 +11,7 @@ import java.util.ResourceBundle;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.fxml.Initializable;
 
@@ -34,6 +35,7 @@ public class ListaPropiedadesController implements Initializable {
         for(int i=1; i<=NUM_PROPIEDADES; i++)
         {
             propiedades.getChildren().get(i).setVisible(false);
+            propiedades.getChildren().get(i).setManaged(false);
         }
 
         //inicializamos el vector de la relacion casilla-propiedad
@@ -51,6 +53,7 @@ public class ListaPropiedadesController implements Initializable {
 
         // mostrar la nueva propiedad
         propiedades.getChildren().get(casilla_propiedad[casilla]).setVisible(true);
+        propiedades.getChildren().get(casilla_propiedad[casilla]).setManaged(true);
 
         numPropiedades++;
     }
@@ -61,11 +64,28 @@ public class ListaPropiedadesController implements Initializable {
 
         // ocultar la propiedad que ya no tenemos
         propiedades.getChildren().get(casilla_propiedad[casilla]).setVisible(false);
+        propiedades.getChildren().get(casilla_propiedad[casilla]).setManaged(false);
 
         if(numPropiedades == 0)
         {
             lblVacia.setVisible(true);
             lblVacia.setManaged(true);
+        }
+    }
+
+    /*
+     * Esta funcion permite ocultar todos los botones de la lista de propiedades.
+     */
+    public void ocultarBotones()
+    {
+        for(int i=1; i<=NUM_PROPIEDADES; i++)
+        {
+            HBox hbox = (HBox) propiedades.getChildren().get(i);
+
+            hbox.getChildren().get(2).setVisible(false);
+
+            hbox.getChildren().get(3).setVisible(false);
+
         }
     }
 }
