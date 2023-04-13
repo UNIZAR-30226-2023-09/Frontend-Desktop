@@ -60,7 +60,8 @@ public class MenuPrincipalController implements Initializable {
             }
         } else if (btnUnirse.equals(evt)) {
             // unirse a una partida
-            App.setRoot("UnirsePartida");
+            // ------------ App.setRoot("UnirsePartida");
+            App.setRoot("ListaPropiedades");
         } else if (btnTienda.equals(evt)) {
             // abrir la tienda
             App.setRoot("Tienda");
