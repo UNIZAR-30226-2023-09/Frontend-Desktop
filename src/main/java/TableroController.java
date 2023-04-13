@@ -72,11 +72,10 @@ public class TableroController implements Initializable {
                     
                     //AQUI VAMOS A GESTIONAR EN QUE CASILLA HEMOS CAIDO PARA COMPRAR, BANCO Y CASINO
                     
-                    ComprarPropiedadController.gestionarCompraPropiedad();
-
                     if (!GestionPartida.enCarcel) {
                         if (GestionPartida.comprarPropiedad) {
                             //AQUI PONER QUE LA PANTALLA DE COMPRA SE INICIE
+                            ComprarPropiedadController.gestionarCompraPropiedad();
                             
                             //SEMAFORO DE COMPRA
                             try {
@@ -84,11 +83,12 @@ public class TableroController implements Initializable {
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
+                            /* 
                             //VUELTA A COMO ESTABAMOS
                             datosPartida.setVisible(true);
                             chat.setVisible(false);
                             propiedad.setVisible(false);
-
+                            */
                         } else if (GestionPartida.apostarDinero) {
                             //AQUI PONER QUE LA PANTALLA DE CASINO
                             //SEMAFORO DE CASINO

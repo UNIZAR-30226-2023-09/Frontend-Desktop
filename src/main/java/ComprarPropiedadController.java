@@ -30,30 +30,30 @@ public class ComprarPropiedadController implements Initializable{
         Object evt = e.getSource();
 
         if (btnComprar.equals(evt)) {
+            /* 
             GestionPartida.comprarPropiedad(GestionPartida.client, GestionPartida.propiedadAComprar);
             while (!GestionPartida.compraRealizada) {
                 ConexionServidor.esperar();
             }
             GestionPartida.compraRealizada = false;
-            
+            */
         } else if (btnRechazar.equals(evt)) {
-            GestionPartida.comprarPropiedad = false;
+            //GestionPartida.comprarPropiedad = false;
         }
-        semaphoreComprar.release();
+        //semaphoreComprar.release();
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        textImg.setText("Desea comprar " + "_" + " por: " + "_"+ "€");
-
-        File fileCP = new File("src/main/resources/Dice1.png");
-        propiedadImg.setImage(new Image(fileCP.toURI().toString()));
+        
     }
 
     public static void gestionarCompraPropiedad(){
         TableroController.datosPartida.setVisible(false);
         TableroController.chat.setVisible(false);
         TableroController.propiedad.setVisible(true);
+
+        //system.out de las variables para ver si estan
 
         textImg.setText("Desea comprar " + GestionPartida.tablero[Integer.parseInt(GestionPartida.propiedadAComprar)] + " por: "
         + GestionPartida.precioPropiedadAComprar + "€");
