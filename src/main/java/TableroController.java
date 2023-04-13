@@ -345,7 +345,33 @@ public class TableroController implements Initializable {
                     default:
                         System.out.println("ERROR CASILLA2");
                         break;
-                }       
+                }
+                
+                //ListaJugadoresController.actualizarInfo(i, GestionPartida.dineroJugadores[i]);
+
+                /* 
+                switch (i) {
+                    case 0:
+                        ListaJugadoresController.lblD1.setText(Integer.toString(GestionPartida.dineroJugadores[0]));
+                    break;
+        
+                    case 1:
+                        ListaJugadoresController.lblD2.setText(Integer.toString(GestionPartida.dineroJugadores[1]));
+                        break;
+        
+                    case 2:
+                        ListaJugadoresController.lblD3.setText(Integer.toString(GestionPartida.dineroJugadores[2]));
+                        break;
+        
+                    case 3:
+                        ListaJugadoresController.lblD4.setText(Integer.toString(GestionPartida.dineroJugadores[3]));
+                        break;
+        
+                    default:
+                        System.out.println("No existen tantos jugadores");
+                        break;
+                }
+                */
             }
             try {
                 Thread.sleep(1000); //TODAVIA NO FUNCIONA BIEN

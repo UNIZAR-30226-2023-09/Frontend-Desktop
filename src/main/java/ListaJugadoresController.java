@@ -16,8 +16,15 @@ import javafx.scene.control.Label;
 public class ListaJugadoresController implements Initializable {
 
     @FXML
-    private Label lblJ1, lblJ2, lblJ3, lblJ4,
-            lblD1, lblD2, lblD3, lblD4;
+    public Label lblJ1, lblJ2, lblJ3, lblJ4;
+    @FXML
+    public Label lblD1;
+    @FXML
+    public Label lblD2;
+    @FXML
+    public Label lblD3;
+    @FXML
+    public Label lblD4;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -35,26 +42,27 @@ public class ListaJugadoresController implements Initializable {
         lblD4.setText(Integer.toString(GestionPartida.dineroJugadores[3]));
     }
 
-    public void actualizarInfo(int numJugador, String nombre, int dinero) {
+    /* 
+    public static void actualizarInfo(int numJugador, int dinero) {
         switch (numJugador) {
-            case 1:
-                lblJ1.setText(Sesion.nombre);
-                lblD1.setText(Integer.toString(GestionPartida.dineroJugadores[0]));
+            case 0:
+                //lblJ1.setText(Sesion.nombre);
+                lblD1.setText(Integer.toString(dinero));
             break;
 
+            case 1:
+                //lblJ2.setText(Sesion.nombre);
+                lblD2.setText(Integer.toString(dinero));
+                break;
+
             case 2:
-                lblJ2.setText(Sesion.nombre);
-                lblD2.setText(Integer.toString(GestionPartida.dineroJugadores[1]));
+                //lblJ3.setText(Sesion.nombre);
+                lblD3.setText(Integer.toString(dinero));
                 break;
 
             case 3:
-                lblJ3.setText(Sesion.nombre);
-                lblD3.setText(Integer.toString(GestionPartida.dineroJugadores[2]));
-                break;
-
-            case 4:
-                lblJ4.setText(Sesion.nombre);
-                lblD4.setText(Integer.toString(GestionPartida.dineroJugadores[3]));
+                //lblJ4.setText(Sesion.nombre);
+                lblD4.setText(Integer.toString(dinero));
                 break;
 
             default:
@@ -62,5 +70,6 @@ public class ListaJugadoresController implements Initializable {
                 break;
         }
     }
+    */
 
 }
