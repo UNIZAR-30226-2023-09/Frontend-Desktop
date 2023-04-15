@@ -54,6 +54,13 @@ public class GestionPartida {
 
     public static boolean esperarListaEdificar;
 
+    public static String tengoSuerte;
+
+    public static boolean elegirCasilla;
+
+    // Para mostrar la tarjeta correspondiente al superpoder
+    public static String superPoder = "0";
+
     public final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
             "AeropuertoNarita", "Tokio", "Kioto", "Superpoder", "Osaka", "Carcel", "Roma", "Milan", "Casino", "Napoles",
             "Aeropuerto Heathrow", "Londres", "Superpoder", "Manchester", "Edimburgo", "Bote", "Madrid",
@@ -117,7 +124,7 @@ public class GestionPartida {
     }
 
     public static void apostarDinero(String dineroApostar) {
-        client.send("APOSTAR," + nombreUser + "," + IDPartida + "," + dineroApostar);
+        client.send("APOSTAR," + nombreUser + "," + IDPartida + "," + dineroApostar + "," + tengoSuerte);
     }
 
     public static void retirarDinero(int cantidad) {
@@ -137,6 +144,11 @@ public class GestionPartida {
         String precio = preciosPropiedades.get(propiedadElegida);
         client.send("EDIFICAR," + nombreUser + "," + IDPartida + "," +
                 propiedad + "-" + precio);
+    }
+
+    public static void enviarCasilla(String casilla) {
+        client.send("DESPLAZARSE_CASILLA" + nombreUser + "," + IDPartida + "," +
+                casilla);
     }
 
     // Metodo que se encarga de gestionar todos los mensajes recibidos
@@ -331,7 +343,25 @@ public class GestionPartida {
                 break;
             case "EDIFICAR_NOOK":
                 break;
+            case "NUEVO_DINERO_ALQUILER_RECIBES":
+                dineroJugadores[indiceJugador] = Integer.parseInt(partes[1]);
+                int indiceJugadorPropiedad = obtenerIndiceJugador(partes[2]);
+                dineroJugadores[indiceJugadorPropiedad] = Integer.parseInt(partes[3]);
+            case "REINICIAR_SUERTE":
+                tengoSuerte = "0";
+                break;
+            case "AUMENTAR_SUERTE":
+                tengoSuerte = "1";
+                break;
+            case "DESPLAZAR_JUGADOR":
+                posicionesJugadores[indiceJugador] = partes[1];
+                break;
+            case "ELEGIR_CASILLA":
+                elegirCasilla = true;
+            case "SUPERPODER":
+                superPoder = partes[1];
             default:
+
                 System.out.println("Mensaje no tenido en cuenta: " + message);
                 return;
         }
@@ -500,8 +530,19 @@ public class GestionPartida {
                 gestionApuestaDinero(client, scanner);
             } else if (enBanco) {
                 gestionBanco(client, scanner);
+            } else if (superPoder != "0") {
+                gestionSuperpoder(client, scanner);
             }
         }
+    }
+
+    private static void gestionSuperpoder(WebSocketClient client2, Scanner scanner) {
+        if (superPoder == "1") {
+            System.out.print("Elija a que casilla desea desplazarse:");
+            String casilla = scanner.nextLine();
+            enviarCasilla(casilla);
+        }
+        superPoder = "0";
     }
 
     private static void menuTurno(WebSocketClient client, Scanner scanner) {
@@ -631,7 +672,7 @@ public class GestionPartida {
             try {
                 int numero = Integer.parseInt(dineroApostar);
                 valido = true;
-                if (numero > 0) {
+                if (numero > 0 && numero < dineroJugadores[indiceJugador]) {
                     apostarDinero(dineroApostar);
                 } else {
                     System.out.println("Ha decidio no apostar dinero");
@@ -712,6 +753,15 @@ public class GestionPartida {
             }
         }
         // Si no se encuentra el nombre de la casilla en el tablero, devolvemos -1
+        return -1;
+    }
+
+    private static int obtenerIndiceJugador(String ID_Jugador) {
+        for (int i = 0; i < ordenJugadores.length; i++) {
+            if (ordenJugadores[i] == ID_Jugador) {
+                return i;
+            }
+        }
         return -1;
     }
 
