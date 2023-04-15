@@ -138,9 +138,10 @@ public class ListaPropiedadesController implements Initializable {
         {
             if(evt.equals(botonesV.get(i-1)))
             {
-                System.out.println("EL pulsado es " +  Integer.toString(i));
+                System.out.println("El pulsado es " +  Integer.toString(i));
 
                 // abrir la pantalla que permite vender la propiedad
+                TableroController.mostrarVentanaVenta(i);
             }
         }
     }
