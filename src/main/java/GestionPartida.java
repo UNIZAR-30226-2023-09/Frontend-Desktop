@@ -27,6 +27,7 @@ public class GestionPartida {
     public static int gemas = 0;
     public static String IDPartida = "";
     public static String[] ordenJugadores = new String[4];
+    public static Boolean[] jugadoresVivos = new Boolean[4];
     public static String[] posicionesJugadores = { "1", "1", "1", "1" };
     public static int[] dineroJugadores = { 1000, 1000, 1000, 1000 };
     public static int[] dados = new int[2];
@@ -84,10 +85,11 @@ public class GestionPartida {
         // // *********************** JUEGO ***********************
         Scanner scanner = new Scanner(System.in);
         iniciarSesion(client, scanner);
-        menuInicial(client, scanner);
-        empezarPartida(client, scanner);
-        jugarPartida(client, scanner);
-        scanner.close();
+        while (true) {
+            menuInicial(client, scanner);
+            empezarPartida(client, scanner);
+            jugarPartida(client, scanner);
+        }
     }
 
     public static void unirsePartida(String _IDPartida) {
@@ -358,8 +360,19 @@ public class GestionPartida {
                 break;
             case "ELEGIR_CASILLA":
                 elegirCasilla = true;
+                break;
             case "SUPERPODER":
                 superPoder = partes[1];
+                break;
+            case "FinPartida":
+                enPartida = false;
+                break;
+            case "ELIMINADO":
+                enPartida = false;
+                break;
+            case "JugadorMuerto":
+                jugadoresVivos[obtenerIndiceJugador(partes[1])] = false;
+                break;
             default:
 
                 System.out.println("Mensaje no tenido en cuenta: " + message);
@@ -672,7 +685,7 @@ public class GestionPartida {
             try {
                 int numero = Integer.parseInt(dineroApostar);
                 valido = true;
-                if (numero > 0 && numero < dineroJugadores[indiceJugador]) {
+                if (numero > 0 && numero <= dineroJugadores[indiceJugador]) {
                     apostarDinero(dineroApostar);
                 } else {
                     System.out.println("Ha decidio no apostar dinero");
@@ -756,9 +769,10 @@ public class GestionPartida {
         return -1;
     }
 
+    //
     private static int obtenerIndiceJugador(String ID_Jugador) {
         for (int i = 0; i < ordenJugadores.length; i++) {
-            if (ordenJugadores[i] == ID_Jugador) {
+            if (ordenJugadores[i].equals(ID_Jugador)) {
                 return i;
             }
         }
