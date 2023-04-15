@@ -49,7 +49,7 @@ public class CasinoController implements Initializable{
             else 
             {
                 int apuesta = Integer.parseInt(txtDinero.getText());
-                if (apuesta > GestionPartida.dineroEnBanco)
+                if (apuesta > GestionPartida.dineroEnBanco) //REVISAR QUE DINERO ES, dineroJugador[indiceJugador]
                 {
                     // indicar que no tienes suficiente saldo
                     lblError.setVisible(true);
@@ -77,7 +77,7 @@ public class CasinoController implements Initializable{
                         rotacion.pause();
         
                         // Esperar respuesta
-                        ConexionServidor.esperar();
+                        ConexionServidor.esperar(); //REVISAR SI ESTO TIENE QUE IR AQUI
 
                         lblGanancias.setVisible(true);
         
