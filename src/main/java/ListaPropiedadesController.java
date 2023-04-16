@@ -42,7 +42,7 @@ public class ListaPropiedadesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         //ocultamos todas las propiedades
-        for(int i=1; i<=0; i++)
+        for(int i=1; i<=NUM_PROPIEDADES; i++)
         {
             propiedades.getChildren().get(i).setVisible(false);
             propiedades.getChildren().get(i).setManaged(false);
