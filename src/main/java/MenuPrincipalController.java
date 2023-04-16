@@ -49,14 +49,16 @@ public class MenuPrincipalController implements Initializable {
 
             if (GestionPartida.enPartida && GestionPartida.dueñoPartida) {
 
-                System.out.print(GestionPartida.IDPartida);
+                System.out.println(GestionPartida.IDPartida);
 
 
                 // crear una partida
                 App.setRoot("CrearPartida");
             } else {
-                JOptionPane.showMessageDialog(null, "No se ha podido crear la partida", "ERROR",
-                        JOptionPane.ERROR_MESSAGE);
+                /*JOptionPane.showMessageDialog(null, "No se ha podido crear la partida", "ERROR",
+                        JOptionPane.ERROR_MESSAGE);*/
+
+                System.out.println("No se ha podido crear la partida");
             }
         } else if (btnUnirse.equals(evt)) {
             // unirse a una partida
