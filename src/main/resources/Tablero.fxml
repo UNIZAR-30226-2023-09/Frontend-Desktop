@@ -1,9 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
 
 <GridPane prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TableroController">
    <columnConstraints>
@@ -16,9 +22,9 @@
    <children>
       <AnchorPane prefHeight="900.0" prefWidth="900.0">
          <children>
-            <ImageView fitHeight="900.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+            <ImageView fitHeight="900.0" fitWidth="900.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@TABLERO.jpg" />
+                  <Image url="@TABLERO-FX.jpg" />
                </image>
             </ImageView>
             <ImageView fx:id="dado1" fitHeight="104.0" fitWidth="90.0" layoutX="320.0" layoutY="405.0" onMouseClicked="#tirarDados" pickOnBounds="true" preserveRatio="true">
@@ -33,22 +39,22 @@
             </ImageView>
             <ImageView fx:id="user1" fitHeight="33.0" fitWidth="38.0" layoutX="777.0" layoutY="786.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@triangle.png" />
+                  <Image url="@FICHAS/AMARILLO1.png" />
                </image>
             </ImageView>
             <ImageView fx:id="user2" fitHeight="33.0" fitWidth="38.0" layoutX="833.0" layoutY="786.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@skins/BERTA.png" />
+                  <Image url="@FICHAS/AMARILLO2.png" />
                </image>
             </ImageView>
             <ImageView fx:id="user3" fitHeight="33.0" fitWidth="38.0" layoutX="776.0" layoutY="835.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@gema.png" />
+                  <Image url="@FICHAS/AMARILLO3.png" />
                </image>
             </ImageView>
             <ImageView fx:id="user4" fitHeight="33.0" fitWidth="38.0" layoutX="831.0" layoutY="835.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@otter.png" />
+                  <Image url="@FICHAS/AMARILLO4.png" />
                </image>
             </ImageView>
          </children>

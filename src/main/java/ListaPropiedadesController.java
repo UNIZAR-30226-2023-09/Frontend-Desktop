@@ -6,11 +6,13 @@
  * Descripción: 
  -----------------------------------------------------------------------
 */
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -35,7 +37,7 @@ public class ListaPropiedadesController implements Initializable {
     @FXML
     private Button  btnV1, btnV2, btnV3, btnV4, btnV5, btnV6, btnV7, btnV8, btnV9, btnV10, btnV11, btnV12, btnV13, btnV14, btnV15, btnV16, btnV17, btnV18, btnV19, btnV20, btnV21, btnV22, btnV23, btnV24, btnV25, btnV26;
 
-    private  ObservableList<Button> vboxList;
+    private  ObservableList<Button> botonesV;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -51,14 +53,14 @@ public class ListaPropiedadesController implements Initializable {
             {0,0,1,2,0,0,25,3,4,0,5,0,6,7,0,8,0,9,0,10,11,0,12,13,0,14,26,15,0,16,17,0,18,19,20,0,21,27,22,23,0,24};
 
         // lista de botones de vender
-        vboxList = FXCollections.observableArrayList();
+        botonesV = FXCollections.observableArrayList();
 
-        vboxList.add(btnV1); vboxList.add(btnV2); vboxList.add(btnV3); vboxList.add(btnV4); vboxList.add(btnV5);
-        vboxList.add(btnV6); vboxList.add(btnV7); vboxList.add(btnV8); vboxList.add(btnV9); vboxList.add(btnV10);
-        vboxList.add(btnV11); vboxList.add(btnV12); vboxList.add(btnV13); vboxList.add(btnV14); vboxList.add(btnV15);
-        vboxList.add(btnV16); vboxList.add(btnV17); vboxList.add(btnV18); vboxList.add(btnV19); vboxList.add(btnV20);
-        vboxList.add(btnV21); vboxList.add(btnV22); vboxList.add(btnV23); vboxList.add(btnV24); vboxList.add(btnV25);
-        vboxList.add(btnV26);
+        botonesV.add(btnV1); botonesV.add(btnV2); botonesV.add(btnV3); botonesV.add(btnV4); botonesV.add(btnV5);
+        botonesV.add(btnV6); botonesV.add(btnV7); botonesV.add(btnV8); botonesV.add(btnV9); botonesV.add(btnV10);
+        botonesV.add(btnV11); botonesV.add(btnV12); botonesV.add(btnV13); botonesV.add(btnV14); botonesV.add(btnV15);
+        botonesV.add(btnV16); botonesV.add(btnV17); botonesV.add(btnV18); botonesV.add(btnV19); botonesV.add(btnV20);
+        botonesV.add(btnV21); botonesV.add(btnV22); botonesV.add(btnV23); botonesV.add(btnV24); botonesV.add(btnV25);
+        botonesV.add(btnV26);
 
     }
 
@@ -125,6 +127,22 @@ public class ListaPropiedadesController implements Initializable {
                 hbox.getChildren().get(3).setVisible(true);
             }
 
+        }
+    }
+
+    @FXML
+    public void actionEvent(ActionEvent e) throws IOException {
+        Object evt = e.getSource();
+
+        for(int i=1; i<=NUM_PROPIEDADES; i++)
+        {
+            if(evt.equals(botonesV.get(i-1)))
+            {
+                System.out.println("El pulsado es " +  Integer.toString(i));
+
+                // abrir la pantalla que permite vender la propiedad
+                TableroController.mostrarVentanaVenta(i);
+            }
         }
     }
 }

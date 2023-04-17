@@ -30,7 +30,7 @@ public class TableroController implements Initializable {
     @FXML
     public static VBox datosPartida;
 
-    public static VBox listaJugadores, listaPropiedades, chat, propiedad;
+    public static VBox listaJugadores, listaPropiedades, chat, propiedad, vender;
 
     @FXML
     private Button btnChat;
@@ -235,20 +235,21 @@ public class TableroController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         try {
             listaJugadores = loadForm("ListaJugadores.fxml");
-            //listaPropiedades = loadForm("ListaPropiedades.fxml");
+            listaPropiedades = loadForm("ListaPropiedades.fxml");
             chat = loadForm("Chat.fxml");
             propiedad = loadForm("CompraPropiedad.fxml");
+            vender = loadForm("VenderPropiedad.fxml");
 
             datosPartida = new VBox();
-            datosPartida.getChildren().addAll(listaJugadores);
-            //datosPartida.getChildren().addAll(listaJugadores, listaPropiedades);
+            datosPartida.getChildren().addAll(listaJugadores, listaPropiedades);
 
             //HAY QUE AÑADIR AQUI EL VBOX COMPRA.CASINO Y BANCO
 
-            containerForm.getChildren().addAll(datosPartida, chat, propiedad);
+            containerForm.getChildren().addAll(datosPartida, chat, propiedad, vender);
             datosPartida.setVisible(true);
             chat.setVisible(false);
             propiedad.setVisible(false);
+            vender.setVisible(false);
 
 
             Thread threadIni = new Thread() {
@@ -381,6 +382,16 @@ public class TableroController implements Initializable {
             estamosActualizando = false;       
         }
 
+    }
+
+    public static void mostrarVentanaVenta(int num_propiedad)
+    {
+        vender.setVisible(true);
+    }
+
+    public static void ocultarVentanaVenta()
+    {
+        vender.setVisible(false);
     }
 
 }
