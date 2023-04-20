@@ -41,15 +41,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="200.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV1" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV1" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-radius: 10px; -fx-background-color: #c31414;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -65,15 +71,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="220.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV2" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV2" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -89,15 +101,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="275.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV3" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV3" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -113,15 +131,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="277.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV4" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV4" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -137,15 +161,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="265.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV5" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV5" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -161,15 +191,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="270.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV6" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV6" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -185,15 +221,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="275.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV7" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV7" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -209,15 +251,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="247.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV8" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV8" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -233,15 +281,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="242.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV9" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV9" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -257,15 +311,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="205.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV10" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV10" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -281,15 +341,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="212.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV11" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV11" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -305,15 +371,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="257.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV12" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV12" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -329,15 +401,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="225.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV13" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV13" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -353,15 +431,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="230.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV14" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV14" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -377,15 +461,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="276.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV15" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV15" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -401,15 +491,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="240.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV16" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV16" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -425,15 +521,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="276.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV17" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV17" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -449,15 +551,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="232.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV18" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV18" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -473,15 +581,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="203.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV19" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV19" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -497,15 +611,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="237.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV20" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV20" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -521,15 +641,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="203.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV11" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV11" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -545,15 +671,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="200.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV22" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV22" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -569,15 +701,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="239.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV23" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV23" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -593,15 +731,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="145.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV24" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV24" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -617,15 +761,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="165.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV25" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV25" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
@@ -641,15 +791,21 @@
                               <Font size="20.0" />
                            </font>
                         </Label>
-                        <Button mnemonicParsing="false" text="Edificar">
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="57.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
-                        <Button fx:id="btnV26" mnemonicParsing="false" onAction="#actionEvent" text="Vender">
+                        <Button fx:id="btnV26" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
                         </Button>
                      </children>
                   </HBox>
