@@ -7,14 +7,17 @@ import java.util.concurrent.Semaphore;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.util.Duration;
@@ -57,6 +60,8 @@ public class TableroController implements Initializable {
                     //System.out.println(GestionPartida.CuentaInfoRecibida);
                     ConexionServidor.esperar();
                 }
+
+                actualizarLabel();
                  
                 do {
                     dado1.setDisable(false);
@@ -392,6 +397,22 @@ public class TableroController implements Initializable {
     public static void ocultarVentanaVenta()
     {
         vender.setVisible(false);
+    }
+
+    private void actualizarLabel() {
+        Platform.runLater(() -> {
+            VBox vbox = (VBox) listaJugadores.getChildren().get(1);
+
+            for(int i=0; i<4; i++)
+            {
+                HBox hbox = (HBox) vbox.getChildren().get(i);
+
+                Label lbl = (Label) hbox.getChildren().get(3);
+
+                lbl.setText(Integer.toString(GestionPartida.dineroJugadores[i]));
+            }
+
+        });
     }
 
 }
