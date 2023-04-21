@@ -13,10 +13,10 @@ import javafx.scene.control.Label;
 public class CrearPartidaController implements Initializable {
 
     @FXML
-    private Button btnEmpezar, btnVolver;
+    private Button btnEmpezar;
 
     @FXML
-    private Label lblNombre, lblGemas, lblCodigo;
+    private Label lblNombre, lblGemas, lblCodigo, lblError;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -38,12 +38,8 @@ public class CrearPartidaController implements Initializable {
                 // abrir el tablero
                 App.setRoot("Tablero");
             } else {
-                JOptionPane.showMessageDialog(null, "No se ha podido iniciar la partida", "ERROR",
-                        JOptionPane.ERROR_MESSAGE);
+                lblError.setText("No se ha podido iniciar la partida");
             }
-        } else if (btnVolver.equals(evt)) {
-            // volver al menu
-            App.setRoot("MenuPrincipal");
         }
     }
 }

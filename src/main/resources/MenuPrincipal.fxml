@@ -12,7 +12,7 @@
 
 <AnchorPane prefHeight="900.0" prefWidth="1500.0" styleClass="backgroundImg" stylesheets="@fondo.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="MenuPrincipalController">
    <children>
-      <HBox alignment="CENTER_RIGHT" layoutX="1429.0" style="-fx-background-color: #5d08fa;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <HBox alignment="CENTER_RIGHT" layoutX="1429.0" spacing="1110.0" style="-fx-background-color: #5d08fa;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
             <VBox alignment="TOP_RIGHT" stylesheets="@tablero.css">
                <children>
@@ -46,6 +46,11 @@
             </VBox>
          </children>
       </HBox>
+      <Button fx:id="btnSignOut" mnemonicParsing="false" onAction="#actionEvent" prefHeight="20.0" prefWidth="150.0" style="-fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px; -fx-background-color: transparent;" stylesheets="@fondo.css" text="Cerrar Sesion" textFill="WHITE" AnchorPane.bottomAnchor="855.0" AnchorPane.leftAnchor="15.0" AnchorPane.topAnchor="10.0">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
       <Label layoutX="655.0" layoutY="105.0" text="Bienvenido" textFill="WHITE" AnchorPane.leftAnchor="655.0" AnchorPane.rightAnchor="654.0" AnchorPane.topAnchor="7.0">
          <font>
             <Font name="System Bold" size="30.0" />
@@ -66,14 +71,6 @@
             </Label>
             <VBox alignment="CENTER" spacing="10.0">
                <children>
-                  <Button fx:id="btnSignOut" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@fondo.css" text="Cerrar Sesion" textFill="#684411" VBox.vgrow="ALWAYS">
-                     <VBox.margin>
-                        <Insets top="30.0" />
-                     </VBox.margin>
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </Button>
                   <Button fx:id="btnCrear" mnemonicParsing="false" onAction="#actionEvent" prefHeight="35.0" prefWidth="175.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@fondo.css" text="Crear Partida" textFill="#684411">
                      <font>
                         <Font name="System Bold" size="15.0" />
@@ -100,6 +97,9 @@
                      </font>
                   </Button>
                </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
             </VBox>
          </children>
          <opaqueInsets>

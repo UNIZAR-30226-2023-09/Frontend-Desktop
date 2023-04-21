@@ -89,7 +89,7 @@
                               </Button>
                            </children>
                            <HBox.margin>
-                              <Insets right="350.0" />
+                              <Insets right="280.0" />
                            </HBox.margin>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0" styleClass="blur" stylesheets="@tienda.css">
@@ -167,7 +167,7 @@
                               </Button>
                            </children>
                            <HBox.margin>
-                              <Insets right="350.0" />
+                              <Insets right="280.0" />
                            </HBox.margin>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0" styleClass="blur" stylesheets="@tienda.css">
@@ -245,7 +245,7 @@
                               </Button>
                            </children>
                            <HBox.margin>
-                              <Insets right="350.0" />
+                              <Insets right="280.0" />
                            </HBox.margin>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0" styleClass="blur" stylesheets="@tienda.css">
@@ -323,7 +323,7 @@
                               </Button>
                            </children>
                            <HBox.margin>
-                              <Insets right="350.0" />
+                              <Insets right="280.0" />
                            </HBox.margin>
                         </VBox>
                         <VBox alignment="CENTER" prefHeight="400.0" prefWidth="400.0" styleClass="blur" stylesheets="@tienda.css">
