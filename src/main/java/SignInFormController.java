@@ -22,9 +22,6 @@ import javafx.scene.control.TextField;
 
 public class SignInFormController implements Initializable {
 
-    // Variables control estado
-    public static boolean sesionIniciada = false;
-
     @FXML
     private TextField txtUserSignIn, txtPasswordSignInMask;
 
@@ -57,11 +54,7 @@ public class SignInFormController implements Initializable {
                     // recibir respuesta
                     ConexionServidor.esperar();
 
-                    if (sesionIniciada) {
-                        // Relenar los datos de la sesion
-                        Sesion.nombre = txtUserSignIn.getText();
-                        Sesion.gemas = 0;
-
+                    if (GestionPartida.sesionIniciada) {
                         // Ir al menu principal
                         App.setRoot("MenuPrincipal");
                     } else {

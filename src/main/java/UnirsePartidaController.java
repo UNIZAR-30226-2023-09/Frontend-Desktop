@@ -22,7 +22,7 @@ public class UnirsePartidaController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        lblNombre.setText(Sesion.nombre);
+        lblNombre.setText(GestionPartida.nombreUser);
         lblGemas.setText(Integer.toString(GestionPartida.gemas));
     }
 

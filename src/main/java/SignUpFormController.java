@@ -60,8 +60,8 @@ public class SignUpFormController implements Initializable {
 
                         if (cuentaRegistrada) {
                             // Relenar los datos de la sesion
-                            Sesion.nombre = txtUserSignUp.getText();
-                            Sesion.gemas = 0;
+                            GestionPartida.nombreUser = txtEmailSignUp.getText();
+                            GestionPartida.gemas = 0;
 
                             // Ir al menu principal
                             App.setRoot("MenuPrincipal");
