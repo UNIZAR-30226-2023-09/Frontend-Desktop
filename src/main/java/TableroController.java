@@ -33,7 +33,7 @@ public class TableroController implements Initializable {
     @FXML
     public static VBox datosPartida;
 
-    public static VBox listaJugadores, listaPropiedades, chat, propiedad, vender;
+    public static VBox listaJugadores, listaPropiedades, chat, propiedad, banco, vender;
 
     @FXML
     private Button btnChat;
@@ -100,9 +100,23 @@ public class TableroController implements Initializable {
                             
                         } else if (GestionPartida.apostarDinero) {
                             //AQUI PONER QUE LA PANTALLA DE CASINO
+
                             //SEMAFORO DE CASINO
                         } else if (GestionPartida.enBanco) {
                             //AQUI PONER QUE LA PANTALLA DE BANCO
+                            datosPartida.setVisible(false);
+                            chat.setVisible(false);
+                            banco.setVisible(true);
+
+                            try {
+                                BancoController.semaphoreBanco.acquire();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            datosPartida.setVisible(true);
+                            chat.setVisible(false);
+                            banco.setVisible(false);
                             //SEMAFORO DE BANCO
                         }
                     }
@@ -250,6 +264,7 @@ public class TableroController implements Initializable {
             listaPropiedades = loadForm("ListaPropiedades.fxml");
             chat = loadForm("Chat.fxml");
             propiedad = loadForm("CompraPropiedad.fxml");
+            banco = loadForm("Banco.fxml");
             vender = loadForm("VenderPropiedad.fxml");
 
             datosPartida = new VBox();
@@ -257,10 +272,11 @@ public class TableroController implements Initializable {
 
             //HAY QUE AÑADIR AQUI EL VBOX COMPRA.CASINO Y BANCO
 
-            containerForm.getChildren().addAll(datosPartida, chat, propiedad, vender);
+            containerForm.getChildren().addAll(datosPartida, chat, propiedad, banco, vender);
             datosPartida.setVisible(true);
             chat.setVisible(false);
             propiedad.setVisible(false);
+            banco.setVisible(false);
             vender.setVisible(false);
 
 

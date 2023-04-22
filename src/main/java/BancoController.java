@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.Semaphore;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,6 +23,8 @@ public class BancoController implements Initializable{
 
     @FXML
     private ImageView imgBanco;
+
+    public static Semaphore semaphoreBanco = new Semaphore(0);
 
     @FXML
     public void actionEvent(ActionEvent e) throws IOException{
@@ -60,6 +63,7 @@ public class BancoController implements Initializable{
                     else{
                         GestionPartida.depositarDinero(dinero);
                         ConexionServidor.esperar(); //  REVISAR SI ESTO TIENE QUE IR AQUI
+                        semaphoreBanco.release();
                     }
                 }
                 else{//es para retirar
@@ -77,15 +81,19 @@ public class BancoController implements Initializable{
                     else{
                         GestionPartida.retirarDinero(dinero);
                         ConexionServidor.esperar();
+                        semaphoreBanco.release();
                     }
                 }
                 
             }
         }
+        else if(evt.equals(btnRechazar)){
+            semaphoreBanco.release();
+        }
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-    
+        
     }
 }

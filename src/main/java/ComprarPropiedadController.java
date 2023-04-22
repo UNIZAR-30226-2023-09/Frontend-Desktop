@@ -52,14 +52,14 @@ public class ComprarPropiedadController implements Initializable{
         TableroController.propiedad.setVisible(true);
 
         //system.out de las variables para ver si estan
-        System.out.println("text:");
-        System.out.println(GestionPartida.tablero[Integer.parseInt(GestionPartida.propiedadAComprar)]);
+        //System.out.println("text:");
+        //System.out.println(GestionPartida.tablero[Integer.parseInt(GestionPartida.propiedadAComprar)]);
 
-        System.out.println("precio:");
-        System.out.println(GestionPartida.precioPropiedadAComprar);
+        //System.out.println("precio:");
+        //System.out.println(GestionPartida.precioPropiedadAComprar);
 
-        System.out.println(" ");
-        System.out.println(" ");
+        //System.out.println(" ");
+        //System.out.println(" ");
 
         //textImg.setText("Desea comprar " + GestionPartida.tablero[Integer.parseInt(GestionPartida.propiedadAComprar)] + " por: "
         //+ GestionPartida.precioPropiedadAComprar + "€");
