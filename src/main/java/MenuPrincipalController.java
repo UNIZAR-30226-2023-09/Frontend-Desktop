@@ -11,8 +11,6 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-import javax.swing.JOptionPane;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -63,7 +61,7 @@ public class MenuPrincipalController implements Initializable {
         } else if (btnUnirse.equals(evt)) {
             // unirse a una partida
             // ------------ App.setRoot("UnirsePartida");
-            App.setRoot("ListaPropiedades");
+            App.setRoot("Banco");
         } else if (btnTienda.equals(evt)) {
             // abrir la tienda
             App.setRoot("Tienda");

@@ -6,7 +6,6 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
 <VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BancoController">
    <children>
       <Label alignment="CENTER" prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8PX;" text="Banco" textFill="WHITE">
@@ -17,12 +16,12 @@
             <Insets top="50.0" />
          </VBox.margin>
       </Label>
-      <ImageView fx:id="imgBanco" fitHeight="382.0" fitWidth="378.0" pickOnBounds="true" preserveRatio="true">
+      <ImageView fx:id="imgBanco" fitHeight="300.0" fitWidth="378.0" pickOnBounds="true" preserveRatio="true">
          <image>
-            <Image url="@ruleta/ruleta-rojo.png" />
+            <Image url="@ruleta/bank.png" />
          </image>
          <VBox.margin>
-            <Insets top="20.0" />
+            <Insets top="70.0" />
          </VBox.margin>
       </ImageView>
       <Label fx:id="lblText" text="¿Cuánto dinero quieres ingresar?">
