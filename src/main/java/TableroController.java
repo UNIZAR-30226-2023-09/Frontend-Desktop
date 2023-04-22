@@ -48,21 +48,23 @@ public class TableroController implements Initializable {
     private Timeline timeline;
 
     private void partida(){
-        ConexionServidor.esperar();  
+        ConexionServidor.esperar();
+        ConexionServidor.esperar();  //?????
         while(GestionPartida.enPartida){          
-            //ConexionServidor.esperar();       //HABRA QUE PONERLO DONDE PEREZ
+              //HABRA QUE PONERLO DONDE PEREZ
             dado1.setDisable(true);
             dado2.setDisable(true);
+            
             if (GestionPartida.miTurno == true) {
-
+                /* 
                 while (GestionPartida.CuentaInfoRecibida < 3) {
-                    //System.out.println("cuentaInfoRecibida?2");
-                    //System.out.println(GestionPartida.CuentaInfoRecibida);
+                    System.out.println("cuentaInfoRecibida?2");
+                    System.out.println(GestionPartida.CuentaInfoRecibida);
                     ConexionServidor.esperar();
                 }
-
+                */
                 actualizarLabel();
-                 
+                
                 do {
                     dado1.setDisable(false);
                     dado2.setDisable(false);
@@ -77,12 +79,14 @@ public class TableroController implements Initializable {
                     
                     ConexionServidor.esperar(); 
                     //AQUI VAMOS A GESTIONAR EN QUE CASILLA HEMOS CAIDO PARA COMPRAR, BANCO Y CASINO
-
+                    
                     if (!GestionPartida.enCarcel) {
                         if (GestionPartida.comprarPropiedad) {
                             //AQUI PONER QUE LA PANTALLA DE COMPRA SE INICIE
                             ComprarPropiedadController.gestionarCompraPropiedad();
                             //SEMAFORO DE COMPRA
+                            actualizarCompraPropiedad();
+                            
                             try {
                                 ComprarPropiedadController.semaphoreComprar.acquire();
                             } catch (InterruptedException e) {
@@ -163,14 +167,14 @@ public class TableroController implements Initializable {
             threadL.start();
             threadR.start();
 
-            //System.out.println("dado1");
-            //System.out.println(GestionPartida.dados[0]);
+            System.out.println("dado1");
+            System.out.println(GestionPartida.dados[0]);
 
-            //System.out.println("dado2");
-            //System.out.println(GestionPartida.dados[1]);
+            System.out.println("dado2");
+            System.out.println(GestionPartida.dados[1]);
 
-            //System.out.println(" ");
-            //System.out.println(" ");
+            System.out.println(" ");
+            System.out.println(" ");
 
             if(GestionPartida.enCarcel == false){    
 
@@ -390,6 +394,21 @@ public class TableroController implements Initializable {
 
                 lbl.setText(Integer.toString(GestionPartida.dineroJugadores[i]));
             }
+
+        });
+    }
+     
+    private void actualizarCompraPropiedad(){
+        Platform.runLater(() -> {
+            VBox vbox = (VBox) propiedad.getChildren().get(1);
+
+            Label lbl = (Label) vbox.getChildren().get(1);
+
+            lbl.setText("Desea comprar " + GestionPartida.tablero[Integer.parseInt(GestionPartida.propiedadAComprar)] + " por: "
+            + GestionPartida.precioPropiedadAComprar + "€");
+
+            //File fileCP = new File("src/main/resources/chicago.png");
+            //propiedadImg.setImage(new Image(fileCP.toURI().toString()));
 
         });
     }
