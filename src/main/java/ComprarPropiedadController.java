@@ -58,6 +58,9 @@ public class ComprarPropiedadController implements Initializable{
         System.out.println("precio:");
         System.out.println(GestionPartida.precioPropiedadAComprar);
 
+        System.out.println(" ");
+        System.out.println(" ");
+
         //textImg.setText("Desea comprar " + GestionPartida.tablero[Integer.parseInt(GestionPartida.propiedadAComprar)] + " por: "
         //+ GestionPartida.precioPropiedadAComprar + "€");
 

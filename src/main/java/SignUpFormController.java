@@ -64,6 +64,8 @@ public class SignUpFormController implements Initializable {
                             GestionPartida.gemas = 0;
 
                             // Ir al menu principal
+                            GestionPartida.iniciarSesion(txtEmailSignUp.getText(), txtPassword.getText());
+                            //MANDAR MENSAJE
                             App.setRoot("MenuPrincipal");
                         } else {
                             lblError.setText("Datos introducidos no validos");

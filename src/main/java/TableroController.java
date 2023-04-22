@@ -169,6 +169,9 @@ public class TableroController implements Initializable {
             //System.out.println("dado2");
             //System.out.println(GestionPartida.dados[1]);
 
+            //System.out.println(" ");
+            //System.out.println(" ");
+
             if(GestionPartida.enCarcel == false){    
 
                 String posi = "Pos" + String.valueOf(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]);
@@ -352,38 +355,14 @@ public class TableroController implements Initializable {
                         System.out.println("ERROR CASILLA2");
                         break;
                 }
-                
-                //ListaJugadoresController.actualizarInfo(i, GestionPartida.dineroJugadores[i]);
-
                 /* 
-                switch (i) {
-                    case 0:
-                        ListaJugadoresController.lblD1.setText(Integer.toString(GestionPartida.dineroJugadores[0]));
-                    break;
-        
-                    case 1:
-                        ListaJugadoresController.lblD2.setText(Integer.toString(GestionPartida.dineroJugadores[1]));
-                        break;
-        
-                    case 2:
-                        ListaJugadoresController.lblD3.setText(Integer.toString(GestionPartida.dineroJugadores[2]));
-                        break;
-        
-                    case 3:
-                        ListaJugadoresController.lblD4.setText(Integer.toString(GestionPartida.dineroJugadores[3]));
-                        break;
-        
-                    default:
-                        System.out.println("No existen tantos jugadores");
-                        break;
-                }
-                */
+                try {
+                    Thread.sleep(1000); //TODAVIA NO FUNCIONA BIEN
+                } catch (InterruptedException ex) {
+                    ex.printStackTrace();
+                }*/
             }
-            try {
-                Thread.sleep(1000); //TODAVIA NO FUNCIONA BIEN
-            } catch (InterruptedException ex) {
-                ex.printStackTrace();
-            }
+            
             estamosActualizando = false;       
         }
 
