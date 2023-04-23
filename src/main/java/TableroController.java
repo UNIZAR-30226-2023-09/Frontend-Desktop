@@ -33,10 +33,10 @@ public class TableroController implements Initializable {
     @FXML
     public static VBox datosPartida;
 
-    public static VBox listaJugadores, listaPropiedades, chat, propiedad, banco, vender;
+    public static VBox listaJugadores, listaPropiedades, chat, propiedad, banco, vender, casino;
 
     @FXML
-    private Button btnChat;
+    private Button btnChat, btnTerminarTurno;
 
     @FXML
     private StackPane containerForm;
@@ -99,9 +99,21 @@ public class TableroController implements Initializable {
                             propiedad.setVisible(false);
                             
                         } else if (GestionPartida.apostarDinero) {
-                            //AQUI PONER QUE LA PANTALLA DE CASINO
+                            // hemos caido en la casilla del casino por lo que se muestra la ventrana
+                            datosPartida.setVisible(false);
+                            chat.setVisible(false);
+                            casino.setVisible(true);
 
-                            //SEMAFORO DE CASINO
+                            // semaforo para esperar a que se pulse algun boton del casino (apostar o retirarse)
+                            try {
+                                CasinoController.semaphoreCasino.acquire();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            datosPartida.setVisible(true);
+                            chat.setVisible(false);
+                            casino.setVisible(false);
                         } else if (GestionPartida.enBanco) {
                             //AQUI PONER QUE LA PANTALLA DE BANCO
                             datosPartida.setVisible(false);
@@ -266,18 +278,21 @@ public class TableroController implements Initializable {
             propiedad = loadForm("CompraPropiedad.fxml");
             banco = loadForm("Banco.fxml");
             vender = loadForm("VenderPropiedad.fxml");
+            casino = loadForm("Casino.fxml");
 
             datosPartida = new VBox();
             datosPartida.getChildren().addAll(listaJugadores, listaPropiedades);
 
             //HAY QUE AÑADIR AQUI EL VBOX COMPRA.CASINO Y BANCO
 
-            containerForm.getChildren().addAll(datosPartida, chat, propiedad, banco, vender);
+            containerForm.getChildren().addAll(datosPartida, chat, propiedad, banco, vender, casino);
             datosPartida.setVisible(true);
             chat.setVisible(false);
             propiedad.setVisible(false);
             banco.setVisible(false);
             vender.setVisible(false);
+            casino.setVisible(false);
+            btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
 
 
             Thread threadIni = new Thread() {
@@ -319,6 +334,10 @@ public class TableroController implements Initializable {
         if (evt.equals(btnChat)) {
             datosPartida.setVisible(!datosPartida.isVisible());
             chat.setVisible(!chat.isVisible());
+        }
+        else if(evt.equals(btnTerminarTurno))
+        {
+            // mirar que hacer cuando le den al boton
         }
     }
     

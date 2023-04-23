@@ -59,14 +59,10 @@ public class SignUpFormController implements Initializable {
                         ConexionServidor.esperar();
 
                         if (cuentaRegistrada) {
-                            // Relenar los datos de la sesion
-                            GestionPartida.nombreUser = txtEmailSignUp.getText();
-                            GestionPartida.gemas = 0;
-
-                            // Ir al menu principal
+                            // iniciamos sesion tras estar registrados para que el servidor cuente con nuestra informacion
                             GestionPartida.iniciarSesion(txtEmailSignUp.getText(), txtPassword.getText());
-                            //ConexionServidor.esperar();
-                            //REVISAR ESTO
+                            ConexionServidor.esperar();
+                            // Ir al menu principal
                             App.setRoot("MenuPrincipal");
                         } else {
                             lblError.setText("Datos introducidos no validos");

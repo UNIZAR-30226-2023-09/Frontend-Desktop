@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.net.URL;
 import javafx.util.Duration;
 import java.util.ResourceBundle;
+import java.util.concurrent.Semaphore;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.RotateTransition;
@@ -30,6 +31,8 @@ public class CasinoController implements Initializable{
     @FXML
     private ImageView imgRule;
 
+    public static Semaphore semaphoreCasino = new Semaphore(0);
+
     @FXML
     public void actionEvent(ActionEvent e) throws IOException
     {
@@ -49,7 +52,7 @@ public class CasinoController implements Initializable{
             else 
             {
                 int apuesta = Integer.parseInt(txtDinero.getText());
-                if (apuesta > GestionPartida.dineroEnBanco) //REVISAR QUE DINERO ES, dineroJugador[indiceJugador]
+                if (apuesta > GestionPartida.dineroJugadores[GestionPartida.indiceJugador])
                 {
                     // indicar que no tienes suficiente saldo
                     lblError.setVisible(true);
@@ -63,7 +66,7 @@ public class CasinoController implements Initializable{
                 }
                 else
                 {
-                    int dineroAntes = GestionPartida.dineroEnBanco;
+                    int dineroAntes = GestionPartida.dineroJugadores[GestionPartida.indiceJugador];
                     // enviar msj de mirar si gana
                     GestionPartida.apostarDinero(txtDinero.toString());
         
@@ -81,7 +84,7 @@ public class CasinoController implements Initializable{
 
                         lblGanancias.setVisible(true);
         
-                        if (dineroAntes < GestionPartida.dineroEnBanco) {
+                        if (dineroAntes < GestionPartida.dineroJugadores[GestionPartida.indiceJugador]) {
                             // si ganamos mostramos el dinero obtenido
                             lblGanancias.setStyle("-fx-text-fill: green;");
                             lblGanancias.setText("+" + Integer.toString(apuesta*2) + "$");
@@ -90,10 +93,17 @@ public class CasinoController implements Initializable{
                             lblGanancias.setStyle("-fx-text-fill: red;");
                             lblGanancias.setText("-" + txtDinero.getText() + "$");
                         }
+
+                        semaphoreCasino.release();
                     }));
                     timeline.play();
                 }
             }
+        }
+        else if(evt.equals(btnRetirarse))
+        {
+            // simplemente liberamos el semaforo si el jugador no quiere echarle a la caprichosa
+            semaphoreCasino.release();
         }
     }
     
