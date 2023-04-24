@@ -40,27 +40,21 @@ public class GestionPartida {
     public static String propiedadAComprar;
     public static boolean meToca = false;
     public static boolean compraRealizada;
-
     public static boolean dadosDobles = false;
-
     public static String precioPropiedadAComprar;
-
     public static boolean apostarDinero;
-
     public static boolean enBanco;
-
     public static boolean respuestaBanco;
-
     public static boolean finMenu;
-
     public static boolean esperarListaEdificar;
-
     public static String tengoSuerte;
-
     public static boolean elegirCasilla;
-
+    public static String evento = "Ninguno";
     // Para mostrar la tarjeta correspondiente al superpoder
     public static String superPoder = "0";
+    public static boolean mostrarEvento;
+    public static double economia = 1.0;
+    public static int ronda;
 
     public final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
             "AeropuertoNarita", "Tokio", "Kioto", "Superpoder", "Osaka", "Carcel", "Roma", "Milan", "Casino", "Napoles",
@@ -195,10 +189,10 @@ public class GestionPartida {
             case "EMPEZAR_OK":
                 empezarPartida = true;
                 enPartida = true;
-
-                //
                 enCarcel = false;
-                //
+                evento = "Ninguno";
+                economia = 1.0;
+                ronda = 1;
 
                 indiceJugador = Integer.parseInt(partes[2]);
                 // Almacenar orden de tiradas
@@ -221,7 +215,6 @@ public class GestionPartida {
                 break;
             case "TURNO":
                 miTurno = true;
-                // TODO: ver si sigo en la carcel?
                 break;
             case "DADOS":
                 dados[0] = Integer.parseInt(partes[1]);
@@ -371,6 +364,19 @@ public class GestionPartida {
                 break;
             case "JugadorMuerto":
                 jugadoresVivos[obtenerIndiceJugador(partes[1])] = false;
+                break;
+            case "EVENTO":
+                evento = partes[1];
+                mostrarEvento = true;
+                break;
+            case "ACTUALIZAR_DINERO_BANCO":
+                dineroEnBanco = Integer.parseInt(partes[1]);
+                break;
+            case "ECONOMIA":
+                economia = Double.parseDouble(partes[1]);
+                break;
+            case "FIN_RONDA":
+                ronda = Integer.parseInt(partes[1]);
                 break;
             default:
 
