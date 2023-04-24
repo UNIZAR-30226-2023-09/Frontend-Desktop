@@ -80,8 +80,9 @@ public class CasinoController implements Initializable{
                         rotacion.pause();
         
                         // Esperar respuesta
+                        System.out.println("ESPERANDO RESPUESTA");
                         ConexionServidor.esperar(); //REVISAR SI ESTO TIENE QUE IR AQUI
-
+                        System.out.println("RESPUESTA RECIBIDA");
                         lblGanancias.setVisible(true);
         
                         if (dineroAntes < GestionPartida.dineroJugadores[GestionPartida.indiceJugador]) {
@@ -94,7 +95,7 @@ public class CasinoController implements Initializable{
                             lblGanancias.setText("-" + txtDinero.getText() + "$");
                         }
 
-                        semaphoreCasino.release();
+                        semaphoreCasino.release();                       
                     }));
                     timeline.play();
                 }

@@ -36,7 +36,7 @@ public class TableroController implements Initializable {
     public static VBox listaJugadores, listaPropiedades, chat, propiedad, banco, vender, casino;
 
     @FXML
-    private Button btnChat, btnTerminarTurno;
+    private Button btnChat, btnTerminarTurno, Qb, Wb;
 
     @FXML
     private StackPane containerForm;
@@ -116,6 +116,7 @@ public class TableroController implements Initializable {
                             casino.setVisible(false);
 
                             GestionPartida.apostarDinero=false;
+
                         } else if (GestionPartida.enBanco) {
                             //AQUI PONER QUE LA PANTALLA DE BANCO
                             datosPartida.setVisible(false);
@@ -342,6 +343,17 @@ public class TableroController implements Initializable {
         {
             // mirar que hacer cuando le den al boton
         }
+        else if (evt.equals(Qb)) {
+            GestionPartida.enBanco=true;
+            System.out.println("BANCo");
+            System.out.println(GestionPartida.dineroEnBanco);
+        }
+        else if(evt.equals(Wb))
+        {
+            GestionPartida.apostarDinero=true;
+            System.out.println("CASINo");
+        }
+
     }
     
     private boolean estamosActualizando = false;
