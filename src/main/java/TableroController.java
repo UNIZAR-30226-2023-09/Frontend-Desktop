@@ -114,6 +114,8 @@ public class TableroController implements Initializable {
                             datosPartida.setVisible(true);
                             chat.setVisible(false);
                             casino.setVisible(false);
+
+                            GestionPartida.apostarDinero=false;
                         } else if (GestionPartida.enBanco) {
                             //AQUI PONER QUE LA PANTALLA DE BANCO
                             datosPartida.setVisible(false);
@@ -125,11 +127,12 @@ public class TableroController implements Initializable {
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
-
+                            
                             datosPartida.setVisible(true);
                             chat.setVisible(false);
                             banco.setVisible(false);
                             //SEMAFORO DE BANCO
+                            GestionPartida.enBanco=false;
                         }
                     }
 
