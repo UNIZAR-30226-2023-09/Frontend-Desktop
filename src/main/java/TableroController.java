@@ -14,12 +14,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 
@@ -40,6 +42,12 @@ public class TableroController implements Initializable {
 
     @FXML
     private StackPane containerForm;
+
+    @FXML
+    public ProgressBar barraEconomia;
+
+    @FXML
+    public Circle indicador;
 
     @FXML
     private Label lblEvento, lblRonda, lblEconomia; 
@@ -69,6 +77,8 @@ public class TableroController implements Initializable {
                 */
                 actualizarLabel();
                 actualizarDatosPartida();
+
+                actualizarEconomia();
                 
                 do {
                     dado1.setDisable(false);
@@ -419,7 +429,6 @@ public class TableroController implements Initializable {
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
              
-             
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -611,4 +620,21 @@ public class TableroController implements Initializable {
         });
     }
 
+    private void actualizarEconomia(){
+        //double valor = -0.5;
+        barraEconomia.setStyle("-fx-accent: green; -fx-base: red;");
+
+        double minValue = 0.5;
+        double maxValue = 2.0;
+        double progress = (GestionPartida.economia - minValue) / (maxValue - minValue); // Calcular el progreso en base al valor
+        barraEconomia.setProgress(progress); // Actualizar el progreso de la barra
+    
+        double progressBarWidth = barraEconomia.getWidth();
+        double circleRadius = indicador.getRadius();
+        double circleCenterX = progressBarWidth * progress + circleRadius; // Calcular la posición X del círculo
+        indicador.setCenterX(circleCenterX);
+
+       
+        //barraEconomia.setProgress(GestionPartida.economia);
+    }
 }
