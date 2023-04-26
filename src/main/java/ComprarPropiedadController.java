@@ -55,8 +55,6 @@ public class ComprarPropiedadController implements Initializable{
 
     public boolean gestionarComprarPropiedad()
     {
-        System.out.println("gestion compra");
-
         Platform.runLater(() -> {
             lblImg.setText("Desea comprar " + GestionPartida.tablero[Integer.parseInt(GestionPartida.propiedadAComprar)] + " por: "
             + GestionPartida.precioPropiedadAComprar + "€");

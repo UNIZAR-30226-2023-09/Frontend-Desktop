@@ -391,12 +391,9 @@ public class TableroController implements Initializable {
             casino = loadForm("Casino.fxml");
             superpoder = loadForm("Superpoder.fxml");
 
-            //datosPartida = new VBox();
-            //datosPartida.getChildren().addAll(listaJugadores, listaPropiedades);
-
             //HAY QUE AÑADIR AQUI EL VBOX COMPRA.CASINO Y BANCO
 
-            containerForm.getChildren().addAll(/*datosPartida, chat, propiedad,*/ banco, vender, casino,superpoder);
+            containerForm.getChildren().addAll(banco, vender, casino,superpoder);
             datosPartida.setVisible(true);
             chat.setVisible(false);
             comprarPropiedad.setVisible(false);
