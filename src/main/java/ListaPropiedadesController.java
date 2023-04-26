@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -68,15 +69,18 @@ public class ListaPropiedadesController implements Initializable {
     {
         if(numPropiedades == 0)
         {
-            lblVacia.setVisible(false);
-            lblVacia.setManaged(false);
+            Platform.runLater(() -> {
+                lblVacia.setVisible(false);
+                lblVacia.setManaged(false);
+            });
         }
+        Platform.runLater(() -> {
+            // mostrar la nueva propiedad
+            propiedades.getChildren().get(casilla_propiedad[casilla]).setVisible(true);
+            propiedades.getChildren().get(casilla_propiedad[casilla]).setManaged(true);
 
-        // mostrar la nueva propiedad
-        propiedades.getChildren().get(casilla_propiedad[casilla]).setVisible(true);
-        propiedades.getChildren().get(casilla_propiedad[casilla]).setManaged(true);
-
-        numPropiedades++;
+            numPropiedades++;
+        });
     }
 
     public void eliminarPropiedad(int casilla)

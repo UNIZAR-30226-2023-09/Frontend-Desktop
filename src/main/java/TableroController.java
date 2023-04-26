@@ -28,12 +28,24 @@ import javafx.util.Duration;
 public class TableroController implements Initializable {
 
     @FXML
+    private ListaJugadoresController listaJugadoresController;
+
+    @FXML
+    private ListaPropiedadesController listaPropiedadesController;
+
+    @FXML
+    private ChatController chatController;
+
+    @FXML
+    private ComprarPropiedadController comprarPropiedadController;
+
+    @FXML
     private ImageView dado1, dado2, user1, user2, user3, user4;
 
     @FXML
-    public static VBox datosPartida;
+    private VBox datosPartida, listaJugadores, listaPropiedade, chat, comprarPropiedad;
 
-    public static VBox listaJugadores, listaPropiedades, chat, propiedad, banco, vender, casino, superpoder;
+    public static VBox /*listaJugadores, listaPropiedades, chat, propiedad,*/ banco, vender, casino, superpoder;
 
     @FXML
     private Button btnChat, btnTerminarTurno, Qb, Wb;
@@ -67,7 +79,7 @@ public class TableroController implements Initializable {
                     ConexionServidor.esperar();
                 }
                 */
-                actualizarLabel();
+                listaJugadoresController.actualizarDinero();
                 actualizarDatosPartida();
                 
                 do {
@@ -88,21 +100,21 @@ public class TableroController implements Initializable {
                     
                     if (!GestionPartida.enCarcel) {
                         if (GestionPartida.comprarPropiedad) {
-                            //AQUI PONER QUE LA PANTALLA DE COMPRA SE INICIE
-                            ComprarPropiedadController.gestionarCompraPropiedad();
-                            //SEMAFORO DE COMPRA
-                            actualizarCompraPropiedad();
-                            
-                            try {
-                                ComprarPropiedadController.semaphoreComprar.acquire();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+
+                            // si hemos caido en una propiedad que podamos comprar mostramos el menu para comprar la misma
+                            datosPartida.setVisible(false);
+                            chat.setVisible(false);
+                            comprarPropiedad.setVisible(true);
+
+                            if(comprarPropiedadController.gestionarComprarPropiedad())
+                            {
+                                listaPropiedadesController.agnadirPropiedad(Integer.parseInt(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
                             }
                              
-                            //VUELTA A COMO ESTABAMOS
+                            // dejamos como estaba todo
                             datosPartida.setVisible(true);
                             chat.setVisible(false);
-                            propiedad.setVisible(false);
+                            comprarPropiedad.setVisible(false);
                             
                         } else if (GestionPartida.apostarDinero) {
                             // hemos caido en la casilla del casino por lo que se muestra la ventrana
@@ -374,24 +386,20 @@ public class TableroController implements Initializable {
     @Override
     public void initialize(URL arg0, ResourceBundle arg1) {
         try {
-            listaJugadores = loadForm("ListaJugadores.fxml");
-            listaPropiedades = loadForm("ListaPropiedades.fxml");
-            chat = loadForm("Chat.fxml");
-            propiedad = loadForm("CompraPropiedad.fxml");
             banco = loadForm("Banco.fxml");
             vender = loadForm("VenderPropiedad.fxml");
             casino = loadForm("Casino.fxml");
             superpoder = loadForm("Superpoder.fxml");
 
-            datosPartida = new VBox();
-            datosPartida.getChildren().addAll(listaJugadores, listaPropiedades);
+            //datosPartida = new VBox();
+            //datosPartida.getChildren().addAll(listaJugadores, listaPropiedades);
 
             //HAY QUE AÑADIR AQUI EL VBOX COMPRA.CASINO Y BANCO
 
-            containerForm.getChildren().addAll(datosPartida, chat, propiedad, banco, vender, casino,superpoder);
+            containerForm.getChildren().addAll(/*datosPartida, chat, propiedad,*/ banco, vender, casino,superpoder);
             datosPartida.setVisible(true);
             chat.setVisible(false);
-            propiedad.setVisible(false);
+            comprarPropiedad.setVisible(false);
             banco.setVisible(false);
             vender.setVisible(false);
             casino.setVisible(false);
@@ -530,37 +538,6 @@ public class TableroController implements Initializable {
     public static void ocultarVentanaVenta()
     {
         vender.setVisible(false);
-    }
-
-    private void actualizarLabel() {
-        Platform.runLater(() -> {
-            VBox vbox = (VBox) listaJugadores.getChildren().get(1);
-
-            for(int i=0; i<4; i++)
-            {
-                HBox hbox = (HBox) vbox.getChildren().get(i);
-
-                Label lbl = (Label) hbox.getChildren().get(3);
-
-                lbl.setText(Integer.toString(GestionPartida.dineroJugadores[i]));
-            }
-
-        });
-    }
-     
-    private void actualizarCompraPropiedad(){
-        Platform.runLater(() -> {
-            VBox vbox = (VBox) propiedad.getChildren().get(1);
-
-            Label lbl = (Label) vbox.getChildren().get(1);
-
-            lbl.setText("Desea comprar " + GestionPartida.tablero[Integer.parseInt(GestionPartida.propiedadAComprar)] + " por: "
-            + GestionPartida.precioPropiedadAComprar + "€");
-
-            //File fileCP = new File("src/main/resources/chicago.png");
-            //propiedadImg.setImage(new Image(fileCP.toURI().toString()));
-
-        });
     }
 
     private void actualizarSuperpoder(){
