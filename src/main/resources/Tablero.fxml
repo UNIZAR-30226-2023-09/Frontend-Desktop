@@ -51,8 +51,33 @@
                   <Image url="@FICHAS/AMARILLO4.png" />
                </image>
             </ImageView>
-            <Button fx:id="Qb" layoutX="395.0" layoutY="216.0" mnemonicParsing="false" onAction="#actionEvent" text="q" />
-            <Button fx:id="Wb" layoutX="490.0" layoutY="216.0" mnemonicParsing="false" onAction="#actionEvent" text="w" />
+            <Button fx:id="Qb" layoutX="181.0" layoutY="363.0" mnemonicParsing="false" onAction="#actionEvent" text="q" />
+            <Button fx:id="Wb" layoutX="710.0" layoutY="363.0" mnemonicParsing="false" onAction="#actionEvent" text="w" />
+            <Label fx:id="TitRonda" layoutX="394.0" layoutY="225.0" prefHeight="40.0" prefWidth="90.0" text="Ronda:">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="TitEvento" layoutX="349.0" layoutY="147.0" prefHeight="40.0" prefWidth="90.0" text="Evento:">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblRonda" layoutX="504.0" layoutY="225.0" prefHeight="40.0" prefWidth="62.0" text="1">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblEvento" layoutX="439.0" layoutY="147.0" prefHeight="40.0" prefWidth="252.0" text="Dados dobles">
+               <font>
+                  <Font name="System Bold" size="19.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblEconomia" layoutX="410.0" layoutY="689.0" prefHeight="40.0" prefWidth="126.0" text="Economia">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
       <VBox alignment="BOTTOM_RIGHT" prefWidth="600.0" GridPane.columnIndex="1">

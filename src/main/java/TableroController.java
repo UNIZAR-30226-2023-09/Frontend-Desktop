@@ -41,6 +41,9 @@ public class TableroController implements Initializable {
     @FXML
     private StackPane containerForm;
 
+    @FXML
+    private Label lblEvento, lblRonda, lblEconomia; 
+
     Random random = new Random();
     
     private static Semaphore semaphoreDados = new Semaphore(0); // Semaforo de concurrencia
@@ -55,6 +58,7 @@ public class TableroController implements Initializable {
             dado1.setDisable(true);
             dado2.setDisable(true);
             
+            
             if (GestionPartida.miTurno == true) {
                 /* 
                 while (GestionPartida.CuentaInfoRecibida < 3) {
@@ -64,6 +68,7 @@ public class TableroController implements Initializable {
                 }
                 */
                 actualizarLabel();
+                actualizarDatosPartida();
                 
                 do {
                     dado1.setDisable(false);
@@ -76,8 +81,9 @@ public class TableroController implements Initializable {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                    
+
                     ConexionServidor.esperar(); 
+
                     //AQUI VAMOS A GESTIONAR EN QUE CASILLA HEMOS CAIDO PARA COMPRAR, BANCO Y CASINO
                     
                     if (!GestionPartida.enCarcel) {
@@ -228,7 +234,7 @@ public class TableroController implements Initializable {
                     }
 
                 } while(GestionPartida.dadosDobles);
-                
+                System.out.println("FIN TURNO");
                 GestionPartida.finTurno();
                 GestionPartida.miTurno = false;
 
@@ -594,6 +600,14 @@ public class TableroController implements Initializable {
                     break;
             }
             
+        });
+    }
+
+    private void actualizarDatosPartida(){
+        Platform.runLater(() -> {
+            lblEvento.setText(GestionPartida.evento);
+            lblRonda.setText(Integer.toString(GestionPartida.ronda)); 
+            lblEconomia.setText(Double.toString(GestionPartida.economia)); 
         });
     }
 
