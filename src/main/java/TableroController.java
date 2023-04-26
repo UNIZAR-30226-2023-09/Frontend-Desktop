@@ -150,6 +150,23 @@ public class TableroController implements Initializable {
                             System.out.print(" ");
                             System.out.print(" ");
 
+                            datosPartida.setVisible(false);
+                            chat.setVisible(false);
+                            superpoder.setVisible(true);
+
+                            actualizarSuperpoder();
+                            
+                            try {
+                                Superpoder.semaphoreSuper.acquire();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            datosPartida.setVisible(true);
+                            chat.setVisible(false);
+                            propiedad.setVisible(false);
+
+
                             int i = Integer.parseInt(GestionPartida.superPoder);
 
                             switch (i) {
@@ -158,9 +175,11 @@ public class TableroController implements Initializable {
                                     break;
                                 case 2:
                                     System.out.print(GestionPartida.enBanco);
+                                    System.out.print(" ");
                                     break;
                                 case 3:
                                     System.out.print(GestionPartida.apostarDinero);
+                                    System.out.print(" ");
                                     break; 
                                 case 4:
                                     
@@ -513,10 +532,9 @@ public class TableroController implements Initializable {
 
     private void actualizarSuperpoder(){
         Platform.runLater(() -> {
-            VBox vbox = (VBox) propiedad.getChildren().get(1); //ESTO HAY QUE MIRAR QUE SEAN ESTOS
+            VBox vbox = (VBox) superpoder.getChildren().get(2); //ESTO HAY QUE MIRAR QUE SEAN ESTOS
 
             Label lbl = (Label) vbox.getChildren().get(3); //ESTO HAY QUE MIRAR QUE SEAN ESTOS
-
 
             int i = Integer.parseInt(GestionPartida.superPoder);
 

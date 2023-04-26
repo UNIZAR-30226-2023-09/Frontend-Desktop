@@ -22,7 +22,7 @@ public class Superpoder implements Initializable{
     private Button btnAceptar;
 
     @FXML
-    private Label lblSuperpoder, lblError;
+    public Label lblSuperpoder, lblError;
 
     @FXML
     private ImageView imgRule;
@@ -34,7 +34,9 @@ public class Superpoder implements Initializable{
     {
         Object evt = e.getSource();
     
-    
+        if (evt.equals(btnAceptar)){
+            semaphoreSuper.release();
+        }
     }
     
 
