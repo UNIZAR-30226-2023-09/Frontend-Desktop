@@ -88,7 +88,7 @@ public class TableroController implements Initializable {
                     System.out.println(" ");
                     ConexionServidor.esperar();
                 }
-                */
+                
                 listaJugadoresController.actualizarDinero();
                 actualizarDatosPartida();
 
