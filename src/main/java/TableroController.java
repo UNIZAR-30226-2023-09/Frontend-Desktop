@@ -60,7 +60,7 @@ public class TableroController implements Initializable {
 
     private void partida(){
         ConexionServidor.esperar();
-        ConexionServidor.esperar();  //?????
+        //ConexionServidor.esperar();  //?????
         while(GestionPartida.enPartida){          
               //HABRA QUE PONERLO DONDE PEREZ
             dado1.setDisable(true);
@@ -68,13 +68,15 @@ public class TableroController implements Initializable {
             
             
             if (GestionPartida.miTurno == true) {
-                /* 
-                while (GestionPartida.CuentaInfoRecibida < 3) {
+                 
+                while (GestionPartida.CuentaInfoRecibida < (GestionPartida.JugadoresVivos-1)) {
                     System.out.println("cuentaInfoRecibida?2");
                     System.out.println(GestionPartida.CuentaInfoRecibida);
+                    System.out.println(" ");
+                    System.out.println(" ");
                     ConexionServidor.esperar();
                 }
-                */
+                
                 actualizarLabel();
                 actualizarDatosPartida();
 
@@ -303,6 +305,11 @@ public class TableroController implements Initializable {
             threadL.start();
             threadR.start();
 
+            while (!GestionPartida.meToca) {
+                ConexionServidor.esperar();
+            }
+            GestionPartida.meToca = false;
+
             System.out.println("dado1");
             System.out.println(GestionPartida.dados[0]);
 
@@ -370,11 +377,7 @@ public class TableroController implements Initializable {
             }
             
         }
-        while (!GestionPartida.meToca) {
-            ConexionServidor.esperar();
-        }
-        GestionPartida.meToca = false; 
-
+         
         //System.out.println("DadosDobles?");
         //System.out.println(GestionPartida.dadosDobles);
         //System.out.println(" ");
