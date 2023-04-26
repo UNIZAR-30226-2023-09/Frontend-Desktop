@@ -47,7 +47,7 @@ public class TableroController implements Initializable {
     @FXML
     private VBox datosPartida, listaJugadores, listaPropiedade, chat, comprarPropiedad;
 
-    public static VBox /*listaJugadores, listaPropiedades, chat, propiedad,*/ banco, vender, casino, superpoder;
+    public static VBox banco, vender, casino, superpoder;
 
     @FXML
     private Button btnChat, btnTerminarTurno, Qb, Wb;
