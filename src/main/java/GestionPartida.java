@@ -21,6 +21,7 @@ public class GestionPartida {
     public static int indiceJugador = -1;
     public static int CuentaInfoRecibida = 3;
     public static int dineroEnBanco = 0;
+    public static int JugadoresVivos = 4;
 
     // ***** Información del usuario *****
     public static String nombreUser = "";
@@ -135,6 +136,16 @@ public class GestionPartida {
         client.send("QUIERO_EDIFICAR," + nombreUser + "," + IDPartida);
     }
 
+    // Vende un edificio (casa) de la propiedad elegida
+    public static void venderCasa(String propiedad) {
+        client.send("venderEdificio," + nombreUser + "," + IDPartida + "," + propiedad);
+    }
+
+    // Vende la propiedad elegida
+    public static void venderPropiedad(String propiedad) {
+        client.send("venderPropiedad," + nombreUser + "," + IDPartida + "," + propiedad);
+    }
+
     public static void edificarPropiedad(int propiedadElegida) {
         String propiedad = nombresPropiedades.get(propiedadElegida);
         String precio = preciosPropiedades.get(propiedadElegida);
@@ -193,6 +204,7 @@ public class GestionPartida {
                 evento = "Ninguno";
                 economia = 1.0;
                 ronda = 1;
+                JugadoresVivos = 4;
 
                 indiceJugador = Integer.parseInt(partes[2]);
                 // Almacenar orden de tiradas
@@ -364,6 +376,7 @@ public class GestionPartida {
                 break;
             case "JugadorMuerto":
                 jugadoresVivos[obtenerIndiceJugador(partes[1])] = false;
+                JugadoresVivos--;
                 break;
             case "EVENTO":
                 evento = partes[1];
@@ -378,6 +391,7 @@ public class GestionPartida {
             case "FIN_RONDA":
                 ronda = Integer.parseInt(partes[1]);
                 break;
+
             default:
 
                 System.out.println("Mensaje no tenido en cuenta: " + message);
@@ -494,7 +508,7 @@ public class GestionPartida {
         System.out.println("Empieza la partida");
         while (enPartida) {
             if (miTurno) {
-                while (CuentaInfoRecibida < 3) {
+                while (CuentaInfoRecibida < JugadoresVivos - 1) {
                     ConexionServidor.esperar();
                 }
                 do {
@@ -568,7 +582,8 @@ public class GestionPartida {
             System.out.println("Es tu turno, " + nombreUser + ". ¿Qué deseas hacer?");
             System.out.println("1 - Edificar");
             System.out.println("2 - Intercambiar propiedad");
-            System.out.println("3 - Acabar turno");
+            System.out.println("3 - Vender una propiedad");
+            System.out.println("4 - Acabar turno");
             String opcion = scanner.nextLine();
             switch (opcion) {
                 case "1":
@@ -578,6 +593,9 @@ public class GestionPartida {
                     intercambiarPropiedad();
                     break;
                 case "3":
+                    venderUnaPropiedad(client, scanner);
+                    break;
+                case "4":
                     finTurno();
                     finMenu = true;
                     break;
@@ -587,6 +605,30 @@ public class GestionPartida {
             }
         }
         finMenu = false;
+    }
+
+    // Muestra las propiedades que tiene el jugador y le da la opción de vender
+    // la que elija
+    private static void venderUnaPropiedad(WebSocketClient client, Scanner scanner) {
+        System.out.println("Seleccione una propiedad para vender:");
+        for (int i = 0; i < nombresPropiedades.size(); i++) {
+            String precio = preciosPropiedades.get(i);
+            String numProp = nombresPropiedades.get(i);
+            System.out.println(
+                    (i + 1) + " - " + tablero[Integer.parseInt(numProp)] + " (" + precio + ")");
+        }
+        System.out.println("0 - Volver al menú anterior");
+
+        int opcion = scanner.nextInt();
+        if (opcion == 0) {
+            return;
+        }
+        if (opcion > 0 && opcion <= nombresPropiedades.size()) {
+            String numProp = nombresPropiedades.get(opcion - 1);
+            venderPropiedad(numProp);
+        } else {
+            System.out.println("Opción inválida");
+        }
     }
 
     private static void intercambiarPropiedad() {
