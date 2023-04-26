@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox fx:id="listaJugadores" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<VBox fx:id="listaJugadores" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="Superpoder">
    <children>
       <Label alignment="CENTER" prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8px;" text="Superpoder:" textFill="WHITE">
          <font>
@@ -57,7 +57,7 @@
       </VBox>
       <Label fx:id="lblSuperpoder" text="superpoder">
          <font>
-            <Font size="50.0" />
+            <Font size="25.0" />
          </font>
          <VBox.margin>
             <Insets top="50.0" />

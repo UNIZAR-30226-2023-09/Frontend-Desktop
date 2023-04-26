@@ -33,7 +33,7 @@ public class TableroController implements Initializable {
     @FXML
     public static VBox datosPartida;
 
-    public static VBox listaJugadores, listaPropiedades, chat, propiedad, banco, vender, casino;
+    public static VBox listaJugadores, listaPropiedades, chat, propiedad, banco, vender, casino, superpoder;
 
     @FXML
     private Button btnChat, btnTerminarTurno, Qb, Wb;
@@ -134,6 +134,50 @@ public class TableroController implements Initializable {
                             banco.setVisible(false);
                             //SEMAFORO DE BANCO
                             GestionPartida.enBanco=false;
+                        } else if(GestionPartida.superPoder != "0"){
+                            //Superpoder
+                            /*
+                            Los superPoderes son:
+                            1. Elegir casilla a la que quieres ir,
+                            2. Ir al banco
+                            3. Ir al casino
+                            4. Ir a la casilla de salida
+                            5. Retroceder 3 casillas
+                            6. Aumentar la suerte del casino
+                             */
+                            System.out.print("Superpoder:");
+                            System.out.print(GestionPartida.superPoder);
+                            System.out.print(" ");
+                            System.out.print(" ");
+
+                            int i = Integer.parseInt(GestionPartida.superPoder);
+
+                            switch (i) {
+                                case 1:
+                                    
+                                    break;
+                                case 2:
+                                    System.out.print(GestionPartida.enBanco);
+                                    break;
+                                case 3:
+                                    System.out.print(GestionPartida.apostarDinero);
+                                    break; 
+                                case 4:
+                                    
+                                    break;
+                                case 5:
+                                    
+                                    break;
+                                case 6:
+                                    
+                                    break;
+                                default:
+                                    System.out.println("ERROR SUPERPODER");
+                                    break;
+                            }
+
+
+                            GestionPartida.superPoder="0";
                         }
                     }
 
@@ -211,8 +255,10 @@ public class TableroController implements Initializable {
                 String posi = "Pos" + String.valueOf(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]);
                 Integer jug = GestionPartida.indiceJugador;
 
-                //System.out.println("posi");
-                //System.out.println(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]);
+                System.out.println("posi");
+                System.out.println(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]);
+                System.out.println(" ");
+                System.out.println(" ");
 
                 String coordenadas;
                 switch (jug) {
@@ -283,19 +329,21 @@ public class TableroController implements Initializable {
             banco = loadForm("Banco.fxml");
             vender = loadForm("VenderPropiedad.fxml");
             casino = loadForm("Casino.fxml");
+            superpoder = loadForm("Superpoder.fxml");
 
             datosPartida = new VBox();
             datosPartida.getChildren().addAll(listaJugadores, listaPropiedades);
 
             //HAY QUE AÑADIR AQUI EL VBOX COMPRA.CASINO Y BANCO
 
-            containerForm.getChildren().addAll(datosPartida, chat, propiedad, banco, vender, casino);
+            containerForm.getChildren().addAll(datosPartida, chat, propiedad, banco, vender, casino,superpoder);
             datosPartida.setVisible(true);
             chat.setVisible(false);
             propiedad.setVisible(false);
             banco.setVisible(false);
             vender.setVisible(false);
             casino.setVisible(false);
+            superpoder.setVisible(false);
             btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
 
 
@@ -460,6 +508,42 @@ public class TableroController implements Initializable {
             //File fileCP = new File("src/main/resources/chicago.png");
             //propiedadImg.setImage(new Image(fileCP.toURI().toString()));
 
+        });
+    }
+
+    private void actualizarSuperpoder(){
+        Platform.runLater(() -> {
+            VBox vbox = (VBox) propiedad.getChildren().get(1); //ESTO HAY QUE MIRAR QUE SEAN ESTOS
+
+            Label lbl = (Label) vbox.getChildren().get(3); //ESTO HAY QUE MIRAR QUE SEAN ESTOS
+
+
+            int i = Integer.parseInt(GestionPartida.superPoder);
+
+            switch (i) {
+                case 1:
+                    lbl.setText("Elija la casilla a la que quiere ir");
+                    break;
+                case 2:
+                    lbl.setText("Acudes corriendo al banco");
+                    break;
+                case 3:
+                    lbl.setText("Acudes corriendo al casino");
+                    break; 
+                case 4:
+                    lbl.setText("Acudes corriendo a la casilla de salida");
+                    break;
+                case 5:
+                    lbl.setText("Retrocedes 3 casillas");
+                    break;
+                case 6:
+                    lbl.setText("Aumenta su suerte en el casino");
+                    break;
+                default:
+                    System.out.println("ERROR SUPERPODER");
+                    break;
+            }
+            
         });
     }
 
