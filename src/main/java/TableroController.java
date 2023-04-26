@@ -118,11 +118,14 @@ public class TableroController implements Initializable {
                             chat.setVisible(false);
                             comprarPropiedad.setVisible(true);
 
+                            System.out.println("Compra Propiedad");
+
                             if(comprarPropiedadController.gestionarComprarPropiedad())
                             {
                                 listaPropiedadesController.agnadirPropiedad(Integer.parseInt(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
                             }
                              
+                            System.out.println("Propiedad");
                             // dejamos como estaba todo
                             datosPartida.setVisible(true);
                             chat.setVisible(false);
