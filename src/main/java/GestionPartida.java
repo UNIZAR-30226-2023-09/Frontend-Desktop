@@ -22,6 +22,7 @@ public class GestionPartida {
     public static int CuentaInfoRecibida = 3;
     public static int dineroEnBanco = 0;
     public static int JugadoresVivos = 4;
+    public static String propiedadADesplazarse;
 
     // ***** Información del usuario *****
     public static String nombreUser = "";
@@ -318,6 +319,9 @@ public class GestionPartida {
             case "SACAR_DINERO_BANCO_NO_OK":
                 respuestaBanco = true;
                 break;
+            case "ACTUALIZAR_BANCO":
+                dineroEnBanco = Integer.parseInt(partes[1]);
+                break;
             case "SACAR_DINERO_BANCO":
                 respuestaBanco = true;
                 dineroEnBanco = Integer.parseInt(partes[3]);
@@ -360,7 +364,9 @@ public class GestionPartida {
                 tengoSuerte = "1";
                 break;
             case "DESPLAZAR_JUGADOR":
-                posicionesJugadores[indiceJugador] = partes[1];
+                propiedadADesplazarse = partes[1];
+                // Sería actualizar despues a esto posicionesJugadores[indiceJugador] =
+                // propiedadADesplazarse;
                 break;
             case "ELEGIR_CASILLA":
                 elegirCasilla = true;
