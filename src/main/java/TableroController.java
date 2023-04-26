@@ -149,7 +149,7 @@ public class TableroController implements Initializable {
                             System.out.print(GestionPartida.superPoder);
                             System.out.print(" ");
                             System.out.print(" ");
-
+                            
                             datosPartida.setVisible(false);
                             chat.setVisible(false);
                             superpoder.setVisible(true);
@@ -164,28 +164,55 @@ public class TableroController implements Initializable {
 
                             datosPartida.setVisible(true);
                             chat.setVisible(false);
-                            propiedad.setVisible(false);
+                            superpoder.setVisible(false);
 
 
                             int i = Integer.parseInt(GestionPartida.superPoder);
 
                             switch (i) {
                                 case 1:
-                                    
+                                    //Mover ficha??
                                     break;
                                 case 2:
-                                    System.out.print(GestionPartida.enBanco);
-                                    System.out.print(" ");
+                                    datosPartida.setVisible(false);
+                                    chat.setVisible(false);
+                                    banco.setVisible(true);
+        
+                                    try {
+                                        BancoController.semaphoreBanco.acquire();
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+                                    
+                                    datosPartida.setVisible(true);
+                                    chat.setVisible(false);
+                                    banco.setVisible(false);
+                                    //SEMAFORO DE BANCO
+                                    GestionPartida.enBanco=false;
                                     break;
                                 case 3:
-                                    System.out.print(GestionPartida.apostarDinero);
-                                    System.out.print(" ");
+                                    datosPartida.setVisible(false);
+                                    chat.setVisible(false);
+                                    casino.setVisible(true);
+        
+                                    // semaforo para esperar a que se pulse algun boton del casino (apostar o retirarse)
+                                    try {
+                                        CasinoController.semaphoreCasino.acquire();
+                                    } catch (InterruptedException e) {
+                                        e.printStackTrace();
+                                    }
+        
+                                    datosPartida.setVisible(true);
+                                    chat.setVisible(false);
+                                    casino.setVisible(false);
+        
+                                    GestionPartida.apostarDinero=false;
                                     break; 
                                 case 4:
-                                    
+                                    //MOVER FICHA???
                                     break;
                                 case 5:
-                                    
+                                    //MOVER FICHA??
                                     break;
                                 case 6:
                                     
@@ -536,11 +563,16 @@ public class TableroController implements Initializable {
 
             Label lbl = (Label) vbox.getChildren().get(3); //ESTO HAY QUE MIRAR QUE SEAN ESTOS
 
+            HBox hbox = (HBox) vbox.getChildren().get(0);
+
+            //TextField text = (TextField) hbox.getChildren().get(0); // TextField textField = (TextField)
+
             int i = Integer.parseInt(GestionPartida.superPoder);
 
             switch (i) {
                 case 1:
                     lbl.setText("Elija la casilla a la que quiere ir");
+                    //Superpoder.txtCasilla.setVisible(true);
                     break;
                 case 2:
                     lbl.setText("Acudes corriendo al banco");

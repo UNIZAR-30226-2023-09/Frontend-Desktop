@@ -35,7 +35,29 @@ public class Superpoder implements Initializable{
         Object evt = e.getSource();
     
         if (evt.equals(btnAceptar)){
-            semaphoreSuper.release();
+            int i = Integer.parseInt(GestionPartida.superPoder);
+            if(i==1){
+                if (txtCasilla.getText().equals("")){
+                    // indicar que tiene que introducir una cantidad no nula
+                    lblError.setVisible(true);
+                    lblError.setText("Debes introducir una casilla valida");
+                }
+                else{
+                    String casillaS = txtCasilla.getText();
+                    int casilla = Integer.parseInt(txtCasilla.getText());
+                    if(casilla < 1 || casilla >40){
+                        lblError.setVisible(true);
+                        lblError.setText("Debes introducir una casilla valida");
+                    }
+                    else{
+                        GestionPartida.enviarCasilla(casillaS);
+                        semaphoreSuper.release();
+                    }
+                }
+            }
+            else{
+                semaphoreSuper.release();
+            }
         }
     }
     
@@ -52,7 +74,8 @@ public class Superpoder implements Initializable{
         });
         // Establece el TextFormatter en el TextField
         txtCasilla.setTextFormatter(textFormatter);
-
+        //txtCasilla.setVisible(false);
+        
         // ocultamos el mensaje de error y del dinero obtenido/perdido
         lblError.setVisible(false);
     }
