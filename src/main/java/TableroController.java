@@ -130,6 +130,8 @@ public class TableroController implements Initializable {
                             datosPartida.setVisible(true);
                             chat.setVisible(false);
                             comprarPropiedad.setVisible(false);
+
+                            GestionPartida.comprarPropiedad=false;
                             
                         } else if (GestionPartida.apostarDinero) {
                             // hemos caido en la casilla del casino por lo que se muestra la ventrana
