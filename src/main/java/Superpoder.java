@@ -29,6 +29,8 @@ public class Superpoder implements Initializable{
 
     public static Semaphore semaphoreSuper = new Semaphore(0);
 
+    public static String casillaS;
+
     @FXML
     public void actionEvent(ActionEvent e) throws IOException
     {
@@ -43,7 +45,7 @@ public class Superpoder implements Initializable{
                     lblError.setText("Debes introducir una casilla valida");
                 }
                 else{
-                    String casillaS = txtCasilla.getText();
+                    casillaS = txtCasilla.getText();
                     int casilla = Integer.parseInt(txtCasilla.getText());
                     if(casilla < 1 || casilla >40){
                         lblError.setVisible(true);

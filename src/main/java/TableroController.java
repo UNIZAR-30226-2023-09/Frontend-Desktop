@@ -207,6 +207,54 @@ public class TableroController implements Initializable {
                             switch (i) {
                                 case 1:
                                     //Mover ficha??
+                                    Integer jug = GestionPartida.indiceJugador;
+                                    String posi = "Pos" + Superpoder.casillaS;
+                                    String coordenadas;
+                                    switch (jug) {
+                                            case 0:
+                                                coordenadas = DatosPartida.mapaPropiedades1.get(posi);
+                                                break;
+                                            case 1:
+                                                coordenadas = DatosPartida.mapaPropiedades2.get(posi);
+                                                break;
+                                            case 2:
+                                                coordenadas = DatosPartida.mapaPropiedades3.get(posi);
+                                                break;
+                                            case 3:
+                                                coordenadas = DatosPartida.mapaPropiedades4.get(posi);
+                                                break;
+                                            default:
+                                                coordenadas = "ERROR";
+                                                System.out.println("ERROR CASILLA1");
+                                                break;
+                                    }
+                                            
+                                    String[] partes = coordenadas.split(",");
+                                    int x = Integer.parseInt(partes[0]);
+                                    int y = Integer.parseInt(partes[1]);
+                                        
+                                    switch (jug) {
+                                        case 0:
+                                            user1.setLayoutX(x);
+                                            user1.setLayoutY(y);
+                                            break;
+                                        case 1:
+                                            user2.setLayoutX(x);
+                                            user2.setLayoutY(y);
+                                            break;
+                                        case 2:
+                                            user3.setLayoutX(x);
+                                            user3.setLayoutY(y);
+                                            break;
+                                        case 3:
+                                            user4.setLayoutX(x);
+                                            user4.setLayoutY(y); 
+                                            break; 
+                                        default:
+                                            System.out.println("ERROR CASILLA2");
+                                            break;
+                                    }
+
                                     break;
                                 case 2:
                                     datosPartida.setVisible(false);
