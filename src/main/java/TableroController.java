@@ -207,54 +207,9 @@ public class TableroController implements Initializable {
                             switch (i) {
                                 case 1:
                                     //Mover ficha??
-                                    Integer jug = GestionPartida.indiceJugador;
-                                    String posi = "Pos" + Superpoder.casillaS;
-                                    String coordenadas;
-                                    switch (jug) {
-                                            case 0:
-                                                coordenadas = DatosPartida.mapaPropiedades1.get(posi);
-                                                break;
-                                            case 1:
-                                                coordenadas = DatosPartida.mapaPropiedades2.get(posi);
-                                                break;
-                                            case 2:
-                                                coordenadas = DatosPartida.mapaPropiedades3.get(posi);
-                                                break;
-                                            case 3:
-                                                coordenadas = DatosPartida.mapaPropiedades4.get(posi);
-                                                break;
-                                            default:
-                                                coordenadas = "ERROR";
-                                                System.out.println("ERROR CASILLA1");
-                                                break;
-                                    }
-                                            
-                                    String[] partes = coordenadas.split(",");
-                                    int x = Integer.parseInt(partes[0]);
-                                    int y = Integer.parseInt(partes[1]);
-                                        
-                                    switch (jug) {
-                                        case 0:
-                                            user1.setLayoutX(x);
-                                            user1.setLayoutY(y);
-                                            break;
-                                        case 1:
-                                            user2.setLayoutX(x);
-                                            user2.setLayoutY(y);
-                                            break;
-                                        case 2:
-                                            user3.setLayoutX(x);
-                                            user3.setLayoutY(y);
-                                            break;
-                                        case 3:
-                                            user4.setLayoutX(x);
-                                            user4.setLayoutY(y); 
-                                            break; 
-                                        default:
-                                            System.out.println("ERROR CASILLA2");
-                                            break;
-                                    }
-
+                                    moverFichaSuperpoder(Superpoder.casillaS);
+                                    //tengo que actualizar aqui pues el vector de posiciones?
+                                    //GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = Superpoder.casillaS
                                     break;
                                 case 2:
                                     datosPartida.setVisible(false);
@@ -292,106 +247,14 @@ public class TableroController implements Initializable {
                                     GestionPartida.apostarDinero=false;
                                     break; 
                                 case 4:
-                                    //MOVER FICHA???
-                                    Integer jug4 = GestionPartida.indiceJugador;
-                                    String posi4 = "Pos1";
-                                    String coordenadas4;
-                                    switch (jug4) {
-                                            case 0:
-                                                coordenadas4 = DatosPartida.mapaPropiedades1.get(posi4);
-                                                break;
-                                            case 1:
-                                                coordenadas4 = DatosPartida.mapaPropiedades2.get(posi4);
-                                                break;
-                                            case 2:
-                                                coordenadas4 = DatosPartida.mapaPropiedades3.get(posi4);
-                                                break;
-                                            case 3:
-                                                coordenadas4 = DatosPartida.mapaPropiedades4.get(posi4);
-                                                break;
-                                            default:
-                                                coordenadas4 = "ERROR";
-                                                System.out.println("ERROR CASILLA1");
-                                                break;
-                                    }
-                                            
-                                    String[] partes4 = coordenadas4.split(",");
-                                    int x4 = Integer.parseInt(partes4[0]);
-                                    int y4 = Integer.parseInt(partes4[1]);
-                                        
-                                    switch (jug4) {
-                                        case 0:
-                                            user1.setLayoutX(x4);
-                                            user1.setLayoutY(y4);
-                                            break;
-                                        case 1:
-                                            user2.setLayoutX(x4);
-                                            user2.setLayoutY(y4);
-                                            break;
-                                        case 2:
-                                            user3.setLayoutX(x4);
-                                            user3.setLayoutY(y4);
-                                            break;
-                                        case 3:
-                                            user4.setLayoutX(x4);
-                                            user4.setLayoutY(y4); 
-                                            break; 
-                                        default:
-                                            System.out.println("ERROR CASILLA2");
-                                            break;
-                                    }
-
+                                    //MOVER FICHA???                                 
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
                                     break;
                                 case 5:
                                     //MOVER FICHA??
-                                    Integer jug5 = GestionPartida.indiceJugador;
-                                    Integer aux = Integer.parseInt(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador])-3;
-                                    String posi5 = "Pos" + String.valueOf(aux);
-                                    String coordenadas5;
-                                    switch (jug5) {
-                                            case 0:
-                                                coordenadas5 = DatosPartida.mapaPropiedades1.get(posi5);
-                                                break;
-                                            case 1:
-                                                coordenadas5 = DatosPartida.mapaPropiedades2.get(posi5);
-                                                break;
-                                            case 2:
-                                                coordenadas5 = DatosPartida.mapaPropiedades3.get(posi5);
-                                                break;
-                                            case 3:
-                                                coordenadas5 = DatosPartida.mapaPropiedades4.get(posi5);
-                                                break;
-                                            default:
-                                                coordenadas5 = "ERROR";
-                                                System.out.println("ERROR CASILLA1");
-                                                break;
-                                    }
-                                            
-                                    String[] partes5 = coordenadas5.split(",");
-                                    int x5 = Integer.parseInt(partes5[0]);
-                                    int y5 = Integer.parseInt(partes5[1]);
-                                        
-                                    switch (jug5) {
-                                        case 0:
-                                            user1.setLayoutX(x5);
-                                            user1.setLayoutY(y5);
-                                            break;
-                                        case 1:
-                                            user2.setLayoutX(x5);
-                                            user2.setLayoutY(y5);
-                                            break;
-                                        case 2:
-                                            user3.setLayoutX(x5);
-                                            user3.setLayoutY(y5);
-                                            break;
-                                        case 3:
-                                            user4.setLayoutX(x5);
-                                            user4.setLayoutY(y5); 
-                                            break; 
-                                        default:
-                                            System.out.println("ERROR CASILLA2");
-                                            break;
-                                    }
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
                                     break;
                                 case 6:
                                     
@@ -762,5 +625,55 @@ public class TableroController implements Initializable {
 
        
         //barraEconomia.setProgress(GestionPartida.economia);
+    }
+
+    private void moverFichaSuperpoder(String casilla){
+        Integer jug = GestionPartida.indiceJugador;
+        String posi = "Pos" + casilla;
+        String coordenadas;
+        switch (jug) {
+                case 0:
+                    coordenadas = DatosPartida.mapaPropiedades1.get(posi);
+                    break;
+                case 1:
+                    coordenadas = DatosPartida.mapaPropiedades2.get(posi);
+                    break;
+                case 2:
+                    coordenadas = DatosPartida.mapaPropiedades3.get(posi);
+                    break;
+                case 3:
+                    coordenadas = DatosPartida.mapaPropiedades4.get(posi);
+                    break;
+                default:
+                    coordenadas = "ERROR";
+                    System.out.println("ERROR CASILLA1");
+                    break;
+        }
+                
+        String[] partes = coordenadas.split(",");
+        int x = Integer.parseInt(partes[0]);
+        int y = Integer.parseInt(partes[1]);
+            
+        switch (jug) {
+            case 0:
+                user1.setLayoutX(x);
+                user1.setLayoutY(y);
+                break;
+            case 1:
+                user2.setLayoutX(x);
+                user2.setLayoutY(y);
+                break;
+            case 2:
+                user3.setLayoutX(x);
+                user3.setLayoutY(y);
+                break;
+            case 3:
+                user4.setLayoutX(x);
+                user4.setLayoutY(y); 
+                break; 
+            default:
+                System.out.println("ERROR CASILLA2");
+                break;
+        }
     }
 }
