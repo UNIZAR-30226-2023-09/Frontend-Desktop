@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ComprarPropiedadController">
+<VBox fx:id="comprarPropiedad" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ComprarPropiedadController">
    <children>
       <Label alignment="CENTER" prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8PX;" text="Propiedad" textFill="WHITE">
          <VBox.margin>
@@ -26,7 +29,7 @@
                   <Insets top="30.0" />
                </VBox.margin>
             </ImageView>
-            <Label fx:id="textImg" text="Quieres Comprar la propiedad por X €">
+            <Label fx:id="lblImg" text="Quieres Comprar la propiedad por X €">
                <font>
                   <Font size="20.0" />
                </font>

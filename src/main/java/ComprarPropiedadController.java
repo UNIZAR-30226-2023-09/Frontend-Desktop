@@ -3,6 +3,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.Semaphore;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -16,16 +17,20 @@ public class ComprarPropiedadController implements Initializable{
     private Button btnComprar, btnRechazar;
 
     @FXML
-    public static Label textImg;
+    private Label lblImg;
 
     @FXML
     public static ImageView propiedadImg;
 
-    public static Semaphore semaphoreComprar = new Semaphore(0);
+    private Boolean propiedadComprada = false;
+
+    private Semaphore semaphoreComprar = new Semaphore(0);
 
     @FXML
     public void actionEvent(ActionEvent e) throws IOException {
         Object evt = e.getSource();
+
+        propiedadComprada = false;
 
         if (btnComprar.equals(evt)) {
              
@@ -34,6 +39,8 @@ public class ComprarPropiedadController implements Initializable{
                 ConexionServidor.esperar();
             }
             GestionPartida.compraRealizada = false;
+
+            propiedadComprada = true;
             
         } else if (btnRechazar.equals(evt)) {
             GestionPartida.comprarPropiedad = false;
@@ -46,28 +53,20 @@ public class ComprarPropiedadController implements Initializable{
         
     }
 
-    public static void gestionarCompraPropiedad(){
-        TableroController.datosPartida.setVisible(false);
-        TableroController.chat.setVisible(false);
-        TableroController.propiedad.setVisible(true);
+    public boolean gestionarComprarPropiedad()
+    {
+        Platform.runLater(() -> {
+            lblImg.setText("Desea comprar " + GestionPartida.tablero[Integer.parseInt(GestionPartida.propiedadAComprar)] + " por: "
+            + GestionPartida.precioPropiedadAComprar + "€");
+        });
 
-        //system.out de las variables para ver si estan
-        //System.out.println("text:");
-        //System.out.println(GestionPartida.tablero[Integer.parseInt(GestionPartida.propiedadAComprar)]);
+        try {
+            semaphoreComprar.acquire();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
 
-        //System.out.println("precio:");
-        //System.out.println(GestionPartida.precioPropiedadAComprar);
-
-        //System.out.println(" ");
-        //System.out.println(" ");
-
-        //textImg.setText("Desea comprar " + GestionPartida.tablero[Integer.parseInt(GestionPartida.propiedadAComprar)] + " por: "
-        //+ GestionPartida.precioPropiedadAComprar + "€");
-
-        //File fileCP = new File("src/main/resources/chicago.png");
-        //propiedadImg.setImage(new Image(fileCP.toURI().toString()));
-
-        
+        return propiedadComprada;
     }
     
 }

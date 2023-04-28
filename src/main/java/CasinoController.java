@@ -80,19 +80,21 @@ public class CasinoController implements Initializable{
                         rotacion.pause();
         
                         // Esperar respuesta
-                        System.out.println("ESPERANDO RESPUESTA");
-                        ConexionServidor.esperar(); //REVISAR SI ESTO TIENE QUE IR AQUI
-                        System.out.println("RESPUESTA RECIBIDA");
+                        //System.out.println("ESPERANDO RESPUESTA");
+                        //ConexionServidor.esperar(); //REVISAR SI ESTO TIENE QUE IR AQUI
+                        //System.out.println("RESPUESTA RECIBIDA");
                         lblGanancias.setVisible(true);
         
                         if (dineroAntes < GestionPartida.dineroJugadores[GestionPartida.indiceJugador]) {
                             // si ganamos mostramos el dinero obtenido
                             lblGanancias.setStyle("-fx-text-fill: green;");
                             lblGanancias.setText("+" + Integer.toString(apuesta*2) + "$");
+                            System.out.println("GANE");
                         } else {
                             // si perdemos msotramos el dinero que se ha restado
                             lblGanancias.setStyle("-fx-text-fill: red;");
                             lblGanancias.setText("-" + txtDinero.getText() + "$");
+                            System.out.println("PERDI");
                         }
 
                         semaphoreCasino.release();                       

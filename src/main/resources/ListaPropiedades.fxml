@@ -756,6 +756,36 @@
                               <Image url="@banderas/SPAIN.png" />
                            </image>
                         </ImageView>
+                        <Label text="Aeropuerto Heathrow">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Button mnemonicParsing="false" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="110.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnV25" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="40.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/SPAIN.png" />
+                           </image>
+                        </ImageView>
                         <Label text="Aeropuerto Orly">
                            <font>
                               <Font size="20.0" />
@@ -769,7 +799,7 @@
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnV25" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
+                        <Button fx:id="btnV26" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>
@@ -799,7 +829,7 @@
                               <Font name="System Bold" size="13.0" />
                            </font>
                         </Button>
-                        <Button fx:id="btnV26" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
+                        <Button fx:id="btnV27" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
                               <Insets left="40.0" />
                            </HBox.margin>

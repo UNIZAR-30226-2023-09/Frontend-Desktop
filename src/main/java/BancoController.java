@@ -26,20 +26,25 @@ public class BancoController implements Initializable{
 
     public static Semaphore semaphoreBanco = new Semaphore(0);
 
+    private boolean ingresar = false;
+
     @FXML
     public void actionEvent(ActionEvent e) throws IOException{
-        Object evt = e.getSource();
-        boolean ingresar = false;
+        Object evt = e.getSource();       
 
         if (evt.equals(btnIngresar)){
             ingresar = true;
             //MOSTRAR EL TEXTO CORRECTO
             //PONER EL BOTON MAS OSCURO PARA QUE PAREZCA QUE ESTA PULSADO
+            System.out.println("ingresar1");
+            System.out.println(ingresar);
         }
         else if (evt.equals(btnRetirar)) {
             ingresar = false;
             //MOSTRAR EL TEXTO CORRECTO
             //PONER EL BOTON MAS OSCURO PARA QUE PAREZCA QUE ESTA PULSADO
+            System.out.println("retirar1");
+            System.out.println(ingresar);
         }
         else if (evt.equals(btnConfirmar)) {
             if (txtBanco.getText().equals("")){
@@ -49,11 +54,16 @@ public class BancoController implements Initializable{
             }
             else{
                 if(ingresar){
-                    int dinero = Integer.parseInt(txtBanco.getText());
+                    Integer dinero = Integer.parseInt(txtBanco.getText());
                     if (dinero > GestionPartida.dineroJugadores[GestionPartida.indiceJugador]){ //REVISAR QUE DINERO ES, dineroJugador[indiceJugador]
                         // indicar que no tienes suficiente saldo
                         lblError2.setVisible(true);
                         lblError2.setText("No tienes el suficiente dinero");
+
+                        System.out.println("ingresar2");
+                        System.out.println(dinero);
+                        System.out.println(" ");
+                        System.out.println(GestionPartida.dineroJugadores[GestionPartida.indiceJugador]);
                     }
                     else if (dinero <= 0){
                         // indicar que tiene que introducir una cantidad no nula
@@ -62,16 +72,22 @@ public class BancoController implements Initializable{
                     }
                     else{
                         GestionPartida.depositarDinero(dinero);
+                        System.out.println("Hecho el ingreso");
                         ConexionServidor.esperar(); //  REVISAR SI ESTO TIENE QUE IR AQUI
                         semaphoreBanco.release();
                     }
                 }
                 else{//es para retirar
-                    int dinero = Integer.parseInt(txtBanco.getText());
+                    Integer dinero = Integer.parseInt(txtBanco.getText());
                     if (dinero > GestionPartida.dineroEnBanco){ //REVISAR QUE DINERO ES, dineroJugador[indiceJugador]
                         // indicar que no tienes suficiente saldo
                         lblError2.setVisible(true);
                         lblError2.setText("No tienes el suficiente dinero");
+
+                        System.out.println("retirar2");
+                        System.out.println(dinero);
+                        System.out.println(" ");
+                        System.out.println(GestionPartida.dineroEnBanco);
                     }
                     else if (dinero <= 0){
                         // indicar que tiene que introducir una cantidad no nula
@@ -79,6 +95,7 @@ public class BancoController implements Initializable{
                         lblError2.setText("Debes introducir una cantidad estrictamente superior a 0$");
                     }
                     else{
+                        System.out.println("Hecho la retirada");
                         GestionPartida.retirarDinero(dinero);
                         ConexionServidor.esperar();
                         semaphoreBanco.release();

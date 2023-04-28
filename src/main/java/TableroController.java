@@ -14,12 +14,14 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 
@@ -28,18 +30,42 @@ import javafx.util.Duration;
 public class TableroController implements Initializable {
 
     @FXML
+    private ListaJugadoresController listaJugadoresController;
+
+    @FXML
+    private ListaPropiedadesController listaPropiedadesController;
+
+    @FXML
+    private ChatController chatController;
+
+    @FXML
+    private ComprarPropiedadController comprarPropiedadController;
+
+    @FXML
+    private VenderPropiedadController venderPropiedadController;
+
+    @FXML
     private ImageView dado1, dado2, user1, user2, user3, user4;
 
     @FXML
-    public static VBox datosPartida;
+    private VBox datosPartida, listaJugadores, listaPropiedade, chat, comprarPropiedad, venderPropiedad;
 
-    public static VBox listaJugadores, listaPropiedades, chat, propiedad, banco, vender, casino, superpoder;
+    public static VBox banco, vender, casino, superpoder;
 
     @FXML
     private Button btnChat, btnTerminarTurno, Qb, Wb;
 
     @FXML
     private StackPane containerForm;
+
+    @FXML
+    public ProgressBar barraEconomia;
+
+    @FXML
+    public Circle indicador;
+
+    @FXML
+    private Label lblEvento, lblRonda, lblEconomia; 
 
     Random random = new Random();
     
@@ -49,21 +75,30 @@ public class TableroController implements Initializable {
 
     private void partida(){
         ConexionServidor.esperar();
-        ConexionServidor.esperar();  //?????
+        //ConexionServidor.esperar();  //?????
         while(GestionPartida.enPartida){          
               //HABRA QUE PONERLO DONDE PEREZ
             dado1.setDisable(true);
             dado2.setDisable(true);
             
+            
             if (GestionPartida.miTurno == true) {
-                /* 
-                while (GestionPartida.CuentaInfoRecibida < 3) {
+                 
+                while (GestionPartida.CuentaInfoRecibida < (GestionPartida.JugadoresVivos-1)) {
                     System.out.println("cuentaInfoRecibida?2");
                     System.out.println(GestionPartida.CuentaInfoRecibida);
+                    System.out.println(" ");
+                    System.out.println(" ");
                     ConexionServidor.esperar();
                 }
-                */
-                actualizarLabel();
+                
+                listaJugadoresController.actualizarDinero();
+
+                actualizarDatosPartida();
+
+                actualizarEconomia();
+
+                btnTerminarTurno.setVisible(true); 
                 
                 do {
                     dado1.setDisable(false);
@@ -76,27 +111,33 @@ public class TableroController implements Initializable {
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                    
+
                     ConexionServidor.esperar(); 
+
                     //AQUI VAMOS A GESTIONAR EN QUE CASILLA HEMOS CAIDO PARA COMPRAR, BANCO Y CASINO
                     
                     if (!GestionPartida.enCarcel) {
                         if (GestionPartida.comprarPropiedad) {
-                            //AQUI PONER QUE LA PANTALLA DE COMPRA SE INICIE
-                            ComprarPropiedadController.gestionarCompraPropiedad();
-                            //SEMAFORO DE COMPRA
-                            actualizarCompraPropiedad();
-                            
-                            try {
-                                ComprarPropiedadController.semaphoreComprar.acquire();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+
+                            // si hemos caido en una propiedad que podamos comprar mostramos el menu para comprar la misma
+                            datosPartida.setVisible(false);
+                            chat.setVisible(false);
+                            comprarPropiedad.setVisible(true);
+
+                            System.out.println("Compra Propiedad");
+
+                            if(comprarPropiedadController.gestionarComprarPropiedad())
+                            {
+                                listaPropiedadesController.agnadirPropiedad(Integer.parseInt(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
                             }
                              
-                            //VUELTA A COMO ESTABAMOS
+                            System.out.println("Propiedad");
+                            // dejamos como estaba todo
                             datosPartida.setVisible(true);
                             chat.setVisible(false);
-                            propiedad.setVisible(false);
+                            comprarPropiedad.setVisible(false);
+
+                            GestionPartida.comprarPropiedad=false;
                             
                         } else if (GestionPartida.apostarDinero) {
                             // hemos caido en la casilla del casino por lo que se muestra la ventrana
@@ -172,6 +213,9 @@ public class TableroController implements Initializable {
                             switch (i) {
                                 case 1:
                                     //Mover ficha??
+                                    moverFichaSuperpoder(Superpoder.casillaS);
+                                    //tengo que actualizar aqui pues el vector de posiciones?
+                                    //GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = Superpoder.casillaS
                                     break;
                                 case 2:
                                     datosPartida.setVisible(false);
@@ -209,10 +253,14 @@ public class TableroController implements Initializable {
                                     GestionPartida.apostarDinero=false;
                                     break; 
                                 case 4:
-                                    //MOVER FICHA???
+                                    //MOVER FICHA???                                 
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
                                     break;
                                 case 5:
                                     //MOVER FICHA??
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
                                     break;
                                 case 6:
                                     
@@ -228,7 +276,7 @@ public class TableroController implements Initializable {
                     }
 
                 } while(GestionPartida.dadosDobles);
-                
+                System.out.println("FIN TURNO");
                 GestionPartida.finTurno();
                 GestionPartida.miTurno = false;
 
@@ -286,6 +334,11 @@ public class TableroController implements Initializable {
 
             threadL.start();
             threadR.start();
+
+            while (!GestionPartida.meToca) {
+                ConexionServidor.esperar();
+            }
+            GestionPartida.meToca = false;
 
             System.out.println("dado1");
             System.out.println(GestionPartida.dados[0]);
@@ -354,11 +407,7 @@ public class TableroController implements Initializable {
             }
             
         }
-        while (!GestionPartida.meToca) {
-            ConexionServidor.esperar();
-        }
-        GestionPartida.meToca = false; 
-
+         
         //System.out.println("DadosDobles?");
         //System.out.println(GestionPartida.dadosDobles);
         //System.out.println(" ");
@@ -366,28 +415,24 @@ public class TableroController implements Initializable {
     }
 
     @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
+    public void initialize(URL arg0, ResourceBundle arg1)
+    {
+        listaPropiedadesController.setTableroController(this);
+        venderPropiedadController.setTableroController(this);
+
         try {
-            listaJugadores = loadForm("ListaJugadores.fxml");
-            listaPropiedades = loadForm("ListaPropiedades.fxml");
-            chat = loadForm("Chat.fxml");
-            propiedad = loadForm("CompraPropiedad.fxml");
             banco = loadForm("Banco.fxml");
-            vender = loadForm("VenderPropiedad.fxml");
             casino = loadForm("Casino.fxml");
             superpoder = loadForm("Superpoder.fxml");
 
-            datosPartida = new VBox();
-            datosPartida.getChildren().addAll(listaJugadores, listaPropiedades);
-
             //HAY QUE AÑADIR AQUI EL VBOX COMPRA.CASINO Y BANCO
 
-            containerForm.getChildren().addAll(datosPartida, chat, propiedad, banco, vender, casino,superpoder);
+            containerForm.getChildren().addAll(banco, casino, superpoder);
             datosPartida.setVisible(true);
             chat.setVisible(false);
-            propiedad.setVisible(false);
+            comprarPropiedad.setVisible(false);
             banco.setVisible(false);
-            vender.setVisible(false);
+            venderPropiedad.setVisible(false);
             casino.setVisible(false);
             superpoder.setVisible(false);
             btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
@@ -412,7 +457,6 @@ public class TableroController implements Initializable {
             timeline.getKeyFrames().add(keyFrame);
             timeline.setCycleCount(Timeline.INDEFINITE);
             timeline.play();
-             
              
 
         } catch (IOException e) {
@@ -516,45 +560,24 @@ public class TableroController implements Initializable {
 
     }
 
-    public static void mostrarVentanaVenta(int num_propiedad)
+    public void mostrarVentanaVenta(int orden_compra_propiedad, int numPropiedad)
     {
-        vender.setVisible(true);
+        venderPropiedad.setVisible(true);
+        chat.setVisible(false);
+        datosPartida.setVisible(false);
+
+        venderPropiedadController.actualizarLabel(orden_compra_propiedad, numPropiedad);
     }
 
-    public static void ocultarVentanaVenta()
+    public void ocultarVentanaVenta(int numPropiedad)
     {
-        vender.setVisible(false);
-    }
+        listaJugadoresController.actualizarDinero();
 
-    private void actualizarLabel() {
-        Platform.runLater(() -> {
-            VBox vbox = (VBox) listaJugadores.getChildren().get(1);
+        listaPropiedadesController.eliminarPropiedad(numPropiedad);
 
-            for(int i=0; i<4; i++)
-            {
-                HBox hbox = (HBox) vbox.getChildren().get(i);
-
-                Label lbl = (Label) hbox.getChildren().get(3);
-
-                lbl.setText(Integer.toString(GestionPartida.dineroJugadores[i]));
-            }
-
-        });
-    }
-     
-    private void actualizarCompraPropiedad(){
-        Platform.runLater(() -> {
-            VBox vbox = (VBox) propiedad.getChildren().get(1);
-
-            Label lbl = (Label) vbox.getChildren().get(1);
-
-            lbl.setText("Desea comprar " + GestionPartida.tablero[Integer.parseInt(GestionPartida.propiedadAComprar)] + " por: "
-            + GestionPartida.precioPropiedadAComprar + "€");
-
-            //File fileCP = new File("src/main/resources/chicago.png");
-            //propiedadImg.setImage(new Image(fileCP.toURI().toString()));
-
-        });
+        venderPropiedad.setVisible(false);
+        chat.setVisible(true);
+        datosPartida.setVisible(true);
     }
 
     private void actualizarSuperpoder(){
@@ -597,4 +620,79 @@ public class TableroController implements Initializable {
         });
     }
 
+    private void actualizarDatosPartida(){
+        Platform.runLater(() -> {
+            lblEvento.setText(GestionPartida.evento);
+            lblRonda.setText(Integer.toString(GestionPartida.ronda)); 
+            lblEconomia.setText(Double.toString(GestionPartida.economia)); 
+        });
+    }
+
+    private void actualizarEconomia(){
+        //double valor = -0.5;
+        barraEconomia.setStyle("-fx-accent: green; -fx-base: red;");
+
+        double minValue = 0.5;
+        double maxValue = 2.0;
+        double progress = (GestionPartida.economia - minValue) / (maxValue - minValue); // Calcular el progreso en base al valor
+        barraEconomia.setProgress(progress); // Actualizar el progreso de la barra
+    
+        double progressBarWidth = barraEconomia.getWidth();
+        double circleRadius = indicador.getRadius();
+        double circleCenterX = progressBarWidth * progress + circleRadius; // Calcular la posición X del círculo
+        indicador.setCenterX(circleCenterX);
+
+       
+        //barraEconomia.setProgress(GestionPartida.economia);
+    }
+
+    private void moverFichaSuperpoder(String casilla){
+        Integer jug = GestionPartida.indiceJugador;
+        String posi = "Pos" + casilla;
+        String coordenadas;
+        switch (jug) {
+                case 0:
+                    coordenadas = DatosPartida.mapaPropiedades1.get(posi);
+                    break;
+                case 1:
+                    coordenadas = DatosPartida.mapaPropiedades2.get(posi);
+                    break;
+                case 2:
+                    coordenadas = DatosPartida.mapaPropiedades3.get(posi);
+                    break;
+                case 3:
+                    coordenadas = DatosPartida.mapaPropiedades4.get(posi);
+                    break;
+                default:
+                    coordenadas = "ERROR";
+                    System.out.println("ERROR CASILLA1");
+                    break;
+        }
+                
+        String[] partes = coordenadas.split(",");
+        int x = Integer.parseInt(partes[0]);
+        int y = Integer.parseInt(partes[1]);
+            
+        switch (jug) {
+            case 0:
+                user1.setLayoutX(x);
+                user1.setLayoutY(y);
+                break;
+            case 1:
+                user2.setLayoutX(x);
+                user2.setLayoutY(y);
+                break;
+            case 2:
+                user3.setLayoutX(x);
+                user3.setLayoutY(y);
+                break;
+            case 3:
+                user4.setLayoutX(x);
+                user4.setLayoutY(y); 
+                break; 
+            default:
+                System.out.println("ERROR CASILLA2");
+                break;
+        }
+    }
 }
