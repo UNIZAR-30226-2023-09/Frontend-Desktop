@@ -1,6 +1,6 @@
 /*
  -----------------------------------------------------------------------
- * Fichero: SignInFormController.java
+ * Fichero: ListaPropiedadesController.java
  * Autor: Marcos Pérez, Alejandro Sanz
  * NIP: 820532, 816104
  * Descripción: 
@@ -23,6 +23,8 @@ import javafx.fxml.Initializable;
 
 public class ListaPropiedadesController implements Initializable {
 
+    private TableroController tableroController;
+
     @FXML
     private VBox propiedades;
 
@@ -34,6 +36,8 @@ public class ListaPropiedadesController implements Initializable {
     private final int NUM_PROPIEDADES = 27;
 
     private int[] casilla_propiedad;  //este vector guarda la relacion entre la casilla que estoy y la propiedad en la lista que es
+
+    private int[] orden_compra = new int[NUM_PROPIEDADES]; //este vector sirve para ir almacenando en que orden han sido compradas las propiedades (-1 es que no esta comprada)
 
     @FXML
     private Button  btnV1, btnV2, btnV3, btnV4, btnV5, btnV6, btnV7, btnV8, btnV9, btnV10, btnV11, btnV12, btnV13, btnV14, btnV15, btnV16, btnV17, btnV18, btnV19, btnV20, btnV21, btnV22, btnV23, btnV24, btnV25, btnV26, btnV27;
@@ -68,6 +72,12 @@ public class ListaPropiedadesController implements Initializable {
         botonesV.add(btnV21); botonesV.add(btnV22); botonesV.add(btnV23); botonesV.add(btnV24); botonesV.add(btnV25);
         botonesV.add(btnV26); botonesV.add(btnV27);
 
+        // inicializar vector del orden de compra
+        for(int i=0; i<NUM_PROPIEDADES; i++)
+        {
+            orden_compra[i] = -1;
+        }
+
     }
 
     public void agnadirPropiedad(int casilla)
@@ -83,6 +93,8 @@ public class ListaPropiedadesController implements Initializable {
             // mostrar la nueva propiedad
             propiedades.getChildren().get(casilla_propiedad[casilla]).setVisible(true);
             propiedades.getChildren().get(casilla_propiedad[casilla]).setManaged(true);
+
+            orden_compra[casilla_propiedad[casilla]-1] = numPropiedades;
 
             numPropiedades++;
         });
@@ -101,6 +113,8 @@ public class ListaPropiedadesController implements Initializable {
             lblVacia.setVisible(true);
             lblVacia.setManaged(true);
         }
+
+        orden_compra[casilla_propiedad[casilla]-1] = -1;
     }
 
     /*
@@ -150,8 +164,13 @@ public class ListaPropiedadesController implements Initializable {
                 System.out.println("El pulsado es " +  Integer.toString(i));
 
                 // abrir la pantalla que permite vender la propiedad
-                TableroController.mostrarVentanaVenta(i);
+                tableroController.mostrarVentanaVenta(orden_compra[i-1]);
             }
         }
+    }
+
+    public void setTableroController(TableroController tableroController)
+    {
+        this.tableroController = tableroController;
     }
 }

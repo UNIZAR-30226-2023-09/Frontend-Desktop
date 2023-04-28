@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VenderPropiedadController">
+<VBox fx:id="venderPropiedad" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="VenderPropiedadController">
    <children>
       <Label alignment="CENTER" prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8PX;" text="Vender" textFill="WHITE">
          <VBox.margin>
@@ -29,7 +29,7 @@
       </ImageView>
       <VBox alignment="CENTER">
          <children>
-            <Label fx:id="textImg" text="Quieres Vender la propiedad por X €">
+            <Label fx:id="lblImg" text="Quieres Vender la propiedad por X €">
                <font>
                   <Font size="20.0" />
                </font>

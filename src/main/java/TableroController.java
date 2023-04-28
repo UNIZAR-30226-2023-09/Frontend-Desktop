@@ -42,10 +42,13 @@ public class TableroController implements Initializable {
     private ComprarPropiedadController comprarPropiedadController;
 
     @FXML
+    private VenderPropiedadController venderPropiedadController;
+
+    @FXML
     private ImageView dado1, dado2, user1, user2, user3, user4;
 
     @FXML
-    private VBox datosPartida, listaJugadores, listaPropiedade, chat, comprarPropiedad;
+    private VBox datosPartida, listaJugadores, listaPropiedade, chat, comprarPropiedad, venderPropiedad;
 
     public static VBox banco, vender, casino, superpoder;
 
@@ -90,9 +93,12 @@ public class TableroController implements Initializable {
                 }
                 
                 listaJugadoresController.actualizarDinero();
+
                 actualizarDatosPartida();
 
                 actualizarEconomia();
+
+                btnTerminarTurno.setVisible(true); 
                 
                 do {
                     dado1.setDisable(false);
@@ -409,21 +415,24 @@ public class TableroController implements Initializable {
     }
 
     @Override
-    public void initialize(URL arg0, ResourceBundle arg1) {
+    public void initialize(URL arg0, ResourceBundle arg1)
+    {
+        listaPropiedadesController.setTableroController(this);
+        venderPropiedadController.setTableroController(this);
+
         try {
             banco = loadForm("Banco.fxml");
-            vender = loadForm("VenderPropiedad.fxml");
             casino = loadForm("Casino.fxml");
             superpoder = loadForm("Superpoder.fxml");
 
             //HAY QUE AÑADIR AQUI EL VBOX COMPRA.CASINO Y BANCO
 
-            containerForm.getChildren().addAll(banco, vender, casino,superpoder);
+            containerForm.getChildren().addAll(banco, casino, superpoder);
             datosPartida.setVisible(true);
             chat.setVisible(false);
             comprarPropiedad.setVisible(false);
             banco.setVisible(false);
-            vender.setVisible(false);
+            venderPropiedad.setVisible(false);
             casino.setVisible(false);
             superpoder.setVisible(false);
             btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
@@ -551,14 +560,22 @@ public class TableroController implements Initializable {
 
     }
 
-    public static void mostrarVentanaVenta(int num_propiedad)
+    public void mostrarVentanaVenta(int orden_compra_propiedad)
     {
-        vender.setVisible(true);
+        venderPropiedad.setVisible(true);
+        chat.setVisible(false);
+        datosPartida.setVisible(false);
+
+        venderPropiedadController.actualizarLabel(orden_compra_propiedad);
     }
 
-    public static void ocultarVentanaVenta()
+    public void ocultarVentanaVenta()
     {
-        vender.setVisible(false);
+        listaJugadoresController.actualizarDinero();
+
+        venderPropiedad.setVisible(false);
+        chat.setVisible(true);
+        datosPartida.setVisible(true);
     }
 
     private void actualizarSuperpoder(){
