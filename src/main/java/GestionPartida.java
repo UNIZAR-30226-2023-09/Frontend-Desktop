@@ -408,6 +408,9 @@ public class GestionPartida {
             case "PRECIO_VENTA":
                 precioVenta = Integer.parseInt(partes[1]);
                 break;
+            case "SUMAR_GEMAS":
+                gemas += Integer.parseInt(partes[1]);
+                break;
             default:
 
                 System.out.println("Mensaje no tenido en cuenta: " + message);
@@ -585,7 +588,7 @@ public class GestionPartida {
     }
 
     private static void gestionSuperpoder(WebSocketClient client2, Scanner scanner) {
-        if (superPoder == "1") {
+        if (superPoder.equals("1")) {
             System.out.print("Elija a que casilla desea desplazarse:");
             String casilla = scanner.nextLine();
             enviarCasilla(casilla);
@@ -742,6 +745,7 @@ public class GestionPartida {
         return -1;
     }
 
+    // Gestiona la entrada salida necesaria para apostar en el casino
     private static void gestionApuestaDinero(WebSocketClient client, Scanner scanner) {
         boolean valido = true;
         do {
@@ -835,7 +839,6 @@ public class GestionPartida {
         return -1;
     }
 
-    //
     private static int obtenerIndiceJugador(String ID_Jugador) {
         for (int i = 0; i < ordenJugadores.length; i++) {
             if (ordenJugadores[i].equals(ID_Jugador)) {
