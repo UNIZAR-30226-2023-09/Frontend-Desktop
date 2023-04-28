@@ -58,6 +58,8 @@ public class GestionPartida {
     public static double economia = 1.0;
     public static int ronda;
 
+    public static int precioVenta;
+
     public final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
             "AeropuertoNarita", "Tokio", "Kioto", "Superpoder", "Osaka", "Carcel", "Roma", "Milan", "Casino", "Napoles",
             "Aeropuerto Heathrow", "Londres", "Superpoder", "Manchester", "Edimburgo", "Bote", "Madrid",
@@ -140,6 +142,11 @@ public class GestionPartida {
     // Vende un edificio (casa) de la propiedad elegida
     public static void venderCasa(String propiedad) {
         client.send("venderEdificio," + nombreUser + "," + IDPartida + "," + propiedad);
+    }
+
+    // Vende la propiedad elegida
+    public static void quieroVenderPropiedad(String propiedad) {
+        client.send("QUIERO_VENDER_PROPIEDAD," + nombreUser + "," + IDPartida + "," + propiedad);
     }
 
     // Vende la propiedad elegida
@@ -268,6 +275,7 @@ public class GestionPartida {
                 break;
             case "DENTRO_CARCEL":
                 enCarcel = true;
+                posicionesJugadores[indiceJugador] = "9";
                 break;
             case "SALIR_CARCEL":
                 break;
@@ -397,7 +405,9 @@ public class GestionPartida {
             case "FIN_RONDA":
                 ronda = Integer.parseInt(partes[1]);
                 break;
-
+            case "PRECIO_VENTA":
+                precioVenta = Integer.parseInt(partes[1]);
+                break;
             default:
 
                 System.out.println("Mensaje no tenido en cuenta: " + message);
@@ -660,7 +670,10 @@ public class GestionPartida {
             return;
         }
         if (opcion > 0 && opcion <= nombresPropiedades.size()) {
-            edificarPropiedad(opcion - 1);
+            String numProp = nombresPropiedades.get(opcion - 1);
+            // Pasar la propiedad a entero
+            int propiedad = Integer.parseInt(numProp);
+            edificarPropiedad(propiedad);
         } else {
             System.out.println("Opción inválida");
         }
