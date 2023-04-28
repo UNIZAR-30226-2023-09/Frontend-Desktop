@@ -102,19 +102,21 @@ public class ListaPropiedadesController implements Initializable {
 
     public void eliminarPropiedad(int casilla)
     {
-        numPropiedades--;
+        Platform.runLater(() -> {
+            numPropiedades--;
 
-        // ocultar la propiedad que ya no tenemos
-        propiedades.getChildren().get(casilla_propiedad[casilla]).setVisible(false);
-        propiedades.getChildren().get(casilla_propiedad[casilla]).setManaged(false);
+            // ocultar la propiedad que ya no tenemos
+            propiedades.getChildren().get(casilla_propiedad[casilla]).setVisible(false);
+            propiedades.getChildren().get(casilla_propiedad[casilla]).setManaged(false);
 
-        if(numPropiedades == 0)
-        {
-            lblVacia.setVisible(true);
-            lblVacia.setManaged(true);
-        }
+            if(numPropiedades == 0)
+            {
+                lblVacia.setVisible(true);
+                lblVacia.setManaged(true);
+            }
 
-        orden_compra[casilla_propiedad[casilla]-1] = -1;
+            orden_compra[casilla_propiedad[casilla]-1] = -1;
+        });
     }
 
     /*
@@ -164,7 +166,7 @@ public class ListaPropiedadesController implements Initializable {
                 System.out.println("El pulsado es " +  Integer.toString(i));
 
                 // abrir la pantalla que permite vender la propiedad
-                tableroController.mostrarVentanaVenta(orden_compra[i-1]);
+                tableroController.mostrarVentanaVenta(orden_compra[i-1], i);
             }
         }
     }

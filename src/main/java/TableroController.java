@@ -560,18 +560,20 @@ public class TableroController implements Initializable {
 
     }
 
-    public void mostrarVentanaVenta(int orden_compra_propiedad)
+    public void mostrarVentanaVenta(int orden_compra_propiedad, int numPropiedad)
     {
         venderPropiedad.setVisible(true);
         chat.setVisible(false);
         datosPartida.setVisible(false);
 
-        venderPropiedadController.actualizarLabel(orden_compra_propiedad);
+        venderPropiedadController.actualizarLabel(orden_compra_propiedad, numPropiedad);
     }
 
-    public void ocultarVentanaVenta()
+    public void ocultarVentanaVenta(int numPropiedad)
     {
         listaJugadoresController.actualizarDinero();
+
+        listaPropiedadesController.eliminarPropiedad(numPropiedad);
 
         venderPropiedad.setVisible(false);
         chat.setVisible(true);
