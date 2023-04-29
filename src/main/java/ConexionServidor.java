@@ -10,7 +10,7 @@ import org.java_websocket.handshake.ServerHandshake;
 
 public class ConexionServidor {
     private static final String host = "34.175.149.140";
-    //private static final String host = "localhost";
+    // private static final String host = "localhost";
     private static String serverUrl = "ws://" + host + ":8080";
     private static WebSocketClient client;
     private static Semaphore semaphore = new Semaphore(0); // Semaforo de concurrencia
