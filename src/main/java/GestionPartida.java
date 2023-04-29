@@ -57,8 +57,15 @@ public class GestionPartida {
     public static boolean mostrarEvento;
     public static double economia = 1.0;
     public static int ronda;
-
     public static int precioVenta;
+    public static boolean skinsObtenidas = false;
+
+    // Contiene las skins del jugador con el formato idSkin1:0, idSkin2:10, etc
+    // Si la skin tiene un 0 significa que la tiene, y si tiene un numero diferente
+    // es el precio
+    public static ArrayList<String> listaSkins = new ArrayList<String>();
+
+    public static String[] skinsJugadores = new String[4];
 
     public final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
             "AeropuertoNarita", "Tokio", "Kioto", "Superpoder", "Osaka", "Carcel", "Roma", "Milan", "Casino", "Napoles",
@@ -166,6 +173,21 @@ public class GestionPartida {
                 casilla);
     }
 
+    // Compra la skin dado su id
+    public static void comprarSkin(int idSkin) {
+        client.send("COMPRAR_SKIN," + nombreUser + "," + idSkin);
+    }
+
+    // Muestra las skins disponibles
+    public static void mostrarSkins() {
+        client.send("MOSTRAR_SKINS," + nombreUser);
+    }
+
+    // Equipa la skin dada
+    public static void equiparSkin(String idSkin) {
+        client.send("EQUIPAR_SKIN," + nombreUser + "," + idSkin);
+    }
+
     // Metodo que se encarga de gestionar todos los mensajes recibidos
     public static void gestionMensaje(String message) {
         if (verbose) {
@@ -220,6 +242,16 @@ public class GestionPartida {
                 ordenJugadores[1] = partes[4];
                 ordenJugadores[2] = partes[5];
                 ordenJugadores[3] = partes[6];
+
+                skinsJugadores[0] = partes[7];
+                skinsJugadores[1] = partes[8];
+                skinsJugadores[2] = partes[9];
+                skinsJugadores[3] = partes[10];
+
+                // Mostrar por pantalla las skins de los jugadores
+                for (int i = 0; i < 4; i++) {
+                    System.out.println("Skin jugador " + i + ": " + skinsJugadores[i]);
+                }
 
                 // Almacenar posicion inicial y dinero inicial
                 for (int i = 0; i < 4; i++) {
@@ -411,6 +443,22 @@ public class GestionPartida {
             case "SUMAR_GEMAS":
                 gemas += Integer.parseInt(partes[1]);
                 break;
+            case "LISTA_SKIN":
+                // Si lista skins tenia algo lo borramos
+                if (!listaSkins.isEmpty()) {
+                    listaSkins.clear();
+                }
+                for (int i = 1; i < partes.length; i++) {
+                    listaSkins.add(partes[i]);
+                }
+                skinsObtenidas = true;
+                break;
+            case "SKIN_EQUIPADA_OK":
+                System.out.println(nombreUser + " tiene la skin " + partes[2] + " equipada");
+                break;
+            case "SKIN_EQUIPADA_NOOK":
+                System.out.println(nombreUser + " no tiene la skin " + partes[2] + " equipada");
+                break;
             default:
 
                 System.out.println("Mensaje no tenido en cuenta: " + message);
@@ -478,6 +526,9 @@ public class GestionPartida {
         System.out.println("Bienvenido: " + nombreUser + ". Que desea hacer: ");
         System.out.println("1 - Crear partida");
         System.out.println("2 - Unirse a partida");
+        System.out.println("3 - Ver skins");
+        System.out.println("4 - Equipar skin");
+        boolean skinsVistas = false;
         while (!enPartida) {
             String mensaje = scanner.nextLine();
             switch (mensaje) {
@@ -489,12 +540,40 @@ public class GestionPartida {
                     String IDPartida = scanner.nextLine();
                     unirsePartida(IDPartida);
                     break;
+                case "3":
+                    // Ver listado de skins
+                    verSkins();
+                    skinsVistas = true;
+                    break;
+                case "4":
+                    // Equipar skin
+                    System.out.println("Rellene los campos: [skin]: ");
+                    String skin = scanner.nextLine();
+                    equiparSkin(skin);
+                    break;
                 default:
                     System.out.println("Elija una opción válida");
                     return;
             }
             // Esperamos a recibir la respuesta del servidor
+            if (!skinsVistas) {
+                ConexionServidor.esperar();
+            } else {
+                skinsVistas = false;
+            }
+        }
+    }
+
+    private static void verSkins() {
+        System.out.println("Skins disponibles: ");
+        mostrarSkins();
+        while (!skinsObtenidas) {
             ConexionServidor.esperar();
+        }
+        skinsObtenidas = false;
+        // Recorrer la lista de skins y mostrarlas
+        for (String skin : listaSkins) {
+            System.out.println(skin);
         }
     }
 
