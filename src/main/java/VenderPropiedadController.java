@@ -16,7 +16,7 @@ public class VenderPropiedadController {
     @FXML
     private Label lblImg;
 
-    private int orden_propiedad, num_propiedad;
+    private int num_propiedad;
 
     @FXML
     public void actionEvent(ActionEvent e) throws IOException 
@@ -27,7 +27,7 @@ public class VenderPropiedadController {
             // enviar el mensaje para vender la propiedad
             System.out.println("Propiedad que trato de vender " + GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]);
             // enviar el mensaje para vender la propiedad
-            GestionPartida.venderPropiedad(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]);
+            GestionPartida.venderPropiedad(tableroController.posicion_propiedad_tablero[num_propiedad]);
 
             //ConexionServidor.esperar(); // NO SE SI HACE FALTA
         }
@@ -36,12 +36,11 @@ public class VenderPropiedadController {
         tableroController.ocultarVentanaVenta(num_propiedad);
     }
 
-    public void actualizarLabel(int orden_compra_propiedad, int numPropiedad)
+    public void actualizarLabel(int numPropiedad)
     {
         Platform.runLater(() -> {
             lblImg.setText("Quieres Vender la propiedad por " + GestionPartida.precioVenta + " €");
 
-            orden_propiedad = orden_compra_propiedad;
             num_propiedad = numPropiedad;
         });
     }

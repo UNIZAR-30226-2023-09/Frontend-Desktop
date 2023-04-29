@@ -75,6 +75,8 @@ public class TableroController implements Initializable {
 
     private Timeline timeline;
 
+    public String[] posicion_propiedad_tablero; // devuelve la posicion de una propiedad en el tablero
+
     private void partida(){
         ConexionServidor.esperar();
         //ConexionServidor.esperar();  //?????
@@ -99,9 +101,9 @@ public class TableroController implements Initializable {
                 actualizarDatosPartida();
 
                 actualizarEconomia();
-
-                btnTerminarTurno.setVisible(true); 
                 
+                listaPropiedadesController.visibilidadBotonesVenta(true);
+
                 do {
                     dado1.setDisable(false);
                     dado2.setDisable(false);
@@ -278,12 +280,19 @@ public class TableroController implements Initializable {
                     }
 
                 } while(GestionPartida.dadosDobles);
-
+                
+                // mostar boton de finalizar turno y esperar a que lo pulsen
+                btnTerminarTurno.setVisible(true);
                 while(!heTerminadoTurno){
                     ConexionServidor.esperar(); 
                 }
                 heTerminadoTurno = false;
                 System.out.println("FIN TURNO");
+
+                // ocultar lo que no queramos que se vea cunado no sea nuestro turno
+                btnTerminarTurno.setVisible(false);
+                listaPropiedadesController.visibilidadBotonesVenta(false);
+                listaPropiedadesController.visibilidadBotonesEdificar(false);
 
             }
             ConexionServidor.esperar();
@@ -425,6 +434,18 @@ public class TableroController implements Initializable {
     {
         listaPropiedadesController.setTableroController(this);
         venderPropiedadController.setTableroController(this);
+
+        // inicializamos el vector
+        posicion_propiedad_tablero = new String[]
+            {"0", "2", "3","7", 
+            "8", "10", "12", 
+            "13", "15", "17",
+            "19", "20", "22", 
+            "23", "25", "27",
+            "29", "30", "32",
+            "33", "35", "37", 
+            "38", "40",  "6", 
+            "16", "26", "36"};
 
         try {
             banco = loadForm("Banco.fxml");
@@ -570,13 +591,13 @@ public class TableroController implements Initializable {
 
     }
 
-    public void mostrarVentanaVenta(int orden_compra_propiedad, int numPropiedad)
+    public void mostrarVentanaVenta(int numPropiedad)
     {
         venderPropiedad.setVisible(true);
         chat.setVisible(false);
         datosPartida.setVisible(false);
 
-        GestionPartida.quieroVenderPropiedad(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]);
+        GestionPartida.quieroVenderPropiedad(posicion_propiedad_tablero[numPropiedad]);
 
         while(!GestionPartida.precioPropiedadRecivido)
         {
@@ -585,7 +606,7 @@ public class TableroController implements Initializable {
 
         GestionPartida.precioPropiedadRecivido = false;
 
-        venderPropiedadController.actualizarLabel(numPropiedad, numPropiedad);
+        venderPropiedadController.actualizarLabel(numPropiedad);
     }
 
     public void ocultarVentanaVenta(int numPropiedad)
@@ -597,6 +618,11 @@ public class TableroController implements Initializable {
         venderPropiedad.setVisible(false);
         chat.setVisible(true);
         datosPartida.setVisible(true);
+    }
+
+    public void edificar()
+    {
+        // mostar casa en la propiedad correspondiente
     }
 
     private void actualizarSuperpoder(){
