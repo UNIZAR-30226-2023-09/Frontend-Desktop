@@ -114,7 +114,7 @@ public class TableroController implements Initializable {
                         e.printStackTrace();
                     }
 
-                    ConexionServidor.esperar(); 
+                    //ConexionServidor.esperar(); 
 
                     //AQUI VAMOS A GESTIONAR EN QUE CASILLA HEMOS CAIDO PARA COMPRAR, BANCO Y CASINO
                     
@@ -301,7 +301,7 @@ public class TableroController implements Initializable {
             GestionPartida.lanzarDados(GestionPartida.nombreUser,GestionPartida.IDPartida);
 
             ConexionServidor.esperar();
-            semaphoreDados.release();
+            
 
             Thread threadL = new Thread() {
                 public void run() {
@@ -410,6 +410,7 @@ public class TableroController implements Initializable {
                         break;
                 }
             }
+            semaphoreDados.release();
             
         }
          

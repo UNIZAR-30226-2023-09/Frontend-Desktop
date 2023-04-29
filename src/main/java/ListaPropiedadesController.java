@@ -15,11 +15,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
-import javafx.fxml.Initializable;
 
 public class ListaPropiedadesController implements Initializable {
 
@@ -42,7 +42,10 @@ public class ListaPropiedadesController implements Initializable {
     @FXML
     private Button  btnV1, btnV2, btnV3, btnV4, btnV5, btnV6, btnV7, btnV8, btnV9, btnV10, btnV11, btnV12, btnV13, btnV14, btnV15, btnV16, btnV17, btnV18, btnV19, btnV20, btnV21, btnV22, btnV23, btnV24, btnV25, btnV26, btnV27;
 
-    private  ObservableList<Button> botonesV;
+    @FXML
+    private Button  btnE1, btnE2, btnE3, btnE4, btnE5, btnE6, btnE7, btnE8, btnE9, btnE10, btnE11, btnE12, btnE13, btnE14, btnE15, btnE16, btnE17, btnE18, btnE19, btnE20, btnE21, btnE22, btnE23, btnE24, btnE25, btnE26, btnE27;
+
+    private  ObservableList<Button> botonesV, botonesE;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -71,7 +74,17 @@ public class ListaPropiedadesController implements Initializable {
         botonesV.add(btnV16); botonesV.add(btnV17); botonesV.add(btnV18); botonesV.add(btnV19); botonesV.add(btnV20);
         botonesV.add(btnV21); botonesV.add(btnV22); botonesV.add(btnV23); botonesV.add(btnV24); botonesV.add(btnV25);
         botonesV.add(btnV26); botonesV.add(btnV27);
+            
+        //lista de botones edificar
+        botonesE = FXCollections.observableArrayList();
 
+        botonesE.add(btnE1); botonesE.add(btnE2); botonesE.add(btnE3); botonesE.add(btnE4); botonesE.add(btnE5);
+        botonesE.add(btnE6); botonesE.add(btnE7); botonesE.add(btnE8); botonesE.add(btnE9); botonesE.add(btnE10);
+        botonesE.add(btnE11); botonesE.add(btnE12); botonesE.add(btnE13); botonesE.add(btnE14); botonesE.add(btnE15);
+        botonesE.add(btnE16); botonesE.add(btnE17); botonesE.add(btnE18); botonesE.add(btnE19); botonesE.add(btnE20);
+        botonesE.add(btnE21); botonesE.add(btnE22); botonesE.add(btnE23); botonesE.add(btnE24); botonesE.add(btnE25);
+        botonesE.add(btnE26); botonesE.add(btnE27);
+        
         // inicializar vector del orden de compra
         for(int i=0; i<NUM_PROPIEDADES; i++)
         {
