@@ -464,6 +464,7 @@ public class TableroController implements Initializable {
             superpoder.setVisible(false);
             btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
 
+            inicializarFichas();
 
             Thread threadIni = new Thread() {
                 public void run() {   
@@ -471,7 +472,6 @@ public class TableroController implements Initializable {
                 }
             };
             threadIni.start();
-
 
              
             timeline = new Timeline();
@@ -738,6 +738,85 @@ public class TableroController implements Initializable {
             default:
                 System.out.println("ERROR CASILLA2");
                 break;
+        }
+    }
+
+    private void inicializarFichas(){
+        System.out.println("SKINS: \n");
+        ImageView aux = user1;
+        for(int i = 0;i<4;i++){        
+            
+            switch (i) {
+                case 0:
+                    aux = user1;
+                    break;
+                case 1:
+                    aux = user2;
+                    break;
+                case 2:
+                    aux = user3;
+                    break;
+                case 3:
+                    aux = user4;
+                    break; 
+                default:
+                    System.out.println("ERROR SKINS1");
+                    break;
+            }
+
+            switch (GestionPartida.skinsJugadores[i]) {
+                case "BAXTER":
+                    //azul
+                    System.out.println("AZUL");
+                    File file1 = new File("src/main/resources/FICHAS/AZUL" + (i+1) +".png");
+                    aux.setImage(new Image(file1.toURI().toString()));
+                    break;
+                case "BERTA":
+                    //naranja
+                    System.out.println("NARANJA");
+                    File file2 = new File("src/main/resources/FICHAS/NARANJA" + (i+1) +".png");
+                    aux.setImage(new Image(file2.toURI().toString()));
+                    break;
+                case "DIONIX":
+                    //verde
+                    System.out.println("VERDE");
+                    File file3 = new File("src/main/resources/FICHAS/VERDE" + (i+1) +".png");
+                    aux.setImage(new Image(file3.toURI().toString()));
+                    break;
+                case "JEANCARLO":
+                    //amarillo
+                    System.out.println("AMARILLO");
+                    File file4 = new File("src/main/resources/FICHAS/AMARILLO" + (i+1) +".png");
+                    aux.setImage(new Image(file4.toURI().toString()));
+                    break;
+                case "JULS":
+                    //morado
+                    System.out.println("MORADO");
+                    File file5 = new File("src/main/resources/FICHAS/MORADO" + (i+1) +".png");
+                    aux.setImage(new Image(file5.toURI().toString()));
+                    break;
+                case "LUCAS":
+                    //rojo
+                    System.out.println("ROJO");
+                    File file6 = new File("src/main/resources/FICHAS/ROJO" + (i+1) +".png");
+                    aux.setImage(new Image(file6.toURI().toString()));
+                    break;
+                case "PLEX":
+                    //rosa
+                    System.out.println("ROSA");
+                    File file7 = new File("src/main/resources/FICHAS/ROSA" + (i+1) +".png");
+                    aux.setImage(new Image(file7.toURI().toString()));
+                    break;
+                case "TITE":
+                    //marron
+                    System.out.println("MARRON");
+                    File file8 = new File("src/main/resources/FICHAS/MARRON" + (i+1) +".png");
+                    aux.setImage(new Image(file8.toURI().toString()));
+                    break;
+                default:
+                    System.out.println("ERROR SKIN2");
+                    break;
+            }
         }
     }
 }
