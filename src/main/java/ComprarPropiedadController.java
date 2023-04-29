@@ -58,6 +58,9 @@ public class ComprarPropiedadController implements Initializable{
         Platform.runLater(() -> {
             lblImg.setText("Desea comprar " + GestionPartida.tablero[Integer.parseInt(GestionPartida.propiedadAComprar)] + " por: "
             + GestionPartida.precioPropiedadAComprar + "€");
+
+            //File fileCP = new File("src/main/resources/CARTAS_EDIFICIOS/LA.png");
+            //propiedadImg.setImage(new Image(fileCP.toURI().toString()));
         });
 
         try {
