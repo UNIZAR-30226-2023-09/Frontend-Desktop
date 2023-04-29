@@ -176,7 +176,7 @@ public class GestionPartida {
     }
 
     // Compra la skin dado su id
-    public static void comprarSkin(int idSkin) {
+    public static void comprarSkin(String idSkin) {
         client.send("COMPRAR_SKIN," + nombreUser + "," + idSkin);
     }
 
