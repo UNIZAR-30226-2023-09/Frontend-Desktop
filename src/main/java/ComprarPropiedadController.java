@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -9,6 +10,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 public class ComprarPropiedadController implements Initializable{
@@ -20,7 +22,7 @@ public class ComprarPropiedadController implements Initializable{
     private Label lblImg;
 
     @FXML
-    public static ImageView propiedadImg;
+    private ImageView propiedadImg;
 
     private Boolean propiedadComprada = false;
 
@@ -58,6 +60,9 @@ public class ComprarPropiedadController implements Initializable{
         Platform.runLater(() -> {
             lblImg.setText("Desea comprar " + GestionPartida.tablero[Integer.parseInt(GestionPartida.propiedadAComprar)] + " por: "
             + GestionPartida.precioPropiedadAComprar + "€");
+
+            File fileCP = new File("src/main/resources/CARTAS_EDIFICIOS/" + GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] +".png");
+            propiedadImg.setImage(new Image(fileCP.toURI().toString()));
         });
 
         try {

@@ -68,6 +68,8 @@ public class TableroController implements Initializable {
     private Label lblEvento, lblRonda, lblEconomia; 
 
     Random random = new Random();
+
+    boolean heTerminadoTurno = false;
     
     private static Semaphore semaphoreDados = new Semaphore(0); // Semaforo de concurrencia
 
@@ -112,7 +114,7 @@ public class TableroController implements Initializable {
                         e.printStackTrace();
                     }
 
-                    ConexionServidor.esperar(); 
+                    //ConexionServidor.esperar(); 
 
                     //AQUI VAMOS A GESTIONAR EN QUE CASILLA HEMOS CAIDO PARA COMPRAR, BANCO Y CASINO
                     
@@ -276,9 +278,12 @@ public class TableroController implements Initializable {
                     }
 
                 } while(GestionPartida.dadosDobles);
+
+                while(!heTerminadoTurno){
+                    ConexionServidor.esperar(); 
+                }
+                heTerminadoTurno = false;
                 System.out.println("FIN TURNO");
-                GestionPartida.finTurno();
-                GestionPartida.miTurno = false;
 
             }
             ConexionServidor.esperar();
@@ -296,7 +301,7 @@ public class TableroController implements Initializable {
             GestionPartida.lanzarDados(GestionPartida.nombreUser,GestionPartida.IDPartida);
 
             ConexionServidor.esperar();
-            semaphoreDados.release();
+            
 
             Thread threadL = new Thread() {
                 public void run() {
@@ -405,6 +410,7 @@ public class TableroController implements Initializable {
                         break;
                 }
             }
+            semaphoreDados.release();
             
         }
          
@@ -480,6 +486,10 @@ public class TableroController implements Initializable {
         else if(evt.equals(btnTerminarTurno))
         {
             // mirar que hacer cuando le den al boton
+            heTerminadoTurno = true;
+            GestionPartida.finTurno();
+            GestionPartida.miTurno = false;
+            System.out.println("LE DI AL BOTON DE TERMINAR TURNO");
         }
         else if (evt.equals(Qb)) {
             GestionPartida.enBanco=true;
