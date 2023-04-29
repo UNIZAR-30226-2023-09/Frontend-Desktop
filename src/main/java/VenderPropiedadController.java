@@ -25,9 +25,9 @@ public class VenderPropiedadController {
         if(evt.equals(btnVender))
         {
             // enviar el mensaje para vender la propiedad
-            System.out.println("Propiedad que trato de vender " + Integer.toString(orden_propiedad));
+            System.out.println("Propiedad que trato de vender " + GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]);
             // enviar el mensaje para vender la propiedad
-            GestionPartida.venderPropiedad(Integer.toString(orden_propiedad));
+            GestionPartida.venderPropiedad(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]);
 
             //ConexionServidor.esperar(); // NO SE SI HACE FALTA
         }
@@ -39,7 +39,7 @@ public class VenderPropiedadController {
     public void actualizarLabel(int orden_compra_propiedad, int numPropiedad)
     {
         Platform.runLater(() -> {
-            lblImg.setText("Quieres Vender la propiedad por " + GestionPartida.precioPropiedadAComprar + " €");
+            lblImg.setText("Quieres Vender la propiedad por " + GestionPartida.precioVenta + " €");
 
             orden_propiedad = orden_compra_propiedad;
             num_propiedad = numPropiedad;

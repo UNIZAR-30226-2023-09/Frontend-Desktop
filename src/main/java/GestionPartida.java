@@ -57,6 +57,7 @@ public class GestionPartida {
     public static boolean mostrarEvento;
     public static double economia = 1.0;
     public static int ronda;
+    public static boolean precioPropiedadRecivido =  false;
 
     public static int precioVenta;
 
@@ -407,6 +408,7 @@ public class GestionPartida {
                 break;
             case "PRECIO_VENTA":
                 precioVenta = Integer.parseInt(partes[1]);
+                precioPropiedadRecivido =  true;
                 break;
             case "SUMAR_GEMAS":
                 gemas += Integer.parseInt(partes[1]);

@@ -566,7 +566,16 @@ public class TableroController implements Initializable {
         chat.setVisible(false);
         datosPartida.setVisible(false);
 
-        venderPropiedadController.actualizarLabel(orden_compra_propiedad, numPropiedad);
+        GestionPartida.quieroVenderPropiedad(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]);
+
+        while(!GestionPartida.precioPropiedadRecivido)
+        {
+            ConexionServidor.esperar();
+        }
+
+        GestionPartida.precioPropiedadRecivido = false;
+
+        venderPropiedadController.actualizarLabel(numPropiedad, numPropiedad);
     }
 
     public void ocultarVentanaVenta(int numPropiedad)

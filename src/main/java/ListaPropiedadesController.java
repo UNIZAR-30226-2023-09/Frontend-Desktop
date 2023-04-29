@@ -94,7 +94,7 @@ public class ListaPropiedadesController implements Initializable {
             propiedades.getChildren().get(casilla_propiedad[casilla]).setVisible(true);
             propiedades.getChildren().get(casilla_propiedad[casilla]).setManaged(true);
 
-            orden_compra[casilla_propiedad[casilla]-1] = numPropiedades;
+            // orden_compra[casilla_propiedad[casilla]-1] = numPropiedades;
 
             numPropiedades++;
         });
@@ -106,8 +106,8 @@ public class ListaPropiedadesController implements Initializable {
             numPropiedades--;
 
             // ocultar la propiedad que ya no tenemos
-            propiedades.getChildren().get(casilla_propiedad[casilla]).setVisible(false);
-            propiedades.getChildren().get(casilla_propiedad[casilla]).setManaged(false);
+            propiedades.getChildren().get(casilla).setVisible(false);
+            propiedades.getChildren().get(casilla).setManaged(false);
 
             if(numPropiedades == 0)
             {
@@ -115,7 +115,7 @@ public class ListaPropiedadesController implements Initializable {
                 lblVacia.setManaged(true);
             }
 
-            orden_compra[casilla_propiedad[casilla]-1] = -1;
+            // orden_compra[casilla_propiedad[casilla]-1] = -1;
         });
     }
 
@@ -163,8 +163,6 @@ public class ListaPropiedadesController implements Initializable {
         {
             if(evt.equals(botonesV.get(i-1)))
             {
-                System.out.println("El pulsado es " +  Integer.toString(i));
-
                 // abrir la pantalla que permite vender la propiedad
                 tableroController.mostrarVentanaVenta(orden_compra[i-1], i);
             }
