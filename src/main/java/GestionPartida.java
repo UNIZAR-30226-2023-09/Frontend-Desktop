@@ -190,6 +190,11 @@ public class GestionPartida {
         client.send("EQUIPAR_SKIN," + nombreUser + "," + idSkin);
     }
 
+    // Subasta la propiedad elegida por el usuario por el precio dado
+    public static void subastarPropiedad(String propiedad, String precio) {
+        client.send("SUBASTAR," + IDPartida + "," + nombreUser + "," + propiedad + "," + precio);
+    }
+
     // Metodo que se encarga de gestionar todos los mensajes recibidos
     public static void gestionMensaje(String message) {
         if (verbose) {
