@@ -586,7 +586,6 @@ public class TableroController implements Initializable {
 
         GestionPartida.quieroVenderPropiedad(posicion_propiedad_tablero[numPropiedad]);
         System.out.println("Vamos pal while");
-        //ConexionServidor.esperar();
         
             while (!GestionPartida.precioPropiedadRecivido)
             {
