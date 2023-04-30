@@ -69,6 +69,9 @@ public class GestionPartida {
 
     public static String[] skinsJugadores = new String[4];
 
+    // Hay una subasta pendiente por mostrar
+    public static boolean subasta;
+
     public final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
             "AeropuertoNarita", "Tokio", "Kioto", "Superpoder", "Osaka", "Carcel", "Roma", "Milan", "Casino", "Napoles",
             "Aeropuerto Heathrow", "Londres", "Superpoder", "Manchester", "Edimburgo", "Bote", "Madrid",
@@ -160,7 +163,7 @@ public class GestionPartida {
 
     // Vende la propiedad elegida
     public static void venderPropiedad(String propiedad) {
-        client.send("venderPropiedad," + nombreUser + "," + IDPartida + "," + propiedad);
+        client.send("venderPropiedad," + nombreUser + "," + propiedad + "," + IDPartida);
     }
 
     public static void edificarPropiedad(int propiedadElegida) {
@@ -483,6 +486,9 @@ public class GestionPartida {
                 System.out.println(nombreUser + " ha comprado la skin y ahora tiene " + partes[2] + " gemas");
                 // Actualizar el numero de gemas
                 gemas = Integer.parseInt(partes[2]);
+                break;
+            case "SUBASTA":
+                subasta = true;
                 break;
             default:
 
