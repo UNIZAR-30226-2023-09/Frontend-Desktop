@@ -22,18 +22,19 @@ public class VenderPropiedadController {
     public void actionEvent(ActionEvent e) throws IOException 
     {
         Object evt = e.getSource();
+        Boolean vendida = false;
         if(evt.equals(btnVender))
         {
             // enviar el mensaje para vender la propiedad
             System.out.println("Propiedad que trato de vender " + tableroController.posicion_propiedad_tablero[num_propiedad]);
             // enviar el mensaje para vender la propiedad
             GestionPartida.venderPropiedad(tableroController.posicion_propiedad_tablero[num_propiedad]);
-
+            vendida = true;
             //ConexionServidor.esperar(); // NO SE SI HACE FALTA
         }
 
         // por ultimo ocultamos la pantalla de vender
-        tableroController.ocultarVentanaVenta(num_propiedad);
+        tableroController.ocultarVentanaVenta(num_propiedad, vendida);
     }
 
     public void actualizarLabel(int numPropiedad)

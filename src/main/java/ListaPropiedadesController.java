@@ -39,6 +39,8 @@ public class ListaPropiedadesController implements Initializable {
 
     private int[] orden_compra = new int[NUM_PROPIEDADES]; //este vector sirve para ir almacenando en que orden han sido compradas las propiedades (-1 es que no esta comprada)
 
+    private String[] precio_edificar = new String[NUM_PROPIEDADES]; // almacenamos el precio por el que se podra edificar en esa propiedad
+
     @FXML
     private Button  btnV1, btnV2, btnV3, btnV4, btnV5, btnV6, btnV7, btnV8, btnV9, btnV10, btnV11, btnV12, btnV13, btnV14, btnV15, btnV16, btnV17, btnV18, btnV19, btnV20, btnV21, btnV22, btnV23, btnV24, btnV25, btnV26, btnV27;
 
@@ -163,7 +165,9 @@ public class ListaPropiedadesController implements Initializable {
 
             for(int i=0; i < GestionPartida.nombresPropiedades.size(); i++)
             {
-                botonesE.get(casilla_propiedad[Integer.parseInt(GestionPartida.nombresPropiedades.get(i))]-1).setVisible(true);
+                int numPropiedad = Integer.parseInt(GestionPartida.nombresPropiedades.get(i));
+                botonesE.get(casilla_propiedad[numPropiedad-1]).setVisible(true);
+                precio_edificar[numPropiedad] = GestionPartida.preciosPropiedades.get(i);
             }
         }
         else

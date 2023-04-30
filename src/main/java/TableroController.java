@@ -282,7 +282,8 @@ public class TableroController implements Initializable {
                 
                 // mostar boton de finalizar turno y esperar a que lo pulsen
                 btnTerminarTurno.setVisible(true);
-                while(!heTerminadoTurno){
+                while(!heTerminadoTurno)
+                {
                     ConexionServidor.esperar(); 
                 }
                 heTerminadoTurno = false;
@@ -584,20 +585,30 @@ public class TableroController implements Initializable {
         System.out.println("En el tablero es la posicion: " + posicion_propiedad_tablero[numPropiedad]);
 
         GestionPartida.quieroVenderPropiedad(posicion_propiedad_tablero[numPropiedad]);
-
-        while (!GestionPartida.precioPropiedadRecivido) {
-            ConexionServidor.esperar();
-        }
+        System.out.println("Vamos pal while");
+        //ConexionServidor.esperar();
+        
+            while (!GestionPartida.precioPropiedadRecivido)
+            {
+                System.out.println("Acabo de entrar");
+                //ConexionServidor.esperar();
+                System.out.println("NO salgo");
+            }
 
         GestionPartida.precioPropiedadRecivido = false;
+
+        System.out.println("he salido");
 
         venderPropiedadController.actualizarLabel(numPropiedad);
     }
 
-    public void ocultarVentanaVenta(int numPropiedad) {
-        listaJugadoresController.actualizarDinero();
-
-        listaPropiedadesController.eliminarPropiedad(numPropiedad);
+    public void ocultarVentanaVenta(int numPropiedad, Boolean vendida)
+    {
+        if(vendida)
+        {
+            listaJugadoresController.actualizarDinero();
+            listaPropiedadesController.eliminarPropiedad(numPropiedad);
+        }
 
         venderPropiedad.setVisible(false);
         chat.setVisible(true);
