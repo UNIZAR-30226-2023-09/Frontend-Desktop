@@ -37,8 +37,6 @@ public class ListaPropiedadesController implements Initializable {
 
     private int[] casilla_propiedad;  //este vector guarda la relacion entre la casilla que estoy y la propiedad en la lista que es
 
-    private int[] orden_compra = new int[NUM_PROPIEDADES]; //este vector sirve para ir almacenando en que orden han sido compradas las propiedades (-1 es que no esta comprada)
-
     private String[] precio_edificar = new String[NUM_PROPIEDADES]; // almacenamos el precio por el que se podra edificar en esa propiedad
 
     @FXML
@@ -85,13 +83,6 @@ public class ListaPropiedadesController implements Initializable {
         botonesE.add(btnE11); botonesE.add(btnE12); botonesE.add(btnE13); botonesE.add(btnE14); botonesE.add(btnE15);
         botonesE.add(btnE16); botonesE.add(btnE17); botonesE.add(btnE18); botonesE.add(btnE19); botonesE.add(btnE20);
         botonesE.add(btnE21); botonesE.add(btnE22); botonesE.add(btnE23);
-        
-        // inicializar vector del orden de compra
-        for(int i=0; i<NUM_PROPIEDADES; i++)
-        {
-            orden_compra[i] = -1;
-        }
-
     }
 
     public void agnadirPropiedad(int casilla)
