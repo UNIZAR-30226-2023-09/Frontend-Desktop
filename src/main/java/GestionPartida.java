@@ -57,7 +57,7 @@ public class GestionPartida {
     public static boolean mostrarEvento;
     public static double economia = 1.0;
     public static int ronda;
-    public static boolean precioPropiedadRecivido =  false;
+    public static boolean precioPropiedadRecivido = false;
 
     public static int precioVenta;
     public static boolean skinsObtenidas = false;
@@ -176,8 +176,8 @@ public class GestionPartida {
     }
 
     // Compra la skin dado su id
-    public static void comprarSkin(String idSkin) {
-        client.send("COMPRAR_SKIN," + nombreUser + "," + idSkin);
+    public static void comprarSkin(int idSkin) {
+        client.send("comprarSkin," + nombreUser + "," + idSkin);
     }
 
     // Muestra las skins disponibles
@@ -441,7 +441,7 @@ public class GestionPartida {
                 break;
             case "PRECIO_VENTA":
                 precioVenta = Integer.parseInt(partes[1]);
-                precioPropiedadRecivido =  true;
+                precioPropiedadRecivido = true;
                 break;
             case "SUMAR_GEMAS":
                 gemas += Integer.parseInt(partes[1]);
