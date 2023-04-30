@@ -609,11 +609,6 @@ public class TableroController implements Initializable {
         // mostar casa en la propiedad correspondiente
     }
 
-    public void edificar()
-    {
-        // mostar casa en la propiedad correspondiente
-    }
-
     private void actualizarSuperpoder() {
         Platform.runLater(() -> {
             VBox vbox = (VBox) superpoder.getChildren().get(2); // ESTO HAY QUE MIRAR QUE SEAN ESTOS
