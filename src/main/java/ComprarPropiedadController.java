@@ -19,7 +19,7 @@ public class ComprarPropiedadController implements Initializable{
     private Button btnComprar, btnRechazar;
 
     @FXML
-    private Label lblImg;
+    private Label lblImg, lblError;
 
     @FXML
     private ImageView propiedadImg;
@@ -34,25 +34,33 @@ public class ComprarPropiedadController implements Initializable{
 
         propiedadComprada = false;
 
-        if (btnComprar.equals(evt)) {
-             
-            GestionPartida.comprarPropiedad(GestionPartida.propiedadAComprar);
-            while (!GestionPartida.compraRealizada) {
-                ConexionServidor.esperar();
+        if (btnComprar.equals(evt))
+        {
+            if(GestionPartida.dineroJugadores[GestionPartida.indiceJugador] >= Integer.parseInt(GestionPartida.precioPropiedadAComprar))
+            {
+                GestionPartida.comprarPropiedad(GestionPartida.propiedadAComprar);
+                while (!GestionPartida.compraRealizada) {
+                    ConexionServidor.esperar();
+                }
+                GestionPartida.compraRealizada = false;
+    
+                propiedadComprada = true;
+                semaphoreComprar.release();
             }
-            GestionPartida.compraRealizada = false;
-
-            propiedadComprada = true;
-            
+            else
+            {
+                lblError.setVisible(true);
+            }
         } else if (btnRechazar.equals(evt)) {
             GestionPartida.comprarPropiedad = false;
+            semaphoreComprar.release();
         }
-        semaphoreComprar.release();
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        
+    public void initialize(URL location, ResourceBundle resources)
+    {
+        lblError.setVisible(false);    
     }
 
     public boolean gestionarComprarPropiedad()

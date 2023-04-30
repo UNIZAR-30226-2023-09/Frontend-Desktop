@@ -82,8 +82,7 @@ public class ListaPropiedadesController implements Initializable {
         botonesE.add(btnE6); botonesE.add(btnE7); botonesE.add(btnE8); botonesE.add(btnE9); botonesE.add(btnE10);
         botonesE.add(btnE11); botonesE.add(btnE12); botonesE.add(btnE13); botonesE.add(btnE14); botonesE.add(btnE15);
         botonesE.add(btnE16); botonesE.add(btnE17); botonesE.add(btnE18); botonesE.add(btnE19); botonesE.add(btnE20);
-        botonesE.add(btnE21); botonesE.add(btnE22); botonesE.add(btnE23); botonesE.add(btnE24); botonesE.add(btnE25);
-        botonesE.add(btnE26); botonesE.add(btnE27);
+        botonesE.add(btnE21); botonesE.add(btnE22); botonesE.add(btnE23);
         
         // inicializar vector del orden de compra
         for(int i=0; i<NUM_PROPIEDADES; i++)
@@ -107,8 +106,6 @@ public class ListaPropiedadesController implements Initializable {
             propiedades.getChildren().get(casilla_propiedad[casilla]).setVisible(true);
             propiedades.getChildren().get(casilla_propiedad[casilla]).setManaged(true);
 
-            // orden_compra[casilla_propiedad[casilla]-1] = numPropiedades;
-
             numPropiedades++;
         });
     }
@@ -127,32 +124,14 @@ public class ListaPropiedadesController implements Initializable {
                 lblVacia.setVisible(true);
                 lblVacia.setManaged(true);
             }
-
-            // orden_compra[casilla_propiedad[casilla]-1] = -1;
         });
     }
 
     /*
-     * Esta funcion permite ocultar todos los botones de la lista de propiedades.
+     * Esta funcion permite mostrar/ocultar todos los botones de la lista de propiedades de vender.
+     * Pero solo de aquella propiedad que se pueda ver en pantalla.
      */
-    public void ocultarBotones()
-    {
-        for(int i=1; i<=NUM_PROPIEDADES; i++)
-        {
-            HBox hbox = (HBox) propiedades.getChildren().get(i);
-
-            hbox.getChildren().get(2).setVisible(false);
-
-            hbox.getChildren().get(3).setVisible(false);
-
-        }
-    }
-
-    /*
-     * Esta funcion permite mostrar todos los botones de la lista de propiedades.
-     * Pero solo de aquella propiedad que se pueda ver en pantalla
-     */
-    public void mostrarBotones()
+    public void visibilidadBotonesVenta(Boolean b)
     {
         for(int i=1; i<=NUM_PROPIEDADES; i++)
         {
@@ -161,10 +140,46 @@ public class ListaPropiedadesController implements Initializable {
             // solo si la propiedad se puede ver mostraremos sus botones
             if(hbox.isVisible())
             {
-                hbox.getChildren().get(2).setVisible(true);
-                hbox.getChildren().get(3).setVisible(true);
+               botonesV.get(i-1).setVisible(b);
             }
 
+        }
+    }
+
+    /*
+     * Esta funcion permite mostrar/ocultar todos los botones de la lista de propiedades de edificar.
+     * Pero solo de aquella propiedad que se pueda ver en pantalla.
+     */
+    public void visibilidadBotonesEdificar(Boolean b)
+    {
+        if(b == true)
+        {
+            // mostramos los botones de edificar de aquellas propiedades que tengamos todo el pais
+            GestionPartida.quieroEdificar();
+            while (!GestionPartida.esperarListaEdificar) {
+                ConexionServidor.esperar();
+            }
+            GestionPartida.esperarListaEdificar = false;
+
+            for(int i=0; i < GestionPartida.nombresPropiedades.size(); i++)
+            {
+                botonesE.get(casilla_propiedad[Integer.parseInt(GestionPartida.nombresPropiedades.get(i))]-1).setVisible(true);
+            }
+        }
+        else
+        {
+            // ocultamos los botones
+            for(int i=1; i<=NUM_PROPIEDADES-4; i++)
+            {
+                HBox hbox = (HBox) propiedades.getChildren().get(i);
+    
+                // solo si la propiedad se puede ver mostraremos sus botones
+                if(hbox.isVisible())
+                {
+                   botonesE.get(i-1).setVisible(false);
+                }
+    
+            }
         }
     }
 
@@ -172,12 +187,22 @@ public class ListaPropiedadesController implements Initializable {
     public void actionEvent(ActionEvent e) throws IOException {
         Object evt = e.getSource();
 
+        // comprobamos si han pulsado algun boton de vender
         for(int i=1; i<=NUM_PROPIEDADES; i++)
         {
             if(evt.equals(botonesV.get(i-1)))
             {
+                System.out.println("La propiedad pulsada es la posicion " + i);
                 // abrir la pantalla que permite vender la propiedad
-                tableroController.mostrarVentanaVenta(orden_compra[i-1], i);
+                tableroController.mostrarVentanaVenta(i);
+            }
+        }
+
+        for(int i=1; i<=NUM_PROPIEDADES-4; i++)
+        {
+            if(evt.equals(botonesE.get(i-1)))
+            {
+                tableroController.edificar();
             }
         }
     }
