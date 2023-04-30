@@ -474,6 +474,11 @@ public class GestionPartida {
             case "SKIN_EQUIPADA_NOOK":
                 System.out.println(nombreUser + " no tiene la skin " + partes[2] + " equipada");
                 break;
+            case "SKIN_COMPRADA_OK":
+                System.out.println(nombreUser + " ha comprado la skin y ahora tiene " + partes[2] + " gemas");
+                // Actualizar el numero de gemas
+                gemas = Integer.parseInt(partes[2]);
+                break;
             default:
 
                 System.out.println("Mensaje no tenido en cuenta: " + message);
