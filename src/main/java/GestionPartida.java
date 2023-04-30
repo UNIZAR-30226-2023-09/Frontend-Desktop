@@ -16,7 +16,7 @@ public class GestionPartida {
     public static boolean dueñoPartida = false;
     public static boolean miTurno = false;
     public static WebSocketClient client;
-    public static boolean enCarcel = false;
+    public static Boolean[] JugadorEnCarcel = new Boolean[4];
     public static int turnosCarcel = 0;
     public static int indiceJugador = -1;
     public static int CuentaInfoRecibida = 3;
@@ -232,7 +232,11 @@ public class GestionPartida {
             case "EMPEZAR_OK":
                 empezarPartida = true;
                 enPartida = true;
-                enCarcel = false;
+                // Ningun jugador esta en la carcel
+                JugadorEnCarcel[0] = false;
+                JugadorEnCarcel[1] = false;
+                JugadorEnCarcel[2] = false;
+                JugadorEnCarcel[3] = false;
                 evento = "Ninguno";
                 economia = 1.0;
                 ronda = 1;
@@ -278,11 +282,11 @@ public class GestionPartida {
                 posicionesJugadores[indiceJugador] = partes[3];
 
                 if (Integer.parseInt(partes[4]) > 0) {
-                    enCarcel = true;
+                    JugadorEnCarcel[indiceJugador] = true;
                     // DatosPartida.estoyCarcel =true;
                     turnosCarcel = Integer.parseInt(partes[4]);
                 } else {
-                    enCarcel = false;
+                    JugadorEnCarcel[indiceJugador] = false;
                     // DatosPartida.estoyCarcel =false;
                     turnosCarcel = 0;
                 }
@@ -308,8 +312,16 @@ public class GestionPartida {
                 precioPropiedadAComprar = partes[4];
                 break;
             case "DENTRO_CARCEL":
-                enCarcel = true;
-                posicionesJugadores[indiceJugador] = "9";
+                // Encontrar el jugador que esta en la carcel
+                String jugadorCarcel = partes[1];
+                int indiceJ = 0;
+                for (int i = 0; i < 4; i++) {
+                    if (jugadorCarcel.equals(ordenJugadores[i])) {
+                        indiceJ = i;
+                    }
+                }
+                JugadorEnCarcel[indiceJ] = true;
+                posicionesJugadores[indiceJ] = "11";
                 break;
             case "SALIR_CARCEL":
                 break;
@@ -461,6 +473,11 @@ public class GestionPartida {
                 break;
             case "SKIN_EQUIPADA_NOOK":
                 System.out.println(nombreUser + " no tiene la skin " + partes[2] + " equipada");
+                break;
+            case "SKIN_COMPRADA_OK":
+                System.out.println(nombreUser + " ha comprado la skin y ahora tiene " + partes[2] + " gemas");
+                // Actualizar el numero de gemas
+                gemas = Integer.parseInt(partes[2]);
                 break;
             default:
 
@@ -656,7 +673,7 @@ public class GestionPartida {
 
     // Gestiona la entrada salida necesaria para jugar un turno
     private static void JugarTurno(WebSocketClient client, Scanner scanner) {
-        if (!enCarcel) {
+        if (!JugadorEnCarcel[indiceJugador]) {
             if (comprarPropiedad) {
                 gestionCompraPropiedad(client, scanner);
             } else if (apostarDinero) {
