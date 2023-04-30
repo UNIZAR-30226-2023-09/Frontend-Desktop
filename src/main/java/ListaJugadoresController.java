@@ -6,6 +6,7 @@
  * Descripción: 
  -----------------------------------------------------------------------
 */
+import java.io.File;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -13,6 +14,8 @@ import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class ListaJugadoresController implements Initializable {
 
@@ -27,20 +30,35 @@ public class ListaJugadoresController implements Initializable {
     @FXML
     public Label lblD4;
 
+    @FXML
+    public ImageView imgJ1, imgJ2, imgJ3, imgJ4;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
 
         lblJ1.setText(GestionPartida.ordenJugadores[0]);
         lblD1.setText(Integer.toString(GestionPartida.dineroJugadores[0]));
 
+        File file1 = new File("src/main/resources/skins/" + GestionPartida.skinsJugadores[0] +".png");
+        imgJ1.setImage(new Image(file1.toURI().toString()));
+
         lblJ2.setText(GestionPartida.ordenJugadores[1]);
         lblD2.setText(Integer.toString(GestionPartida.dineroJugadores[1]));
+
+        File file2 = new File("src/main/resources/skins/" + GestionPartida.skinsJugadores[1] +".png");
+        imgJ1.setImage(new Image(file2.toURI().toString()));
 
         lblJ3.setText(GestionPartida.ordenJugadores[2]);
         lblD3.setText(Integer.toString(GestionPartida.dineroJugadores[2]));
 
+        File file3 = new File("src/main/resources/skins/" + GestionPartida.skinsJugadores[2] +".png");
+        imgJ1.setImage(new Image(file3.toURI().toString()));
+
         lblJ4.setText(GestionPartida.ordenJugadores[3]);
         lblD4.setText(Integer.toString(GestionPartida.dineroJugadores[3]));
+
+        File file4 = new File("src/main/resources/skins/" + GestionPartida.skinsJugadores[3] +".png");
+        imgJ1.setImage(new Image(file4.toURI().toString()));
     }
 
     public void actualizarDinero() {
