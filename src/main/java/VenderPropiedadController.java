@@ -25,7 +25,7 @@ public class VenderPropiedadController {
         if(evt.equals(btnVender))
         {
             // enviar el mensaje para vender la propiedad
-            System.out.println("Propiedad que trato de vender " + GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]);
+            System.out.println("Propiedad que trato de vender " + tableroController.posicion_propiedad_tablero[num_propiedad]);
             // enviar el mensaje para vender la propiedad
             GestionPartida.venderPropiedad(tableroController.posicion_propiedad_tablero[num_propiedad]);
 

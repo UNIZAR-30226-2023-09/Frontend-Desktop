@@ -38,6 +38,11 @@ public class TiendaController implements Initializable {
         lblGemas.setText(Integer.toString(GestionPartida.gemas));
 
         // ponemos el dinero de cada skin
+        actualizarPrecios();
+    }
+
+    private void actualizarPrecios()
+    {
         GestionPartida.mostrarSkins();
 
         while (!GestionPartida.skinsObtenidas) {
@@ -45,17 +50,14 @@ public class TiendaController implements Initializable {
         }
         GestionPartida.skinsObtenidas = false;
 
-        actualizarPrecios();
-    }
-
-    private void actualizarPrecios()
-    {
         Platform.runLater(() -> {
             for (String skin : GestionPartida.listaSkins)
             {
                 String[] partes = skin.split(":");
-                String nombre = partes[0];
-                String precio = partes[1];
+                String nombre = partes[0].trim();
+                String precio = partes[1].trim();
+
+                System.out.println(skin);
 
                 if(nombre.equals("BAXTER"))
                 {
@@ -196,8 +198,15 @@ public class TiendaController implements Initializable {
             // enviamos el mensaje
             GestionPartida.comprarSkin(IDskin);
 
+            System.out.println("skin comprada: " + IDskin);
+
             // actualizamos la tienda
             actualizarPrecios();
+
+            // actualizamos las gemas del jugador
+            Platform.runLater(() -> {
+                lblGemas.setText(Integer.toString(GestionPartida.gemas));
+            });
         } else {
             if(IDskin.equals("BAXTER"))
             {

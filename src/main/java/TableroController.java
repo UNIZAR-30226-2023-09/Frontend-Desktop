@@ -437,15 +437,9 @@ public class TableroController implements Initializable {
 
         // inicializamos el vector
         posicion_propiedad_tablero = new String[]
-            {"0", "2", "3","7", 
-            "8", "10", "12", 
-            "13", "15", "17",
-            "19", "20", "22", 
-            "23", "25", "27",
-            "29", "30", "32",
-            "33", "35", "37", 
-            "38", "40",  "6", 
-            "16", "26", "36"};
+            {"0", "2", "3", "7", "8", "10", "12", "13", "15",
+            "17", "19", "20", "22", "23", "25", "27", "29", "30",
+            "32", "33", "35", "37", "38", "40", "6", "16", "26", "36"};
 
         try {
             banco = loadForm("Banco.fxml");
@@ -596,6 +590,8 @@ public class TableroController implements Initializable {
         venderPropiedad.setVisible(true);
         chat.setVisible(false);
         datosPartida.setVisible(false);
+
+        System.out.println("En el tablero es la posicion: " + posicion_propiedad_tablero[numPropiedad]);
 
         GestionPartida.quieroVenderPropiedad(posicion_propiedad_tablero[numPropiedad]);
 

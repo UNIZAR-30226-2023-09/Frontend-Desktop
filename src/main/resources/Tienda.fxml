@@ -203,7 +203,7 @@
                               </Label>
                               <ImageView fitHeight="210.0" fitWidth="206.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@skins/JEAN-CARLO.png" />
+                                    <Image url="@skins/JEANCARLO.png" />
                                  </image>
                               </ImageView>
                               <Label fx:id="lblP4" contentDisplay="RIGHT" text="Precio" textFill="WHITE">
