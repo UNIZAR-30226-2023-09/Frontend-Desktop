@@ -56,7 +56,7 @@ public class TableroController implements Initializable {
     public static VBox banco, casino, superpoder;
 
     @FXML
-    private Button btnChat, btnTerminarTurno, Qb, Wb;
+    private Button btnChat, btnTerminarTurno;
 
     @FXML
     private StackPane containerForm;
@@ -224,6 +224,11 @@ public class TableroController implements Initializable {
                                     moverFichaSuperpoder(Superpoder.casillaS);
                                     break;
                                 case 2:
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+
                                     datosPartida.setVisible(false);
                                     chat.setVisible(false);
                                     banco.setVisible(true);
@@ -241,6 +246,11 @@ public class TableroController implements Initializable {
                                     GestionPartida.enBanco = false;
                                     break;
                                 case 3:
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+
                                     datosPartida.setVisible(false);
                                     chat.setVisible(false);
                                     casino.setVisible(true);
@@ -261,11 +271,15 @@ public class TableroController implements Initializable {
                                     break;
                                 case 4:
                                     // MOVER FICHA???
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
                                     moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
                                     GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
                                     break;
                                 case 5:
                                     // MOVER FICHA??
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
                                     moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
                                     GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
 
@@ -528,13 +542,6 @@ public class TableroController implements Initializable {
             GestionPartida.finTurno();
             GestionPartida.miTurno = false;
             System.out.println("LE DI AL BOTON DE TERMINAR TURNO");
-        } else if (evt.equals(Qb)) {
-            GestionPartida.enBanco = true;
-            System.out.println("BANCo");
-            System.out.println(GestionPartida.dineroEnBanco);
-        } else if (evt.equals(Wb)) {
-            GestionPartida.apostarDinero = true;
-            System.out.println("CASINo");
         }
 
     }
@@ -694,6 +701,8 @@ public class TableroController implements Initializable {
 
             Label lbl = (Label) vbox.getChildren().get(3); // ESTO HAY QUE MIRAR QUE SEAN ESTOS
 
+            ImageView imgV = (ImageView) superpoder.getChildren().get(1);
+
             HBox hbox = (HBox) vbox.getChildren().get(0);
 
             // TextField text = (TextField) hbox.getChildren().get(0); // TextField
@@ -704,22 +713,34 @@ public class TableroController implements Initializable {
             switch (i) {
                 case 1:
                     lbl.setText("Elija la casilla a la que quiere ir");
+                    File file = new File("src/main/resources/SUPERPODERES/SP1.png");
+                    imgV.setImage(new Image(file.toURI().toString()));
                     // Superpoder.txtCasilla.setVisible(true);
                     break;
                 case 2:
                     lbl.setText("Acudes corriendo al banco");
+                    File file2 = new File("src/main/resources/SUPERPODERES/SP2.png");
+                    imgV.setImage(new Image(file2.toURI().toString()));
                     break;
                 case 3:
                     lbl.setText("Acudes corriendo al casino");
+                    File file3 = new File("src/main/resources/SUPERPODERES/SP3.png");
+                    imgV.setImage(new Image(file3.toURI().toString()));
                     break;
                 case 4:
                     lbl.setText("Acudes corriendo a la casilla de salida");
+                    File file4 = new File("src/main/resources/SUPERPODERES/SP4.png");
+                    imgV.setImage(new Image(file4.toURI().toString()));
                     break;
                 case 5:
                     lbl.setText("Retrocedes 3 casillas");
+                    File file5 = new File("src/main/resources/SUPERPODERES/SP5.png");
+                    imgV.setImage(new Image(file5.toURI().toString()));
                     break;
                 case 6:
                     lbl.setText("Aumenta su suerte en el casino");
+                    File file6 = new File("src/main/resources/SUPERPODERES/SP6.png");
+                    imgV.setImage(new Image(file6.toURI().toString()));
                     break;
                 default:
                     System.out.println("ERROR SUPERPODER");
