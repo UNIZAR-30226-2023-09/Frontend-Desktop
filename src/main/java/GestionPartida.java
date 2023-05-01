@@ -72,9 +72,9 @@ public class GestionPartida {
     // Hay una subasta pendiente por mostrar
     public static boolean subasta;
 
-    private static ArrayList<String> nombresPropiedadesEdificar;
+    private static ArrayList<String> nombresPropiedadesEdificar = new ArrayList<String>();
 
-    private static ArrayList<String> preciosPropiedadesEdificar;
+    private static ArrayList<String> preciosPropiedadesEdificar = new ArrayList<String>();
 
     public final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
             "AeropuertoNarita", "Tokio", "Kioto", "Superpoder", "Osaka", "Carcel", "Roma", "Milan", "Casino", "Napoles",
@@ -204,9 +204,9 @@ public class GestionPartida {
 
     // Metodo que se encarga de gestionar todos los mensajes recibidos
     public static void gestionMensaje(String message) {
-        //if (verbose) {
-            System.out.println(message);
-        //}
+        // if (verbose) {
+        System.out.println(message);
+        // }
         String[] partes = message.split(",");
         switch (partes[0]) {
             case "INICIO_OK":
