@@ -16,7 +16,7 @@ public class EdificarController {
     @FXML
     private Button btnAceptar, btnCancelar;
 
-    private int numPropiedad;
+    private int numPropiedad, precio;
 
     @FXML
     public void actionEvent(ActionEvent e) throws IOException 
@@ -26,7 +26,10 @@ public class EdificarController {
         if(evt.equals(btnAceptar))
         {
             // enviar el mensaje para vender la propiedad
-            System.out.println("todavia no esta implementado el edificar");
+            GestionPartida.edificarPropiedad(tableroController.posicion_propiedad_tablero[numPropiedad], Integer.toString(precio));
+
+            // faltara mostrar graficamente el edificio
+            System.out.println("Falta mostrar en el tablero la casa");
         }
         
         // por ultimo ocultamos la pantalla de vender
@@ -39,6 +42,7 @@ public class EdificarController {
             lblEdificar.setText("Quieres edificar en " + GestionPartida.tablero[Integer.parseInt(tableroController.posicion_propiedad_tablero[numPropiedad])] + " por " + precio + " $");
 
             this.numPropiedad = numPropiedad;
+            this.precio = precio;
         });
     }
 

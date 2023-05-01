@@ -106,6 +106,8 @@ public class TableroController implements Initializable {
                 
                 listaPropiedadesController.visibilidadBotonesVenta(true);
 
+                listaPropiedadesController.visibilidadBotonesEdificar(true);
+
                 do {
                     dado1.setDisable(false);
                     dado2.setDisable(false);
@@ -657,7 +659,6 @@ public class TableroController implements Initializable {
     {
         edificar.setVisible(true);
         chat.setVisible(false);
-        //datosPartida.setVisible(false);
         listaPropiedades.setVisible(false);
 
         edificarController.actualizarLabel(numPropiedad,precio);
@@ -683,15 +684,14 @@ public class TableroController implements Initializable {
 
     public void ocultarVentanaEdificar(int numPropiedad, Boolean vendida)
     {
-        if(vendida)
+        /*if(vendida)
         {
             listaJugadoresController.actualizarDinero();
             listaPropiedadesController.eliminarPropiedad(numPropiedad);
-        }
+        }*/
 
-        venderPropiedad.setVisible(false);
+        edificar.setVisible(false);
         chat.setVisible(true);
-        //datosPartida.setVisible(true);
         listaPropiedades.setVisible(true);
     }
 
