@@ -219,9 +219,6 @@ public class TableroController implements Initializable {
                                 case 1:
                                     // Mover ficha??
                                     moverFichaSuperpoder(Superpoder.casillaS);
-                                    // tengo que actualizar aqui pues el vector de posiciones?
-                                    // GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] =
-                                    // Superpoder.casillaS
                                     break;
                                 case 2:
                                     datosPartida.setVisible(false);
