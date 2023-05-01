@@ -126,30 +126,7 @@ public class TableroController implements Initializable {
                     // CASINO
 
                     if (!GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador]) {
-                        if (GestionPartida.comprarPropiedad) {
-
-                            // si hemos caido en una propiedad que podamos comprar mostramos el menu para
-                            // comprar la misma
-                            datosPartida.setVisible(false);
-                            chat.setVisible(false);
-                            comprarPropiedad.setVisible(true);
-
-                            System.out.println("Compra Propiedad");
-
-                            if (comprarPropiedadController.gestionarComprarPropiedad()) {
-                                listaPropiedadesController.agnadirPropiedad(Integer
-                                        .parseInt(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
-                            }
-
-                            System.out.println("Propiedad");
-                            // dejamos como estaba todo
-                            datosPartida.setVisible(true);
-                            chat.setVisible(false);
-                            comprarPropiedad.setVisible(false);
-
-                            GestionPartida.comprarPropiedad = false;
-
-                        } else if (GestionPartida.superPoder != "0") {
+                        if (GestionPartida.superPoder != "0") {
                             // Superpoder
                             /*
                              * Los superPoderes son:
@@ -317,6 +294,31 @@ public class TableroController implements Initializable {
                             }
 
                             GestionPartida.superPoder = "0";
+                        } else if (GestionPartida.comprarPropiedad) {
+
+                            // si hemos caido en una propiedad que podamos comprar mostramos el menu para
+                            // comprar la misma
+                            datosPartida.setVisible(false);
+                            chat.setVisible(false);
+                            comprarPropiedad.setVisible(true);
+
+                            System.out.print("NO ME GUSTA");
+
+                            System.out.println("Compra Propiedad");
+
+                            if (comprarPropiedadController.gestionarComprarPropiedad()) {
+                                listaPropiedadesController.agnadirPropiedad(Integer
+                                        .parseInt(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
+                            }
+
+                            System.out.println("Propiedad");
+                            // dejamos como estaba todo
+                            datosPartida.setVisible(true);
+                            chat.setVisible(false);
+                            comprarPropiedad.setVisible(false);
+
+                            GestionPartida.comprarPropiedad = false;
+
                         } else if (GestionPartida.enBanco) {
                             // AQUI PONER QUE LA PANTALLA DE BANCO
                             datosPartida.setVisible(false);
