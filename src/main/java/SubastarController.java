@@ -2,6 +2,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -27,6 +28,8 @@ public class SubastarController implements Initializable{
     @FXML
     private Label lblError;
 
+    private int numPropiedad, precio;
+
     @FXML
     public void actionEvent(ActionEvent e) throws IOException
     {
@@ -39,6 +42,7 @@ public class SubastarController implements Initializable{
             {
                 // rellenar informacion necesaria
                 System.out.println("Todavia no esta implementado el mensaje de efectuar la subasta");
+                GestionPartida.subastarPropiedad(tableroController.posicion_propiedad_tablero[numPropiedad],Integer.toString(precio));
 
                 tableroController.ocultarVentanaSubastar();
             }
@@ -67,6 +71,16 @@ public class SubastarController implements Initializable{
         txtDinero.setTextFormatter(textFormatter);
 
         lblError.setVisible(false);
+    }
+
+    public void actualizarLabel(int numPropiedad, int precio)
+    {
+        Platform.runLater(() -> {
+            lblSubastar.setText("Por cuanto quieres subastar " + GestionPartida.tablero[Integer.parseInt(tableroController.posicion_propiedad_tablero[numPropiedad])]);
+
+            this.numPropiedad = numPropiedad;
+            this.precio = precio;
+        });
     }
 
     public void setTableroController(TableroController tableroController)
