@@ -302,7 +302,6 @@ public class TableroController implements Initializable {
                             chat.setVisible(false);
                             comprarPropiedad.setVisible(true);
 
-                            System.out.print("NO ME GUSTA");
 
                             System.out.println("Compra Propiedad");
 
