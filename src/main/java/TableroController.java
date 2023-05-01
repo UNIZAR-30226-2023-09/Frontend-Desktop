@@ -704,6 +704,8 @@ public class TableroController implements Initializable {
 
             Label lbl = (Label) vbox.getChildren().get(3); // ESTO HAY QUE MIRAR QUE SEAN ESTOS
 
+            ImageView imgV = (ImageView) superpoder.getChildren().get(1);
+
             HBox hbox = (HBox) vbox.getChildren().get(0);
 
             // TextField text = (TextField) hbox.getChildren().get(0); // TextField
@@ -714,22 +716,34 @@ public class TableroController implements Initializable {
             switch (i) {
                 case 1:
                     lbl.setText("Elija la casilla a la que quiere ir");
+                    File file = new File("src/main/resources/SUPERPODERES/SP1.png");
+                    imgV.setImage(new Image(file.toURI().toString()));
                     // Superpoder.txtCasilla.setVisible(true);
                     break;
                 case 2:
                     lbl.setText("Acudes corriendo al banco");
+                    File file2 = new File("src/main/resources/SUPERPODERES/SP2.png");
+                    imgV.setImage(new Image(file2.toURI().toString()));
                     break;
                 case 3:
                     lbl.setText("Acudes corriendo al casino");
+                    File file3 = new File("src/main/resources/SUPERPODERES/SP3.png");
+                    imgV.setImage(new Image(file3.toURI().toString()));
                     break;
                 case 4:
                     lbl.setText("Acudes corriendo a la casilla de salida");
+                    File file4 = new File("src/main/resources/SUPERPODERES/SP4.png");
+                    imgV.setImage(new Image(file4.toURI().toString()));
                     break;
                 case 5:
                     lbl.setText("Retrocedes 3 casillas");
+                    File file5 = new File("src/main/resources/SUPERPODERES/SP5.png");
+                    imgV.setImage(new Image(file5.toURI().toString()));
                     break;
                 case 6:
                     lbl.setText("Aumenta su suerte en el casino");
+                    File file6 = new File("src/main/resources/SUPERPODERES/SP6.png");
+                    imgV.setImage(new Image(file6.toURI().toString()));
                     break;
                 default:
                     System.out.println("ERROR SUPERPODER");
