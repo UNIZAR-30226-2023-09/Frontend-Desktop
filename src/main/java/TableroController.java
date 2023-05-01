@@ -262,6 +262,30 @@ public class TableroController implements Initializable {
                                     // MOVER FICHA??
                                     moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
                                     GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+
+                                    if (GestionPartida.comprarPropiedad) {
+                                        // si hemos caido en una propiedad que podamos comprar mostramos el menu para
+                                        // comprar la misma
+                                        datosPartida.setVisible(false);
+                                        chat.setVisible(false);
+                                        comprarPropiedad.setVisible(true);
+            
+                                        System.out.println("Compra Propiedad");
+            
+                                        if (comprarPropiedadController.gestionarComprarPropiedad()) {
+                                            listaPropiedadesController.agnadirPropiedad(Integer
+                                                    .parseInt(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
+                                        }
+            
+                                        System.out.println("Propiedad");
+                                        // dejamos como estaba todo
+                                        datosPartida.setVisible(true);
+                                        chat.setVisible(false);
+                                        comprarPropiedad.setVisible(false);
+            
+                                        GestionPartida.comprarPropiedad = false;
+            
+                                    }
                                     break;
                                 case 6:
 
