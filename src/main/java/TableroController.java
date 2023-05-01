@@ -512,6 +512,7 @@ public class TableroController implements Initializable {
         listaPropiedadesController.setTableroController(this);
         venderPropiedadController.setTableroController(this);
         edificarController.setTableroController(this);
+        subastarController.setTableroController(this);
 
         // inicializamos el vector
         posicion_propiedad_tablero = new String[]
@@ -698,35 +699,29 @@ public class TableroController implements Initializable {
         listaPropiedades.setVisible(false);
 
         edificarController.actualizarLabel(numPropiedad,precio);
-
-        /*System.out.println("En el tablero es la posicion: " + posicion_propiedad_tablero[numPropiedad]);
-
-        GestionPartida.quieroVenderPropiedad(posicion_propiedad_tablero[numPropiedad]);
-        System.out.println("Vamos pal while");
-        
-            while (!GestionPartida.precioPropiedadRecivido)
-            {
-                //System.out.println("Acabo de entrar");
-                //ConexionServidor.esperar();
-                System.out.println("NO salgo");
-            }
-
-        GestionPartida.precioPropiedadRecivido = false;
-
-        System.out.println("he salido");
-
-        venderPropiedadController.actualizarLabel(numPropiedad);*/
     }
 
-    public void ocultarVentanaEdificar(int numPropiedad, Boolean vendida)
+    public void ocultarVentanaEdificar(int numPropiedad, Boolean edificada)
     {
-        /*if(vendida)
-        {
-            listaJugadoresController.actualizarDinero();
-            listaPropiedadesController.eliminarPropiedad(numPropiedad);
-        }*/
+        // faltara poner la imagen que toque
 
         edificar.setVisible(false);
+        chat.setVisible(true);
+        listaPropiedades.setVisible(true);
+    }
+
+    public void mostrarVentanaSubastar(int numPropiedad)
+    {
+        subastar.setVisible(true);
+        chat.setVisible(false);
+        listaPropiedades.setVisible(false);
+    }
+
+    public void ocultarVentanaSubastar()
+    {
+        // faltara poner la imagen que toque
+
+        subastar.setVisible(false);
         chat.setVisible(true);
         listaPropiedades.setVisible(true);
     }

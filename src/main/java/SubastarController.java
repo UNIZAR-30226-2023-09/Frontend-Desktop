@@ -12,6 +12,8 @@ import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextFormatter.Change;;
 
 public class SubastarController implements Initializable{
+
+    private TableroController tableroController;
     
     @FXML
     private Label lblSubastar;
@@ -23,13 +25,31 @@ public class SubastarController implements Initializable{
     private TextField txtDinero;
 
     @FXML
+    private Label lblError;
+
+    @FXML
     public void actionEvent(ActionEvent e) throws IOException
     {
         Object evt = e.getSource();
     
         if (evt.equals(btnAceptar))
         {
-            // rellenar informacion necesaria
+            String dinero = txtDinero.getText();
+            if(!dinero.isEmpty())
+            {
+                // rellenar informacion necesaria
+                System.out.println("Todavia no esta implementado el mensaje de efectuar la subasta");
+
+                tableroController.ocultarVentanaSubastar();
+            }
+            else
+            {
+                lblError.setVisible(true);
+            }
+        }
+        else if(evt.equals(btnCancelar))
+        {
+            tableroController.ocultarVentanaSubastar();
         }
     }
 
@@ -45,5 +65,12 @@ public class SubastarController implements Initializable{
         });
         // Establece el TextFormatter en el TextField
         txtDinero.setTextFormatter(textFormatter);
+
+        lblError.setVisible(false);
+    }
+
+    public void setTableroController(TableroController tableroController)
+    {
+        this.tableroController = tableroController;
     }
 }

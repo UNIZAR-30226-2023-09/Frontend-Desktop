@@ -219,6 +219,17 @@ public class ListaPropiedadesController implements Initializable {
                 tableroController.mostrarVentanaEdificar(i, Integer.parseInt(precio_edificar[i]));
             }
         }
+
+        // comprobamos si han pulsado algun boton de vender
+        for(int i=1; i<=NUM_PROPIEDADES; i++)
+        {
+            if(evt.equals(botonesS.get(i-1)))
+            {
+                System.out.println("La propiedad pulsada es la posicion " + i);
+                // abrir la pantalla que permite vender la propiedad
+                tableroController.mostrarVentanaSubastar(i);
+            }
+        }
     }
 
     public void setTableroController(TableroController tableroController)
