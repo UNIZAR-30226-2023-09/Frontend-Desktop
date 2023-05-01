@@ -72,6 +72,10 @@ public class GestionPartida {
     // Hay una subasta pendiente por mostrar
     public static boolean subasta;
 
+    private static ArrayList<String> nombresPropiedadesEdificar;
+
+    private static ArrayList<String> preciosPropiedadesEdificar;
+
     public final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
             "AeropuertoNarita", "Tokio", "Kioto", "Superpoder", "Osaka", "Carcel", "Roma", "Milan", "Casino", "Napoles",
             "Aeropuerto Heathrow", "Londres", "Superpoder", "Manchester", "Edimburgo", "Bote", "Madrid",
@@ -400,13 +404,13 @@ public class GestionPartida {
                 respuestaBanco = true;
                 break;
             case "EDIFICAR":
-                nombresPropiedades.clear();
-                preciosPropiedades.clear();
+                nombresPropiedadesEdificar.clear();
+                preciosPropiedadesEdificar.clear();
 
                 for (int i = 2; i < partes.length; i++) {
                     String[] prop = partes[i].split("-");
-                    nombresPropiedades.add(prop[0].substring(9));
-                    preciosPropiedades.add(prop[1]);
+                    nombresPropiedadesEdificar.add(prop[0].substring(9));
+                    preciosPropiedadesEdificar.add(prop[1]);
                 }
                 esperarListaEdificar = true;
                 break;
@@ -770,9 +774,9 @@ public class GestionPartida {
         }
         esperarListaEdificar = false;
         System.out.println("Seleccione una propiedad para edificar:");
-        for (int i = 0; i < nombresPropiedades.size(); i++) {
-            String precio = preciosPropiedades.get(i);
-            String numProp = nombresPropiedades.get(i);
+        for (int i = 0; i < nombresPropiedadesEdificar.size(); i++) {
+            String precio = preciosPropiedadesEdificar.get(i);
+            String numProp = nombresPropiedadesEdificar.get(i);
             System.out.println(
                     (i + 1) + " - " + tablero[Integer.parseInt(numProp)] + " (" + precio + ")");
         }
@@ -782,8 +786,8 @@ public class GestionPartida {
         if (opcion == 0) {
             return;
         }
-        if (opcion > 0 && opcion <= nombresPropiedades.size()) {
-            String numProp = nombresPropiedades.get(opcion - 1);
+        if (opcion > 0 && opcion <= nombresPropiedadesEdificar.size()) {
+            String numProp = nombresPropiedadesEdificar.get(opcion - 1);
             // Pasar la propiedad a entero
             int propiedad = Integer.parseInt(numProp);
             edificarPropiedad(propiedad);
