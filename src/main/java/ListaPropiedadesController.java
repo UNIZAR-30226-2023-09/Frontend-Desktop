@@ -158,7 +158,7 @@ public class ListaPropiedadesController implements Initializable {
             {
                 int numPropiedad = Integer.parseInt(GestionPartida.nombresPropiedades.get(i));
                 botonesE.get(casilla_propiedad[numPropiedad-1]).setVisible(true);
-                precio_edificar[numPropiedad] = GestionPartida.preciosPropiedades.get(i);
+                precio_edificar[casilla_propiedad[numPropiedad-1]] = GestionPartida.preciosPropiedades.get(i);
             }
         }
         else
@@ -197,7 +197,7 @@ public class ListaPropiedadesController implements Initializable {
         {
             if(evt.equals(botonesE.get(i-1)))
             {
-                tableroController.edificar();
+                tableroController.mostrarVentanaEdificar(i, Integer.parseInt(precio_edificar[i]));
             }
         }
     }

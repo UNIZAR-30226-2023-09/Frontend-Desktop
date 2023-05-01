@@ -42,12 +42,15 @@ public class TableroController implements Initializable {
     private VenderPropiedadController venderPropiedadController;
 
     @FXML
+    private EdificarController edificarController;
+
+    @FXML
     private ImageView dado1, dado2, user1, user2, user3, user4;
 
     @FXML
-    private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad;
+    private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad, edificar;
 
-    public static VBox banco, vender, casino, superpoder;
+    public static VBox banco, casino, superpoder;
 
     @FXML
     private Button btnChat, btnTerminarTurno, Qb, Wb;
@@ -432,6 +435,7 @@ public class TableroController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         listaPropiedadesController.setTableroController(this);
         venderPropiedadController.setTableroController(this);
+        edificarController.setTableroController(this);
 
         // inicializamos el vector
         posicion_propiedad_tablero = new String[]
@@ -452,6 +456,7 @@ public class TableroController implements Initializable {
             comprarPropiedad.setVisible(false);
             banco.setVisible(false);
             venderPropiedad.setVisible(false);
+            edificar.setVisible(false);
             casino.setVisible(false);
             superpoder.setVisible(false);
             btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
@@ -616,9 +621,46 @@ public class TableroController implements Initializable {
         listaPropiedades.setVisible(true);
     }
 
-    public void edificar()
+    public void mostrarVentanaEdificar(int numPropiedad, int precio)
     {
-        // mostar casa en la propiedad correspondiente
+        edificar.setVisible(true);
+        chat.setVisible(false);
+        //datosPartida.setVisible(false);
+        listaPropiedades.setVisible(false);
+
+        edificarController.actualizarLabel(numPropiedad,precio);
+
+        /*System.out.println("En el tablero es la posicion: " + posicion_propiedad_tablero[numPropiedad]);
+
+        GestionPartida.quieroVenderPropiedad(posicion_propiedad_tablero[numPropiedad]);
+        System.out.println("Vamos pal while");
+        
+            while (!GestionPartida.precioPropiedadRecivido)
+            {
+                //System.out.println("Acabo de entrar");
+                //ConexionServidor.esperar();
+                System.out.println("NO salgo");
+            }
+
+        GestionPartida.precioPropiedadRecivido = false;
+
+        System.out.println("he salido");
+
+        venderPropiedadController.actualizarLabel(numPropiedad);*/
+    }
+
+    public void ocultarVentanaEdificar(int numPropiedad, Boolean vendida)
+    {
+        if(vendida)
+        {
+            listaJugadoresController.actualizarDinero();
+            listaPropiedadesController.eliminarPropiedad(numPropiedad);
+        }
+
+        venderPropiedad.setVisible(false);
+        chat.setVisible(true);
+        //datosPartida.setVisible(true);
+        listaPropiedades.setVisible(true);
     }
 
     private void actualizarSuperpoder() {
