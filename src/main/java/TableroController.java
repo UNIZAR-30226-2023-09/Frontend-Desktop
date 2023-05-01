@@ -221,6 +221,8 @@ public class TableroController implements Initializable {
                                     moverFichaSuperpoder(Superpoder.casillaS);
                                     break;
                                 case 2:
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
                                     moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
                                     GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
 
@@ -241,6 +243,8 @@ public class TableroController implements Initializable {
                                     GestionPartida.enBanco = false;
                                     break;
                                 case 3:
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
                                     moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
                                     GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
 
@@ -264,11 +268,15 @@ public class TableroController implements Initializable {
                                     break;
                                 case 4:
                                     // MOVER FICHA???
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
                                     moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
                                     GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
                                     break;
                                 case 5:
                                     // MOVER FICHA??
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
                                     moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
                                     GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
 
