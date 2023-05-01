@@ -149,43 +149,6 @@ public class TableroController implements Initializable {
 
                             GestionPartida.comprarPropiedad = false;
 
-                        } else if (GestionPartida.apostarDinero) {
-                            // hemos caido en la casilla del casino por lo que se muestra la ventrana
-                            datosPartida.setVisible(false);
-                            chat.setVisible(false);
-                            casino.setVisible(true);
-
-                            // semaforo para esperar a que se pulse algun boton del casino (apostar o
-                            // retirarse)
-                            try {
-                                CasinoController.semaphoreCasino.acquire();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-
-                            datosPartida.setVisible(true);
-                            chat.setVisible(false);
-                            casino.setVisible(false);
-
-                            GestionPartida.apostarDinero = false;
-
-                        } else if (GestionPartida.enBanco) {
-                            // AQUI PONER QUE LA PANTALLA DE BANCO
-                            datosPartida.setVisible(false);
-                            chat.setVisible(false);
-                            banco.setVisible(true);
-
-                            try {
-                                BancoController.semaphoreBanco.acquire();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-
-                            datosPartida.setVisible(true);
-                            chat.setVisible(false);
-                            banco.setVisible(false);
-                            // SEMAFORO DE BANCO
-                            GestionPartida.enBanco = false;
                         } else if (GestionPartida.superPoder != "0") {
                             // Superpoder
                             /*
@@ -196,6 +159,12 @@ public class TableroController implements Initializable {
                              * 4. Ir a la casilla de salida
                              * 5. Retroceder 3 casillas
                              * 6. Aumentar la suerte del casino
+                             * 7. Vas carcel
+                             * 8. Vas casilla de bote
+                             * 9. Vas a zaragoza
+                             * 10. ??
+                             * 11. Vas a japon
+                             * 12. ??
                              */
                             System.out.print("Superpoder:");
                             System.out.print(GestionPartida.superPoder);
@@ -312,12 +281,79 @@ public class TableroController implements Initializable {
                                 case 6:
 
                                     break;
+                                case 7:
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+                                    break;
+                                case 8:
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+                                    break;
+                                case 9:
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+                                    break;
+                                case 10:
+
+                                    break;
+                                case 11:
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+                                    break;
+                                case 12:
+
+                                    break;
                                 default:
                                     System.out.println("ERROR SUPERPODER");
                                     break;
                             }
 
                             GestionPartida.superPoder = "0";
+                        } else if (GestionPartida.enBanco) {
+                            // AQUI PONER QUE LA PANTALLA DE BANCO
+                            datosPartida.setVisible(false);
+                            chat.setVisible(false);
+                            banco.setVisible(true);
+
+                            try {
+                                BancoController.semaphoreBanco.acquire();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            datosPartida.setVisible(true);
+                            chat.setVisible(false);
+                            banco.setVisible(false);
+                            // SEMAFORO DE BANCO
+                            GestionPartida.enBanco = false;
+                        } else if (GestionPartida.apostarDinero) {
+                            // hemos caido en la casilla del casino por lo que se muestra la ventrana
+                            datosPartida.setVisible(false);
+                            chat.setVisible(false);
+                            casino.setVisible(true);
+
+                            // semaforo para esperar a que se pulse algun boton del casino (apostar o
+                            // retirarse)
+                            try {
+                                CasinoController.semaphoreCasino.acquire();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            datosPartida.setVisible(true);
+                            chat.setVisible(false);
+                            casino.setVisible(false);
+
+                            GestionPartida.apostarDinero = false;
+
                         }
                     }
 
@@ -741,6 +777,30 @@ public class TableroController implements Initializable {
                     lbl.setText("Aumenta su suerte en el casino");
                     File file6 = new File("src/main/resources/SUPERPODERES/SP6.png");
                     imgV.setImage(new Image(file6.toURI().toString()));
+                    break;
+                case 7:
+                    File file7 = new File("src/main/resources/SUPERPODERES/SP7.png");
+                    imgV.setImage(new Image(file7.toURI().toString()));
+                    break;
+                case 8:
+                    File file8 = new File("src/main/resources/SUPERPODERES/SP8.png");
+                    imgV.setImage(new Image(file8.toURI().toString()));
+                    break;
+                case 9:
+                    File file9 = new File("src/main/resources/SUPERPODERES/SP9.png");
+                    imgV.setImage(new Image(file9.toURI().toString()));
+                    break;
+                case 10:
+                    File file10 = new File("src/main/resources/SUPERPODERES/SP10.png");
+                    imgV.setImage(new Image(file10.toURI().toString()));
+                    break;
+                case 11:
+                    File file11 = new File("src/main/resources/SUPERPODERES/SP11.png");
+                    imgV.setImage(new Image(file11.toURI().toString()));
+                    break;
+                case 12:
+                    File file12 = new File("src/main/resources/SUPERPODERES/SP12.png");
+                    imgV.setImage(new Image(file12.toURI().toString()));
                     break;
                 default:
                     System.out.println("ERROR SUPERPODER");
