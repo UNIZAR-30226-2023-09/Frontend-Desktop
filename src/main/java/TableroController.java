@@ -53,7 +53,7 @@ public class TableroController implements Initializable {
     public static VBox banco, casino, superpoder;
 
     @FXML
-    private Button btnChat, btnTerminarTurno, Qb, Wb;
+    private Button btnChat, btnTerminarTurno;
 
     @FXML
     private StackPane containerForm;
@@ -538,13 +538,6 @@ public class TableroController implements Initializable {
             GestionPartida.finTurno();
             GestionPartida.miTurno = false;
             System.out.println("LE DI AL BOTON DE TERMINAR TURNO");
-        } else if (evt.equals(Qb)) {
-            GestionPartida.enBanco = true;
-            System.out.println("BANCo");
-            System.out.println(GestionPartida.dineroEnBanco);
-        } else if (evt.equals(Wb)) {
-            GestionPartida.apostarDinero = true;
-            System.out.println("CASINo");
         }
 
     }
