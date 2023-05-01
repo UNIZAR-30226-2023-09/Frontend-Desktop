@@ -46,19 +46,19 @@ public class ListaJugadoresController implements Initializable {
         lblD2.setText(Integer.toString(GestionPartida.dineroJugadores[1]));
 
         File file2 = new File("src/main/resources/skins/" + GestionPartida.skinsJugadores[1] +".png");
-        imgJ1.setImage(new Image(file2.toURI().toString()));
+        imgJ2.setImage(new Image(file2.toURI().toString()));
 
         lblJ3.setText(GestionPartida.ordenJugadores[2]);
         lblD3.setText(Integer.toString(GestionPartida.dineroJugadores[2]));
 
         File file3 = new File("src/main/resources/skins/" + GestionPartida.skinsJugadores[2] +".png");
-        imgJ1.setImage(new Image(file3.toURI().toString()));
+        imgJ3.setImage(new Image(file3.toURI().toString()));
 
         lblJ4.setText(GestionPartida.ordenJugadores[3]);
         lblD4.setText(Integer.toString(GestionPartida.dineroJugadores[3]));
 
         File file4 = new File("src/main/resources/skins/" + GestionPartida.skinsJugadores[3] +".png");
-        imgJ1.setImage(new Image(file4.toURI().toString()));
+        imgJ4.setImage(new Image(file4.toURI().toString()));
     }
 
     public void actualizarDinero() {
