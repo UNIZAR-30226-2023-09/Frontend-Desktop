@@ -45,10 +45,13 @@ public class TableroController implements Initializable {
     private EdificarController edificarController;
 
     @FXML
+    private SubastarController subastarController;
+
+    @FXML
     private ImageView dado1, dado2, user1, user2, user3, user4;
 
     @FXML
-    private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad, edificar;
+    private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad, edificar, subastar;
 
     public static VBox banco, casino, superpoder;
 
@@ -480,6 +483,7 @@ public class TableroController implements Initializable {
             edificar.setVisible(false);
             casino.setVisible(false);
             superpoder.setVisible(false);
+            subastar.setVisible(false);
             btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
 
             inicializarFichas();
