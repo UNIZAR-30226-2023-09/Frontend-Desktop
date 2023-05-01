@@ -42,7 +42,7 @@ public class SubastarController implements Initializable{
             {
                 // rellenar informacion necesaria
                 System.out.println("Todavia no esta implementado el mensaje de efectuar la subasta");
-                GestionPartida.subastarPropiedad(tableroController.posicion_propiedad_tablero[numPropiedad],Integer.toString(precio));
+                // GestionPartida.subastarPropiedad(tableroController.posicion_propiedad_tablero[numPropiedad],Integer.toString(precio));
 
                 tableroController.ocultarVentanaSubastar();
             }
