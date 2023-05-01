@@ -221,6 +221,9 @@ public class TableroController implements Initializable {
                                     moverFichaSuperpoder(Superpoder.casillaS);
                                     break;
                                 case 2:
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+
                                     datosPartida.setVisible(false);
                                     chat.setVisible(false);
                                     banco.setVisible(true);
@@ -238,6 +241,9 @@ public class TableroController implements Initializable {
                                     GestionPartida.enBanco = false;
                                     break;
                                 case 3:
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+
                                     datosPartida.setVisible(false);
                                     chat.setVisible(false);
                                     casino.setVisible(true);
