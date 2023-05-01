@@ -93,9 +93,8 @@
       </AnchorPane>
       <VBox alignment="BOTTOM_RIGHT" prefWidth="600.0" GridPane.columnIndex="1">
          <children>
-            <StackPane fx:id="containerForm" prefHeight="850.0" prefWidth="600.0">
+            <StackPane fx:id="containerForm" alignment="BOTTOM_CENTER" prefHeight="850.0" prefWidth="600.0">
                <children>
-                  <fx:include fx:id="venderPropiedad" source="VenderPropiedad.fxml" />
                   <fx:include fx:id="comprarPropiedad" source="ComprarPropiedad.fxml" />
                   <fx:include fx:id="chat" source="Chat.fxml" />
                   <VBox fx:id="datosPartida" prefHeight="200.0" prefWidth="100.0">
@@ -104,6 +103,7 @@
                         <fx:include fx:id="listaPropiedades" source="ListaPropiedades.fxml" />
                      </children>
                   </VBox>
+                  <fx:include fx:id="venderPropiedad" source="VenderPropiedad.fxml" />
                </children></StackPane>
             <AnchorPane prefHeight="50.0" prefWidth="200.0">
                <children>

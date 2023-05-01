@@ -204,9 +204,9 @@ public class GestionPartida {
 
     // Metodo que se encarga de gestionar todos los mensajes recibidos
     public static void gestionMensaje(String message) {
-        if (verbose) {
+        //if (verbose) {
             System.out.println(message);
-        }
+        //}
         String[] partes = message.split(",");
         switch (partes[0]) {
             case "INICIO_OK":
