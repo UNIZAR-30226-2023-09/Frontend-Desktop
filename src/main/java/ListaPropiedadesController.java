@@ -40,12 +40,11 @@ public class ListaPropiedadesController implements Initializable {
     private String[] precio_edificar; // almacenamos el precio por el que se podra edificar en esa propiedad
 
     @FXML
-    private Button  btnV1, btnV2, btnV3, btnV4, btnV5, btnV6, btnV7, btnV8, btnV9, btnV10, btnV11, btnV12, btnV13, btnV14, btnV15, btnV16, btnV17, btnV18, btnV19, btnV20, btnV21, btnV22, btnV23, btnV24, btnV25, btnV26, btnV27;
+    private Button  btnV1, btnV2, btnV3, btnV4, btnV5, btnV6, btnV7, btnV8, btnV9, btnV10, btnV11, btnV12, btnV13, btnV14, btnV15, btnV16, btnV17, btnV18, btnV19, btnV20, btnV21, btnV22, btnV23, btnV24, btnV25, btnV26, btnV27,
+        btnE1, btnE2, btnE3, btnE4, btnE5, btnE6, btnE7, btnE8, btnE9, btnE10, btnE11, btnE12, btnE13, btnE14, btnE15, btnE16, btnE17, btnE18, btnE19, btnE20, btnE21, btnE22, btnE23,
+        btnS1, btnS2, btnS3, btnS4, btnS5, btnS6, btnS7, btnS8, btnS9, btnS10, btnS11, btnS12, btnS13, btnS14, btnS15, btnS16, btnS17, btnS18, btnS19, btnS20, btnS21, btnS22, btnS23, btnS24, btnS25, btnS26, btnS27;
 
-    @FXML
-    private Button  btnE1, btnE2, btnE3, btnE4, btnE5, btnE6, btnE7, btnE8, btnE9, btnE10, btnE11, btnE12, btnE13, btnE14, btnE15, btnE16, btnE17, btnE18, btnE19, btnE20, btnE21, btnE22, btnE23, btnE24, btnE25, btnE26, btnE27;
-
-    private  ObservableList<Button> botonesV, botonesE;
+    private  ObservableList<Button> botonesV, botonesE, botonesS;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -55,13 +54,6 @@ public class ListaPropiedadesController implements Initializable {
             propiedades.getChildren().get(i).setVisible(false);
             propiedades.getChildren().get(i).setManaged(false);
         }
-
-        propiedades.getChildren().get(9).setVisible(true);
-        propiedades.getChildren().get(9).setManaged(true);
-        propiedades.getChildren().get(10).setVisible(true);
-        propiedades.getChildren().get(10).setManaged(true);
-        propiedades.getChildren().get(11).setVisible(true);
-        propiedades.getChildren().get(11).setManaged(true);
 
         //inicializamos el vector de la relacion casilla-propiedad
         casilla_propiedad = new int[] 
@@ -99,6 +91,16 @@ public class ListaPropiedadesController implements Initializable {
         botonesE.add(btnE11); botonesE.add(btnE12); botonesE.add(btnE13); botonesE.add(btnE14); botonesE.add(btnE15);
         botonesE.add(btnE16); botonesE.add(btnE17); botonesE.add(btnE18); botonesE.add(btnE19); botonesE.add(btnE20);
         botonesE.add(btnE21); botonesE.add(btnE22); botonesE.add(btnE23);
+
+        //lista de botones subastar
+        botonesS = FXCollections.observableArrayList();
+
+        botonesS.add(btnS1); botonesS.add(btnS2); botonesS.add(btnS3); botonesS.add(btnS4); botonesS.add(btnS5);
+        botonesS.add(btnS6); botonesS.add(btnS7); botonesS.add(btnS8); botonesS.add(btnS9); botonesS.add(btnS10);
+        botonesS.add(btnS11); botonesS.add(btnS12); botonesS.add(btnS13); botonesS.add(btnS14); botonesS.add(btnS15);
+        botonesS.add(btnS16); botonesS.add(btnS17); botonesS.add(btnS18); botonesS.add(btnS19); botonesS.add(btnS20);
+        botonesS.add(btnS21); botonesS.add(btnS22); botonesS.add(btnS23); botonesS.add(btnS24); botonesS.add(btnS25);
+        botonesS.add(btnS26); botonesS.add(btnS27);
     }
 
     public void agnadirPropiedad(int casilla)
