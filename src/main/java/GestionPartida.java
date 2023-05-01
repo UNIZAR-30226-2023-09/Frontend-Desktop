@@ -69,12 +69,15 @@ public class GestionPartida {
 
     public static String[] skinsJugadores = new String[4];
 
-    // Hay una subasta pendiente por mostrar
+    // Hay una subasta pendiente por mostrar en la interfaz
     public static boolean subasta;
 
-    private static ArrayList<String> nombresPropiedadesEdificar = new ArrayList<String>();
+    public static ArrayList<String> nombresPropiedadesEdificar = new ArrayList<String>();
 
-    private static ArrayList<String> preciosPropiedadesEdificar = new ArrayList<String>();
+    public static ArrayList<String> preciosPropiedadesEdificar = new ArrayList<String>();
+
+    // La subasta esta ocupada y no puedes subastar
+    public static boolean subastaOcupada;
 
     public final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
             "AeropuertoNarita", "Tokio", "Kioto", "Superpoder", "Osaka", "Carcel", "Roma", "Milan", "Casino", "Napoles",
@@ -493,6 +496,9 @@ public class GestionPartida {
                 break;
             case "SUBASTA":
                 subasta = true;
+                break;
+            case "SUBASTA_OCUPADA":
+                subastaOcupada = true;
                 break;
             default:
 
