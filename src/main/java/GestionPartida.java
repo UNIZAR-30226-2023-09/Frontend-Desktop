@@ -94,6 +94,8 @@ public class GestionPartida {
     // Hashmap que contiene las propiedades de la partida
     public static HashMap<Integer, Propiedad> propiedades = new HashMap<Integer, Propiedad>();
 
+    public static boolean actualizar_cambio_dispositivo = false;
+
     // Struct que almacena el dueño de una propiedad, el id de la propiedad, el
     // nombre de la propiedad y el numero de casas que tiene
     public static class Propiedad {
@@ -237,6 +239,19 @@ public class GestionPartida {
 
     public static void ComprarSubasta() {
         client.send("COMPRAR_SUBASTA," + nombreUser + "," + IDPartida + "," + jugador_subasta);
+    }
+
+    // Devolver todas las propiedades del usuario en una lista, leyendolas del
+    // diccionario de propiedades "propiedades"
+    public static ArrayList<Propiedad> getPropiedades() {
+        ArrayList<Propiedad> propiedadesDevolver = new ArrayList<Propiedad>();
+        for (Integer key : propiedades.keySet()) {
+            Propiedad prop = propiedades.get(key);
+            if (prop.dueño.equals(nombreUser)) {
+                propiedadesDevolver.add(prop);
+            }
+        }
+        return propiedadesDevolver;
     }
 
     // Metodo que se encarga de gestionar todos los mensajes recibidos
@@ -581,7 +596,7 @@ public class GestionPartida {
                 System.out.println("Han comprado tu propiedad en subasta por " + partes[2]);
                 break;
             case "ESTADO_PARTIDA":
-
+                actualizar_cambio_dispositivo = true;
                 // Inicializar todas las variables a las por defecto:
                 JugadorEnCarcel[0] = false;
                 JugadorEnCarcel[1] = false;
@@ -655,6 +670,7 @@ public class GestionPartida {
                     }
                 }
 
+                break;
             default:
                 System.out.println("Mensaje no tenido en cuenta: " + message);
                 return;
