@@ -702,60 +702,83 @@ public class TableroController implements Initializable {
         if (!estamosActualizando) {
             estamosActualizando = true;
             for (int i = 0; i < 4; i++) {
-                String posicion = "Pos" + String.valueOf(GestionPartida.posicionesJugadores[i]);
 
-                String coordenadas;
-                switch (i) {
-                    case 0:
-                        coordenadas = DatosPartida.mapaPropiedades1.get(posicion);
-                        break;
-                    case 1:
-                        coordenadas = DatosPartida.mapaPropiedades2.get(posicion);
-                        break;
-                    case 2:
-                        coordenadas = DatosPartida.mapaPropiedades3.get(posicion);
-                        break;
-                    case 3:
-                        coordenadas = DatosPartida.mapaPropiedades4.get(posicion);
-                        break;
-                    default:
-                        coordenadas = "ERROR";
-                        System.out.println("ERROR CASILLA1");
-                        break;
+               
+                    String posicion = "Pos" + String.valueOf(GestionPartida.posicionesJugadores[i]);
+
+                    String coordenadas;
+                    switch (i) {
+                        case 0:
+                            coordenadas = DatosPartida.mapaPropiedades1.get(posicion);
+                            break;
+                        case 1:
+                            coordenadas = DatosPartida.mapaPropiedades2.get(posicion);
+                            break;
+                        case 2:
+                            coordenadas = DatosPartida.mapaPropiedades3.get(posicion);
+                            break;
+                        case 3:
+                            coordenadas = DatosPartida.mapaPropiedades4.get(posicion);
+                            break;
+                        default:
+                            coordenadas = "ERROR";
+                            System.out.println("ERROR CASILLA1");
+                            break;
+                    }
+
+                    String[] partes = coordenadas.split(",");
+                    int x = Integer.parseInt(partes[0]);
+                    int y = Integer.parseInt(partes[1]);
+
+                    switch (i) {
+                        case 0:
+                            user1.setLayoutX(x);
+                            user1.setLayoutY(y);
+                            break;
+                        case 1:
+                            user2.setLayoutX(x);
+                            user2.setLayoutY(y);
+                            break;
+                        case 2:
+                            user3.setLayoutX(x);
+                            user3.setLayoutY(y);
+                            break;
+                        case 3:
+                            user4.setLayoutX(x);
+                            user4.setLayoutY(y);
+                            break;
+                        default:
+                            System.out.println("ERROR CASILLA2");
+                            break;
+                    }
+                    /*
+                    * try {
+                    * Thread.sleep(1000); //TODAVIA NO FUNCIONA BIEN
+                    * } catch (InterruptedException ex) {
+                    * ex.printStackTrace();
+                    * }
+                    */
+                        
+                if(GestionPartida.jugadoresVivos[i] == false){
+                    System.out.println("La ha palmado alguien");
+                    switch (i) {
+                        case 0:
+                            user1.setVisible(false);                            
+                            break;
+                        case 1:
+                            user2.setVisible(false);                           
+                            break;
+                        case 2:
+                            user3.setVisible(false);                            
+                            break;
+                        case 3:
+                            user4.setVisible(false);
+                            break;
+                        default:
+                            System.out.println("ERROR CASILLA2");
+                            break;
+                    }
                 }
-
-                String[] partes = coordenadas.split(",");
-                int x = Integer.parseInt(partes[0]);
-                int y = Integer.parseInt(partes[1]);
-
-                switch (i) {
-                    case 0:
-                        user1.setLayoutX(x);
-                        user1.setLayoutY(y);
-                        break;
-                    case 1:
-                        user2.setLayoutX(x);
-                        user2.setLayoutY(y);
-                        break;
-                    case 2:
-                        user3.setLayoutX(x);
-                        user3.setLayoutY(y);
-                        break;
-                    case 3:
-                        user4.setLayoutX(x);
-                        user4.setLayoutY(y);
-                        break;
-                    default:
-                        System.out.println("ERROR CASILLA2");
-                        break;
-                }
-                /*
-                 * try {
-                 * Thread.sleep(1000); //TODAVIA NO FUNCIONA BIEN
-                 * } catch (InterruptedException ex) {
-                 * ex.printStackTrace();
-                 * }
-                 */
             }
 
             estamosActualizando = false;
