@@ -1,10 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.shape.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
 
 <GridPane prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TableroController">
    <columnConstraints>
@@ -200,6 +208,7 @@
          <children>
             <StackPane fx:id="containerForm" alignment="BOTTOM_CENTER" prefHeight="850.0" prefWidth="600.0">
                <children>
+                  <fx:include fx:id="viajeAeropuertos" source="ViajeAeropuertos.fxml" />
                   <fx:include fx:id="comprarPropiedad" source="ComprarPropiedad.fxml" />
                   <fx:include fx:id="chat" source="Chat.fxml" />
                   <VBox fx:id="datosPartida" prefHeight="200.0" prefWidth="100.0">
