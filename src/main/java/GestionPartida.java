@@ -522,8 +522,33 @@ public class GestionPartida {
                 // Sería actualizar despues a esto posicionesJugadores[indiceJugador] =
                 // propiedadADesplazarse;
                 break;
+            case "SUBASTA_OK":
+                System.out.println("Subasta realizada con exito");
+                break;
+            case "SUBASTA_NO_OK":
+                System.out.println("Subasta no realizada");
+                break;
+            case "SUBASTA_COMPRADA_TU":
+                System.out.println("Has comprado la propiedad en subasta");
+                vectorDePropiedades.get(indiceJugador).add(tablero[Integer.parseInt(partes[3])]);
+                dineroJugadores[indiceJugador] = Integer.parseInt(partes[2]);
+                break;
+            case "SUBASTA_COMPRADA":
+                // Coger la propiedad que se subasta ha comprado otro jugador
+                String propiedad = partes[3];
+                // Coger la lista de mis propiedades
+                ArrayList<String> misPropiedades = vectorDePropiedades.get(indiceJugador);
+                for (int i = 0; i < misPropiedades.size(); i++) {
+                    // Obtener el nombre de la propiedad
+                    int indicePropiedadVendida = Integer.parseInt(propiedad);
+                    if (misPropiedades.get(i).equals(tablero[indicePropiedadVendida])) {
+                        misPropiedades.remove(i);
+                    }
+                }
+                dineroJugadores[indiceJugador] = Integer.parseInt(partes[2]);
+                System.out.println("Han comprado tu propiedad en subasta por " + partes[2]);
+                break;
             default:
-
                 System.out.println("Mensaje no tenido en cuenta: " + message);
                 return;
         }
@@ -694,7 +719,7 @@ public class GestionPartida {
             subasta = false;
             System.out.println("Hay una subasta en curso del jugador "
                     + jugador_subasta + " por " + precio_subasta
-                    + "€. ¿Qué desea hacer?");
+                    + " de la propiedad " + propiedad_subasta + ". Que desea hacer?");
             System.out.println("1 - Comprar");
             System.out.println("2 - Pasar");
             String mensaje = scanner.nextLine();
@@ -803,30 +828,18 @@ public class GestionPartida {
     // Le pregunta al usuario que propiedad de las que el tiene quiere subastar
     // y por que precio querria subastarla
     private static void gestionSubastarPropiedad(Scanner scanner) {
-        System.out.println("Seleccione una propiedad para subastar:");
-        for (int i = 0; i < vectorDePropiedades.get(indiceJugador).size(); i++) {
-            String precio = vectorDePropiedades.get(indiceJugador).get(i);
-            String numProp = vectorDePropiedades.get(indiceJugador).get(i);
-            System.out.println(
-                    (i + 1) + " - " + tablero[Integer.parseInt(numProp)] + " (" + precio + ")");
-        }
+        System.out.println("Introduzca el numero de propiedad que quiere subastar:");
         System.out.println("0 - Volver al menú anterior");
         // Leer que propiedad quiere subastar el jugador
-        int opcion = scanner.nextInt();
-        if (opcion == 0) {
+        String opcion = scanner.nextLine();
+        if (opcion == "0") {
             return;
-        }
-        if (opcion > 0 && opcion <= vectorDePropiedades.get(indiceJugador).size()) {
+        } else {
             // Leer el precio de subasta
             System.out.println("Introduzca el precio de subasta:");
-            int precio = scanner.nextInt();
+            String precio = scanner.nextLine();
             // Enviar la subasta al servidor
-            // Pasar la propiedad y el precio a string
-            String propiedad = vectorDePropiedades.get(indiceJugador).get(opcion - 1);
-            String precioString = String.valueOf(precio);
-            subastarPropiedad(propiedad, precioString);
-        } else {
-            System.out.println("Opción inválida");
+            subastarPropiedad(opcion, precio);
         }
         // Esperamos a recibir la respuesta del servidor "SUBASTA_OK"
         ConexionServidor.esperar();
@@ -883,7 +896,7 @@ public class GestionPartida {
             String numProp = nombresPropiedadesEdificar.get(opcion - 1);
             // Pasar la propiedad a entero
             int propiedad = Integer.parseInt(numProp);
-            // edificarPropiedad(propiedad);    -- LO HE CAMBIADO YO MORO
+            // edificarPropiedad(propiedad); -- LO HE CAMBIADO YO MORO
         } else {
             System.out.println("Opción inválida");
         }
