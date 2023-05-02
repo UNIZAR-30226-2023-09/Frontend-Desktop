@@ -51,13 +51,16 @@ public class TableroController implements Initializable {
     private ViajeAeropuertosController viajeAeropuertosController;
 
     @FXML
+    private SuperpoderController superpoderController;
+
+    @FXML
     private ImageView dado1, dado2, user1, user2, user3, user4;
 
     @FXML
     private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad, edificar,
-            subastar, viajeAeropuertos;
+            subastar, viajeAeropuertos, superpoder;
 
-    public static VBox banco, casino, superpoder;
+    public static VBox banco, casino/*, superpoder*/;
 
     @FXML
     private Button btnChat, btnTerminarTurno;
@@ -156,13 +159,14 @@ public class TableroController implements Initializable {
                             chat.setVisible(false);
                             superpoder.setVisible(true);
 
-                            actualizarSuperpoder();
+                            //  --- actualizarSuperpoder();
+                            superpoderController.gestionarSuperpoder();
 
-                            try {
-                                SuperpoderController.semaphoreSuper.acquire();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                            // try {
+                            //     SuperpoderController.semaphoreSuper.acquire();
+                            // } catch (InterruptedException e) {
+                            //     e.printStackTrace();
+                            // }
 
                             datosPartida.setVisible(true);
                             chat.setVisible(false);
@@ -605,11 +609,11 @@ public class TableroController implements Initializable {
         try {
             banco = loadForm("Banco.fxml");
             casino = loadForm("Casino.fxml");
-            superpoder = loadForm("Superpoder.fxml");
+            //superpoder = loadForm("Superpoder.fxml");
 
             // HAY QUE AÑADIR AQUI EL VBOX COMPRA.CASINO Y BANCO
 
-            containerForm.getChildren().addAll(banco, casino, superpoder);
+            containerForm.getChildren().addAll(banco, casino/*, superpoder*/);
             datosPartida.setVisible(true);
             chat.setVisible(false);
             comprarPropiedad.setVisible(false);
@@ -619,6 +623,7 @@ public class TableroController implements Initializable {
             casino.setVisible(false);
             superpoder.setVisible(false);
             subastar.setVisible(false);
+            viajeAeropuertos.setVisible(false);
             btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
 
             inicializarFichas();
@@ -642,6 +647,9 @@ public class TableroController implements Initializable {
                 actualizarEconomia();
 
                 // jugadores muertos
+
+                // ponemos a false la variable una vez hemos actualizado toda la informacion
+                GestionPartida.actualizar_cambio_dispositivo = false;
             }
 
             Thread threadIni = new Thread() {

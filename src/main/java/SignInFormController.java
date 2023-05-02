@@ -60,7 +60,6 @@ public class SignInFormController implements Initializable {
                         {
                             // Ir al tablero
                             App.setRoot("Tablero");
-
                         }
                         else
                         {
