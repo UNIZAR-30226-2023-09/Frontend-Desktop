@@ -1,4 +1,5 @@
 import java.io.IOException;
+import java.util.concurrent.Semaphore;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -15,11 +16,16 @@ public class ViajeAeropuertosController {
     @FXML
     private ImageView imgViaje;
 
+    public static Semaphore semaphoreAeropuerto = new Semaphore(0);
+
     @FXML
     public void actionEvent(ActionEvent e) throws IOException {
         Object evt = e.getSource();
          
         // ocultar la ventana
+        if (evt.equals(btnAceptar)){
+            semaphoreAeropuerto.release();   
+        }
     }
 
     public void setTableroController(TableroController tableroController)

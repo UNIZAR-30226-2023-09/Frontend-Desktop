@@ -414,21 +414,21 @@ public class TableroController implements Initializable {
                         } else if (GestionPartida.propiedadADesplazarseAvion != null){  //PEDIR MENSAJE?
                             System.out.println("Entro aqui, me toca??");
 
-                            /* 
+                             
                             datosPartida.setVisible(false);
                             chat.setVisible(false);
-                            comprarPropiedad.setVisible(true);
+                            viajeAeropuertos.setVisible(true);
 
                             try {
-                                CasinoController.semaphoreCasino.acquire();
+                                ViajeAeropuertosController.semaphoreAeropuerto.acquire();
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
 
                             datosPartida.setVisible(true);
                             chat.setVisible(false);
-                            comprarPropiedad.setVisible(false);
-                            */
+                            viajeAeropuertos.setVisible(false);
+                            
                             
                             System.out.print("A desplazarse:");
                             System.out.print(GestionPartida.propiedadADesplazarseAvion);
