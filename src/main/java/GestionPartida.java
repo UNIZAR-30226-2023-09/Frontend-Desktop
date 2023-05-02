@@ -79,6 +79,14 @@ public class GestionPartida {
     // La subasta esta ocupada y no puedes subastar
     public static boolean subastaOcupada;
 
+    public static String propiedadADesplazarseAvion;
+
+    public static String jugador_subasta;
+
+    public static String propiedad_subasta;
+
+    public static int precio_subasta;
+
     public final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
             "AeropuertoNarita", "Tokio", "Kioto", "Superpoder", "Osaka", "Carcel", "Roma", "Milan", "Casino", "Napoles",
             "Aeropuerto Heathrow", "Londres", "Superpoder", "Manchester", "Edimburgo", "Bote", "Madrid",
@@ -203,6 +211,10 @@ public class GestionPartida {
     // Subasta la propiedad elegida por el usuario por el precio dado
     public static void subastarPropiedad(String propiedad, String precio) {
         client.send("SUBASTAR," + IDPartida + "," + nombreUser + "," + propiedad + "," + precio);
+    }
+
+    public static void ComprarSubasta() {
+        client.send("COMPRAR_SUBASTA," + nombreUser + "," + IDPartida + "," + jugador_subasta);
     }
 
     // Metodo que se encarga de gestionar todos los mensajes recibidos
@@ -496,9 +508,21 @@ public class GestionPartida {
                 break;
             case "SUBASTA":
                 subasta = true;
+                jugador_subasta = partes[1];
+                propiedad_subasta = partes[2];
+                precio_subasta = Integer.parseInt(partes[3]);
                 break;
             case "SUBASTA_OCUPADA":
                 subastaOcupada = true;
+                break;
+            case "GANADOR":
+                enPartida = false;
+                gemas = Integer.parseInt(partes[1]);
+                break;
+            case "DESPLAZAR_JUGADOR_AVION":
+                propiedadADesplazarseAvion = partes[1];
+                // Sería actualizar despues a esto posicionesJugadores[indiceJugador] =
+                // propiedadADesplazarse;
                 break;
             default:
 
@@ -652,6 +676,7 @@ public class GestionPartida {
                 }
                 do {
                     limpiarTerminal();
+                    gestionSubasta(scanner);
                     lanzarLosDados(scanner);
                     JugarTurno(client, scanner);
                 } while (dadosDobles);
@@ -662,6 +687,33 @@ public class GestionPartida {
             }
             // Esperamos a recibir la respuesta del servidor
             // Finalizamos el turno
+            ConexionServidor.esperar();
+        }
+    }
+
+    private static void gestionSubasta(Scanner scanner) {
+        if (subasta) {
+            subasta = false;
+            System.out.println("Hay una subasta en curso del jugador "
+                    + jugador_subasta + " por " + precio_subasta
+                    + "€. ¿Qué desea hacer?");
+            System.out.println("1 - Comprar");
+            System.out.println("2 - Pasar");
+            String mensaje = scanner.nextLine();
+            switch (mensaje) {
+                case "1":
+                    // Comprar
+                    ComprarSubasta();
+                    break;
+                case "2":
+                    // Pasar
+                    break;
+                default:
+                    // Opción incorrecta
+                    System.out.println("Elija una opción válida");
+                    break;
+            }
+            // Esperamos a recibir la respuesta del servidor
             ConexionServidor.esperar();
         }
     }
@@ -722,7 +774,8 @@ public class GestionPartida {
             System.out.println("1 - Edificar");
             System.out.println("2 - Intercambiar propiedad");
             System.out.println("3 - Vender una propiedad");
-            System.out.println("4 - Acabar turno");
+            System.out.println("4 - Subastar propiedad");
+            System.out.println("5 - Finalizar turno");
             String opcion = scanner.nextLine();
             switch (opcion) {
                 case "1":
@@ -735,6 +788,9 @@ public class GestionPartida {
                     venderUnaPropiedad(client, scanner);
                     break;
                 case "4":
+                    gestionSubastarPropiedad(scanner);
+                    break;
+                case "5":
                     finTurno();
                     finMenu = true;
                     break;
@@ -744,6 +800,39 @@ public class GestionPartida {
             }
         }
         finMenu = false;
+    }
+
+    // Le pregunta al usuario que propiedad de las que el tiene quiere subastar
+    // y por que precio querria subastarla
+    private static void gestionSubastarPropiedad(Scanner scanner) {
+        System.out.println("Seleccione una propiedad para subastar:");
+        for (int i = 0; i < vectorDePropiedades.get(indiceJugador).size(); i++) {
+            String precio = vectorDePropiedades.get(indiceJugador).get(i);
+            String numProp = vectorDePropiedades.get(indiceJugador).get(i);
+            System.out.println(
+                    (i + 1) + " - " + tablero[Integer.parseInt(numProp)] + " (" + precio + ")");
+        }
+        System.out.println("0 - Volver al menú anterior");
+        // Leer que propiedad quiere subastar el jugador
+        int opcion = scanner.nextInt();
+        if (opcion == 0) {
+            return;
+        }
+        if (opcion > 0 && opcion <= vectorDePropiedades.get(indiceJugador).size()) {
+            // Leer el precio de subasta
+            System.out.println("Introduzca el precio de subasta:");
+            int precio = scanner.nextInt();
+            // Enviar la subasta al servidor
+            // Pasar la propiedad y el precio a string
+            String propiedad = vectorDePropiedades.get(indiceJugador).get(opcion - 1);
+            String precioString = String.valueOf(precio);
+            subastarPropiedad(propiedad, precioString);
+        } else {
+            System.out.println("Opción inválida");
+        }
+        // Esperamos a recibir la respuesta del servidor "SUBASTA_OK"
+        ConexionServidor.esperar();
+
     }
 
     // Muestra las propiedades que tiene el jugador y le da la opción de vender
