@@ -81,7 +81,7 @@ public class CasinoController implements Initializable{
         
                         // Esperar respuesta
                         //System.out.println("ESPERANDO RESPUESTA");
-                        //ConexionServidor.esperar(); //REVISAR SI ESTO TIENE QUE IR AQUI
+                        ConexionServidor.esperar(); //REVISAR SI ESTO TIENE QUE IR AQUI
                         //System.out.println("RESPUESTA RECIBIDA");
                         lblGanancias.setVisible(true);
         

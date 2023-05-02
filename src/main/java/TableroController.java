@@ -48,11 +48,14 @@ public class TableroController implements Initializable {
     private SubastarController subastarController;
 
     @FXML
+    private ViajeAeropuertosController viajeAeropuertosController;
+
+    @FXML
     private ImageView dado1, dado2, user1, user2, user3, user4;
 
     @FXML
     private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad, edificar,
-            subastar;
+            subastar, viajeAeropuertos;
 
     public static VBox banco, casino, superpoder;
 
@@ -277,6 +280,32 @@ public class TableroController implements Initializable {
                                     System.out.print(GestionPartida.propiedadADesplazarse);
                                     moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
                                     GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+
+                                    if (GestionPartida.comprarPropiedad) {
+                                        // si hemos caido en una propiedad que podamos comprar mostramos el menu para
+                                        // comprar la misma
+                                        datosPartida.setVisible(false);
+                                        chat.setVisible(false);
+                                        comprarPropiedad.setVisible(true);
+
+                                        System.out.println("Compra Propiedad");
+
+                                        if (comprarPropiedadController.gestionarComprarPropiedad()) {
+                                            listaPropiedadesController.agnadirPropiedad(Integer
+                                                    .parseInt(
+                                                            GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
+                                        }
+
+                                        System.out.println("Propiedad");
+                                        // dejamos como estaba todo
+                                        datosPartida.setVisible(true);
+                                        chat.setVisible(false);
+                                        comprarPropiedad.setVisible(false);
+
+                                        GestionPartida.comprarPropiedad = false;
+
+                                    }
+
                                     break;
                                 case 10:
 
@@ -286,6 +315,32 @@ public class TableroController implements Initializable {
                                     System.out.print(GestionPartida.propiedadADesplazarse);
                                     moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
                                     GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+
+                                    if (GestionPartida.comprarPropiedad) {
+                                        // si hemos caido en una propiedad que podamos comprar mostramos el menu para
+                                        // comprar la misma
+                                        datosPartida.setVisible(false);
+                                        chat.setVisible(false);
+                                        comprarPropiedad.setVisible(true);
+
+                                        System.out.println("Compra Propiedad");
+
+                                        if (comprarPropiedadController.gestionarComprarPropiedad()) {
+                                            listaPropiedadesController.agnadirPropiedad(Integer
+                                                    .parseInt(
+                                                            GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
+                                        }
+
+                                        System.out.println("Propiedad");
+                                        // dejamos como estaba todo
+                                        datosPartida.setVisible(true);
+                                        chat.setVisible(false);
+                                        comprarPropiedad.setVisible(false);
+
+                                        GestionPartida.comprarPropiedad = false;
+
+                                    }
+
                                     break;
                                 case 12:
 
@@ -356,6 +411,31 @@ public class TableroController implements Initializable {
 
                             GestionPartida.apostarDinero = false;
 
+                        } else if (GestionPartida.propiedadADesplazarseAvion != null){  //PEDIR MENSAJE?
+                            System.out.println("Entro aqui, me toca??");
+
+                             
+                            datosPartida.setVisible(false);
+                            chat.setVisible(false);
+                            viajeAeropuertos.setVisible(true);
+
+                            try {
+                                ViajeAeropuertosController.semaphoreAeropuerto.acquire();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            datosPartida.setVisible(true);
+                            chat.setVisible(false);
+                            viajeAeropuertos.setVisible(false);
+                            
+                            
+                            System.out.print("A desplazarse:");
+                            System.out.print(GestionPartida.propiedadADesplazarseAvion);
+                            moverFichaSuperpoder(GestionPartida.propiedadADesplazarseAvion);
+                            GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarseAvion;
+
+                            GestionPartida.propiedadADesplazarseAvion = null;
                         }
                     }
 
@@ -377,6 +457,7 @@ public class TableroController implements Initializable {
             }
             ConexionServidor.esperar();
         }
+        System.out.println("Ganaste rey, ahora sal de aqui");
     }
 
     @FXML
@@ -514,6 +595,7 @@ public class TableroController implements Initializable {
         venderPropiedadController.setTableroController(this);
         edificarController.setTableroController(this);
         subastarController.setTableroController(this);
+        viajeAeropuertosController.setTableroController(this);
 
         // inicializamos el vector
         posicion_propiedad_tablero = new String[] { "0", "2", "3", "7", "8", "10", "12", "13", "15",
