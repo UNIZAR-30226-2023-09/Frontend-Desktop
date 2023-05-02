@@ -318,6 +318,11 @@ public class GestionPartida {
                 skinsJugadores[2] = partes[9];
                 skinsJugadores[3] = partes[10];
 
+                jugadoresVivos[0] = true;
+                jugadoresVivos[1] = true;
+                jugadoresVivos[2] = true;
+                jugadoresVivos[3] = true;
+
                 skinTablero = partes[11];
 
                 // Inicializar todas las propiedades de la partida para que no tengan dueño
