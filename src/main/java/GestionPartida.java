@@ -181,9 +181,7 @@ public class GestionPartida {
         client.send("venderPropiedad," + nombreUser + "," + propiedad + "," + IDPartida);
     }
 
-    public static void edificarPropiedad(int propiedadElegida) {
-        String propiedad = nombresPropiedades.get(propiedadElegida);
-        String precio = preciosPropiedades.get(propiedadElegida);
+    public static void edificarPropiedad(String propiedad, String precio) {
         client.send("EDIFICAR," + nombreUser + "," + IDPartida + "," +
                 propiedad + "-" + precio);
     }
@@ -885,7 +883,7 @@ public class GestionPartida {
             String numProp = nombresPropiedadesEdificar.get(opcion - 1);
             // Pasar la propiedad a entero
             int propiedad = Integer.parseInt(numProp);
-            edificarPropiedad(propiedad);
+            // edificarPropiedad(propiedad);    -- LO HE CAMBIADO YO MORO
         } else {
             System.out.println("Opción inválida");
         }

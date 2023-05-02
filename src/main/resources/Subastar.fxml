@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="subastar" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="SubastarController">
+   <children>
+      <Label alignment="CENTER" prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8PX;" text="Subastar" textFill="WHITE">
+         <VBox.margin>
+            <Insets top="25.0" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+      </Label>
+      <VBox alignment="CENTER">
+         <children>
+            <Label fx:id="lblSubastar" text="Por cuanto quieres subastar X">
+               <font>
+                  <Font size="20.0" />
+               </font>
+            </Label>
+            <TextField fx:id="txtDinero" prefHeight="25.0" prefWidth="300.0" promptText="100 $">
+               <VBox.margin>
+                  <Insets left="150.0" right="150.0" top="15.0" />
+               </VBox.margin>
+            </TextField>
+            <Label fx:id="lblError" text="La cantidadad minima es 0$" textFill="RED">
+               <font>
+                  <Font name="System Bold" size="15.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Label>
+            <HBox alignment="CENTER" spacing="30.0">
+               <children>
+                  <Button fx:id="btnAceptar" mnemonicParsing="false" onAction="#actionEvent" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: #3bd714; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Aceptar">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#actionEvent" prefHeight="40.0" prefWidth="110.0" style="-fx-background-color: red; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Cancelar">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
+               </children>
+               <padding>
+                  <Insets top="20.0" />
+               </padding>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+            </HBox>
+         </children>
+         <VBox.margin>
+            <Insets top="50.0" />
+         </VBox.margin>
+      </VBox>
+   </children>
+</VBox>

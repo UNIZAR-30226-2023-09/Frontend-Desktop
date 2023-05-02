@@ -42,15 +42,21 @@ public class TableroController implements Initializable {
     private VenderPropiedadController venderPropiedadController;
 
     @FXML
+    private EdificarController edificarController;
+
+    @FXML
+    private SubastarController subastarController;
+
+    @FXML
     private ImageView dado1, dado2, user1, user2, user3, user4;
 
     @FXML
-    private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad;
+    private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad, edificar, subastar;
 
-    public static VBox banco, vender, casino, superpoder;
+    public static VBox banco, casino, superpoder;
 
     @FXML
-    private Button btnChat, btnTerminarTurno, Qb, Wb;
+    private Button btnChat, btnTerminarTurno;
 
     @FXML
     private StackPane containerForm;
@@ -100,6 +106,8 @@ public class TableroController implements Initializable {
                 
                 listaPropiedadesController.visibilidadBotonesVenta(true);
 
+                listaPropiedadesController.visibilidadBotonesEdificar(true);
+
                 do {
                     dado1.setDisable(false);
                     dado2.setDisable(false);
@@ -118,67 +126,7 @@ public class TableroController implements Initializable {
                     // CASINO
 
                     if (!GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador]) {
-                        if (GestionPartida.comprarPropiedad) {
-
-                            // si hemos caido en una propiedad que podamos comprar mostramos el menu para
-                            // comprar la misma
-                            datosPartida.setVisible(false);
-                            chat.setVisible(false);
-                            comprarPropiedad.setVisible(true);
-
-                            System.out.println("Compra Propiedad");
-
-                            if (comprarPropiedadController.gestionarComprarPropiedad()) {
-                                listaPropiedadesController.agnadirPropiedad(Integer
-                                        .parseInt(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
-                            }
-
-                            System.out.println("Propiedad");
-                            // dejamos como estaba todo
-                            datosPartida.setVisible(true);
-                            chat.setVisible(false);
-                            comprarPropiedad.setVisible(false);
-
-                            GestionPartida.comprarPropiedad = false;
-
-                        } else if (GestionPartida.apostarDinero) {
-                            // hemos caido en la casilla del casino por lo que se muestra la ventrana
-                            datosPartida.setVisible(false);
-                            chat.setVisible(false);
-                            casino.setVisible(true);
-
-                            // semaforo para esperar a que se pulse algun boton del casino (apostar o
-                            // retirarse)
-                            try {
-                                CasinoController.semaphoreCasino.acquire();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-
-                            datosPartida.setVisible(true);
-                            chat.setVisible(false);
-                            casino.setVisible(false);
-
-                            GestionPartida.apostarDinero = false;
-
-                        } else if (GestionPartida.enBanco) {
-                            // AQUI PONER QUE LA PANTALLA DE BANCO
-                            datosPartida.setVisible(false);
-                            chat.setVisible(false);
-                            banco.setVisible(true);
-
-                            try {
-                                BancoController.semaphoreBanco.acquire();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
-
-                            datosPartida.setVisible(true);
-                            chat.setVisible(false);
-                            banco.setVisible(false);
-                            // SEMAFORO DE BANCO
-                            GestionPartida.enBanco = false;
-                        } else if (GestionPartida.superPoder != "0") {
+                        if (GestionPartida.superPoder != "0") {
                             // Superpoder
                             /*
                              * Los superPoderes son:
@@ -188,6 +136,12 @@ public class TableroController implements Initializable {
                              * 4. Ir a la casilla de salida
                              * 5. Retroceder 3 casillas
                              * 6. Aumentar la suerte del casino
+                             * 7. Vas carcel
+                             * 8. Vas casilla de bote
+                             * 9. Vas a zaragoza
+                             * 10. ??
+                             * 11. Vas a japon
+                             * 12. ??
                              */
                             System.out.print("Superpoder:");
                             System.out.print(GestionPartida.superPoder);
@@ -216,11 +170,13 @@ public class TableroController implements Initializable {
                                 case 1:
                                     // Mover ficha??
                                     moverFichaSuperpoder(Superpoder.casillaS);
-                                    // tengo que actualizar aqui pues el vector de posiciones?
-                                    // GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] =
-                                    // Superpoder.casillaS
                                     break;
                                 case 2:
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+
                                     datosPartida.setVisible(false);
                                     chat.setVisible(false);
                                     banco.setVisible(true);
@@ -238,6 +194,11 @@ public class TableroController implements Initializable {
                                     GestionPartida.enBanco = false;
                                     break;
                                 case 3:
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+
                                     datosPartida.setVisible(false);
                                     chat.setVisible(false);
                                     casino.setVisible(true);
@@ -258,15 +219,73 @@ public class TableroController implements Initializable {
                                     break;
                                 case 4:
                                     // MOVER FICHA???
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
                                     moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
                                     GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
                                     break;
                                 case 5:
                                     // MOVER FICHA??
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+
+                                    if (GestionPartida.comprarPropiedad) {
+                                        // si hemos caido en una propiedad que podamos comprar mostramos el menu para
+                                        // comprar la misma
+                                        datosPartida.setVisible(false);
+                                        chat.setVisible(false);
+                                        comprarPropiedad.setVisible(true);
+            
+                                        System.out.println("Compra Propiedad");
+            
+                                        if (comprarPropiedadController.gestionarComprarPropiedad()) {
+                                            listaPropiedadesController.agnadirPropiedad(Integer
+                                                    .parseInt(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
+                                        }
+            
+                                        System.out.println("Propiedad");
+                                        // dejamos como estaba todo
+                                        datosPartida.setVisible(true);
+                                        chat.setVisible(false);
+                                        comprarPropiedad.setVisible(false);
+            
+                                        GestionPartida.comprarPropiedad = false;
+            
+                                    }
+                                    break;
+                                case 6:
+
+                                    break;
+                                case 7:
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
                                     moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
                                     GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
                                     break;
-                                case 6:
+                                case 8:
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+                                    break;
+                                case 9:
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+                                    break;
+                                case 10:
+
+                                    break;
+                                case 11:
+                                    System.out.print("A desplazarse:");
+                                    System.out.print(GestionPartida.propiedadADesplazarse);
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+                                    break;
+                                case 12:
 
                                     break;
                                 default:
@@ -275,6 +294,67 @@ public class TableroController implements Initializable {
                             }
 
                             GestionPartida.superPoder = "0";
+                        } else if (GestionPartida.comprarPropiedad) {
+
+                            // si hemos caido en una propiedad que podamos comprar mostramos el menu para
+                            // comprar la misma
+                            datosPartida.setVisible(false);
+                            chat.setVisible(false);
+                            comprarPropiedad.setVisible(true);
+
+
+                            System.out.println("Compra Propiedad");
+
+                            if (comprarPropiedadController.gestionarComprarPropiedad()) {
+                                listaPropiedadesController.agnadirPropiedad(Integer
+                                        .parseInt(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
+                            }
+
+                            System.out.println("Propiedad");
+                            // dejamos como estaba todo
+                            datosPartida.setVisible(true);
+                            chat.setVisible(false);
+                            comprarPropiedad.setVisible(false);
+
+                            GestionPartida.comprarPropiedad = false;
+
+                        } else if (GestionPartida.enBanco) {
+                            // AQUI PONER QUE LA PANTALLA DE BANCO
+                            datosPartida.setVisible(false);
+                            chat.setVisible(false);
+                            banco.setVisible(true);
+
+                            try {
+                                BancoController.semaphoreBanco.acquire();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            datosPartida.setVisible(true);
+                            chat.setVisible(false);
+                            banco.setVisible(false);
+                            // SEMAFORO DE BANCO
+                            GestionPartida.enBanco = false;
+                        } else if (GestionPartida.apostarDinero) {
+                            // hemos caido en la casilla del casino por lo que se muestra la ventrana
+                            datosPartida.setVisible(false);
+                            chat.setVisible(false);
+                            casino.setVisible(true);
+
+                            // semaforo para esperar a que se pulse algun boton del casino (apostar o
+                            // retirarse)
+                            try {
+                                CasinoController.semaphoreCasino.acquire();
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+
+                            datosPartida.setVisible(true);
+                            chat.setVisible(false);
+                            casino.setVisible(false);
+
+                            GestionPartida.apostarDinero = false;
+
                         }
                     }
 
@@ -432,6 +512,8 @@ public class TableroController implements Initializable {
     public void initialize(URL arg0, ResourceBundle arg1) {
         listaPropiedadesController.setTableroController(this);
         venderPropiedadController.setTableroController(this);
+        edificarController.setTableroController(this);
+        subastarController.setTableroController(this);
 
         // inicializamos el vector
         posicion_propiedad_tablero = new String[]
@@ -452,8 +534,10 @@ public class TableroController implements Initializable {
             comprarPropiedad.setVisible(false);
             banco.setVisible(false);
             venderPropiedad.setVisible(false);
+            edificar.setVisible(false);
             casino.setVisible(false);
             superpoder.setVisible(false);
+            subastar.setVisible(false);
             btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
 
             inicializarFichas();
@@ -498,13 +582,6 @@ public class TableroController implements Initializable {
             GestionPartida.finTurno();
             GestionPartida.miTurno = false;
             System.out.println("LE DI AL BOTON DE TERMINAR TURNO");
-        } else if (evt.equals(Qb)) {
-            GestionPartida.enBanco = true;
-            System.out.println("BANCo");
-            System.out.println(GestionPartida.dineroEnBanco);
-        } else if (evt.equals(Wb)) {
-            GestionPartida.apostarDinero = true;
-            System.out.println("CASINo");
         }
 
     }
@@ -616,9 +693,38 @@ public class TableroController implements Initializable {
         listaPropiedades.setVisible(true);
     }
 
-    public void edificar()
+    public void mostrarVentanaEdificar(int numPropiedad, int precio)
     {
-        // mostar casa en la propiedad correspondiente
+        edificar.setVisible(true);
+        chat.setVisible(false);
+        listaPropiedades.setVisible(false);
+
+        edificarController.actualizarLabel(numPropiedad,precio);
+    }
+
+    public void ocultarVentanaEdificar(int numPropiedad, Boolean edificada)
+    {
+        // faltara poner la imagen que toque
+
+        edificar.setVisible(false);
+        chat.setVisible(true);
+        listaPropiedades.setVisible(true);
+    }
+
+    public void mostrarVentanaSubastar(int numPropiedad)
+    {
+        subastar.setVisible(true);
+        chat.setVisible(false);
+        listaPropiedades.setVisible(false);
+    }
+
+    public void ocultarVentanaSubastar()
+    {
+        // faltara poner la imagen que toque
+
+        subastar.setVisible(false);
+        chat.setVisible(true);
+        listaPropiedades.setVisible(true);
     }
 
     private void actualizarSuperpoder() {
@@ -626,6 +732,8 @@ public class TableroController implements Initializable {
             VBox vbox = (VBox) superpoder.getChildren().get(2); // ESTO HAY QUE MIRAR QUE SEAN ESTOS
 
             Label lbl = (Label) vbox.getChildren().get(3); // ESTO HAY QUE MIRAR QUE SEAN ESTOS
+
+            ImageView imgV = (ImageView) superpoder.getChildren().get(1);
 
             HBox hbox = (HBox) vbox.getChildren().get(0);
 
@@ -637,22 +745,58 @@ public class TableroController implements Initializable {
             switch (i) {
                 case 1:
                     lbl.setText("Elija la casilla a la que quiere ir");
+                    File file = new File("src/main/resources/SUPERPODERES/SP1.png");
+                    imgV.setImage(new Image(file.toURI().toString()));
                     // Superpoder.txtCasilla.setVisible(true);
                     break;
                 case 2:
                     lbl.setText("Acudes corriendo al banco");
+                    File file2 = new File("src/main/resources/SUPERPODERES/SP2.png");
+                    imgV.setImage(new Image(file2.toURI().toString()));
                     break;
                 case 3:
                     lbl.setText("Acudes corriendo al casino");
+                    File file3 = new File("src/main/resources/SUPERPODERES/SP3.png");
+                    imgV.setImage(new Image(file3.toURI().toString()));
                     break;
                 case 4:
                     lbl.setText("Acudes corriendo a la casilla de salida");
+                    File file4 = new File("src/main/resources/SUPERPODERES/SP4.png");
+                    imgV.setImage(new Image(file4.toURI().toString()));
                     break;
                 case 5:
                     lbl.setText("Retrocedes 3 casillas");
+                    File file5 = new File("src/main/resources/SUPERPODERES/SP5.png");
+                    imgV.setImage(new Image(file5.toURI().toString()));
                     break;
                 case 6:
                     lbl.setText("Aumenta su suerte en el casino");
+                    File file6 = new File("src/main/resources/SUPERPODERES/SP6.png");
+                    imgV.setImage(new Image(file6.toURI().toString()));
+                    break;
+                case 7:
+                    File file7 = new File("src/main/resources/SUPERPODERES/SP7.png");
+                    imgV.setImage(new Image(file7.toURI().toString()));
+                    break;
+                case 8:
+                    File file8 = new File("src/main/resources/SUPERPODERES/SP8.png");
+                    imgV.setImage(new Image(file8.toURI().toString()));
+                    break;
+                case 9:
+                    File file9 = new File("src/main/resources/SUPERPODERES/SP9.png");
+                    imgV.setImage(new Image(file9.toURI().toString()));
+                    break;
+                case 10:
+                    File file10 = new File("src/main/resources/SUPERPODERES/SP10.png");
+                    imgV.setImage(new Image(file10.toURI().toString()));
+                    break;
+                case 11:
+                    File file11 = new File("src/main/resources/SUPERPODERES/SP11.png");
+                    imgV.setImage(new Image(file11.toURI().toString()));
+                    break;
+                case 12:
+                    File file12 = new File("src/main/resources/SUPERPODERES/SP12.png");
+                    imgV.setImage(new Image(file12.toURI().toString()));
                     break;
                 default:
                     System.out.println("ERROR SUPERPODER");

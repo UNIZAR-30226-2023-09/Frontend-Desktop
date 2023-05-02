@@ -22,43 +22,13 @@
       </Label>
       <ScrollPane hbarPolicy="NEVER" prefWidth="600.0" styleClass="viewport" stylesheets="@fondo.css" vbarPolicy="NEVER" VBox.vgrow="NEVER">
          <content>
-            <VBox fx:id="propiedades" prefWidth="600.0" spacing="5.0" style="-fx-background-color: transparent;">
+            <VBox fx:id="propiedades" prefHeight="300.0" prefWidth="600.0" spacing="5.0" style="-fx-background-color: transparent;">
                <children>
                   <Label fx:id="lblVacia" text="Todavia no tiene propiedades">
                      <font>
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <HBox prefWidth="200.0" spacing="5.0">
-                     <children>
-                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@banderas/MEXICO.png" />
-                           </image>
-                        </ImageView>
-                        <Label text="Guadalajara">
-                           <font>
-                              <Font size="20.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="btnE1" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets left="200.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Button>
-                        <Button fx:id="btnV1" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-radius: 10px; -fx-background-color: #c31414;" text="Vender" textFill="WHITE">
-                           <HBox.margin>
-                              <Insets left="40.0" />
-                           </HBox.margin>
-                           <font>
-                              <Font name="System Bold" size="13.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </HBox>
                   <HBox prefWidth="200.0" spacing="5.0">
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
@@ -73,7 +43,7 @@
                         </Label>
                         <Button fx:id="btnE2" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="220.0" />
+                              <Insets left="130.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -81,11 +51,57 @@
                         </Button>
                         <Button fx:id="btnV2" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS2" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                        </Button>
+                     </children>
+                  </HBox>
+                  <HBox prefWidth="200.0" spacing="5.0">
+                     <children>
+                        <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@banderas/MEXICO.png" />
+                           </image>
+                        </ImageView>
+                        <Label text="Guadalajara">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                        <Button fx:id="btnE1" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="110.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnV1" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-radius: 10px; -fx-background-color: #c31414;" text="Vender" textFill="WHITE">
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                        </Button>
+                        <Button fx:id="btnS1" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -103,7 +119,7 @@
                         </Label>
                         <Button fx:id="btnE3" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="275.0" />
+                              <Insets left="185.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -111,11 +127,19 @@
                         </Button>
                         <Button fx:id="btnV3" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS3" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -133,7 +157,7 @@
                         </Label>
                         <Button fx:id="btnE4" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="277.0" />
+                              <Insets left="188.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -141,11 +165,19 @@
                         </Button>
                         <Button fx:id="btnV4" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS4" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -163,7 +195,7 @@
                         </Label>
                         <Button fx:id="btnE5" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="265.0" />
+                              <Insets left="178.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -171,11 +203,19 @@
                         </Button>
                         <Button fx:id="btnV5" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS5" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -193,7 +233,7 @@
                         </Label>
                         <Button fx:id="btnE6" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="270.0" />
+                              <Insets left="182.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -201,11 +241,19 @@
                         </Button>
                         <Button fx:id="btnV6" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS6" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -223,7 +271,7 @@
                         </Label>
                         <Button fx:id="btnE7" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="275.0" />
+                              <Insets left="185.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -231,11 +279,19 @@
                         </Button>
                         <Button fx:id="btnV7" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS7" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -253,7 +309,7 @@
                         </Label>
                         <Button fx:id="btnE8" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="247.0" />
+                              <Insets left="158.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -261,11 +317,19 @@
                         </Button>
                         <Button fx:id="btnV8" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS8" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -283,7 +347,7 @@
                         </Label>
                         <Button fx:id="btnE9" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="242.0" />
+                              <Insets left="153.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -291,11 +355,19 @@
                         </Button>
                         <Button fx:id="btnV9" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS9" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -313,7 +385,7 @@
                         </Label>
                         <Button fx:id="btnE10" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="205.0" />
+                              <Insets left="118.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -321,11 +393,19 @@
                         </Button>
                         <Button fx:id="btnV10" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS10" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -343,7 +423,7 @@
                         </Label>
                         <Button fx:id="btnE11" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="212.0" />
+                              <Insets left="125.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -351,11 +431,19 @@
                         </Button>
                         <Button fx:id="btnV11" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS11" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -373,7 +461,7 @@
                         </Label>
                         <Button fx:id="btnE12" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="257.0" />
+                              <Insets left="170.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -381,11 +469,19 @@
                         </Button>
                         <Button fx:id="btnV12" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS12" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -403,7 +499,7 @@
                         </Label>
                         <Button fx:id="btnE13" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="225.0" />
+                              <Insets left="138.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -411,11 +507,19 @@
                         </Button>
                         <Button fx:id="btnV13" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS13" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -433,7 +537,7 @@
                         </Label>
                         <Button fx:id="btnE14" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="230.0" />
+                              <Insets left="145.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -441,11 +545,19 @@
                         </Button>
                         <Button fx:id="btnV14" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS14" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -463,7 +575,7 @@
                         </Label>
                         <Button fx:id="btnE15" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="276.0" />
+                              <Insets left="191.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -471,11 +583,19 @@
                         </Button>
                         <Button fx:id="btnV15" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS15" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -493,7 +613,7 @@
                         </Label>
                         <Button fx:id="btnE16" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="240.0" />
+                              <Insets left="157.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -501,11 +621,19 @@
                         </Button>
                         <Button fx:id="btnV16" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS16" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -523,7 +651,7 @@
                         </Label>
                         <Button fx:id="btnE17" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="276.0" />
+                              <Insets left="193.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -531,11 +659,19 @@
                         </Button>
                         <Button fx:id="btnV17" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS17" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -553,7 +689,7 @@
                         </Label>
                         <Button fx:id="btnE18" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="232.0" />
+                              <Insets left="150.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -561,11 +697,19 @@
                         </Button>
                         <Button fx:id="btnV18" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS18" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -583,7 +727,7 @@
                         </Label>
                         <Button fx:id="btnE19" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="203.0" />
+                              <Insets left="121.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -591,11 +735,19 @@
                         </Button>
                         <Button fx:id="btnV19" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS19" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -613,7 +765,7 @@
                         </Label>
                         <Button fx:id="btnE20" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="237.0" />
+                              <Insets left="156.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -621,11 +773,19 @@
                         </Button>
                         <Button fx:id="btnV20" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS20" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -643,7 +803,7 @@
                         </Label>
                         <Button fx:id="btnE21" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="203.0" />
+                              <Insets left="123.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -651,11 +811,19 @@
                         </Button>
                         <Button fx:id="btnV11" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS21" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -673,7 +841,7 @@
                         </Label>
                         <Button fx:id="btnE22" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="200.0" />
+                              <Insets left="118.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -681,11 +849,19 @@
                         </Button>
                         <Button fx:id="btnV22" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS22" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -703,7 +879,7 @@
                         </Label>
                         <Button fx:id="btnE23" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="Edificar" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="239.0" />
+                              <Insets left="155.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
@@ -711,11 +887,19 @@
                         </Button>
                         <Button fx:id="btnV23" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="40.0" />
+                              <Insets left="25.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS23" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -723,7 +907,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@banderas/SPAIN.png" />
+                              <Image url="@banderas/AEROPUERTO.png" />
                            </image>
                         </ImageView>
                         <Label text="Aeropuerto Narita">
@@ -733,11 +917,19 @@
                         </Label>
                         <Button fx:id="btnV24" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="265.0" />
+                              <Insets left="142.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS24" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -745,7 +937,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@banderas/SPAIN.png" />
+                              <Image url="@banderas/AEROPUERTO.png" />
                            </image>
                         </ImageView>
                         <Label text="Aeropuerto Heathrow">
@@ -755,11 +947,19 @@
                         </Label>
                         <Button fx:id="btnV25" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="230.0" />
+                              <Insets left="105.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS25" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -767,7 +967,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@banderas/SPAIN.png" />
+                              <Image url="@banderas/AEROPUERTO.png" />
                            </image>
                         </ImageView>
                         <Label text="Aeropuerto Orly">
@@ -777,11 +977,19 @@
                         </Label>
                         <Button fx:id="btnV26" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="285.0" />
+                              <Insets left="160.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS26" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>
@@ -789,7 +997,7 @@
                      <children>
                         <ImageView fitHeight="29.0" fitWidth="69.0" pickOnBounds="true" preserveRatio="true">
                            <image>
-                              <Image url="@banderas/SPAIN.png" />
+                              <Image url="@banderas/AEROPUERTO.png" />
                            </image>
                         </ImageView>
                         <Label text="Aeropuerto de Los Angeles">
@@ -799,11 +1007,19 @@
                         </Label>
                         <Button fx:id="btnV27" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: #c31414; -fx-background-radius: 10px;" text="Vender" textFill="WHITE">
                            <HBox.margin>
-                              <Insets left="177.0" />
+                              <Insets left="50.0" />
                            </HBox.margin>
                            <font>
                               <Font name="System Bold" size="13.0" />
                            </font>
+                        </Button>
+                        <Button fx:id="btnS27" mnemonicParsing="false" onAction="#actionEvent" style="-fx-background-color: blue; -fx-background-radius: 10px;" text="Subastar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="13.0" />
+                           </font>
+                           <HBox.margin>
+                              <Insets left="25.0" />
+                           </HBox.margin>
                         </Button>
                      </children>
                   </HBox>

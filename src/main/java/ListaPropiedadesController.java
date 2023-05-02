@@ -37,15 +37,14 @@ public class ListaPropiedadesController implements Initializable {
 
     private int[] casilla_propiedad;  //este vector guarda la relacion entre la casilla que estoy y la propiedad en la lista que es
 
-    private String[] precio_edificar = new String[NUM_PROPIEDADES]; // almacenamos el precio por el que se podra edificar en esa propiedad
+    private String[] precio_edificar; // almacenamos el precio por el que se podra edificar en esa propiedad
 
     @FXML
-    private Button  btnV1, btnV2, btnV3, btnV4, btnV5, btnV6, btnV7, btnV8, btnV9, btnV10, btnV11, btnV12, btnV13, btnV14, btnV15, btnV16, btnV17, btnV18, btnV19, btnV20, btnV21, btnV22, btnV23, btnV24, btnV25, btnV26, btnV27;
+    private Button  btnV1, btnV2, btnV3, btnV4, btnV5, btnV6, btnV7, btnV8, btnV9, btnV10, btnV11, btnV12, btnV13, btnV14, btnV15, btnV16, btnV17, btnV18, btnV19, btnV20, btnV21, btnV22, btnV23, btnV24, btnV25, btnV26, btnV27,
+        btnE1, btnE2, btnE3, btnE4, btnE5, btnE6, btnE7, btnE8, btnE9, btnE10, btnE11, btnE12, btnE13, btnE14, btnE15, btnE16, btnE17, btnE18, btnE19, btnE20, btnE21, btnE22, btnE23,
+        btnS1, btnS2, btnS3, btnS4, btnS5, btnS6, btnS7, btnS8, btnS9, btnS10, btnS11, btnS12, btnS13, btnS14, btnS15, btnS16, btnS17, btnS18, btnS19, btnS20, btnS21, btnS22, btnS23, btnS24, btnS25, btnS26, btnS27;
 
-    @FXML
-    private Button  btnE1, btnE2, btnE3, btnE4, btnE5, btnE6, btnE7, btnE8, btnE9, btnE10, btnE11, btnE12, btnE13, btnE14, btnE15, btnE16, btnE17, btnE18, btnE19, btnE20, btnE21, btnE22, btnE23, btnE24, btnE25, btnE26, btnE27;
-
-    private  ObservableList<Button> botonesV, botonesE;
+    private  ObservableList<Button> botonesV, botonesE, botonesS;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -64,6 +63,15 @@ public class ListaPropiedadesController implements Initializable {
                 13,0,14,26,15,0,16,
                 17,0,18,19,0,20,27,
                 21,22,0,23};
+            
+        // inicializamos el vector de lso precios de edificar cada propiedad
+        precio_edificar = new String[] 
+            {"0","0","1","2","0","0",
+                "24","3","4","0","5","0","6","7","0","8",
+                "25","9","0","10","11","0","12",
+                "13","0","14","26","15","0","16",
+                "17","0","18","19","0","20","27",
+                "21","22","0","23"};
 
         // lista de botones de vender
         botonesV = FXCollections.observableArrayList();
@@ -83,6 +91,16 @@ public class ListaPropiedadesController implements Initializable {
         botonesE.add(btnE11); botonesE.add(btnE12); botonesE.add(btnE13); botonesE.add(btnE14); botonesE.add(btnE15);
         botonesE.add(btnE16); botonesE.add(btnE17); botonesE.add(btnE18); botonesE.add(btnE19); botonesE.add(btnE20);
         botonesE.add(btnE21); botonesE.add(btnE22); botonesE.add(btnE23);
+
+        //lista de botones subastar
+        botonesS = FXCollections.observableArrayList();
+
+        botonesS.add(btnS1); botonesS.add(btnS2); botonesS.add(btnS3); botonesS.add(btnS4); botonesS.add(btnS5);
+        botonesS.add(btnS6); botonesS.add(btnS7); botonesS.add(btnS8); botonesS.add(btnS9); botonesS.add(btnS10);
+        botonesS.add(btnS11); botonesS.add(btnS12); botonesS.add(btnS13); botonesS.add(btnS14); botonesS.add(btnS15);
+        botonesS.add(btnS16); botonesS.add(btnS17); botonesS.add(btnS18); botonesS.add(btnS19); botonesS.add(btnS20);
+        botonesS.add(btnS21); botonesS.add(btnS22); botonesS.add(btnS23); botonesS.add(btnS24); botonesS.add(btnS25);
+        botonesS.add(btnS26); botonesS.add(btnS27);
     }
 
     public void agnadirPropiedad(int casilla)
@@ -154,11 +172,12 @@ public class ListaPropiedadesController implements Initializable {
             }
             GestionPartida.esperarListaEdificar = false;
 
-            for(int i=0; i < GestionPartida.nombresPropiedades.size(); i++)
+            for(int i=0; i < GestionPartida.nombresPropiedadesEdificar.size(); i++)
             {
-                int numPropiedad = Integer.parseInt(GestionPartida.nombresPropiedades.get(i));
-                botonesE.get(casilla_propiedad[numPropiedad-1]).setVisible(true);
-                precio_edificar[numPropiedad] = GestionPartida.preciosPropiedades.get(i);
+                int numPropiedad = Integer.parseInt(GestionPartida.nombresPropiedadesEdificar.get(i));
+                System.out.println("Trato de mostrar el boton de la propieda: " + numPropiedad + " que es " + casilla_propiedad[numPropiedad]);
+                botonesE.get(casilla_propiedad[numPropiedad]-1).setVisible(true);
+                precio_edificar[casilla_propiedad[numPropiedad]] = GestionPartida.preciosPropiedadesEdificar.get(i);
             }
         }
         else
@@ -197,7 +216,18 @@ public class ListaPropiedadesController implements Initializable {
         {
             if(evt.equals(botonesE.get(i-1)))
             {
-                tableroController.edificar();
+                tableroController.mostrarVentanaEdificar(i, Integer.parseInt(precio_edificar[i]));
+            }
+        }
+
+        // comprobamos si han pulsado algun boton de vender
+        for(int i=1; i<=NUM_PROPIEDADES; i++)
+        {
+            if(evt.equals(botonesS.get(i-1)))
+            {
+                System.out.println("La propiedad pulsada es la posicion " + i);
+                // abrir la pantalla que permite vender la propiedad
+                tableroController.mostrarVentanaSubastar(i);
             }
         }
     }
