@@ -8,6 +8,7 @@
 */
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -229,6 +230,22 @@ public class ListaPropiedadesController implements Initializable {
                 // abrir la pantalla que permite vender la propiedad
                 tableroController.mostrarVentanaSubastar(i);
             }
+        }
+    }
+
+    /*
+     * Cuando se produzca un cambio de dispositivo llamaremos a esta funcion para que me vuelva a mostrar
+     * todas las propiedades.
+     */
+    public void actualizarPropiedades()
+    {
+        // recorremos la lista de las propiedades del jugador y vamos aladiendolas
+        ArrayList<GestionPartida.Propiedad> propiedades = GestionPartida.getPropiedades();
+
+        for( int i=0; i<propiedades.size(); i++)
+        {
+            GestionPartida.Propiedad prop = propiedades.get(i);
+            agnadirPropiedad(prop.id);
         }
     }
 

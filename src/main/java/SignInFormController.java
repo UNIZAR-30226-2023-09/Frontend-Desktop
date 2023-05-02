@@ -54,9 +54,19 @@ public class SignInFormController implements Initializable {
                     // recibir respuesta
                     ConexionServidor.esperar();
 
-                    if (GestionPartida.sesionIniciada) {
-                        // Ir al menu principal
-                        App.setRoot("MenuPrincipal");
+                    if (GestionPartida.sesionIniciada)
+                    {
+                        if(GestionPartida.actualizar_cambio_dispositivo)
+                        {
+                            // Ir al tablero
+                            App.setRoot("Tablero");
+
+                        }
+                        else
+                        {
+                            // Ir al menu principal
+                            App.setRoot("MenuPrincipal");
+                        }
                     } else {
                         lblError.setText("Datos introducidos no validos");
                     }

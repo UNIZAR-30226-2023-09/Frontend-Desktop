@@ -130,7 +130,7 @@ public class TableroController implements Initializable {
                     // CASINO
 
                     if (!GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador]) {
-                        if (GestionPartida.superPoder != "0") {
+                        if (!GestionPartida.superPoder.equals("0")) {
                             // Superpoder
                             /*
                              * Los superPoderes son:
@@ -159,7 +159,7 @@ public class TableroController implements Initializable {
                             actualizarSuperpoder();
 
                             try {
-                                Superpoder.semaphoreSuper.acquire();
+                                SuperpoderController.semaphoreSuper.acquire();
                             } catch (InterruptedException e) {
                                 e.printStackTrace();
                             }
@@ -173,7 +173,7 @@ public class TableroController implements Initializable {
                             switch (i) {
                                 case 1:
                                     // Mover ficha??
-                                    moverFichaSuperpoder(Superpoder.casillaS);
+                                    moverFichaSuperpoder(SuperpoderController.casillaS);
                                     break;
                                 case 2:
                                     System.out.print("A desplazarse:");
@@ -623,6 +623,27 @@ public class TableroController implements Initializable {
 
             inicializarFichas();
 
+            // comprobamos si venimos de otro dispositivo
+            if(GestionPartida.actualizar_cambio_dispositivo)
+            {
+                // mostrar las propiedades que tenia el jugador 
+                listaPropiedadesController.actualizarPropiedades();
+
+                // posiciones de los jugadores
+                actualizar();
+
+                // mostrar los edificios de cada jugador
+
+                // mostrar datos partida (dinero, economia...) -> actualizarDatosPartida()
+                listaJugadoresController.actualizarDinero();
+
+                actualizarDatosPartida();
+
+                actualizarEconomia();
+
+                // jugadores muertos
+            }
+
             Thread threadIni = new Thread() {
                 public void run() {
                     partida();
@@ -820,7 +841,7 @@ public class TableroController implements Initializable {
                     lbl.setText("Elija la casilla a la que quiere ir");
                     File file = new File("src/main/resources/SUPERPODERES/SP1.png");
                     imgV.setImage(new Image(file.toURI().toString()));
-                    // Superpoder.txtCasilla.setVisible(true);
+                    // SuperpoderController.txtCasilla.setVisible(true);
                     break;
                 case 2:
                     lbl.setText("Acudes corriendo al banco");

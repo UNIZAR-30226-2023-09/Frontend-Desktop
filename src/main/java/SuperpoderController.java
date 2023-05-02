@@ -12,8 +12,9 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.TextFormatter;
 import javafx.scene.control.TextFormatter.Change;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 
-public class Superpoder implements Initializable{
+public class SuperpoderController implements Initializable{
 
     @FXML
     private TextField txtCasilla;
@@ -23,6 +24,9 @@ public class Superpoder implements Initializable{
 
     @FXML
     public Label lblSuperpoder, lblError;
+
+    @FXML
+    private VBox rellenarCampos;
 
     @FXML
     private ImageView imgRule;
