@@ -10,7 +10,7 @@ import javafx.stage.Stage;
  * JavaFX App
  */
 public class App extends Application {
-    private static boolean grafico = false;
+    private static boolean grafico = true;
     private static boolean verbose = true;
 
     private static Scene scene;
