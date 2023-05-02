@@ -51,7 +51,8 @@ public class TableroController implements Initializable {
     private ImageView dado1, dado2, user1, user2, user3, user4;
 
     @FXML
-    private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad, edificar, subastar;
+    private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad, edificar,
+            subastar;
 
     public static VBox banco, casino, superpoder;
 
@@ -103,7 +104,7 @@ public class TableroController implements Initializable {
                 actualizarDatosPartida();
 
                 actualizarEconomia();
-                
+
                 listaPropiedadesController.visibilidadBotonesVenta(true);
 
                 listaPropiedadesController.visibilidadBotonesEdificar(true);
@@ -237,22 +238,23 @@ public class TableroController implements Initializable {
                                         datosPartida.setVisible(false);
                                         chat.setVisible(false);
                                         comprarPropiedad.setVisible(true);
-            
+
                                         System.out.println("Compra Propiedad");
-            
+
                                         if (comprarPropiedadController.gestionarComprarPropiedad()) {
                                             listaPropiedadesController.agnadirPropiedad(Integer
-                                                    .parseInt(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
+                                                    .parseInt(
+                                                            GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
                                         }
-            
+
                                         System.out.println("Propiedad");
                                         // dejamos como estaba todo
                                         datosPartida.setVisible(true);
                                         chat.setVisible(false);
                                         comprarPropiedad.setVisible(false);
-            
+
                                         GestionPartida.comprarPropiedad = false;
-            
+
                                     }
                                     break;
                                 case 6:
@@ -301,7 +303,6 @@ public class TableroController implements Initializable {
                             datosPartida.setVisible(false);
                             chat.setVisible(false);
                             comprarPropiedad.setVisible(true);
-
 
                             System.out.println("Compra Propiedad");
 
@@ -358,13 +359,12 @@ public class TableroController implements Initializable {
                         }
                     }
 
-                } while(GestionPartida.dadosDobles);
-                
+                } while (GestionPartida.dadosDobles);
+
                 // mostar boton de finalizar turno y esperar a que lo pulsen
                 btnTerminarTurno.setVisible(true);
-                while(!heTerminadoTurno)
-                {
-                    ConexionServidor.esperar(); 
+                while (!heTerminadoTurno) {
+                    ConexionServidor.esperar();
                 }
                 heTerminadoTurno = false;
                 System.out.println("FIN TURNO");
@@ -516,10 +516,9 @@ public class TableroController implements Initializable {
         subastarController.setTableroController(this);
 
         // inicializamos el vector
-        posicion_propiedad_tablero = new String[]
-            {"0", "2", "3", "7", "8", "10", "12", "13", "15",
-            "17", "19", "20", "22", "23", "25", "27", "29", "30",
-            "32", "33", "35", "37", "38", "40", "6", "16", "26", "36"};
+        posicion_propiedad_tablero = new String[] { "0", "2", "3", "7", "8", "10", "12", "13", "15",
+                "17", "19", "20", "22", "23", "25", "27", "29", "30",
+                "32", "33", "35", "37", "38", "40", "6", "16", "26", "36" };
 
         try {
             banco = loadForm("Banco.fxml");
@@ -653,57 +652,51 @@ public class TableroController implements Initializable {
 
     }
 
-    public void mostrarVentanaVenta(int numPropiedad)
-    {
+    public void mostrarVentanaVenta(int numPropiedad) {
         venderPropiedad.setVisible(true);
         chat.setVisible(false);
-        //datosPartida.setVisible(false);
+        // datosPartida.setVisible(false);
         listaPropiedades.setVisible(false);
 
         System.out.println("En el tablero es la posicion: " + posicion_propiedad_tablero[numPropiedad]);
 
         GestionPartida.quieroVenderPropiedad(posicion_propiedad_tablero[numPropiedad]);
         System.out.println("Vamos pal while");
-        
-            while (!GestionPartida.precioPropiedadRecivido)
-            {
-                //System.out.println("Acabo de entrar");
-                //ConexionServidor.esperar();
-                System.out.println("NO salgo");
-            }
 
-        GestionPartida.precioPropiedadRecivido = false;
+        while (!GestionPartida.precioPropiedadRecibido) {
+            // System.out.println("Acabo de entrar");
+            // ConexionServidor.esperar();
+            System.out.println("NO salgo");
+        }
+
+        GestionPartida.precioPropiedadRecibido = false;
 
         System.out.println("he salido");
 
         venderPropiedadController.actualizarLabel(numPropiedad);
     }
 
-    public void ocultarVentanaVenta(int numPropiedad, Boolean vendida)
-    {
-        if(vendida)
-        {
+    public void ocultarVentanaVenta(int numPropiedad, Boolean vendida) {
+        if (vendida) {
             listaJugadoresController.actualizarDinero();
             listaPropiedadesController.eliminarPropiedad(numPropiedad);
         }
 
         venderPropiedad.setVisible(false);
         chat.setVisible(true);
-        //datosPartida.setVisible(true);
+        // datosPartida.setVisible(true);
         listaPropiedades.setVisible(true);
     }
 
-    public void mostrarVentanaEdificar(int numPropiedad, int precio)
-    {
+    public void mostrarVentanaEdificar(int numPropiedad, int precio) {
         edificar.setVisible(true);
         chat.setVisible(false);
         listaPropiedades.setVisible(false);
 
-        edificarController.actualizarLabel(numPropiedad,precio);
+        edificarController.actualizarLabel(numPropiedad, precio);
     }
 
-    public void ocultarVentanaEdificar(int numPropiedad, Boolean edificada)
-    {
+    public void ocultarVentanaEdificar(int numPropiedad, Boolean edificada) {
         // faltara poner la imagen que toque
 
         edificar.setVisible(false);
@@ -711,15 +704,13 @@ public class TableroController implements Initializable {
         listaPropiedades.setVisible(true);
     }
 
-    public void mostrarVentanaSubastar(int numPropiedad)
-    {
+    public void mostrarVentanaSubastar(int numPropiedad) {
         subastar.setVisible(true);
         chat.setVisible(false);
         listaPropiedades.setVisible(false);
     }
 
-    public void ocultarVentanaSubastar()
-    {
+    public void ocultarVentanaSubastar() {
         // faltara poner la imagen que toque
 
         subastar.setVisible(false);

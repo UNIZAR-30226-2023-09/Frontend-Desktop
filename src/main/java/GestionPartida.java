@@ -1,13 +1,14 @@
 import java.net.URISyntaxException;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Scanner;
 import org.java_websocket.client.WebSocketClient;
 
 public class GestionPartida {
 
-    private static boolean verbose = false;
+    public static boolean verbose = false;
 
     // ***** Información de estado partida *****
     public static boolean sesionIniciada = false;
@@ -57,7 +58,7 @@ public class GestionPartida {
     public static boolean mostrarEvento;
     public static double economia = 1.0;
     public static int ronda;
-    public static boolean precioPropiedadRecivido = false;
+    public static boolean precioPropiedadRecibido = false;
 
     public static int precioVenta;
     public static boolean skinsObtenidas = false;
@@ -68,6 +69,7 @@ public class GestionPartida {
     public static ArrayList<String> listaSkins = new ArrayList<String>();
 
     public static String[] skinsJugadores = new String[4];
+    public static String skinTablero = "TABLERO1";
 
     // Hay una subasta pendiente por mostrar en la interfaz
     public static boolean subasta;
@@ -86,6 +88,28 @@ public class GestionPartida {
     public static String propiedad_subasta;
 
     public static int precio_subasta;
+
+    public static boolean perteneceTorneo;
+
+    // Hashmap que contiene las propiedades de la partida
+    public static HashMap<Integer, Propiedad> propiedades = new HashMap<Integer, Propiedad>();
+
+    // Struct que almacena el dueño de una propiedad, el id de la propiedad, el
+    // nombre de la propiedad y el numero de casas que tiene
+    public static class Propiedad {
+        public String dueño;
+        public int id;
+        public String nombre;
+        public int casas;
+
+        // Constructor por defecto
+        public Propiedad(String dueño, int id, String nombre, int casas) {
+            this.dueño = dueño;
+            this.id = id;
+            this.nombre = nombre;
+            this.casas = casas;
+        }
+    }
 
     public final static String[] tablero = { "nada", "Salida", "Monterrey", "Guadalajara", "Treasure", "Tax",
             "AeropuertoNarita", "Tokio", "Kioto", "Superpoder", "Osaka", "Carcel", "Roma", "Milan", "Casino", "Napoles",
@@ -278,6 +302,14 @@ public class GestionPartida {
                 skinsJugadores[1] = partes[8];
                 skinsJugadores[2] = partes[9];
                 skinsJugadores[3] = partes[10];
+
+                skinTablero = partes[11];
+
+                // Inicializar todas las propiedades de la partida para que no tengan dueño
+                for (int i = 1; i < 41; i++) {
+                    Propiedad prop = new Propiedad("", i, tablero[i], 0);
+                    propiedades.put(i, prop);
+                }
 
                 // Mostrar por pantalla las skins de los jugadores
                 for (int i = 0; i < 4; i++) {
@@ -478,7 +510,7 @@ public class GestionPartida {
                 break;
             case "PRECIO_VENTA":
                 precioVenta = Integer.parseInt(partes[1]);
-                precioPropiedadRecivido = true;
+                precioPropiedadRecibido = true;
                 break;
             case "SUMAR_GEMAS":
                 gemas += Integer.parseInt(partes[1]);
@@ -548,6 +580,81 @@ public class GestionPartida {
                 dineroJugadores[indiceJugador] = Integer.parseInt(partes[2]);
                 System.out.println("Han comprado tu propiedad en subasta por " + partes[2]);
                 break;
+            case "ESTADO_PARTIDA":
+
+                // Inicializar todas las variables a las por defecto:
+                JugadorEnCarcel[0] = false;
+                JugadorEnCarcel[1] = false;
+                JugadorEnCarcel[2] = false;
+                JugadorEnCarcel[3] = false;
+
+                // Inicializar todas las propiedades de la partida para que no tengan dueño
+                for (int i = 1; i < 41; i++) {
+                    Propiedad prop = new Propiedad("", i, tablero[i], 0);
+                    propiedades.put(i, prop);
+                }
+
+                CuentaInfoRecibida = 4; // Lo pongo a 4 asumiendo que he recibido el mensaje de todos :)
+
+                // Si estaba en una partida activa y se habia salido, se vuelve a meter en la
+                // partida y recibe toda la informacion de la partida
+                String[] aux = message.split("|");
+                String[] partesPartida = aux[0].split(",");
+                // partesPartida contiene [ESTADO_PARTIDA,IDPartida, ronda, bote,
+                // economia,evento, perteneceTorneo, turno]
+                enPartida = true;
+                IDPartida = partesPartida[1];
+                ronda = Integer.parseInt(partesPartida[2]);
+                dineroBote = Integer.parseInt(partesPartida[3]);
+                economia = Double.parseDouble(partesPartida[4]);
+                evento = partesPartida[5];
+                // perteneceTorneo = Boolean.parseBoolean(partesPartida[6]);
+                String turno = partesPartida[7];
+                if (turno.equals(nombreUser)) {
+                    meToca = true;
+                    // Saltar a la pantalla de juego
+                } else {
+                    meToca = false;
+                }
+
+                String[] partesPropiedades = aux[1].split(";");
+
+                // Inicializar todas las propiedades de la partida para que no tengan dueño
+                for (int i = 1; i < 41; i++) {
+                    // Para cada una de las propiedades actualizamos su dueño y
+                    // el numero de casas que tiene
+                    String[] aux2 = partesPropiedades[i].split(",");
+                    String dueño = aux2[0];
+                    int edificaciones = Integer.parseInt(aux2[1]);
+                    propiedades.get(i).dueño = dueño;
+                    propiedades.get(i).casas = edificaciones;
+                }
+                String[] skinsJugadores = { "", "", "", "" };
+
+                String[] partesJugadores = aux[2].split(";");
+                for (int i = 0; i < 4; i++) {
+                    // Para cada uno de los jugadores actualizamos su dinero y
+                    // su posicion en el tablero
+                    String[] aux2 = partesJugadores[i].split(",");
+                    String nombreJugador = aux2[0];
+                    int indiceJugadorActual = Integer.parseInt(aux2[5]);
+                    ordenJugadores[indiceJugadorActual] = nombreJugador;
+                    jugadoresVivos[indiceJugadorActual] = Boolean.parseBoolean(aux2[1]);
+                    posicionesJugadores[indiceJugadorActual] = aux2[2];
+                    dineroJugadores[indiceJugadorActual] = Integer.parseInt(aux2[3]);
+                    skinsJugadores[indiceJugadorActual] = aux2[4];
+                    // TODO: Si soy yo el jugador tengo que guardar la skinTablero
+                    // y el dineroInvertido
+                }
+
+                // Por cada skin añadida añadirla a la lista de skins
+                // para añadirlas en la lista en orden
+                for (int i = 0; i < 4; i++) {
+                    if (!skinsJugadores[i].equals("")) {
+                        listaSkins.add(skinsJugadores[i]);
+                    }
+                }
+
             default:
                 System.out.println("Mensaje no tenido en cuenta: " + message);
                 return;
@@ -893,9 +1000,9 @@ public class GestionPartida {
             return;
         }
         if (opcion > 0 && opcion <= nombresPropiedadesEdificar.size()) {
-            String numProp = nombresPropiedadesEdificar.get(opcion - 1);
+            // String numProp = nombresPropiedadesEdificar.get(opcion - 1);
             // Pasar la propiedad a entero
-            int propiedad = Integer.parseInt(numProp);
+            // int propiedad = Integer.parseInt(numProp);
             // edificarPropiedad(propiedad); -- LO HE CAMBIADO YO MORO
         } else {
             System.out.println("Opción inválida");
@@ -1047,16 +1154,6 @@ public class GestionPartida {
     private static void limpiarTerminal() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
-    }
-
-    private static int obtenerIndiceDeCasilla(String nombreCasilla) {
-        for (int i = 0; i < tablero.length; i++) {
-            if (tablero[i].equals(nombreCasilla)) {
-                return i;
-            }
-        }
-        // Si no se encuentra el nombre de la casilla en el tablero, devolvemos -1
-        return -1;
     }
 
     private static int obtenerIndiceJugador(String ID_Jugador) {
