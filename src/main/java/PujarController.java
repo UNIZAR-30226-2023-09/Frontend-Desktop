@@ -41,10 +41,12 @@ public class PujarController implements Initializable{
 
         if (btnComprar.equals(evt))
         {
-            if(GestionPartida.dineroJugadores[GestionPartida.indiceJugador] >= Integer.parseInt(GestionPartida.precioPropiedadAComprar))
+            if(GestionPartida.dineroJugadores[GestionPartida.indiceJugador] >= GestionPartida.precio_subasta)
             {
                 // enviamos el mensaje para comprar la subasta
-                System.out.println("Todavia no esta implementada la compra de una subasta");
+                // System.out.println("Todavia no esta implementada la compra de una subasta");
+
+                GestionPartida.ComprarSubasta();
     
                 propiedadComprada = true;
                 semaphoreComprar.release();
