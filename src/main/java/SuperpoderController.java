@@ -26,7 +26,7 @@ public class SuperpoderController implements Initializable{
     private Button btnAceptar;
 
     @FXML
-    public Label lblSuperpoder, lblError;
+    public Label lblError;
 
     @FXML
     private VBox rellenarCampos;
@@ -100,29 +100,23 @@ public class SuperpoderController implements Initializable{
 
             switch (i) {
                 case 1:
-                    lblSuperpoder.setText("Elija la casilla a la que quiere ir");
                     file = new File("src/main/resources/SUPERPODERES/SP1.png");
                     rellenarCampos.setVisible(true);
                     rellenarCampos.setManaged(true);
                     break;
                 case 2:
-                    lblSuperpoder.setText("Acudes corriendo al banco");
                     file = new File("src/main/resources/SUPERPODERES/SP2.png");
                     break;
                 case 3:
-                    lblSuperpoder.setText("Acudes corriendo al casino");
                     file = new File("src/main/resources/SUPERPODERES/SP3.png");
                     break;
                 case 4:
-                    lblSuperpoder.setText("Acudes corriendo a la casilla de salida");
                     file = new File("src/main/resources/SUPERPODERES/SP4.png");
                     break;
                 case 5:
-                    lblSuperpoder.setText("Retrocedes 3 casillas");
                     file = new File("src/main/resources/SUPERPODERES/SP5.png");
                     break;
                 case 6:
-                    lblSuperpoder.setText("Aumenta su suerte en el casino");
                     file = new File("src/main/resources/SUPERPODERES/SP6.png");
                     break;
                 case 7:

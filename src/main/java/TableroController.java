@@ -159,14 +159,7 @@ public class TableroController implements Initializable {
                             chat.setVisible(false);
                             superpoder.setVisible(true);
 
-                            //  --- actualizarSuperpoder();
                             superpoderController.gestionarSuperpoder();
-
-                            // try {
-                            //     SuperpoderController.semaphoreSuper.acquire();
-                            // } catch (InterruptedException e) {
-                            //     e.printStackTrace();
-                            // }
 
                             datosPartida.setVisible(true);
                             chat.setVisible(false);
@@ -850,85 +843,6 @@ public class TableroController implements Initializable {
         subastar.setVisible(false);
         chat.setVisible(true);
         listaPropiedades.setVisible(true);
-    }
-
-    private void actualizarSuperpoder() {
-        Platform.runLater(() -> {
-            VBox vbox = (VBox) superpoder.getChildren().get(2); // ESTO HAY QUE MIRAR QUE SEAN ESTOS
-
-            Label lbl = (Label) vbox.getChildren().get(3); // ESTO HAY QUE MIRAR QUE SEAN ESTOS
-
-            ImageView imgV = (ImageView) superpoder.getChildren().get(1);
-
-            HBox hbox = (HBox) vbox.getChildren().get(0);
-
-            // TextField text = (TextField) hbox.getChildren().get(0); // TextField
-            // textField = (TextField)
-
-            int i = Integer.parseInt(GestionPartida.superPoder);
-
-            switch (i) {
-                case 1:
-                    lbl.setText("Elija la casilla a la que quiere ir");
-                    File file = new File("src/main/resources/SUPERPODERES/SP1.png");
-                    imgV.setImage(new Image(file.toURI().toString()));
-                    // SuperpoderController.txtCasilla.setVisible(true);
-                    break;
-                case 2:
-                    lbl.setText("Acudes corriendo al banco");
-                    File file2 = new File("src/main/resources/SUPERPODERES/SP2.png");
-                    imgV.setImage(new Image(file2.toURI().toString()));
-                    break;
-                case 3:
-                    lbl.setText("Acudes corriendo al casino");
-                    File file3 = new File("src/main/resources/SUPERPODERES/SP3.png");
-                    imgV.setImage(new Image(file3.toURI().toString()));
-                    break;
-                case 4:
-                    lbl.setText("Acudes corriendo a la casilla de salida");
-                    File file4 = new File("src/main/resources/SUPERPODERES/SP4.png");
-                    imgV.setImage(new Image(file4.toURI().toString()));
-                    break;
-                case 5:
-                    lbl.setText("Retrocedes 3 casillas");
-                    File file5 = new File("src/main/resources/SUPERPODERES/SP5.png");
-                    imgV.setImage(new Image(file5.toURI().toString()));
-                    break;
-                case 6:
-                    lbl.setText("Aumenta su suerte en el casino");
-                    File file6 = new File("src/main/resources/SUPERPODERES/SP6.png");
-                    imgV.setImage(new Image(file6.toURI().toString()));
-                    break;
-                case 7:
-                    File file7 = new File("src/main/resources/SUPERPODERES/SP7.png");
-                    imgV.setImage(new Image(file7.toURI().toString()));
-                    break;
-                case 8:
-                    File file8 = new File("src/main/resources/SUPERPODERES/SP8.png");
-                    imgV.setImage(new Image(file8.toURI().toString()));
-                    break;
-                case 9:
-                    File file9 = new File("src/main/resources/SUPERPODERES/SP9.png");
-                    imgV.setImage(new Image(file9.toURI().toString()));
-                    break;
-                case 10:
-                    File file10 = new File("src/main/resources/SUPERPODERES/SP10.png");
-                    imgV.setImage(new Image(file10.toURI().toString()));
-                    break;
-                case 11:
-                    File file11 = new File("src/main/resources/SUPERPODERES/SP11.png");
-                    imgV.setImage(new Image(file11.toURI().toString()));
-                    break;
-                case 12:
-                    File file12 = new File("src/main/resources/SUPERPODERES/SP12.png");
-                    imgV.setImage(new Image(file12.toURI().toString()));
-                    break;
-                default:
-                    System.out.println("ERROR SUPERPODER");
-                    break;
-            }
-
-        });
     }
 
     private void actualizarDatosPartida() {
