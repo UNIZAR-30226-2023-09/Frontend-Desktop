@@ -111,9 +111,10 @@ public class TableroController implements Initializable {
 
                 actualizarEconomia();
 
+                // mostramos los botones de las propiedades que pertenezcan al jugador
                 listaPropiedadesController.visibilidadBotonesVenta(true);
-
                 listaPropiedadesController.visibilidadBotonesEdificar(true);
+                listaPropiedadesController.visibilidadBotonesSubastar(true);
 
                 do {
                     dado1.setDisable(false);
@@ -450,6 +451,7 @@ public class TableroController implements Initializable {
                 btnTerminarTurno.setVisible(false);
                 listaPropiedadesController.visibilidadBotonesVenta(false);
                 listaPropiedadesController.visibilidadBotonesEdificar(false);
+                listaPropiedadesController.visibilidadBotonesSubastar(false);
 
             }
             ConexionServidor.esperar();
@@ -835,10 +837,16 @@ public class TableroController implements Initializable {
         subastar.setVisible(true);
         chat.setVisible(false);
         listaPropiedades.setVisible(false);
+
+        subastarController.actualizarLabel(numPropiedad);
     }
 
-    public void ocultarVentanaSubastar() {
-        // faltara poner la imagen que toque
+    public void ocultarVentanaSubastar(Boolean subastaActiva, int numPropiedad) {
+        if(subastaActiva)
+        {
+            listaPropiedadesController.visibilidadBotonesSubastar(false);
+            listaPropiedadesController.ocultarBotonesPropiedadSubastada(numPropiedad);
+        }
 
         subastar.setVisible(false);
         chat.setVisible(true);

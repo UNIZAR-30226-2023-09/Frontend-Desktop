@@ -41,10 +41,12 @@ public class SubastarController implements Initializable{
             if(!dinero.isEmpty())
             {
                 // rellenar informacion necesaria
-                System.out.println("Todavia no esta implementado el mensaje de efectuar la subasta");
-                // GestionPartida.subastarPropiedad(tableroController.posicion_propiedad_tablero[numPropiedad],Integer.toString(precio));
+                // System.out.println("Todavia no esta implementado el mensaje de efectuar la subasta");
+                GestionPartida.subastarPropiedad(tableroController.posicion_propiedad_tablero[numPropiedad],dinero);
 
-                tableroController.ocultarVentanaSubastar();
+                System.out.println("Subastamos la propiedad por " + dinero);
+
+                tableroController.ocultarVentanaSubastar(true,numPropiedad);
             }
             else
             {
@@ -53,7 +55,7 @@ public class SubastarController implements Initializable{
         }
         else if(evt.equals(btnCancelar))
         {
-            tableroController.ocultarVentanaSubastar();
+            tableroController.ocultarVentanaSubastar(false,0);
         }
     }
 
@@ -73,13 +75,12 @@ public class SubastarController implements Initializable{
         lblError.setVisible(false);
     }
 
-    public void actualizarLabel(int numPropiedad, int precio)
+    public void actualizarLabel(int numPropiedad)
     {
         Platform.runLater(() -> {
             lblSubastar.setText("Por cuanto quieres subastar " + GestionPartida.tablero[Integer.parseInt(tableroController.posicion_propiedad_tablero[numPropiedad])]);
 
             this.numPropiedad = numPropiedad;
-            this.precio = precio;
         });
     }
 

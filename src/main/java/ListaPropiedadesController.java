@@ -198,6 +198,35 @@ public class ListaPropiedadesController implements Initializable {
         }
     }
 
+    /*
+     * Esta funcion permite mostrar/ocultar todos los botones de la lista de propiedades de subastar.
+     * Pero solo de aquella propiedad que se pueda ver en pantalla.
+     */
+    public void visibilidadBotonesSubastar(Boolean b)
+    {
+        // solo mostraremos los botones si no hay ninguna subasta activa
+        if((b == true && !GestionPartida.subastaOcupada) || b == false)
+        {
+            for(int i=1; i<=NUM_PROPIEDADES; i++)
+            {
+                HBox hbox = (HBox) propiedades.getChildren().get(i);
+
+                // solo si la propiedad se puede ver mostraremos sus botones
+                if(hbox.isVisible())
+                {
+                botonesS.get(i-1).setVisible(b);
+                }
+
+            }
+        }
+    }
+
+    public void ocultarBotonesPropiedadSubastada(int numPropiedad)
+    {
+        botonesV.get(numPropiedad-1).setVisible(false);
+        botonesE.get(numPropiedad-1).setVisible(false);
+    }
+
     @FXML
     public void actionEvent(ActionEvent e) throws IOException {
         Object evt = e.getSource();
