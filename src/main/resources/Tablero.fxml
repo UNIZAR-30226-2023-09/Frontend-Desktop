@@ -208,6 +208,7 @@
          <children>
             <StackPane fx:id="containerForm" alignment="BOTTOM_CENTER" prefHeight="850.0" prefWidth="600.0">
                <children>
+                  <fx:include fx:id="pujar" source="Pujar.fxml" />
                   <fx:include fx:id="superpoder" source="Superpoder.fxml" />
                   <fx:include fx:id="viajeAeropuertos" source="ViajeAeropuertos.fxml" />
                   <fx:include fx:id="comprarPropiedad" source="ComprarPropiedad.fxml" />

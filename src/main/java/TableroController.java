@@ -54,11 +54,14 @@ public class TableroController implements Initializable {
     private SuperpoderController superpoderController;
 
     @FXML
+    private PujarController pujarController;
+
+    @FXML
     private ImageView dado1, dado2, user1, user2, user3, user4;
 
     @FXML
     private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad, edificar,
-            subastar, viajeAeropuertos, superpoder;
+            subastar, viajeAeropuertos, superpoder, pujar;
 
     public static VBox banco, casino/*, superpoder*/;
 
@@ -115,6 +118,28 @@ public class TableroController implements Initializable {
                 listaPropiedadesController.visibilidadBotonesVenta(true);
                 listaPropiedadesController.visibilidadBotonesEdificar(true);
                 listaPropiedadesController.visibilidadBotonesSubastar(true);
+
+                // antes de que el jugador pueda tirar los dados mostramos la puja que este activa
+                if(GestionPartida.subasta)
+                {
+                    pujar.setVisible(true);
+                    datosPartida.setVisible(false);
+                    chat.setVisible(false);
+
+                    GestionPartida.subasta = false;
+                    
+                    if(pujarController.gestionarPujarPropiedad())
+                    {
+                        listaPropiedadesController.agnadirPropiedad(Integer.parseInt(GestionPartida.propiedad_subasta));
+                        listaPropiedadesController.visibilidadBotonesVenta(true);
+                        listaPropiedadesController.visibilidadBotonesEdificar(true);
+                        listaPropiedadesController.visibilidadBotonesSubastar(true);
+                    }
+
+                    pujar.setVisible(false);
+                    datosPartida.setVisible(true);
+                    chat.setVisible(true);
+                }
 
                 do {
                     dado1.setDisable(false);
@@ -604,7 +629,6 @@ public class TableroController implements Initializable {
         try {
             banco = loadForm("Banco.fxml");
             casino = loadForm("Casino.fxml");
-            //superpoder = loadForm("Superpoder.fxml");
 
             // HAY QUE AÑADIR AQUI EL VBOX COMPRA.CASINO Y BANCO
 
@@ -619,6 +643,7 @@ public class TableroController implements Initializable {
             superpoder.setVisible(false);
             subastar.setVisible(false);
             viajeAeropuertos.setVisible(false);
+            pujar.setVisible(false);
             btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
 
             inicializarFichas();
