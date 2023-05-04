@@ -57,13 +57,16 @@ public class TableroController implements Initializable {
     private PujarController pujarController;
 
     @FXML
+    private FianzaController fianzaController;
+
+    @FXML
     private ImageView dado1, dado2, user1, user2, user3, user4;
 
     @FXML
     private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad, edificar,
-            subastar, viajeAeropuertos, superpoder, pujar;
+            subastar, viajeAeropuertos, superpoder, pujar, fianza;
 
-    public static VBox banco, casino/*, superpoder*/;
+    public static VBox banco, casino;
 
     @FXML
     private Button btnChat, btnTerminarTurno;
@@ -169,7 +172,7 @@ public class TableroController implements Initializable {
                     // AQUI VAMOS A GESTIONAR EN QUE CASILLA HEMOS CAIDO PARA COMPRAR, BANCO Y
                     // CASINO
 
-                    if (!GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador]) {
+                    if (!GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador] || (GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador] && fianzaController.pagar())) {
                         if (!GestionPartida.superPoder.equals("0")) {
                             // Superpoder
                             /*
@@ -887,6 +890,19 @@ public class TableroController implements Initializable {
         subastar.setVisible(false);
         chat.setVisible(true);
         listaPropiedades.setVisible(true);
+    }
+
+    public void mostrarVentanaFianza() {
+        fianza.setVisible(true);
+        chat.setVisible(false);
+        datosPartida.setVisible(false);
+    }
+
+    public void ocultarVentanaFianza()
+    {
+        fianza.setVisible(false);
+        chat.setVisible(true);
+        datosPartida.setVisible(true);
     }
 
     private void actualizarDatosPartida() {
