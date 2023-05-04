@@ -119,6 +119,17 @@ public class TableroController implements Initializable {
                 listaPropiedadesController.visibilidadBotonesEdificar(true);
                 listaPropiedadesController.visibilidadBotonesSubastar(true);
 
+                // en caso de haber vendido alguna propiedad en una subasta deberemos eliminarla de la lista
+                if(subastarController.habiamosSubastado)
+                {
+                    subastarController.habiamosSubastado = false;
+
+                    if(subastarController.subastaExitosa())
+                    {
+                        listaPropiedadesController.eliminarPropiedad(subastarController.propiedadSubastada);
+                    }
+                }
+
                 // antes de que el jugador pueda tirar los dados mostramos la puja que este activa
                 if(GestionPartida.subasta)
                 {

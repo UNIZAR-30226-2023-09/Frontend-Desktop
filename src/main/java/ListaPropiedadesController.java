@@ -255,7 +255,6 @@ public class ListaPropiedadesController implements Initializable {
         {
             if(evt.equals(botonesS.get(i-1)))
             {
-                System.out.println("La propiedad pulsada es la posicion " + i);
                 // abrir la pantalla que permite vender la propiedad
                 tableroController.mostrarVentanaSubastar(i);
             }

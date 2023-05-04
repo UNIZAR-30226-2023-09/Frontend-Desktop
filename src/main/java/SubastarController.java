@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -28,7 +29,11 @@ public class SubastarController implements Initializable{
     @FXML
     private Label lblError;
 
-    private int numPropiedad, precio;
+    private int numPropiedad;
+
+    public Boolean habiamosSubastado = false;
+
+    public int propiedadSubastada = 0;
 
     @FXML
     public void actionEvent(ActionEvent e) throws IOException
@@ -45,6 +50,9 @@ public class SubastarController implements Initializable{
                 GestionPartida.subastarPropiedad(tableroController.posicion_propiedad_tablero[numPropiedad],dinero);
 
                 System.out.println("Subastamos la propiedad por " + dinero);
+
+                habiamosSubastado = true;
+                propiedadSubastada = numPropiedad;
 
                 tableroController.ocultarVentanaSubastar(true,numPropiedad);
             }
@@ -82,6 +90,21 @@ public class SubastarController implements Initializable{
 
             this.numPropiedad = numPropiedad;
         });
+    }
+
+    public Boolean subastaExitosa()
+    {
+        ArrayList<GestionPartida.Propiedad> propiedades = GestionPartida.getPropiedades();
+
+        for( int i=0; i<propiedades.size(); i++)
+        {
+            GestionPartida.Propiedad prop = propiedades.get(i);
+            if (prop.id == propiedadSubastada)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void setTableroController(TableroController tableroController)
