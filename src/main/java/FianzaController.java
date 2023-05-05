@@ -46,8 +46,8 @@ public class FianzaController implements Initializable{
                 // enviamos el mensaje para comprar la subasta
                 System.out.println("Todavia no esta implementado el pago");
 
-                /*JugadorEnCarcel[indiceJugador] = false;
-                turnosCarcel = 0;*/
+                /*GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador] = false;
+                GestionPartida.turnosCarcel = 0;*/
     
                 fianzaPagada = true;
                 semaphore.release();

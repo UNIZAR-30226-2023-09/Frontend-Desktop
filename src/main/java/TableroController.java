@@ -172,7 +172,10 @@ public class TableroController implements Initializable {
                     // AQUI VAMOS A GESTIONAR EN QUE CASILLA HEMOS CAIDO PARA COMPRAR, BANCO Y
                     // CASINO
 
-                    if (!GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador] || (GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador] && fianzaController.pagar())) {
+                    if (!GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador] || (GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador] && fianzaController.pagar()))
+                    {
+                        System.out.println("Hemos salido de la carcel");
+                        
                         if (!GestionPartida.superPoder.equals("0")) {
                             // Superpoder
                             /*
@@ -634,6 +637,7 @@ public class TableroController implements Initializable {
         edificarController.setTableroController(this);
         subastarController.setTableroController(this);
         viajeAeropuertosController.setTableroController(this);
+        fianzaController.setTableroController(this);
 
         // inicializamos el vector
         posicion_propiedad_tablero = new String[] { "0", "2", "3", "7", "8", "10", "12", "13", "15",
@@ -658,6 +662,7 @@ public class TableroController implements Initializable {
             subastar.setVisible(false);
             viajeAeropuertos.setVisible(false);
             pujar.setVisible(false);
+            fianza.setVisible(false);
             btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
 
             inicializarFichas();
