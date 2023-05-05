@@ -4,4 +4,4 @@
 mvn compile
 
 # Ejecutar la aplicación
-mvn clean javafx:run
+mvn clean javafx:run -Drun.jvmArguments="-Xmx3g"

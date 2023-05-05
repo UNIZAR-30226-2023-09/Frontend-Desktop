@@ -55,10 +55,10 @@ public class MenuPrincipalController implements Initializable {
             } else {
                 System.out.println("No se ha podido crear la partida");
             }
-        } else if (btnUnirse.equals(evt)) {
+        } else if (btnUnirse.equals(evt))
+        {
             // unirse a una partida
-            // ------------ App.setRoot("UnirsePartida");
-            App.setRoot("Superpoder");
+            App.setRoot("UnirsePartida");
         } else if (btnTienda.equals(evt)) {
             // abrir la tienda
             App.setRoot("Tienda");

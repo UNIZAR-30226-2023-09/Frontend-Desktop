@@ -15,13 +15,6 @@
    <children>
       <HBox alignment="CENTER" prefWidth="1500.0" style="-fx-background-color: #5d08fa;" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <Button fx:id="btnVolver" mnemonicParsing="false" onAction="#actionEvent" prefHeight="20.0" prefWidth="150.0" style="-fx-background-color: transparent; -fx-border-color: white; -fx-border-radius: 5px; -fx-background-radius: 5px;" text="Volver" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-               <HBox.margin>
-                  <Insets right="1200.0" />
-               </HBox.margin></Button>
             <VBox alignment="TOP_RIGHT">
                <children>
                   <Label fx:id="lblNombre" text="Nombre" textFill="WHITE">
@@ -46,7 +39,7 @@
                   </Label>
                </children>
                <HBox.margin>
-                  <Insets bottom="5.0" right="10.0" />
+                  <Insets bottom="5.0" left="1390.0" />
                </HBox.margin>
             </VBox>
          </children>
@@ -65,7 +58,7 @@
             </Label>
             <VBox alignment="CENTER">
                <children>
-                  <Label text="Codigo de la partida" textFill="WHITE">
+                  <Label fx:id="lblTitulo" text="Codigo de la partida" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -81,7 +74,7 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
-                  <Label textFill="RED">
+                  <Label fx:id="lblError" textFill="RED">
                      <VBox.margin>
                         <Insets top="10.0" />
                      </VBox.margin>
