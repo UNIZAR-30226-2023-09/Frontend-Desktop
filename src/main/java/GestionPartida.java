@@ -241,6 +241,10 @@ public class GestionPartida {
         client.send("COMPRAR_SUBASTA," + nombreUser + "," + IDPartida + "," + jugador_subasta);
     }
 
+    public static void pagarLiberarseCarcel() {
+        client.send("PAGAR_LIBERARSE_CARCEL," + nombreUser + "," + IDPartida);
+    }
+
     // Devolver todas las propiedades del usuario en una lista, leyendolas del
     // diccionario de propiedades "propiedades"
     public static ArrayList<Propiedad> getPropiedades() {
@@ -256,11 +260,8 @@ public class GestionPartida {
 
     // Metodo que se encarga de gestionar todos los mensajes recibidos
     public static void gestionMensaje(String message) {
-        // if (verbose) {
         System.out.println(message);
-        // TODO: Revisar por que se cambia el boludo
         String mensaje = new String(message);
-        // }
         String[] partes = message.split(",");
         switch (partes[0]) {
             case "INICIO_OK":
@@ -536,6 +537,13 @@ public class GestionPartida {
             case "ACTUALIZAR_DINERO_BANCO":
                 dineroEnBanco = Integer.parseInt(partes[1]);
                 break;
+            case "CARCEL_NO_PAGADA":
+                System.out.println("No has pagado la carcel");
+                break;
+            case "CARCEL_PAGADA":
+                System.out.println("Has pagado la carcel");
+                JugadorEnCarcel[indiceJugador] = false;
+                break;
             case "ECONOMIA":
                 economia = Double.parseDouble(partes[1]);
                 break;
@@ -626,6 +634,7 @@ public class GestionPartida {
 
     private static void ActualizarEstadoPartida(String mensaje) {
         actualizar_cambio_dispositivo = true;
+        JugadoresVivos = 1;
         // Inicializar todas las variables a las por defecto:
         JugadorEnCarcel[0] = false;
         JugadorEnCarcel[1] = false;
@@ -661,11 +670,15 @@ public class GestionPartida {
         evento = partesPartida[5];
         // perteneceTorneo = Boolean.parseBoolean(partesPartida[6]);
         String turno = partesPartida[7];
+        System.out.println("Turno: " + turno);
         if (turno.equals(nombreUser)) {
             meToca = true;
+            miTurno = true;
+            System.out.println("AAAA");
             // Saltar a la pantalla de juego
         } else {
             meToca = false;
+            miTurno = false;
         }
 
         String[] partesPropiedades = aux[1].split(";");
@@ -690,7 +703,12 @@ public class GestionPartida {
             String nombreJugador = aux2[0];
             int indiceJugadorActual = Integer.parseInt(aux2[5]) - 1;
             ordenJugadores[indiceJugadorActual] = nombreJugador;
-            jugadoresVivos[indiceJugadorActual] = Boolean.parseBoolean(aux2[1]);
+            Boolean vivo = Boolean.parseBoolean(aux2[1]);
+            if (vivo) {
+                JugadoresVivos++;
+
+            }
+            jugadoresVivos[indiceJugadorActual] = vivo;
             posicionesJugadores[indiceJugadorActual] = aux2[2];
             dineroJugadores[indiceJugadorActual] = Integer.parseInt(aux2[3]);
             skinsJugadores[indiceJugadorActual] = aux2[4];
@@ -705,6 +723,7 @@ public class GestionPartida {
                 listaSkins.add(skinsJugadores[i]);
             }
         }
+        CuentaInfoRecibida = 4;
 
         // Scanner scanner = new Scanner(System.in);
         // jugarPartida(client, scanner);
@@ -848,11 +867,14 @@ public class GestionPartida {
     private static void jugarPartida(WebSocketClient client, Scanner scanner) {
         System.out.println("Empieza la partida");
         while (enPartida) {
+            System.out.println("Empieza la partida 2");
             if (miTurno) {
                 while (CuentaInfoRecibida < JugadoresVivos - 1) {
+                    System.out.println("Esperando");
                     ConexionServidor.esperar();
                 }
                 do {
+                    System.out.println("Dentro");
                     limpiarTerminal();
                     gestionSubasta(scanner);
                     lanzarLosDados(scanner);
