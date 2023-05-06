@@ -297,6 +297,7 @@ public class TableroController implements Initializable {
                                             listaPropiedadesController.agnadirPropiedad(Integer
                                                     .parseInt(
                                                             GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
+                                            listaPropiedadesController.visibilidadBotonesEdificar(true);    // actualizamos los botones de edificar por si esta fuera la propiedad que faltara
                                         }
 
                                         System.out.println("Propiedad");
@@ -343,6 +344,7 @@ public class TableroController implements Initializable {
                                             listaPropiedadesController.agnadirPropiedad(Integer
                                                     .parseInt(
                                                             GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
+                                            listaPropiedadesController.visibilidadBotonesEdificar(true);
                                         }
 
                                         System.out.println("Propiedad");
@@ -378,6 +380,7 @@ public class TableroController implements Initializable {
                                             listaPropiedadesController.agnadirPropiedad(Integer
                                                     .parseInt(
                                                             GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
+                                            listaPropiedadesController.visibilidadBotonesEdificar(true);
                                         }
 
                                         System.out.println("Propiedad");
@@ -413,6 +416,7 @@ public class TableroController implements Initializable {
                             if (comprarPropiedadController.gestionarComprarPropiedad()) {
                                 listaPropiedadesController.agnadirPropiedad(Integer
                                         .parseInt(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
+                                listaPropiedadesController.visibilidadBotonesEdificar(true);
                             }
 
                             System.out.println("Propiedad");
