@@ -8,6 +8,8 @@ import java.util.concurrent.Semaphore;
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Platform;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -60,6 +62,14 @@ public class TableroController implements Initializable {
 
     @FXML
     private ImageView dado1, dado2, user1, user2, user3, user4;
+
+    @FXML
+    private ImageView imgCasa1, imgCasa2, imgCasa3, imgCasa4, imgCasa5, imgCasa6,imgCasa7, imgCasa8, imgCasa9, imgCasa10, imgCasa11, imgCasa12,
+                    imgCasa13, imgCasa14, imgCasa15, imgCasa16, imgCasa17, imgCasa18,imgCasa19, imgCasa20, imgCasa21, imgCasa22, imgCasa23;
+
+    private final int NUM_CASAS= 23;
+
+    private  ObservableList<ImageView> Casas;
 
     @FXML
     private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad, edificar,
@@ -643,6 +653,14 @@ public class TableroController implements Initializable {
                 "17", "19", "20", "22", "23", "25", "27", "29", "30",
                 "32", "33", "35", "37", "38", "40", "6", "16", "26", "36" };
 
+        Casas = FXCollections.observableArrayList();
+        Casas.add(imgCasa1); Casas.add(imgCasa2); Casas.add(imgCasa3); Casas.add(imgCasa4); Casas.add(imgCasa5);
+        Casas.add(imgCasa6); Casas.add(imgCasa7); Casas.add(imgCasa8); Casas.add(imgCasa9); Casas.add(imgCasa10);
+        Casas.add(imgCasa11); Casas.add(imgCasa12); Casas.add(imgCasa13); Casas.add(imgCasa14); Casas.add(imgCasa15);
+        Casas.add(imgCasa16); Casas.add(imgCasa17); Casas.add(imgCasa18); Casas.add(imgCasa19); Casas.add(imgCasa20);
+        Casas.add(imgCasa21); Casas.add(imgCasa22); Casas.add(imgCasa23);
+
+
         try {
             banco = loadForm("Banco.fxml");
             casino = loadForm("Casino.fxml");
@@ -665,6 +683,10 @@ public class TableroController implements Initializable {
             btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
 
             inicializarFichas();
+
+            for(int i=1; i<=NUM_CASAS; i++){
+                Casas.get(i-1).setVisible(false);
+            }
 
             // comprobamos si venimos de otro dispositivo
             if(GestionPartida.actualizar_cambio_dispositivo)

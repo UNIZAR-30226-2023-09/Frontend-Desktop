@@ -28,15 +28,11 @@ public class EdificarController {
             // enviar el mensaje para vender la propiedad
             GestionPartida.edificarPropiedad(tableroController.posicion_propiedad_tablero[numPropiedad], Integer.toString(precio));
 
+            /*
+             * Propiedad.casa -> si es 0 ponemos visible, si es otro pues cambiamos la imagen
+             */
             // faltara mostrar graficamente el edificio
             System.out.println("Falta mostrar en el tablero la casa"); 
-
-            /*
-             * 
-             * 
-             * 
-             * 
-             */
         }
         
         // por ultimo ocultamos la pantalla de vender
