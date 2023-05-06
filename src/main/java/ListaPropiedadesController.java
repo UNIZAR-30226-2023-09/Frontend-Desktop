@@ -183,6 +183,7 @@ public class ListaPropiedadesController implements Initializable {
         }
         else
         {
+            Platform.runLater(() -> {
             // ocultamos los botones
             for(int i=1; i<=NUM_PROPIEDADES-4; i++)
             {
@@ -191,10 +192,13 @@ public class ListaPropiedadesController implements Initializable {
                 // solo si la propiedad se puede ver mostraremos sus botones
                 if(hbox.isVisible())
                 {
-                   botonesE.get(i-1).setVisible(false);
+                    
+                    botonesE.get(i-1).setVisible(false);
+                    
                 }
     
             }
+            });
         }
     }
 

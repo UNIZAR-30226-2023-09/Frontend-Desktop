@@ -158,6 +158,7 @@ public class TableroController implements Initializable {
                     {
                         listaPropiedadesController.agnadirPropiedad(Integer.parseInt(GestionPartida.propiedad_subasta));
                         listaPropiedadesController.visibilidadBotonesVenta(true);
+                        listaPropiedadesController.visibilidadBotonesEdificar(false);
                         listaPropiedadesController.visibilidadBotonesEdificar(true);
                         listaPropiedadesController.visibilidadBotonesSubastar(true);
                     }
@@ -297,7 +298,8 @@ public class TableroController implements Initializable {
                                             listaPropiedadesController.agnadirPropiedad(Integer
                                                     .parseInt(
                                                             GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
-                                            listaPropiedadesController.visibilidadBotonesEdificar(true);    // actualizamos los botones de edificar por si esta fuera la propiedad que faltara
+                                            listaPropiedadesController.visibilidadBotonesEdificar(false);   // ocultamos el boton de edificar
+                                            listaPropiedadesController.visibilidadBotonesEdificar(true);    // ahora la ponemos a true por si este si hiciese falta mostrarlo, sino se mantendra oculro
                                         }
 
                                         System.out.println("Propiedad");
@@ -344,6 +346,7 @@ public class TableroController implements Initializable {
                                             listaPropiedadesController.agnadirPropiedad(Integer
                                                     .parseInt(
                                                             GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
+                                            listaPropiedadesController.visibilidadBotonesEdificar(false);
                                             listaPropiedadesController.visibilidadBotonesEdificar(true);
                                         }
 
@@ -380,6 +383,7 @@ public class TableroController implements Initializable {
                                             listaPropiedadesController.agnadirPropiedad(Integer
                                                     .parseInt(
                                                             GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
+                                            listaPropiedadesController.visibilidadBotonesEdificar(false);
                                             listaPropiedadesController.visibilidadBotonesEdificar(true);
                                         }
 
@@ -416,6 +420,7 @@ public class TableroController implements Initializable {
                             if (comprarPropiedadController.gestionarComprarPropiedad()) {
                                 listaPropiedadesController.agnadirPropiedad(Integer
                                         .parseInt(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
+                                listaPropiedadesController.visibilidadBotonesEdificar(false);
                                 listaPropiedadesController.visibilidadBotonesEdificar(true);
                             }
 
