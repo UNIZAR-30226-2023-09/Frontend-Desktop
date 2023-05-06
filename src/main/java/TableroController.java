@@ -18,7 +18,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
@@ -51,13 +50,22 @@ public class TableroController implements Initializable {
     private ViajeAeropuertosController viajeAeropuertosController;
 
     @FXML
+    private SuperpoderController superpoderController;
+
+    @FXML
+    private PujarController pujarController;
+
+    @FXML
+    private FianzaController fianzaController;
+
+    @FXML
     private ImageView dado1, dado2, user1, user2, user3, user4;
 
     @FXML
     private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad, edificar,
-            subastar, viajeAeropuertos;
+            subastar, viajeAeropuertos, superpoder, pujar, fianza;
 
-    public static VBox banco, casino, superpoder;
+    public static VBox banco, casino;
 
     @FXML
     private Button btnChat, btnTerminarTurno;
@@ -72,7 +80,7 @@ public class TableroController implements Initializable {
     public Circle indicador;
 
     @FXML
-    private Label lblEvento, lblRonda, lblEconomia;
+    private Label lblEvento, lblRonda, lblEconomia, lblBote, lblBanco;
 
     Random random = new Random();
 
@@ -108,9 +116,43 @@ public class TableroController implements Initializable {
 
                 actualizarEconomia();
 
+                // mostramos los botones de las propiedades que pertenezcan al jugador
                 listaPropiedadesController.visibilidadBotonesVenta(true);
-
                 listaPropiedadesController.visibilidadBotonesEdificar(true);
+                listaPropiedadesController.visibilidadBotonesSubastar(true);
+
+                // en caso de haber vendido alguna propiedad en una subasta deberemos eliminarla de la lista
+                if(subastarController.habiamosSubastado)
+                {
+                    subastarController.habiamosSubastado = false;
+
+                    if(subastarController.subastaExitosa())
+                    {
+                        listaPropiedadesController.eliminarPropiedad(subastarController.propiedadSubastada);
+                    }
+                }
+
+                // antes de que el jugador pueda tirar los dados mostramos la puja que este activa
+                if(GestionPartida.subasta)
+                {
+                    pujar.setVisible(true);
+                    datosPartida.setVisible(false);
+                    chat.setVisible(false);
+
+                    GestionPartida.subasta = false;
+                    
+                    if(pujarController.gestionarPujarPropiedad())
+                    {
+                        listaPropiedadesController.agnadirPropiedad(Integer.parseInt(GestionPartida.propiedad_subasta));
+                        listaPropiedadesController.visibilidadBotonesVenta(true);
+                        listaPropiedadesController.visibilidadBotonesEdificar(true);
+                        listaPropiedadesController.visibilidadBotonesSubastar(true);
+                    }
+
+                    pujar.setVisible(false);
+                    datosPartida.setVisible(true);
+                    chat.setVisible(true);
+                }
 
                 do {
                     dado1.setDisable(false);
@@ -129,8 +171,11 @@ public class TableroController implements Initializable {
                     // AQUI VAMOS A GESTIONAR EN QUE CASILLA HEMOS CAIDO PARA COMPRAR, BANCO Y
                     // CASINO
 
-                    if (!GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador]) {
-                        if (GestionPartida.superPoder != "0") {
+                    if (!GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador] || (GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador] && fianzaController.pagar()))
+                    {
+                        System.out.println("Hemos salido de la carcel");
+                        
+                        if (!GestionPartida.superPoder.equals("0")) {
                             // Superpoder
                             /*
                              * Los superPoderes son:
@@ -156,13 +201,7 @@ public class TableroController implements Initializable {
                             chat.setVisible(false);
                             superpoder.setVisible(true);
 
-                            actualizarSuperpoder();
-
-                            try {
-                                Superpoder.semaphoreSuper.acquire();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
-                            }
+                            superpoderController.gestionarSuperpoder();
 
                             datosPartida.setVisible(true);
                             chat.setVisible(false);
@@ -173,7 +212,7 @@ public class TableroController implements Initializable {
                             switch (i) {
                                 case 1:
                                     // Mover ficha??
-                                    moverFichaSuperpoder(Superpoder.casillaS);
+                                    moverFichaSuperpoder(SuperpoderController.casillaS);
                                     break;
                                 case 2:
                                     System.out.print("A desplazarse:");
@@ -453,6 +492,7 @@ public class TableroController implements Initializable {
                 btnTerminarTurno.setVisible(false);
                 listaPropiedadesController.visibilidadBotonesVenta(false);
                 listaPropiedadesController.visibilidadBotonesEdificar(false);
+                listaPropiedadesController.visibilidadBotonesSubastar(false);
 
             }
             ConexionServidor.esperar();
@@ -596,6 +636,7 @@ public class TableroController implements Initializable {
         edificarController.setTableroController(this);
         subastarController.setTableroController(this);
         viajeAeropuertosController.setTableroController(this);
+        fianzaController.setTableroController(this);
 
         // inicializamos el vector
         posicion_propiedad_tablero = new String[] { "0", "2", "3", "7", "8", "10", "12", "13", "15",
@@ -605,11 +646,10 @@ public class TableroController implements Initializable {
         try {
             banco = loadForm("Banco.fxml");
             casino = loadForm("Casino.fxml");
-            superpoder = loadForm("Superpoder.fxml");
 
             // HAY QUE AÑADIR AQUI EL VBOX COMPRA.CASINO Y BANCO
 
-            containerForm.getChildren().addAll(banco, casino, superpoder);
+            containerForm.getChildren().addAll(banco, casino/*, superpoder*/);
             datosPartida.setVisible(true);
             chat.setVisible(false);
             comprarPropiedad.setVisible(false);
@@ -619,9 +659,36 @@ public class TableroController implements Initializable {
             casino.setVisible(false);
             superpoder.setVisible(false);
             subastar.setVisible(false);
+            viajeAeropuertos.setVisible(false);
+            pujar.setVisible(false);
+            fianza.setVisible(false);
             btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
 
             inicializarFichas();
+
+            // comprobamos si venimos de otro dispositivo
+            if(GestionPartida.actualizar_cambio_dispositivo)
+            {
+                // mostrar las propiedades que tenia el jugador 
+                listaPropiedadesController.actualizarPropiedades();
+
+                // posiciones de los jugadores
+                actualizar();
+
+                // mostrar los edificios de cada jugador
+
+                // mostrar datos partida (dinero, economia...) -> actualizarDatosPartida()
+                listaJugadoresController.actualizarDinero();
+
+                actualizarDatosPartida();
+
+                actualizarEconomia();
+
+                // jugadores muertos -> se hace con el actualizarrrr
+
+                // ponemos a false la variable una vez hemos actualizado toda la informacion
+                GestionPartida.actualizar_cambio_dispositivo = false;
+            }
 
             Thread threadIni = new Thread() {
                 public void run() {
@@ -673,60 +740,83 @@ public class TableroController implements Initializable {
         if (!estamosActualizando) {
             estamosActualizando = true;
             for (int i = 0; i < 4; i++) {
-                String posicion = "Pos" + String.valueOf(GestionPartida.posicionesJugadores[i]);
 
-                String coordenadas;
-                switch (i) {
-                    case 0:
-                        coordenadas = DatosPartida.mapaPropiedades1.get(posicion);
-                        break;
-                    case 1:
-                        coordenadas = DatosPartida.mapaPropiedades2.get(posicion);
-                        break;
-                    case 2:
-                        coordenadas = DatosPartida.mapaPropiedades3.get(posicion);
-                        break;
-                    case 3:
-                        coordenadas = DatosPartida.mapaPropiedades4.get(posicion);
-                        break;
-                    default:
-                        coordenadas = "ERROR";
-                        System.out.println("ERROR CASILLA1");
-                        break;
+               
+                    String posicion = "Pos" + String.valueOf(GestionPartida.posicionesJugadores[i]);
+
+                    String coordenadas;
+                    switch (i) {
+                        case 0:
+                            coordenadas = DatosPartida.mapaPropiedades1.get(posicion);
+                            break;
+                        case 1:
+                            coordenadas = DatosPartida.mapaPropiedades2.get(posicion);
+                            break;
+                        case 2:
+                            coordenadas = DatosPartida.mapaPropiedades3.get(posicion);
+                            break;
+                        case 3:
+                            coordenadas = DatosPartida.mapaPropiedades4.get(posicion);
+                            break;
+                        default:
+                            coordenadas = "ERROR";
+                            System.out.println("ERROR CASILLA1");
+                            break;
+                    }
+
+                    String[] partes = coordenadas.split(",");
+                    int x = Integer.parseInt(partes[0]);
+                    int y = Integer.parseInt(partes[1]);
+
+                    switch (i) {
+                        case 0:
+                            user1.setLayoutX(x);
+                            user1.setLayoutY(y);
+                            break;
+                        case 1:
+                            user2.setLayoutX(x);
+                            user2.setLayoutY(y);
+                            break;
+                        case 2:
+                            user3.setLayoutX(x);
+                            user3.setLayoutY(y);
+                            break;
+                        case 3:
+                            user4.setLayoutX(x);
+                            user4.setLayoutY(y);
+                            break;
+                        default:
+                            System.out.println("ERROR CASILLA2");
+                            break;
+                    }
+                    /*
+                    * try {
+                    * Thread.sleep(1000); //TODAVIA NO FUNCIONA BIEN
+                    * } catch (InterruptedException ex) {
+                    * ex.printStackTrace();
+                    * }
+                    */
+                        
+                if(GestionPartida.jugadoresVivos[i] == false){
+                    System.out.println("La ha palmado alguien");
+                    switch (i) {
+                        case 0:
+                            user1.setVisible(false);                            
+                            break;
+                        case 1:
+                            user2.setVisible(false);                           
+                            break;
+                        case 2:
+                            user3.setVisible(false);                            
+                            break;
+                        case 3:
+                            user4.setVisible(false);
+                            break;
+                        default:
+                            System.out.println("ERROR CASILLA2");
+                            break;
+                    }
                 }
-
-                String[] partes = coordenadas.split(",");
-                int x = Integer.parseInt(partes[0]);
-                int y = Integer.parseInt(partes[1]);
-
-                switch (i) {
-                    case 0:
-                        user1.setLayoutX(x);
-                        user1.setLayoutY(y);
-                        break;
-                    case 1:
-                        user2.setLayoutX(x);
-                        user2.setLayoutY(y);
-                        break;
-                    case 2:
-                        user3.setLayoutX(x);
-                        user3.setLayoutY(y);
-                        break;
-                    case 3:
-                        user4.setLayoutX(x);
-                        user4.setLayoutY(y);
-                        break;
-                    default:
-                        System.out.println("ERROR CASILLA2");
-                        break;
-                }
-                /*
-                 * try {
-                 * Thread.sleep(1000); //TODAVIA NO FUNCIONA BIEN
-                 * } catch (InterruptedException ex) {
-                 * ex.printStackTrace();
-                 * }
-                 */
             }
 
             estamosActualizando = false;
@@ -790,93 +880,33 @@ public class TableroController implements Initializable {
         subastar.setVisible(true);
         chat.setVisible(false);
         listaPropiedades.setVisible(false);
+
+        subastarController.actualizarLabel(numPropiedad);
     }
 
-    public void ocultarVentanaSubastar() {
-        // faltara poner la imagen que toque
+    public void ocultarVentanaSubastar(Boolean subastaActiva, int numPropiedad) {
+        if(subastaActiva)
+        {
+            listaPropiedadesController.visibilidadBotonesSubastar(false);
+            listaPropiedadesController.ocultarBotonesPropiedadSubastada(numPropiedad);
+        }
 
         subastar.setVisible(false);
         chat.setVisible(true);
         listaPropiedades.setVisible(true);
     }
 
-    private void actualizarSuperpoder() {
-        Platform.runLater(() -> {
-            VBox vbox = (VBox) superpoder.getChildren().get(2); // ESTO HAY QUE MIRAR QUE SEAN ESTOS
+    public void mostrarVentanaFianza() {
+        fianza.setVisible(true);
+        chat.setVisible(false);
+        datosPartida.setVisible(false);
+    }
 
-            Label lbl = (Label) vbox.getChildren().get(3); // ESTO HAY QUE MIRAR QUE SEAN ESTOS
-
-            ImageView imgV = (ImageView) superpoder.getChildren().get(1);
-
-            HBox hbox = (HBox) vbox.getChildren().get(0);
-
-            // TextField text = (TextField) hbox.getChildren().get(0); // TextField
-            // textField = (TextField)
-
-            int i = Integer.parseInt(GestionPartida.superPoder);
-
-            switch (i) {
-                case 1:
-                    lbl.setText("Elija la casilla a la que quiere ir");
-                    File file = new File("src/main/resources/SUPERPODERES/SP1.png");
-                    imgV.setImage(new Image(file.toURI().toString()));
-                    // Superpoder.txtCasilla.setVisible(true);
-                    break;
-                case 2:
-                    lbl.setText("Acudes corriendo al banco");
-                    File file2 = new File("src/main/resources/SUPERPODERES/SP2.png");
-                    imgV.setImage(new Image(file2.toURI().toString()));
-                    break;
-                case 3:
-                    lbl.setText("Acudes corriendo al casino");
-                    File file3 = new File("src/main/resources/SUPERPODERES/SP3.png");
-                    imgV.setImage(new Image(file3.toURI().toString()));
-                    break;
-                case 4:
-                    lbl.setText("Acudes corriendo a la casilla de salida");
-                    File file4 = new File("src/main/resources/SUPERPODERES/SP4.png");
-                    imgV.setImage(new Image(file4.toURI().toString()));
-                    break;
-                case 5:
-                    lbl.setText("Retrocedes 3 casillas");
-                    File file5 = new File("src/main/resources/SUPERPODERES/SP5.png");
-                    imgV.setImage(new Image(file5.toURI().toString()));
-                    break;
-                case 6:
-                    lbl.setText("Aumenta su suerte en el casino");
-                    File file6 = new File("src/main/resources/SUPERPODERES/SP6.png");
-                    imgV.setImage(new Image(file6.toURI().toString()));
-                    break;
-                case 7:
-                    File file7 = new File("src/main/resources/SUPERPODERES/SP7.png");
-                    imgV.setImage(new Image(file7.toURI().toString()));
-                    break;
-                case 8:
-                    File file8 = new File("src/main/resources/SUPERPODERES/SP8.png");
-                    imgV.setImage(new Image(file8.toURI().toString()));
-                    break;
-                case 9:
-                    File file9 = new File("src/main/resources/SUPERPODERES/SP9.png");
-                    imgV.setImage(new Image(file9.toURI().toString()));
-                    break;
-                case 10:
-                    File file10 = new File("src/main/resources/SUPERPODERES/SP10.png");
-                    imgV.setImage(new Image(file10.toURI().toString()));
-                    break;
-                case 11:
-                    File file11 = new File("src/main/resources/SUPERPODERES/SP11.png");
-                    imgV.setImage(new Image(file11.toURI().toString()));
-                    break;
-                case 12:
-                    File file12 = new File("src/main/resources/SUPERPODERES/SP12.png");
-                    imgV.setImage(new Image(file12.toURI().toString()));
-                    break;
-                default:
-                    System.out.println("ERROR SUPERPODER");
-                    break;
-            }
-
-        });
+    public void ocultarVentanaFianza()
+    {
+        fianza.setVisible(false);
+        chat.setVisible(true);
+        datosPartida.setVisible(true);
     }
 
     private void actualizarDatosPartida() {
@@ -884,6 +914,8 @@ public class TableroController implements Initializable {
             lblEvento.setText(GestionPartida.evento);
             lblRonda.setText(Integer.toString(GestionPartida.ronda));
             lblEconomia.setText(Double.toString(GestionPartida.economia));
+            lblBote.setText(Integer.toString(GestionPartida.dineroBote));
+            lblBanco.setText(Integer.toString(GestionPartida.dineroEnBanco));
         });
     }
 

@@ -12,13 +12,13 @@ import javafx.scene.control.Label;
 public class TiendaController implements Initializable {
 
     @FXML
-    private Button btnSkin1, btnSkin2, btnSkin3, btnSkin4, btnSkin5, btnSkin6, btnSkin7, btnSkin8, btnVolver;
+    private Button btnSkin1, btnSkin2, btnSkin3, btnSkin4, btnSkin5, btnSkin6, btnSkin7, btnSkin8, btnSkin9, btnSkin10, btnSkin11, btnSkin12, btnVolver;
 
     @FXML
     private Label lblNombre, lblGemas,
-            lblSkin1, lblSkin2, lblSkin3, lblSkin4, lblSkin5, lblSkin6, lblSkin7, lblSkin8,
-            lblP1, lblP2, lblP3, lblP4, lblP5, lblP6, lblP7, lblP8,
-            lblE1, lblE2, lblE3, lblE4, lblE5, lblE6, lblE7, lblE8;
+            lblSkin1, lblSkin2, lblSkin3, lblSkin4, lblSkin5, lblSkin6, lblSkin7, lblSkin8, lblSkin9, lblSkin10, lblSkin11, lblSkin12,
+            lblP1, lblP2, lblP3, lblP4, lblP5, lblP6, lblP7, lblP8, lblP9, lblP10, lblP11, lblP12,
+            lblE1, lblE2, lblE3, lblE4, lblE5, lblE6, lblE7, lblE8, lblE9, lblE10, lblE11, lblE12;
 
     private Boolean compradaSkin1 = false,
             compradaSkin2 = false,
@@ -27,9 +27,13 @@ public class TiendaController implements Initializable {
             compradaSkin5 = false,
             compradaSkin6 = false,
             compradaSkin7 = false,
-            compradaSkin8 = false;
+            compradaSkin8 = false,
+            compradaSkin9 = false,
+            compradaSkin10 = false,
+            compradaSkin11 = false,
+            compradaSkin12 = false;
 
-    private int precioSkin1, precioSkin2, precioSkin3, precioSkin4, precioSkin5, precioSkin6, precioSkin7, precioSkin8;
+    private int precioSkin1, precioSkin2, precioSkin3, precioSkin4, precioSkin5, precioSkin6, precioSkin7, precioSkin8, precioSkin9, precioSkin10, precioSkin11, precioSkin12;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -146,6 +150,50 @@ public class TiendaController implements Initializable {
                         precioSkin8 = Integer.parseInt(precio);
                     }
                     lblE8.setVisible(false);
+                } else if (nombre.equals("TABLERO1")) {
+                    if (precio.equals("0")) {
+                        lblP9.setVisible(false);
+                        lblP9.setManaged(false);
+                        btnSkin9.setText("Equipar");
+                        compradaSkin9 = true;
+                    } else {
+                        lblP9.setText(precio);
+                        precioSkin9 = Integer.parseInt(precio);
+                    }
+                    lblE9.setVisible(false);
+                } else if (nombre.equals("TABLERO2")) {
+                    if (precio.equals("0")) {
+                        lblP10.setVisible(false);
+                        lblP10.setManaged(false);
+                        btnSkin10.setText("Equipar");
+                        compradaSkin10 = true;
+                    } else {
+                        lblP10.setText(precio);
+                        precioSkin10 = Integer.parseInt(precio);
+                    }
+                    lblE10.setVisible(false);
+                } else if (nombre.equals("TABLERO3")) {
+                    if (precio.equals("0")) {
+                        lblP11.setVisible(false);
+                        lblP11.setManaged(false);
+                        btnSkin11.setText("Equipar");
+                        compradaSkin11 = true;
+                    } else {
+                        lblP11.setText(precio);
+                        precioSkin11 = Integer.parseInt(precio);
+                    }
+                    lblE11.setVisible(false);
+                } else if (nombre.equals("TABLERO4")) {
+                    if (precio.equals("0")) {
+                        lblP12.setVisible(false);
+                        lblP12.setManaged(false);
+                        btnSkin12.setText("Equipar");
+                        compradaSkin12 = true;
+                    } else {
+                        lblP12.setText(precio);
+                        precioSkin12 = Integer.parseInt(precio);
+                    }
+                    lblE12.setVisible(false);
                 }
             }
         });
@@ -183,6 +231,14 @@ public class TiendaController implements Initializable {
                 lblE7.setVisible(true);
             } else if (IDskin.equals("TITE")) {
                 lblE8.setVisible(true);
+            } else if (IDskin.equals("TABLERO1")) {
+                lblE9.setVisible(true);
+            } else if (IDskin.equals("TABLERO2")) {
+                lblE10.setVisible(true);
+            } else if (IDskin.equals("TABLERO3")) {
+                lblE11.setVisible(true);
+            } else if (IDskin.equals("TABLERO4")) {
+                lblE12.setVisible(true);
             }
 
         }
@@ -236,6 +292,26 @@ public class TiendaController implements Initializable {
                 comprarSkin("TITE", precioSkin8);
             else
                 equiparSkin("TITE");
+        } else if (btnSkin9.equals(evt)) {
+            if (!compradaSkin9)
+                comprarSkin("TABLERO1", precioSkin9);
+            else
+                equiparSkin("TABLERO1");
+        } else if (btnSkin10.equals(evt)) {
+            if (!compradaSkin10)
+                comprarSkin("TABLERO2", precioSkin10);
+            else
+                equiparSkin("TABLERO2");
+        } else if (btnSkin11.equals(evt)) {
+            if (!compradaSkin11)
+                comprarSkin("TABLERO3", precioSkin11);
+            else
+                equiparSkin("TABLERO3");
+        } else if (btnSkin12.equals(evt)) {
+            if (!compradaSkin12)
+                comprarSkin("TABLERO4", precioSkin12);
+            else
+                equiparSkin("TABLERO4");
         } else if (btnVolver.equals(evt)) {
             App.setRoot("MenuPrincipal");
         }

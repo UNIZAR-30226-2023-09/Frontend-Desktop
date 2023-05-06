@@ -293,6 +293,7 @@ public class GestionPartida {
                 enPartida = true;
                 break;
             case "UNIRP_NO_OK":
+                enPartida = false;
                 System.out.println("Error en unirse a partida");
                 break;
             case "EMPEZAR_OK":

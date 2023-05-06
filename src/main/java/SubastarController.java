@@ -1,5 +1,6 @@
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -28,7 +29,11 @@ public class SubastarController implements Initializable{
     @FXML
     private Label lblError;
 
-    private int numPropiedad, precio;
+    private int numPropiedad;
+
+    public Boolean habiamosSubastado = false;
+
+    public int propiedadSubastada = 0;
 
     @FXML
     public void actionEvent(ActionEvent e) throws IOException
@@ -41,10 +46,15 @@ public class SubastarController implements Initializable{
             if(!dinero.isEmpty())
             {
                 // rellenar informacion necesaria
-                System.out.println("Todavia no esta implementado el mensaje de efectuar la subasta");
-                // GestionPartida.subastarPropiedad(tableroController.posicion_propiedad_tablero[numPropiedad],Integer.toString(precio));
+                // System.out.println("Todavia no esta implementado el mensaje de efectuar la subasta");
+                GestionPartida.subastarPropiedad(tableroController.posicion_propiedad_tablero[numPropiedad],dinero);
 
-                tableroController.ocultarVentanaSubastar();
+                System.out.println("Subastamos la propiedad por " + dinero);
+
+                habiamosSubastado = true;
+                propiedadSubastada = numPropiedad;
+
+                tableroController.ocultarVentanaSubastar(true,numPropiedad);
             }
             else
             {
@@ -53,7 +63,7 @@ public class SubastarController implements Initializable{
         }
         else if(evt.equals(btnCancelar))
         {
-            tableroController.ocultarVentanaSubastar();
+            tableroController.ocultarVentanaSubastar(false,0);
         }
     }
 
@@ -73,14 +83,28 @@ public class SubastarController implements Initializable{
         lblError.setVisible(false);
     }
 
-    public void actualizarLabel(int numPropiedad, int precio)
+    public void actualizarLabel(int numPropiedad)
     {
         Platform.runLater(() -> {
             lblSubastar.setText("Por cuanto quieres subastar " + GestionPartida.tablero[Integer.parseInt(tableroController.posicion_propiedad_tablero[numPropiedad])]);
 
             this.numPropiedad = numPropiedad;
-            this.precio = precio;
         });
+    }
+
+    public Boolean subastaExitosa()
+    {
+        ArrayList<GestionPartida.Propiedad> propiedades = GestionPartida.getPropiedades();
+
+        for( int i=0; i<propiedades.size(); i++)
+        {
+            GestionPartida.Propiedad prop = propiedades.get(i);
+            if (prop.id == propiedadSubastada)
+            {
+                return false;
+            }
+        }
+        return true;
     }
 
     public void setTableroController(TableroController tableroController)

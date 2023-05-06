@@ -8,6 +8,7 @@
 */
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.application.Platform;
@@ -197,6 +198,35 @@ public class ListaPropiedadesController implements Initializable {
         }
     }
 
+    /*
+     * Esta funcion permite mostrar/ocultar todos los botones de la lista de propiedades de subastar.
+     * Pero solo de aquella propiedad que se pueda ver en pantalla.
+     */
+    public void visibilidadBotonesSubastar(Boolean b)
+    {
+        // solo mostraremos los botones si no hay ninguna subasta activa
+        if((b == true && !GestionPartida.subastaOcupada) || b == false)
+        {
+            for(int i=1; i<=NUM_PROPIEDADES; i++)
+            {
+                HBox hbox = (HBox) propiedades.getChildren().get(i);
+
+                // solo si la propiedad se puede ver mostraremos sus botones
+                if(hbox.isVisible())
+                {
+                botonesS.get(i-1).setVisible(b);
+                }
+
+            }
+        }
+    }
+
+    public void ocultarBotonesPropiedadSubastada(int numPropiedad)
+    {
+        botonesV.get(numPropiedad-1).setVisible(false);
+        botonesE.get(numPropiedad-1).setVisible(false);
+    }
+
     @FXML
     public void actionEvent(ActionEvent e) throws IOException {
         Object evt = e.getSource();
@@ -225,10 +255,25 @@ public class ListaPropiedadesController implements Initializable {
         {
             if(evt.equals(botonesS.get(i-1)))
             {
-                System.out.println("La propiedad pulsada es la posicion " + i);
                 // abrir la pantalla que permite vender la propiedad
                 tableroController.mostrarVentanaSubastar(i);
             }
+        }
+    }
+
+    /*
+     * Cuando se produzca un cambio de dispositivo llamaremos a esta funcion para que me vuelva a mostrar
+     * todas las propiedades.
+     */
+    public void actualizarPropiedades()
+    {
+        // recorremos la lista de las propiedades del jugador y vamos aladiendolas
+        ArrayList<GestionPartida.Propiedad> propiedades = GestionPartida.getPropiedades();
+
+        for( int i=0; i<propiedades.size(); i++)
+        {
+            GestionPartida.Propiedad prop = propiedades.get(i);
+            agnadirPropiedad(prop.id);
         }
     }
 
