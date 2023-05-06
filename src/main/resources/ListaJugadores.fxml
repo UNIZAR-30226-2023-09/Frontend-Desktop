@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
-<?import javafx.scene.layout.*?>
-<?import javafx.scene.text.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <VBox fx:id="listaJugadores" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="550.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ListaJugadoresController">
    <children>
@@ -38,20 +40,12 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblD1" text="1">
+                  <Label fx:id="lblD1" text="1 $">
                      <font>
                         <Font size="20.0" />
                      </font>
                      <padding>
                         <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label text="€">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets left="5.0" />
                      </padding>
                   </Label>
                </children>
@@ -76,20 +70,12 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblD2" text="1">
+                  <Label fx:id="lblD2" text="1 $">
                      <font>
                         <Font size="20.0" />
                      </font>
                      <padding>
                         <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label text="€">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets left="5.0" />
                      </padding>
                   </Label>
                </children>
@@ -117,20 +103,12 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblD3" text="3">
+                  <Label fx:id="lblD3" text="3 $">
                      <font>
                         <Font size="20.0" />
                      </font>
                      <padding>
                         <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label text="€">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets left="5.0" />
                      </padding>
                   </Label>
                </children>
@@ -158,20 +136,12 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label fx:id="lblD4" text="4">
+                  <Label fx:id="lblD4" text="4 $">
                      <font>
                         <Font size="20.0" />
                      </font>
                      <padding>
                         <Insets left="10.0" />
-                     </padding>
-                  </Label>
-                  <Label text="€">
-                     <font>
-                        <Font size="20.0" />
-                     </font>
-                     <padding>
-                        <Insets left="5.0" />
                      </padding>
                   </Label>
                </children>

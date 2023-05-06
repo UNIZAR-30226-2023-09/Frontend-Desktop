@@ -43,23 +43,41 @@ public class UnirsePartidaController implements Initializable {
             if (GestionPartida.enPartida)
             {
                 System.out.println("Esperando al anfitrion");
-                txtCodigo.setVisible(false);
-                lblError.setVisible(false);
-                btnUnirse.setVisible(false);
-                Platform.runLater(() -> {
-                    lblTitulo.setText("Esperando al anfitrion");
-                });
+                Thread thread = new Thread() {
+                    public void run()
+                    {
+                        modificarVentana();
+                    }
+                };
+
+                thread.start();
+
+                //modificarVentana();
 
                 // espero a que me llegue el empezar ok
-                ConexionServidor.esperar();
-                
+                while(!GestionPartida.empezarPartida)
+                {
+                    ConexionServidor.esperar();
+                }
 
                 // abrir el tablero
                 App.setRoot("Tablero");
+                //App.setRoot("Espera");
             } else {
                 lblError.setVisible(true);
                 lblError.setText("El codigo introducido no es valido");
             }
         }
+    }
+
+    private void modificarVentana()
+    {
+        Platform.runLater(() -> {
+            txtCodigo.setVisible(false);
+            lblError.setVisible(false);
+            btnUnirse.setVisible(false);
+            lblTitulo.setText("Esperando al anfitrion");
+            System.out.println("los deberia haber cambiado ya");
+        });
     }
 }

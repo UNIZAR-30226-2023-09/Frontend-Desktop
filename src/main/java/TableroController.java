@@ -105,7 +105,7 @@ public class TableroController implements Initializable {
 
     public String[] posicion_propiedad_tablero; // devuelve la posicion de una propiedad en el tablero
 
-    private void partida() {
+    private void partida() throws IOException {
         ConexionServidor.esperar();
         // ConexionServidor.esperar(); //?????
         while (GestionPartida.enPartida) {
@@ -122,6 +122,9 @@ public class TableroController implements Initializable {
                     System.out.println(" ");
                     ConexionServidor.esperar();
                 }
+
+                // si ha muerto algun jugador habra que poner en rojo su nombre y se oculta el dinero
+                listaJugadoresController.muertos();
 
                 listaJugadoresController.actualizarDinero();
 
@@ -519,7 +522,10 @@ public class TableroController implements Initializable {
             }
             ConexionServidor.esperar();
         }
+        // si salimos del while es que la partida ha terminado para nosotros
         System.out.println("Ganaste rey, ahora sal de aqui");
+
+        App.setRoot("FinPartida");
     }
 
     @FXML
@@ -724,7 +730,12 @@ public class TableroController implements Initializable {
 
             Thread threadIni = new Thread() {
                 public void run() {
-                    partida();
+                    try {
+                        partida();
+                    } catch (IOException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
                 }
             };
             threadIni.start();
