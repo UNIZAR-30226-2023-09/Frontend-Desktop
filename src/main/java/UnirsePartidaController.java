@@ -1,6 +1,7 @@
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.concurrent.Semaphore;
 
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
@@ -21,11 +22,24 @@ public class UnirsePartidaController implements Initializable {
     @FXML
     private TextField txtCodigo;
 
+    private Semaphore semaphore = new Semaphore(0);
+
+    private Boolean unirse = false;
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         lblNombre.setText(GestionPartida.nombreUser);
         lblGemas.setText(Integer.toString(GestionPartida.gemas));
         lblError.setVisible(false);
+
+        Thread thread = new Thread() {
+            public void run()
+            {
+                esperarComienzo();
+            }
+        };
+
+        thread.start();
     }
 
     @FXML
@@ -43,31 +57,35 @@ public class UnirsePartidaController implements Initializable {
             if (GestionPartida.enPartida)
             {
                 System.out.println("Esperando al anfitrion");
-                Thread thread = new Thread() {
+                /*Thread thread = new Thread() {
                     public void run()
-                    {
+                    {*/
                         modificarVentana();
-                    }
-                };
+                    //}
+                //};
 
-                thread.start();
+                //thread.start();
 
                 //modificarVentana();
 
                 // espero a que me llegue el empezar ok
-                while(!GestionPartida.empezarPartida)
+                /*while(!GestionPartida.empezarPartida)
                 {
                     ConexionServidor.esperar();
-                }
+                }*/
 
                 // abrir el tablero
-                App.setRoot("Tablero");
+                // App.setRoot("Tablero");
                 //App.setRoot("Espera");
+                unirse = true;
             } else {
                 lblError.setVisible(true);
                 lblError.setText("El codigo introducido no es valido");
+                unirse = false;
             }
         }
+
+        semaphore.release();
     }
 
     private void modificarVentana()
@@ -79,5 +97,31 @@ public class UnirsePartidaController implements Initializable {
             lblTitulo.setText("Esperando al anfitrion");
             System.out.println("los deberia haber cambiado ya");
         });
+    }
+
+    @FXML
+    private void esperarComienzo()
+    {
+        try {
+            semaphore.acquire();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        if(unirse)
+        {
+            while(!GestionPartida.empezarPartida)
+            {
+                ConexionServidor.esperar();
+            }
+            Platform.runLater(() -> {
+                try {
+                    App.setRoot("Tablero");
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            });
+        }
     }
 }
