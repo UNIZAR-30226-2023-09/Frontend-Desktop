@@ -258,6 +258,8 @@ public class GestionPartida {
     public static void gestionMensaje(String message) {
         // if (verbose) {
         System.out.println(message);
+        // TODO: Revisar por que se cambia el boludo
+        String mensaje = new String(message);
         // }
         String[] partes = message.split(",");
         switch (partes[0]) {
@@ -399,6 +401,17 @@ public class GestionPartida {
                 }
                 JugadorEnCarcel[indiceJ] = true;
                 posicionesJugadores[indiceJ] = "11";
+                break;
+            case "FUERA_CARCEL":
+                // Encontrar el jugador que esta en la carcel
+                String jugadorFueraCarcel = partes[1];
+                int indiceJ2 = 0;
+                for (int i = 0; i < 4; i++) {
+                    if (jugadorFueraCarcel.equals(ordenJugadores[i])) {
+                        indiceJ2 = i;
+                    }
+                }
+                JugadorEnCarcel[indiceJ2] = false;
                 break;
             case "SALIR_CARCEL":
                 break;
@@ -618,7 +631,14 @@ public class GestionPartida {
 
                 // Si estaba en una partida activa y se habia salido, se vuelve a meter en la
                 // partida y recibe toda la informacion de la partida
-                String[] aux = message.split("|");
+                System.out.println("Mensaje recibido: " + mensaje);
+                String[] aux = mensaje.split("\\|");
+                System.out.println("aux[0]");
+                System.out.println(aux[0]);
+                System.out.println("aux[1]");
+                System.out.println(aux[1]);
+                System.out.println("aux[2]");
+                System.out.println(aux[2]);
                 String[] partesPartida = aux[0].split(",");
                 // partesPartida contiene [ESTADO_PARTIDA,IDPartida, ronda, bote,
                 // economia,evento, perteneceTorneo, turno]
