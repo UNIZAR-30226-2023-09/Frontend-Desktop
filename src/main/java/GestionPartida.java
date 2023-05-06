@@ -615,93 +615,99 @@ public class GestionPartida {
                 System.out.println("Han comprado tu propiedad en subasta por " + partes[2]);
                 break;
             case "ESTADO_PARTIDA":
-                actualizar_cambio_dispositivo = true;
-                // Inicializar todas las variables a las por defecto:
-                JugadorEnCarcel[0] = false;
-                JugadorEnCarcel[1] = false;
-                JugadorEnCarcel[2] = false;
-                JugadorEnCarcel[3] = false;
-
-                // Inicializar todas las propiedades de la partida para que no tengan dueño
-                for (int i = 1; i < 41; i++) {
-                    Propiedad prop = new Propiedad("", i, tablero[i], 0);
-                    propiedades.put(i, prop);
-                }
-
-                CuentaInfoRecibida = 4; // Lo pongo a 4 asumiendo que he recibido el mensaje de todos :)
-
-                // Si estaba en una partida activa y se habia salido, se vuelve a meter en la
-                // partida y recibe toda la informacion de la partida
-                System.out.println("Mensaje recibido: " + mensaje);
-                String[] aux = mensaje.split("\\|");
-                System.out.println("aux[0]");
-                System.out.println(aux[0]);
-                System.out.println("aux[1]");
-                System.out.println(aux[1]);
-                System.out.println("aux[2]");
-                System.out.println(aux[2]);
-                String[] partesPartida = aux[0].split(",");
-                // partesPartida contiene [ESTADO_PARTIDA,IDPartida, ronda, bote,
-                // economia,evento, perteneceTorneo, turno]
-                enPartida = true;
-                IDPartida = partesPartida[1];
-                ronda = Integer.parseInt(partesPartida[2]);
-                dineroBote = Integer.parseInt(partesPartida[3]);
-                economia = Double.parseDouble(partesPartida[4]);
-                evento = partesPartida[5];
-                // perteneceTorneo = Boolean.parseBoolean(partesPartida[6]);
-                String turno = partesPartida[7];
-                if (turno.equals(nombreUser)) {
-                    meToca = true;
-                    // Saltar a la pantalla de juego
-                } else {
-                    meToca = false;
-                }
-
-                String[] partesPropiedades = aux[1].split(";");
-
-                // Inicializar todas las propiedades de la partida para que no tengan dueño
-                for (int i = 1; i < 41; i++) {
-                    // Para cada una de las propiedades actualizamos su dueño y
-                    // el numero de casas que tiene
-                    String[] aux2 = partesPropiedades[i].split(",");
-                    String dueño = aux2[0];
-                    int edificaciones = Integer.parseInt(aux2[1]);
-                    propiedades.get(i).dueño = dueño;
-                    propiedades.get(i).casas = edificaciones;
-                }
-                String[] skinsJugadores = { "", "", "", "" };
-
-                String[] partesJugadores = aux[2].split(";");
-                for (int i = 0; i < 4; i++) {
-                    // Para cada uno de los jugadores actualizamos su dinero y
-                    // su posicion en el tablero
-                    String[] aux2 = partesJugadores[i].split(",");
-                    String nombreJugador = aux2[0];
-                    int indiceJugadorActual = Integer.parseInt(aux2[5]);
-                    ordenJugadores[indiceJugadorActual] = nombreJugador;
-                    jugadoresVivos[indiceJugadorActual] = Boolean.parseBoolean(aux2[1]);
-                    posicionesJugadores[indiceJugadorActual] = aux2[2];
-                    dineroJugadores[indiceJugadorActual] = Integer.parseInt(aux2[3]);
-                    skinsJugadores[indiceJugadorActual] = aux2[4];
-                    // TODO: Si soy yo el jugador tengo que guardar la skinTablero
-                    // y el dineroInvertido
-                }
-
-                // Por cada skin añadida añadirla a la lista de skins
-                // para añadirlas en la lista en orden
-                for (int i = 0; i < 4; i++) {
-                    if (!skinsJugadores[i].equals("")) {
-                        listaSkins.add(skinsJugadores[i]);
-                    }
-                }
-
+                ActualizarEstadoPartida(mensaje);
                 break;
             default:
                 System.out.println("Mensaje no tenido en cuenta: " + message);
                 return;
         }
         ConexionServidor.liberar(); // Igual no hay que liberar en todos los casos
+    }
+
+    private static void ActualizarEstadoPartida(String mensaje) {
+        actualizar_cambio_dispositivo = true;
+        // Inicializar todas las variables a las por defecto:
+        JugadorEnCarcel[0] = false;
+        JugadorEnCarcel[1] = false;
+        JugadorEnCarcel[2] = false;
+        JugadorEnCarcel[3] = false;
+
+        // Inicializar todas las propiedades de la partida para que no tengan dueño
+        for (int i = 1; i < 41; i++) {
+            Propiedad prop = new Propiedad("", i, tablero[i], 0);
+            propiedades.put(i, prop);
+        }
+
+        CuentaInfoRecibida = 4; // Lo pongo a 4 asumiendo que he recibido el mensaje de todos :)
+
+        // Si estaba en una partida activa y se habia salido, se vuelve a meter en la
+        // partida y recibe toda la informacion de la partida
+        System.out.println("Mensaje recibido: " + mensaje);
+        String[] aux = mensaje.split("\\|");
+        System.out.println("aux[0]");
+        System.out.println(aux[0]);
+        System.out.println("aux[1]");
+        System.out.println(aux[1]);
+        System.out.println("aux[2]");
+        System.out.println(aux[2]);
+        String[] partesPartida = aux[0].split(",");
+        // partesPartida contiene [ESTADO_PARTIDA,IDPartida, ronda, bote,
+        // economia,evento, perteneceTorneo, turno]
+        enPartida = true;
+        IDPartida = partesPartida[1];
+        ronda = Integer.parseInt(partesPartida[2]);
+        dineroBote = Integer.parseInt(partesPartida[3]);
+        economia = Double.parseDouble(partesPartida[4]);
+        evento = partesPartida[5];
+        // perteneceTorneo = Boolean.parseBoolean(partesPartida[6]);
+        String turno = partesPartida[7];
+        if (turno.equals(nombreUser)) {
+            meToca = true;
+            // Saltar a la pantalla de juego
+        } else {
+            meToca = false;
+        }
+
+        String[] partesPropiedades = aux[1].split(";");
+
+        // Inicializar todas las propiedades de la partida para que no tengan dueño
+        for (int i = 1; i < 41; i++) {
+            // Para cada una de las propiedades actualizamos su dueño y
+            // el numero de casas que tiene
+            String[] aux2 = partesPropiedades[i - 1].split(",");
+            String dueño = aux2[0];
+            int edificaciones = Integer.parseInt(aux2[1]);
+            propiedades.get(i).dueño = dueño;
+            propiedades.get(i).casas = edificaciones;
+        }
+        String[] skinsJugadores = { "", "", "", "" };
+
+        String[] partesJugadores = aux[2].split(";");
+        for (int i = 0; i < 4; i++) {
+            // Para cada uno de los jugadores actualizamos su dinero y
+            // su posicion en el tablero
+            String[] aux2 = partesJugadores[i].split(",");
+            String nombreJugador = aux2[0];
+            int indiceJugadorActual = Integer.parseInt(aux2[5]) - 1;
+            ordenJugadores[indiceJugadorActual] = nombreJugador;
+            jugadoresVivos[indiceJugadorActual] = Boolean.parseBoolean(aux2[1]);
+            posicionesJugadores[indiceJugadorActual] = aux2[2];
+            dineroJugadores[indiceJugadorActual] = Integer.parseInt(aux2[3]);
+            skinsJugadores[indiceJugadorActual] = aux2[4];
+            // TODO: Si soy yo el jugador tengo que guardar la skinTablero
+            // y el dineroInvertido
+        }
+
+        // Por cada skin añadida añadirla a la lista de skins
+        // para añadirlas en la lista en orden
+        for (int i = 0; i < 4; i++) {
+            if (!skinsJugadores[i].equals("")) {
+                listaSkins.add(skinsJugadores[i]);
+            }
+        }
+
+        // Scanner scanner = new Scanner(System.in);
+        // jugarPartida(client, scanner);
     }
 
     // Metodos privados de gestion del juego por terminal
