@@ -29,7 +29,14 @@ public class EdificarController {
             GestionPartida.edificarPropiedad(tableroController.posicion_propiedad_tablero[numPropiedad], Integer.toString(precio));
 
             // faltara mostrar graficamente el edificio
-            System.out.println("Falta mostrar en el tablero la casa");
+            System.out.println("Falta mostrar en el tablero la casa"); 
+
+            /*
+             * 
+             * 
+             * 
+             * 
+             */
         }
         
         // por ultimo ocultamos la pantalla de vender
