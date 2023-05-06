@@ -87,117 +87,117 @@
             </Label>
             <ProgressBar fx:id="barraEconomia" layoutX="373.0" layoutY="669.0" prefWidth="200.0" progress="0.0" />
             <Circle fx:id="indicador" fill="DODGERBLUE" layoutX="365.0" layoutY="679.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="713.0" layoutY="739.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgCasa1" fitHeight="26.0" fitWidth="26.0" layoutX="713.0" layoutY="739.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="646.0" layoutY="739.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgCasa2" fitHeight="26.0" fitWidth="26.0" layoutX="646.0" layoutY="739.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="370.0" layoutY="739.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgCasa3" fitHeight="26.0" fitWidth="26.0" layoutX="370.0" layoutY="739.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="300.0" layoutY="739.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgCasa4" fitHeight="26.0" fitWidth="26.0" layoutX="300.0" layoutY="739.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="161.0" layoutY="739.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgCasa5" fitHeight="26.0" fitWidth="26.0" layoutX="161.0" layoutY="739.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="135.0" layoutY="716.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+            <ImageView fx:id="imgCasa6" fitHeight="26.0" fitWidth="26.0" layoutX="135.0" layoutY="716.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="135.0" layoutY="653.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+            <ImageView fx:id="imgCasa7" fitHeight="26.0" fitWidth="26.0" layoutX="135.0" layoutY="653.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="135.0" layoutY="507.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+            <ImageView fx:id="imgCasa8" fitHeight="26.0" fitWidth="26.0" layoutX="135.0" layoutY="507.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="135.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+            <ImageView fx:id="imgCasa9" fitHeight="26.0" fitWidth="26.0" layoutX="135.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="135.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+            <ImageView fx:id="imgCasa10" fitHeight="26.0" fitWidth="26.0" layoutX="135.0" layoutY="225.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="135.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
+            <ImageView fx:id="imgCasa11" fitHeight="26.0" fitWidth="26.0" layoutX="135.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" rotate="90.0">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="161.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgCasa12" fitHeight="26.0" fitWidth="26.0" layoutX="161.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="226.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgCasa13" fitHeight="26.0" fitWidth="26.0" layoutX="226.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="370.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgCasa14" fitHeight="26.0" fitWidth="26.0" layoutX="370.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="510.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgCasa15" fitHeight="26.0" fitWidth="26.0" layoutX="510.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="646.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgCasa16" fitHeight="26.0" fitWidth="26.0" layoutX="646.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="713.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fx:id="imgCasa17" fitHeight="26.0" fitWidth="26.0" layoutX="713.0" layoutY="134.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="739.0" layoutY="716.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+            <ImageView fx:id="imgCasa23" fitHeight="26.0" fitWidth="26.0" layoutX="739.0" layoutY="716.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="739.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+            <ImageView fx:id="imgCasa22" fitHeight="26.0" fitWidth="26.0" layoutX="739.0" layoutY="580.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="739.0" layoutY="507.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+            <ImageView fx:id="imgCasa21" fitHeight="26.0" fitWidth="26.0" layoutX="739.0" layoutY="507.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="739.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+            <ImageView fx:id="imgCasa19" fitHeight="26.0" fitWidth="26.0" layoutX="739.0" layoutY="232.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="739.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+            <ImageView fx:id="imgCasa20" fitHeight="26.0" fitWidth="26.0" layoutX="739.0" layoutY="367.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="26.0" fitWidth="26.0" layoutX="739.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
+            <ImageView fx:id="imgCasa18" fitHeight="26.0" fitWidth="26.0" layoutX="739.0" layoutY="161.0" pickOnBounds="true" preserveRatio="true" rotate="-90.0">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
