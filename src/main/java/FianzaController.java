@@ -67,6 +67,9 @@ public class FianzaController implements Initializable{
         // solo si estoy en partida mostrare la pantalla
         if(GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador])
         {
+            // limpiamos la pantalla
+            lblError.setVisible(false);
+
             System.out.println("Ofrecemos la posinilidad de pagar la fianza");
             tableroController.mostrarVentanaFianza();
 
