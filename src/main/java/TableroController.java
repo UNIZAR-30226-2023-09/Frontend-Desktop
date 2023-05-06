@@ -18,7 +18,6 @@ import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.shape.Circle;
@@ -81,7 +80,7 @@ public class TableroController implements Initializable {
     public Circle indicador;
 
     @FXML
-    private Label lblEvento, lblRonda, lblEconomia;
+    private Label lblEvento, lblRonda, lblEconomia, lblBote, lblBanco;
 
     Random random = new Random();
 
@@ -685,7 +684,7 @@ public class TableroController implements Initializable {
 
                 actualizarEconomia();
 
-                // jugadores muertos
+                // jugadores muertos -> se hace con el actualizarrrr
 
                 // ponemos a false la variable una vez hemos actualizado toda la informacion
                 GestionPartida.actualizar_cambio_dispositivo = false;
@@ -915,6 +914,8 @@ public class TableroController implements Initializable {
             lblEvento.setText(GestionPartida.evento);
             lblRonda.setText(Integer.toString(GestionPartida.ronda));
             lblEconomia.setText(Double.toString(GestionPartida.economia));
+            lblBote.setText(Integer.toString(GestionPartida.dineroBote));
+            lblBanco.setText(Integer.toString(GestionPartida.dineroEnBanco));
         });
     }
 
