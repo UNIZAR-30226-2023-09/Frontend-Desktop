@@ -171,9 +171,9 @@ public class TableroController implements Initializable {
                     // AQUI VAMOS A GESTIONAR EN QUE CASILLA HEMOS CAIDO PARA COMPRAR, BANCO Y
                     // CASINO
 
-                    if (!GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador] || (GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador] && fianzaController.pagar()))
+                    if (!GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador])
                     {
-                        System.out.println("Hemos salido de la carcel");
+                        System.out.println("NO estoy en la carcel");
                         
                         if (!GestionPartida.superPoder.equals("0")) {
                             // Superpoder
@@ -477,8 +477,14 @@ public class TableroController implements Initializable {
                             GestionPartida.propiedadADesplazarseAvion = null;
                         }
                     }
+                    else
+                    {
+                        fianzaController.pagar();
+                    }
 
                 } while (GestionPartida.dadosDobles);
+
+                System.out.println("Pulsa el boton para terminar el turno");
 
                 // mostar boton de finalizar turno y esperar a que lo pulsen
                 btnTerminarTurno.setVisible(true);

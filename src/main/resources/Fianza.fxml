@@ -23,7 +23,7 @@
          <children>
             <ImageView fx:id="propiedadImg" fitHeight="603.0" fitWidth="520.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@chicago.png" />
+                  <Image url="@triangle.png" />
                </image>
                <VBox.margin>
                   <Insets top="30.0" />
