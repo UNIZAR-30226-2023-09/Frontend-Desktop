@@ -33,6 +33,8 @@ public class CasinoController implements Initializable{
 
     public static Semaphore semaphoreCasino = new Semaphore(0);
 
+    private Boolean haGanado = false;
+
     @FXML
     public void actionEvent(ActionEvent e) throws IOException
     {
@@ -89,11 +91,13 @@ public class CasinoController implements Initializable{
                             // si ganamos mostramos el dinero obtenido
                             lblGanancias.setStyle("-fx-text-fill: green;");
                             lblGanancias.setText("+" + Integer.toString(apuesta*2) + "$");
+                            haGanado = true;
                             System.out.println("GANE");
                         } else {
                             // si perdemos msotramos el dinero que se ha restado
                             lblGanancias.setStyle("-fx-text-fill: red;");
                             lblGanancias.setText("-" + txtDinero.getText() + "$");
+                            haGanado = false;
                             System.out.println("PERDI");
                         }
 
@@ -106,10 +110,26 @@ public class CasinoController implements Initializable{
         else if(evt.equals(btnRetirarse))
         {
             // simplemente liberamos el semaforo si el jugador no quiere echarle a la caprichosa
+            haGanado = false;
             semaphoreCasino.release();
         }
     }
-    
+
+    public Boolean gestionarRule()
+    {
+        // dejamos la vista limpia de posibles datos de un uso anterior
+        lblError.setVisible(false);
+        txtDinero.clear();
+        lblGanancias.setVisible(false);
+
+        try {
+            semaphoreCasino.acquire();
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+
+        return haGanado;
+    }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {

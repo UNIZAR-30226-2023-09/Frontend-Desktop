@@ -19,7 +19,7 @@ public class BancoController implements Initializable{
     private Button btnIngresar, btnRetirar, btnConfirmar, btnRechazar;
 
     @FXML
-    private Label lblText, lblError2;
+    private Label lblText, lblError;
 
     @FXML
     private ImageView imgBanco;
@@ -49,16 +49,16 @@ public class BancoController implements Initializable{
         else if (evt.equals(btnConfirmar)) {
             if (txtBanco.getText().equals("")){
                 // indicar que tiene que introducir una cantidad no nula
-                lblError2.setVisible(true);
-                lblError2.setText("Debes introducir una cantidad estrictamente superior a 0$");
+                lblError.setVisible(true);
+                lblError.setText("Debes introducir una cantidad estrictamente superior a 0$");
             }
             else{
                 if(ingresar){
                     Integer dinero = Integer.parseInt(txtBanco.getText());
                     if (dinero > GestionPartida.dineroJugadores[GestionPartida.indiceJugador]){ //REVISAR QUE DINERO ES, dineroJugador[indiceJugador]
                         // indicar que no tienes suficiente saldo
-                        lblError2.setVisible(true);
-                        lblError2.setText("No tienes el suficiente dinero");
+                        lblError.setVisible(true);
+                        lblError.setText("No tienes el suficiente dinero");
 
                         System.out.println("ingresar2");
                         System.out.println(dinero);
@@ -67,8 +67,8 @@ public class BancoController implements Initializable{
                     }
                     else if (dinero <= 0){
                         // indicar que tiene que introducir una cantidad no nula
-                        lblError2.setVisible(true);
-                        lblError2.setText("Debes introducir una cantidad estrictamente superior a 0$");
+                        lblError.setVisible(true);
+                        lblError.setText("Debes introducir una cantidad estrictamente superior a 0$");
                     }
                     else{
                         GestionPartida.depositarDinero(dinero);
@@ -81,8 +81,8 @@ public class BancoController implements Initializable{
                     Integer dinero = Integer.parseInt(txtBanco.getText());
                     if (dinero > GestionPartida.dineroEnBanco){ //REVISAR QUE DINERO ES, dineroJugador[indiceJugador]
                         // indicar que no tienes suficiente saldo
-                        lblError2.setVisible(true);
-                        lblError2.setText("No tienes el suficiente dinero");
+                        lblError.setVisible(true);
+                        lblError.setText("No tienes el suficiente dinero");
 
                         System.out.println("retirar2");
                         System.out.println(dinero);
@@ -91,8 +91,8 @@ public class BancoController implements Initializable{
                     }
                     else if (dinero <= 0){
                         // indicar que tiene que introducir una cantidad no nula
-                        lblError2.setVisible(true);
-                        lblError2.setText("Debes introducir una cantidad estrictamente superior a 0$");
+                        lblError.setVisible(true);
+                        lblError.setText("Debes introducir una cantidad estrictamente superior a 0$");
                     }
                     else{
                         System.out.println("Hecho la retirada");
@@ -111,6 +111,6 @@ public class BancoController implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+        lblError.setVisible(false);
     }
 }

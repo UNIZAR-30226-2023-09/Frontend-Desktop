@@ -88,6 +88,10 @@ public class SubastarController implements Initializable{
         Platform.runLater(() -> {
             lblSubastar.setText("Por cuanto quieres subastar " + GestionPartida.tablero[Integer.parseInt(tableroController.posicion_propiedad_tablero[numPropiedad])]);
 
+            // limpiamos la ventana de posibles datos de una subasta anterior
+            lblError.setVisible(false);
+            txtDinero.clear();
+
             this.numPropiedad = numPropiedad;
         });
     }

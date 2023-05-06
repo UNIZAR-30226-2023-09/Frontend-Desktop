@@ -93,6 +93,11 @@ public class SuperpoderController implements Initializable{
     public void gestionarSuperpoder()
     {
         Platform.runLater(() -> {
+            // limpiamos lso campos que pudieran estar alterados debido a un uso anterior
+            lblError.setVisible(false);
+            txtCasilla.clear();
+            rellenarCampos.setVisible(false);
+            rellenarCampos.setManaged(false);
 
             int i = Integer.parseInt(GestionPartida.superPoder);
             

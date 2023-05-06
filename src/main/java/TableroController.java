@@ -59,13 +59,16 @@ public class TableroController implements Initializable {
     private FianzaController fianzaController;
 
     @FXML
+    private CasinoController casinoController;
+
+    @FXML
     private ImageView dado1, dado2, user1, user2, user3, user4;
 
     @FXML
     private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad, edificar,
-            subastar, viajeAeropuertos, superpoder, pujar, fianza;
+            subastar, viajeAeropuertos, superpoder, pujar, fianza, casino;
 
-    public static VBox banco, casino;
+    public static VBox banco;
 
     @FXML
     private Button btnChat, btnTerminarTurno;
@@ -246,12 +249,9 @@ public class TableroController implements Initializable {
                                     chat.setVisible(false);
                                     casino.setVisible(true);
 
-                                    // semaforo para esperar a que se pulse algun boton del casino (apostar o
-                                    // retirarse)
-                                    try {
-                                        CasinoController.semaphoreCasino.acquire();
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
+                                    if(casinoController.gestionarRule())
+                                    {
+                                        listaJugadoresController.actualizarDinero();
                                     }
 
                                     datosPartida.setVisible(true);
@@ -436,12 +436,9 @@ public class TableroController implements Initializable {
                             chat.setVisible(false);
                             casino.setVisible(true);
 
-                            // semaforo para esperar a que se pulse algun boton del casino (apostar o
-                            // retirarse)
-                            try {
-                                CasinoController.semaphoreCasino.acquire();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                            if(casinoController.gestionarRule())
+                            {
+                                listaJugadoresController.actualizarDinero();
                             }
 
                             datosPartida.setVisible(true);
@@ -651,11 +648,9 @@ public class TableroController implements Initializable {
 
         try {
             banco = loadForm("Banco.fxml");
-            casino = loadForm("Casino.fxml");
 
-            // HAY QUE AÑADIR AQUI EL VBOX COMPRA.CASINO Y BANCO
+            containerForm.getChildren().addAll(banco);
 
-            containerForm.getChildren().addAll(banco, casino/*, superpoder*/);
             datosPartida.setVisible(true);
             chat.setVisible(false);
             comprarPropiedad.setVisible(false);

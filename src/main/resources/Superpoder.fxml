@@ -51,6 +51,9 @@
          <VBox.margin>
             <Insets top="30.0" />
          </VBox.margin>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
       </Button>
    </children>
 </VBox>
