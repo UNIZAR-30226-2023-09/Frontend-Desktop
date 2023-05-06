@@ -242,7 +242,7 @@ public class GestionPartida {
     }
 
     public static void pagarLiberarseCarcel() {
-        client.send("PAGAR_LIBERARSE_CARCEL," + nombreUser + "," + IDPartida);
+        client.send("pagarLiberarseCarcel," + nombreUser + "," + IDPartida);
     }
 
     // Devolver todas las propiedades del usuario en una lista, leyendolas del

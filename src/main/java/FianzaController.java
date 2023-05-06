@@ -44,10 +44,14 @@ public class FianzaController implements Initializable{
             if(GestionPartida.dineroJugadores[GestionPartida.indiceJugador] >= 50)
             {
                 // enviamos el mensaje para comprar la subasta
-                // System.out.println("Todavia no esta implementado el pago");
+                System.out.println("Queremos pagar");
 
-                GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador] = false;
-                GestionPartida.turnosCarcel = 0;
+                GestionPartida.pagarLiberarseCarcel();
+
+                while(GestionPartida.JugadorEnCarcel[GestionPartida.indiceJugador])
+                {
+                    ConexionServidor.esperar();
+                }
     
                 fianzaPagada = true;
                 semaphore.release();
