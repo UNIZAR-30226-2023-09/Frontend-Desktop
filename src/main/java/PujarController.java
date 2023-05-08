@@ -64,6 +64,8 @@ public class PujarController implements Initializable{
     public boolean gestionarPujarPropiedad()
     {
         Platform.runLater(() -> {
+            lblError.setVisible(false);
+
             lblImg.setText("Desea comprar " + GestionPartida.tablero[Integer.parseInt(GestionPartida.propiedad_subasta)] + " por: "
             + GestionPartida.precio_subasta + "$");
 
