@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="eventos" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="EventosController">
+   <children>
+      <Label alignment="CENTER" prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8px;" text="La partida esta cambiando..." textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="30.0" />
+         </font>
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin>
+      </Label>
+      <ImageView fx:id="imgEvento" fitHeight="453.0" fitWidth="508.0" pickOnBounds="true" preserveRatio="true">
+         <VBox.margin>
+            <Insets top="100.0" />
+         </VBox.margin>
+         <image>
+            <Image url="@EVENTOS/EV1.png" />
+         </image>
+      </ImageView>
+      <Button fx:id="btnAceptar" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="100.0" style="-fx-background-color: #3bd714;" text="Aceptar">
+         <VBox.margin>
+            <Insets top="100.0" />
+         </VBox.margin>
+         <font>
+            <Font name="System Bold" size="13.0" />
+         </font>
+      </Button>
+   </children>
+</VBox>
