@@ -720,7 +720,7 @@ public class GestionPartida {
         dineroJugadores[indiceJugadorActual] = Integer.parseInt(aux2[2]);
         dineroEnBanco = Integer.parseInt(aux2[3]);
         skinsJugadores[indiceJugadorActual] = aux2[4];
-        skinTablero = aux2[4];
+        skinTablero = aux2[5];
         int turnosEnCarcel = Integer.parseInt(aux2[7]);
         JugadorEnCarcel[indiceJugadorActual] = turnosCarcel > 0;
         turnosCarcel = turnosEnCarcel;
