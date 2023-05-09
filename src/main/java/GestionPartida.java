@@ -96,6 +96,12 @@ public class GestionPartida {
 
     public static boolean actualizar_cambio_dispositivo = false;
 
+    public static boolean enTorneo;
+
+    public static String IDTorneo;
+
+    public static int[] clasificacionTorneo;
+
     // Struct que almacena el dueño de una propiedad, el id de la propiedad, el
     // nombre de la propiedad y el numero de casas que tiene
     public static class Propiedad {
@@ -243,6 +249,20 @@ public class GestionPartida {
 
     public static void pagarLiberarseCarcel() {
         client.send("pagarLiberarseCarcel," + nombreUser + "," + IDPartida);
+    }
+
+    // Torneos
+
+    public static void crearTorneo() {
+        client.send("crearTorneo," + nombreUser);
+    }
+
+    public static void unirseTorneo(String ID_Torneo) {
+        client.send("unirseTorneo," + nombreUser + "," + ID_Torneo);
+    }
+
+    public void empezarPartidaTorneo(String ID_Torneo) {
+        client.send("empezarPartidaTorneo," + ID_Torneo + "," + nombreUser);
     }
 
     // Devolver todas las propiedades del usuario en una lista, leyendolas del
@@ -624,6 +644,47 @@ public class GestionPartida {
                 break;
             case "ESTADO_PARTIDA":
                 ActualizarEstadoPartida(mensaje);
+                break;
+            case "CREADOT_OK":
+                enTorneo = true;
+                dueñoPartida = true;
+                IDTorneo = partes[1];
+                System.out.println("Torneo creado con exito");
+                break;
+            case "CREADOT_NOOK":
+                System.out.println("No se ha podido crear el torneo");
+                break;
+            case "UNIRSET_OK":
+                enTorneo = true;
+                IDTorneo = partes[1];
+                System.out.println("Te has unido al torneo con exito");
+                break;
+            case "UNIRSET_NO_OK":
+                System.out.println("No se ha podido unir al torneo");
+                break;
+            case "ELIMINADO_TORNEO":
+                enPartida = false;
+                enTorneo = true;
+                break;
+            case "GANADOR_TORNEO":
+                enPartida = false;
+                enTorneo = true;
+                break;
+            case "CLASIFICACION_TORNEO":
+                System.out.println("Clasificacion del torneo: " + mensaje);
+                break;
+            case "TORNEO_FINALIZADO":
+                enTorneo = false;
+                String jugadorActual = partes[1];
+                // Obtener el indice del jugador
+                int indiceJugadorTorneo = 0;
+                for (int i = 0; i < ordenJugadores.length; i++) {
+                    if (ordenJugadores[i].equals(jugadorActual)) {
+                        indiceJugadorTorneo = i;
+                    }
+                }
+                clasificacionTorneo[indiceJugadorTorneo] = Integer.parseInt(partes[2]);
+                System.out.println("El torneo ha finalizado");
                 break;
             default:
                 System.out.println("Mensaje no tenido en cuenta: " + message);
