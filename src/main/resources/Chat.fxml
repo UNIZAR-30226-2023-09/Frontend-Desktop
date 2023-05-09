@@ -1,19 +1,42 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="chat" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChatController">
-   <children>
-      <Label alignment="CENTER" prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8px;" text="Chat:" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="30.0" />
-         </font>
-         <VBox.margin>
-            <Insets top="10.0" />
-         </VBox.margin>
-      </Label>
-   </children>
+<VBox fx:id="chatContainer" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChatController">
+    <children>
+        <Label alignment="CENTER" prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8px;" text="Chat:" textFill="WHITE">
+            <font>
+                <Font name="System Bold" size="30.0" />
+            </font>
+            <VBox.margin>
+                <Insets top="10.0" />
+            </VBox.margin>
+        </Label>
+        <ScrollPane>
+            <content>
+                <ListView fx:id="chatListView" />
+            </content>
+        </ScrollPane>
+        <HBox>
+            <padding>
+                <Insets top="10.0" />
+            </padding>
+            <children>
+                <TextField fx:id="inputField" HBox.hgrow="ALWAYS" />
+                <Button fx:id="btnEnviar" text="Enviar" onAction="#actionEvent" />
+            </children>
+            <alignment>
+                CENTER
+            </alignment>
+        </HBox>
+    </children>
 </VBox>

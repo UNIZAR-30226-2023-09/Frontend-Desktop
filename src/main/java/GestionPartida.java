@@ -102,6 +102,8 @@ public class GestionPartida {
 
     public static int[] clasificacionTorneo;
 
+    public static ArrayList<String> chat = new ArrayList<String>();
+
     // Struct que almacena el dueño de una propiedad, el id de la propiedad, el
     // nombre de la propiedad y el numero de casas que tiene
     public static class Propiedad {
@@ -134,6 +136,7 @@ public class GestionPartida {
         vectorDePropiedades.add(new ArrayList<String>());
         vectorDePropiedades.add(new ArrayList<String>());
         vectorDePropiedades.add(new ArrayList<String>());
+        chat.add("PRUEBA");
     }
 
     public static void partida(boolean _verbose) throws URISyntaxException, InterruptedException {
@@ -249,6 +252,10 @@ public class GestionPartida {
 
     public static void pagarLiberarseCarcel() {
         client.send("pagarLiberarseCarcel," + nombreUser + "," + IDPartida);
+    }
+
+    public static void enviarChat(String mensaje) {
+        client.send("chat," + nombreUser + "," + IDPartida + "," + mensaje);
     }
 
     // Torneos
