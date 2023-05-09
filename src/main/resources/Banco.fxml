@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BancoController">
+<VBox fx:id="banco" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="800.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="BancoController">
    <children>
       <Label alignment="CENTER" prefHeight="50.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8PX;" text="Banco" textFill="WHITE">
          <font>
@@ -28,7 +28,7 @@
             <Insets top="70.0" />
          </VBox.margin>
       </ImageView>
-      <Label fx:id="lblText" text="¿Cuánto dinero quieres ingresar?">
+      <Label fx:id="lblText" text="¿Que quieres hacer con el dinero?">
          <font>
             <Font size="30.0" />
          </font>
@@ -36,73 +36,51 @@
             <Insets top="10.0" />
          </VBox.margin>
       </Label>
-      <VBox alignment="CENTER">
+      <HBox alignment="CENTER">
          <children>
-            <HBox alignment="CENTER">
-               <children>
-                  <TextField fx:id="txtBanco" prefHeight="50.0" />
-                  <Label text="\$">
-                     <font>
-                        <Font size="35.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="5.0" />
-                     </HBox.margin>
-                  </Label>
-               </children>
-               <padding>
-                  <Insets left="28.0" />
-               </padding>
-            </HBox>
-            <Label fx:id="lblError" text="Error" textFill="RED">
-               <VBox.margin>
-                  <Insets top="10.0" />
-               </VBox.margin>
+            <TextField fx:id="txtBanco" prefHeight="50.0" />
+            <Label text="\$">
                <font>
-                  <Font name="System Bold" size="15.0" />
+                  <Font size="35.0" />
                </font>
+               <HBox.margin>
+                  <Insets left="5.0" />
+               </HBox.margin>
             </Label>
-            <HBox alignment="CENTER" spacing="30.0">
-               <children>
-                  <Button fx:id="btnIngresar" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="130.0" text="Ingresar dinero">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="btnRetirar" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="130.0" text="Retirar dinero">
-                     <font>
-                        <Font size="12.0" />
-                     </font>
-                  </Button>
-               </children>
-               <VBox.margin>
-                  <Insets top="15.0" />
-               </VBox.margin>
-            </HBox>
          </children>
+         <padding>
+            <Insets left="28.0" top="30.0" />
+         </padding>
+      </HBox>
+      <Label fx:id="lblError" text="Error" textFill="RED">
          <VBox.margin>
-            <Insets top="20.0" />
+            <Insets top="10.0" />
          </VBox.margin>
-      </VBox>
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Label>
       <HBox alignment="CENTER" spacing="30.0">
          <children>
-            <Button fx:id="btnConfirmar" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="130.0" text="Confirmar">
+            <Button fx:id="btnIngresar" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="INGRESAR" textFill="WHITE">
                <font>
-                  <Font size="12.0" />
+                  <Font name="System Bold" size="12.0" />
                </font>
             </Button>
-            <Button fx:id="btnRechazar" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="130.0" text="Rechazar">
+            <Button fx:id="btnRetirar" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: #dabf66; -fx-background-radius: 10px;" text="RETIRAR" textFill="WHITE">
                <font>
-                  <Font size="12.0" />
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnCancelar" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="130.0" style="-fx-background-color: RED; -fx-background-radius: 10px;" text="CANCELAR" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
                </font>
             </Button>
          </children>
          <VBox.margin>
-            <Insets />
+            <Insets top="15.0" />
          </VBox.margin>
-         <padding>
-            <Insets top="30.0" />
-         </padding>
       </HBox>
    </children>
 </VBox>

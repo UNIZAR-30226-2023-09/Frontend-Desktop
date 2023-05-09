@@ -67,6 +67,9 @@ public class TableroController implements Initializable {
     private EventosController eventosController;
 
     @FXML
+    private BancoController bancoController;
+
+    @FXML
     private ImageView dado1, dado2, user1, user2, user3, user4;
 
     @FXML
@@ -81,10 +84,7 @@ public class TableroController implements Initializable {
 
     @FXML
     private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad,
-            edificar,
-            subastar, viajeAeropuertos, superpoder, pujar, fianza, casino, eventos;
-
-    public static VBox banco;
+                edificar, subastar, viajeAeropuertos, superpoder, pujar, fianza, casino, eventos, banco;
 
     @FXML
     private Button btnChat, btnTerminarTurno;
@@ -245,10 +245,9 @@ public class TableroController implements Initializable {
                                     chat.setVisible(false);
                                     banco.setVisible(true);
 
-                                    try {
-                                        BancoController.semaphoreBanco.acquire();
-                                    } catch (InterruptedException e) {
-                                        e.printStackTrace();
+                                    if(bancoController.gestionBanco())
+                                    {
+                                        listaJugadoresController.actualizarDinero();
                                     }
 
                                     datosPartida.setVisible(true);
@@ -455,10 +454,9 @@ public class TableroController implements Initializable {
                             chat.setVisible(false);
                             banco.setVisible(true);
 
-                            try {
-                                BancoController.semaphoreBanco.acquire();
-                            } catch (InterruptedException e) {
-                                e.printStackTrace();
+                            if(bancoController.gestionBanco())
+                            {
+                                listaJugadoresController.actualizarDinero();
                             }
 
                             datosPartida.setVisible(true);
@@ -705,85 +703,73 @@ public class TableroController implements Initializable {
         Casas.add(imgCasa22);
         Casas.add(imgCasa23);
 
-        try {
-            banco = loadForm("Banco.fxml");
+        // mostramos y ocultamos los elementos para conseguir la vista basica del tablero
+        datosPartida.setVisible(true);
+        chat.setVisible(false);
+        comprarPropiedad.setVisible(false);
+        banco.setVisible(false);
+        venderPropiedad.setVisible(false);
+        edificar.setVisible(false);
+        casino.setVisible(false);
+        superpoder.setVisible(false);
+        subastar.setVisible(false);
+        viajeAeropuertos.setVisible(false);
+        pujar.setVisible(false);
+        fianza.setVisible(false);
+        eventos.setVisible(false);
+        btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
 
-            containerForm.getChildren().addAll(banco);
+        inicializarFichas();
 
-            datosPartida.setVisible(true);
-            chat.setVisible(false);
-            comprarPropiedad.setVisible(false);
-            banco.setVisible(false);
-            venderPropiedad.setVisible(false);
-            edificar.setVisible(false);
-            casino.setVisible(false);
-            superpoder.setVisible(false);
-            subastar.setVisible(false);
-            viajeAeropuertos.setVisible(false);
-            pujar.setVisible(false);
-            fianza.setVisible(false);
-            eventos.setVisible(false);
-            btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
-
-            inicializarFichas();
-
-            for (int i = 1; i <= NUM_CASAS; i++) {
-                Casas.get(i - 1).setVisible(false);
-            }
-
-            // comprobamos si venimos de otro dispositivo
-            if (GestionPartida.actualizar_cambio_dispositivo) {
-                // mostrar las propiedades que tenia el jugador
-                listaPropiedadesController.actualizarPropiedades();
-
-                // posiciones de los jugadores
-                actualizar();
-
-                // mostrar los edificios de cada jugador
-
-                // mostrar datos partida (dinero, economia...) -> actualizarDatosPartida()
-                listaJugadoresController.actualizarDinero();
-
-                actualizarDatosPartida();
-
-                actualizarEconomia();
-
-                // jugadores muertos -> se hace con el actualizarrrr
-
-                // ponemos a false la variable una vez hemos actualizado toda la informacion
-                GestionPartida.actualizar_cambio_dispositivo = false;
-            }
-
-            Thread threadIni = new Thread() {
-                public void run() {
-                    try {
-                        partida();
-                    } catch (IOException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-            };
-            threadIni.start();
-
-            timeline = new Timeline();
-            Duration interval = Duration.seconds(3);
-            KeyFrame keyFrame = new KeyFrame(interval, event -> {
-                if (!estamosActualizando) {
-                    actualizar();
-                }
-            });
-            timeline.getKeyFrames().add(keyFrame);
-            timeline.setCycleCount(Timeline.INDEFINITE);
-            timeline.play();
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (int i = 1; i <= NUM_CASAS; i++) {
+            Casas.get(i - 1).setVisible(false);
         }
-    }
 
-    private VBox loadForm(String ur1) throws IOException {
-        return (VBox) FXMLLoader.load(getClass().getResource(ur1));
+        // comprobamos si venimos de otro dispositivo
+        if (GestionPartida.actualizar_cambio_dispositivo) {
+            // mostrar las propiedades que tenia el jugador
+            listaPropiedadesController.actualizarPropiedades();
+
+            // posiciones de los jugadores
+            actualizar();
+
+            // mostrar los edificios de cada jugador
+
+            // mostrar datos partida (dinero, economia...) -> actualizarDatosPartida()
+            listaJugadoresController.actualizarDinero();
+
+            actualizarDatosPartida();
+
+            actualizarEconomia();
+
+            // jugadores muertos -> se hace con el actualizarrrr
+
+            // ponemos a false la variable una vez hemos actualizado toda la informacion
+            GestionPartida.actualizar_cambio_dispositivo = false;
+        }
+
+        Thread threadIni = new Thread() {
+            public void run() {
+                try {
+                    partida();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
+        };
+        threadIni.start();
+
+        timeline = new Timeline();
+        Duration interval = Duration.seconds(3);
+        KeyFrame keyFrame = new KeyFrame(interval, event -> {
+            if (!estamosActualizando) {
+                actualizar();
+            }
+        });
+        timeline.getKeyFrames().add(keyFrame);
+        timeline.setCycleCount(Timeline.INDEFINITE);
+        timeline.play();
     }
 
     @FXML
