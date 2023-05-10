@@ -83,7 +83,7 @@ public class TableroController implements Initializable {
 
     @FXML
     private VBox datosPartida, listaJugadores, listaPropiedades, chat, comprarPropiedad, venderPropiedad,
-                edificar, subastar, viajeAeropuertos, superpoder, pujar, fianza, casino, eventos, banco;
+            edificar, subastar, viajeAeropuertos, superpoder, pujar, fianza, casino, eventos, banco;
 
     @FXML
     private Button btnChat, btnTerminarTurno;
@@ -310,8 +310,7 @@ public class TableroController implements Initializable {
                                     chat.setVisible(false);
                                     banco.setVisible(true);
 
-                                    if(bancoController.gestionBanco())
-                                    {
+                                    if (bancoController.gestionBanco()) {
                                         listaJugadoresController.actualizarDinero();
                                     }
 
@@ -511,8 +510,7 @@ public class TableroController implements Initializable {
                             chat.setVisible(false);
                             banco.setVisible(true);
 
-                            if(bancoController.gestionBanco())
-                            {
+                            if (bancoController.gestionBanco()) {
                                 listaJugadoresController.actualizarDinero();
                             }
 
@@ -760,7 +758,8 @@ public class TableroController implements Initializable {
         Casas.add(imgCasa22);
         Casas.add(imgCasa23);
 
-        // mostramos y ocultamos los elementos para conseguir la vista basica del tablero
+        // mostramos y ocultamos los elementos para conseguir la vista basica del
+        // tablero
         datosPartida.setVisible(true);
         chat.setVisible(false);
         comprarPropiedad.setVisible(false);
@@ -1105,6 +1104,10 @@ public class TableroController implements Initializable {
 
     private void inicializarFichas() {
         System.out.println("SKINS: \n");
+        // Mostrar las skins de todos los usuarios
+        for (int i = 0; i < 4; i++) {
+            System.out.println("Skin del jugador:" + GestionPartida.skinsJugadores[i]);
+        }
         ImageView aux = user1;
         for (int i = 0; i < 4; i++) {
 

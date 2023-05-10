@@ -54,20 +54,17 @@ public class SignInFormController implements Initializable {
                     // recibir respuesta
                     ConexionServidor.esperar();
 
-                    if (GestionPartida.sesionIniciada)
-                    {
+                    if (GestionPartida.sesionIniciada) {
+                        // Esperar 2 segundos
                         try {
                             Thread.sleep(2000);
                         } catch (InterruptedException e1) {
                             e1.printStackTrace();
                         }
-                        if(GestionPartida.actualizar_cambio_dispositivo)
-                        {
+                        if (GestionPartida.actualizar_cambio_dispositivo) {
                             // Ir al tablero
                             App.setRoot("Tablero");
-                        }
-                        else
-                        {
+                        } else {
                             // Ir al menu principal
                             App.setRoot("MenuPrincipal");
                         }
@@ -79,7 +76,7 @@ public class SignInFormController implements Initializable {
                 }
             } else {
                 // o el campo nombre de usuario o la contraseña estan vacios
-                lblError.setText("Debe rellernar todos los campos");            
+                lblError.setText("Debe rellernar todos los campos");
             }
         }
     }

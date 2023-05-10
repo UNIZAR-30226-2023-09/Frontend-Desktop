@@ -1,0 +1,45 @@
+.container {
+    -fx-background-color: #F5F6F7;
+}
+
+.chat-label {
+    -fx-background-color: #007BFF;
+    -fx-background-radius: 8px;
+    -fx-text-fill: white;
+    -fx-font-family: "System Bold";
+    -fx-font-size: 30.0;
+}
+
+.list-cell {
+    -fx-padding: 10px;
+}
+
+.list-view {
+    -fx-background-color: transparent;
+}
+
+.list-view .list-cell:odd {
+    -fx-background-color: #E8EAF6;
+}
+
+.list-view .list-cell:even {
+    -fx-background-color: #ECEFF1;
+}
+
+.text-field {
+    -fx-background-color: white;
+    -fx-border-color: #BDBDBD;
+    -fx-border-width: 1px;
+    -fx-border-radius: 4px;
+}
+
+.button {
+    -fx-background-color: #007BFF;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-padding: 8px 16px;
+}
+
+.button:hover {
+    -fx-background-color: #0056b3;
+}
