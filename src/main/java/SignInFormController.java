@@ -56,6 +56,11 @@ public class SignInFormController implements Initializable {
 
                     if (GestionPartida.sesionIniciada)
                     {
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
+                        }
                         if(GestionPartida.actualizar_cambio_dispositivo)
                         {
                             // Ir al tablero

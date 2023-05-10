@@ -40,4 +40,32 @@ public class EventosController
             e.printStackTrace();
         }
     }
+
+    public  Integer transformarEvento(String event){
+        Integer numEvent = 0;
+        switch (event) {
+            case "ninguno":
+                numEvent = 0;
+                break;
+            case "BancaRota ":
+                numEvent = 1;
+                break;
+            case "BancoDispara":
+                numEvent = 2;
+                break;
+            case "DadosDobles":
+                numEvent = 3;
+                break;
+            case "DadosMitad":
+                numEvent = 4;
+                break;
+            case "EconomiaInestable":
+                numEvent = 5;
+                break;
+            default:
+                System.out.println("ERROR EVENTO");
+                break;
+        }
+        return numEvent;
+    }
 }

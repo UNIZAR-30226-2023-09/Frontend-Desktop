@@ -12,7 +12,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -233,7 +232,73 @@ public class TableroController implements Initializable {
                             switch (i) {
                                 case 1:
                                     // Mover ficha??
-                                    moverFichaSuperpoder(SuperpoderController.casillaS);
+                                    moverFichaSuperpoder(GestionPartida.propiedadADesplazarse);
+                                    GestionPartida.posicionesJugadores[GestionPartida.indiceJugador] = GestionPartida.propiedadADesplazarse;
+
+                                    while (!GestionPartida.meToca) {
+                                        ConexionServidor.esperar();
+                                    }
+                                    GestionPartida.meToca = false;
+                                    System.out.print("Sali me toca");
+
+                                    if (GestionPartida.comprarPropiedad) {
+
+                                        // si hemos caido en una propiedad que podamos comprar mostramos el menu para
+                                        // comprar la misma
+                                        datosPartida.setVisible(false);
+                                        chat.setVisible(false);
+                                        comprarPropiedad.setVisible(true);
+            
+                                        System.out.println("Compra Propiedad");
+            
+                                        if (comprarPropiedadController.gestionarComprarPropiedad()) {
+                                            listaPropiedadesController.agnadirPropiedad(Integer
+                                                    .parseInt(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
+                                            listaPropiedadesController.visibilidadBotonesEdificar(false);
+                                            listaPropiedadesController.visibilidadBotonesEdificar(true);
+                                        }
+            
+                                        System.out.println("Propiedad");
+                                        // dejamos como estaba todo
+                                        datosPartida.setVisible(true);
+                                        chat.setVisible(false);
+                                        comprarPropiedad.setVisible(false);
+            
+                                        GestionPartida.comprarPropiedad = false;
+            
+                                    } else if (GestionPartida.enBanco) {
+                                        // AQUI PONER QUE LA PANTALLA DE BANCO
+                                        datosPartida.setVisible(false);
+                                        chat.setVisible(false);
+                                        banco.setVisible(true);
+            
+                                        if(bancoController.gestionBanco())
+                                        {
+                                            listaJugadoresController.actualizarDinero();
+                                        }
+            
+                                        datosPartida.setVisible(true);
+                                        chat.setVisible(false);
+                                        banco.setVisible(false);
+                                        // SEMAFORO DE BANCO
+                                        GestionPartida.enBanco = false;
+                                    } else if (GestionPartida.apostarDinero) {
+                                        // hemos caido en la casilla del casino por lo que se muestra la ventrana
+                                        datosPartida.setVisible(false);
+                                        chat.setVisible(false);
+                                        casino.setVisible(true);
+            
+                                        if (casinoController.gestionarRule()) {
+                                            listaJugadoresController.actualizarDinero();
+                                        }
+            
+                                        datosPartida.setVisible(true);
+                                        chat.setVisible(false);
+                                        casino.setVisible(false);
+            
+                                        GestionPartida.apostarDinero = false;
+            
+                                    }
                                     break;
                                 case 2:
                                     System.out.print("A desplazarse:");
@@ -307,15 +372,7 @@ public class TableroController implements Initializable {
                                                                                                           // el boton de
                                                                                                           // edificar
                                             listaPropiedadesController.visibilidadBotonesEdificar(true); // ahora la
-                                                                                                         // ponemos a
-                                                                                                         // true por si
-                                                                                                         // este si
-                                                                                                         // hiciese
-                                                                                                         // falta
-                                                                                                         // mostrarlo,
-                                                                                                         // sino se
-                                                                                                         // mantendra
-                                                                                                         // oculro
+                                                                                                         
                                         }
 
                                         System.out.println("Propiedad");
@@ -527,7 +584,7 @@ public class TableroController implements Initializable {
                 listaPropiedadesController.visibilidadBotonesSubastar(false);
 
             }
-            ConexionServidor.esperar();
+            ConexionServidor.esperar(); //ESTE COñexion esperar al morir nosotros creo que nos da problemas
         }
         // si salimos del while es que la partida ha terminado para nosotros
         System.out.println("Ganaste rey, ahora sal de aqui");
@@ -725,6 +782,8 @@ public class TableroController implements Initializable {
             Casas.get(i - 1).setVisible(false);
         }
 
+        System.out.print("Estoy en otro dispositivo:");
+        System.out.print(GestionPartida.actualizar_cambio_dispositivo);
         // comprobamos si venimos de otro dispositivo
         if (GestionPartida.actualizar_cambio_dispositivo) {
             // mostrar las propiedades que tenia el jugador

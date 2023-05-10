@@ -46,6 +46,7 @@ public class SuperpoderController implements Initializable{
         if (evt.equals(btnAceptar)){
             int i = Integer.parseInt(GestionPartida.superPoder);
             if(i==1){
+                System.out.print("Estoy superpoder 1");
                 if (txtCasilla.getText().equals("")){
                     // indicar que tiene que introducir una cantidad no nula
                     lblError.setVisible(true);
@@ -59,7 +60,9 @@ public class SuperpoderController implements Initializable{
                         lblError.setText("Debes introducir una casilla valida");
                     }
                     else{
+                        System.out.print("Envio casilla:");
                         GestionPartida.enviarCasilla(casillaS);
+                        ConexionServidor.esperar();
                         semaphoreSuper.release();
                     }
                 }
