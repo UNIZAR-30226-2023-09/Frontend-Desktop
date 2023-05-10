@@ -103,6 +103,7 @@ public class GestionPartida {
     public static int[] clasificacionTorneo;
 
     public static ArrayList<String> chat = new ArrayList<String>();
+    public static ArrayList<String> Usuariochat = new ArrayList<String>();
 
     // Struct que almacena el dueño de una propiedad, el id de la propiedad, el
     // nombre de la propiedad y el numero de casas que tiene
@@ -136,7 +137,6 @@ public class GestionPartida {
         vectorDePropiedades.add(new ArrayList<String>());
         vectorDePropiedades.add(new ArrayList<String>());
         vectorDePropiedades.add(new ArrayList<String>());
-        chat.add("PRUEBA");
     }
 
     public static void partida(boolean _verbose) throws URISyntaxException, InterruptedException {
@@ -256,6 +256,8 @@ public class GestionPartida {
 
     public static void enviarChat(String mensaje) {
         client.send("chat," + nombreUser + "," + IDPartida + "," + mensaje);
+        chat.add(mensaje);
+        Usuariochat.add(nombreUser);
     }
 
     // Torneos
@@ -692,6 +694,11 @@ public class GestionPartida {
                 }
                 clasificacionTorneo[indiceJugadorTorneo] = Integer.parseInt(partes[2]);
                 System.out.println("El torneo ha finalizado");
+                break;
+            case "CHAT":
+                System.out.println("Mensaje del chat: " + mensaje);
+                chat.add(partes[2]);
+                Usuariochat.add(partes[1]);
                 break;
             default:
                 System.out.println("Mensaje no tenido en cuenta: " + message);
@@ -1349,7 +1356,7 @@ public class GestionPartida {
         System.out.flush();
     }
 
-    private static int obtenerIndiceJugador(String ID_Jugador) {
+    public static int obtenerIndiceJugador(String ID_Jugador) {
         for (int i = 0; i < ordenJugadores.length; i++) {
             if (ordenJugadores[i].equals(ID_Jugador)) {
                 return i;

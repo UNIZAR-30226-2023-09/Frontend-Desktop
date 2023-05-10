@@ -7,35 +7,34 @@
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.Priority?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox fx:id="chatContainer" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChatController">
+<VBox fx:id="chatContainer" alignment="TOP_CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="850.0" prefWidth="600.0" styleClass="container" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ChatController">
     <children>
-        <Label alignment="CENTER" prefHeight="60.0" prefWidth="500.0" style="-fx-background-color: #ebe122; -fx-background-radius: 8px;" text="Chat:" textFill="WHITE">
-            <font>
-                <Font name="System Bold" size="30.0" />
-            </font>
+        <Label alignment="CENTER" prefHeight="60.0" prefWidth="600.0" styleClass="chat-label" text="Chat:">
             <VBox.margin>
                 <Insets top="10.0" />
             </VBox.margin>
         </Label>
-        <ScrollPane>
-            <content>
-                <ListView fx:id="chatListView" />
-            </content>
-        </ScrollPane>
-        <HBox>
+        <HBox VBox.vgrow="ALWAYS">
             <padding>
-                <Insets top="10.0" />
+                <Insets top="10.0" right="10.0" bottom="10.0" left="10.0" />
             </padding>
             <children>
-                <TextField fx:id="inputField" HBox.hgrow="ALWAYS" />
+                <ListView fx:id="chatListView" HBox.hgrow="ALWAYS" VBox.vgrow="ALWAYS" />
+            </children>
+        </HBox>
+        <HBox spacing="10">
+            <padding>
+                <Insets top="10.0" right="10.0" bottom="10.0" left="10.0" />
+            </padding>
+            <children>
+                <TextField fx:id="inputField" HBox.hgrow="ALWAYS" prefWidth="${chatContainer.width * 0.75}" />
                 <Button fx:id="btnEnviar" text="Enviar" onAction="#actionEvent" />
             </children>
             <alignment>
-                CENTER
+                CENTER_RIGHT
             </alignment>
         </HBox>
     </children>
