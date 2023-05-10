@@ -222,7 +222,7 @@ public class GestionPartida {
     }
 
     public static void enviarCasilla(String casilla) {
-        client.send("DESPLAZARSE_CASILLA" + nombreUser + "," + IDPartida + "," +
+        client.send("DESPLAZARSE_CASILLA," + nombreUser + "," + IDPartida + "," +
                 casilla);
     }
 
@@ -726,31 +726,18 @@ public class GestionPartida {
         String[] partesPropiedades = aux[1].split(";");
 
         asignarPropiedades(partesPropiedades);
-        String[] skinsJugadores = { "", "", "", "" };
 
         String[] partesJugadores = aux[2].split(";");
-        asignarInformacionJugadores(skinsJugadores, partesJugadores);
+        asignarInformacionJugadores(partesJugadores);
 
-        asignarSkinsJugadores(skinsJugadores);
         CuentaInfoRecibida = 4;
 
         // Scanner scanner = new Scanner(System.in);
         // jugarPartida(client, scanner);
     }
 
-    // Asigna las skins de los jugadores
-    private static void asignarSkinsJugadores(String[] skinsJugadores) {
-        // Por cada skin añadida añadirla a la lista de skins
-        // para añadirlas en la lista en orden
-        for (int i = 0; i < 4; i++) {
-            if (!skinsJugadores[i].equals("")) {
-                listaSkins.add(skinsJugadores[i]);
-            }
-        }
-    }
-
     // Asigna la informacion de los jugadores
-    private static void asignarInformacionJugadores(String[] skinsJugadores, String[] partesJugadores) {
+    private static void asignarInformacionJugadores(String[] partesJugadores) {
         for (int i = 0; i < 4; i++) {
             // Para cada uno de los jugadores actualizamos su dinero y
             // su posicion en el tablero
@@ -759,24 +746,28 @@ public class GestionPartida {
             int indiceJugadorActual;
             if (nombreJugador.equals(nombreUser)) {
                 // Si es el jugador actualizamos su informacion
-                asignarMiInformacion(skinsJugadores, aux2, nombreJugador);
+                asignarMiInformacion(aux2, nombreJugador);
             } else {
                 // Si no es el jugador actualizamos su informacion
-                asignarOtrosInformacion(skinsJugadores, aux2, nombreJugador);
+                asignarOtrosInformacion(aux2, nombreJugador);
             }
         }
     }
 
     // Asigna la informacion de un jugador que no es el actual
-    private static void asignarOtrosInformacion(String[] skinsJugadores, String[] aux2, String nombreJugador) {
+    private static void asignarOtrosInformacion(String[] aux2, String nombreJugador) {
         int indiceJugadorActual;
-        Boolean vivo = Boolean.parseBoolean(aux2[1]);
-        if (vivo) {
+        String vivo = aux2[1];
+        Boolean vivoJugador = false;
+        if (vivo.equals("1")) {
+            vivoJugador = true;
             JugadoresVivos++;
+        } else {
+            vivoJugador = false;
         }
         indiceJugadorActual = Integer.parseInt(aux2[5]) - 1;
         ordenJugadores[indiceJugadorActual] = nombreJugador;
-        jugadoresVivos[indiceJugadorActual] = vivo;
+        jugadoresVivos[indiceJugadorActual] = vivoJugador;
         posicionesJugadores[indiceJugadorActual] = aux2[2];
         dineroJugadores[indiceJugadorActual] = Integer.parseInt(aux2[3]);
         skinsJugadores[indiceJugadorActual] = aux2[4];
@@ -785,7 +776,7 @@ public class GestionPartida {
     }
 
     // Asigna toda la informacion del jugador actual
-    private static void asignarMiInformacion(String[] skinsJugadores, String[] aux2, String nombreJugador) {
+    private static void asignarMiInformacion(String[] aux2, String nombreJugador) {
         int indiceJugadorActual;
         indiceJugadorActual = Integer.parseInt(aux2[6]) - 1;
         ordenJugadores[indiceJugadorActual] = nombreJugador;
