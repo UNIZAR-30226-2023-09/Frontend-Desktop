@@ -69,7 +69,7 @@ public class TableroController implements Initializable {
     private BancoController bancoController;
 
     @FXML
-    private ImageView dado1, dado2, user1, user2, user3, user4;
+    private ImageView dado1, dado2, user1, user2, user3, user4, tableroSkin;
 
     @FXML
     private ImageView imgCasa1, imgCasa2, imgCasa3, imgCasa4, imgCasa5, imgCasa6, imgCasa7, imgCasa8, imgCasa9,
@@ -796,6 +796,12 @@ public class TableroController implements Initializable {
         btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
 
         inicializarFichas();
+
+        //tableroSkin
+        System.out.print("Skin tablero:");
+        System.out.print(GestionPartida.skinTablero);
+        //File file = new File("src/main/resources/TABLEROS" + GestionPartida.skinTablero + ".png");
+        //tableroSkin.setImage(new Image(file.toURI().toString()));
 
         for (int i = 1; i <= NUM_CASAS; i++) {
             Casas.get(i - 1).setVisible(false);
