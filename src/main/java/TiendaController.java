@@ -246,6 +246,7 @@ public class TiendaController implements Initializable {
 
     private void equiparSkin(String IDskin) {
         GestionPartida.equiparSkin(IDskin);
+        ConexionServidor.esperar();
     }
 
     @FXML
@@ -315,5 +316,6 @@ public class TiendaController implements Initializable {
         } else if (btnVolver.equals(evt)) {
             App.setRoot("MenuPrincipal");
         }
+        
     }
 }

@@ -113,15 +113,19 @@ public class TableroController implements Initializable {
     public Integer eventoActual = 0;
 
     private void partida() throws IOException {
+        System.out.print("1");
         ConexionServidor.esperar();
+        System.out.print("2");
         // ConexionServidor.esperar(); //?????
+        
         while (GestionPartida.enPartida) {
             // HABRA QUE PONERLO DONDE PEREZ
+            System.out.print("Estoy en partida?");
             dado1.setDisable(true);
             dado2.setDisable(true);
 
             if (GestionPartida.miTurno == true) {
-
+                System.out.print("Estoy en mi turno?");
                 while (GestionPartida.CuentaInfoRecibida < (GestionPartida.JugadoresVivos - 1)) {
                     System.out.println("cuentaInfoRecibida?2");
                     System.out.println(GestionPartida.CuentaInfoRecibida);
@@ -132,6 +136,8 @@ public class TableroController implements Initializable {
 
                 // si ha muerto algun jugador habra que poner en rojo su nombre y se oculta el
                 // dinero
+                System.out.println("\n");
+                System.out.println("aqui no llega no?");
                 listaJugadoresController.muertos();
 
                 listaJugadoresController.actualizarDinero();
@@ -602,7 +608,9 @@ public class TableroController implements Initializable {
                 listaPropiedadesController.visibilidadBotonesSubastar(false);
 
             }
+            System.out.print("Estoy aqui verdad?");
             ConexionServidor.esperar(); //ESTE COñexion esperar al morir nosotros creo que nos da problemas
+            System.out.print("Estoy verdad?");
         }
         // si salimos del while es que la partida ha terminado para nosotros
         System.out.println("Ganaste rey, ahora sal de aqui");
@@ -830,6 +838,7 @@ public class TableroController implements Initializable {
 
             // ponemos a false la variable una vez hemos actualizado toda la informacion
             GestionPartida.actualizar_cambio_dispositivo = false;
+            System.out.print("He salido del actualizar dispositivo");
         }
 
         Thread threadIni = new Thread() {
@@ -976,17 +985,16 @@ public class TableroController implements Initializable {
         System.out.println("En el tablero es la posicion: " + posicion_propiedad_tablero[numPropiedad]);
 
         GestionPartida.quieroVenderPropiedad(posicion_propiedad_tablero[numPropiedad]);
-        System.out.println("Vamos pal while");
+
 
         while (!GestionPartida.precioPropiedadRecibido) {
             // System.out.println("Acabo de entrar");
             // ConexionServidor.esperar();
-            System.out.println("NO salgo");
+            //System.out.println("NO salgo");
         }
 
         GestionPartida.precioPropiedadRecibido = false;
 
-        System.out.println("he salido");
 
         venderPropiedadController.actualizarLabel(numPropiedad);
     }
