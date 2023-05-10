@@ -113,19 +113,19 @@ public class TableroController implements Initializable {
     public Integer eventoActual = 0;
 
     private void partida() throws IOException {
-        System.out.print("1");
+        //System.out.print("1");
         ConexionServidor.esperar();
-        System.out.print("2");
+        //System.out.print("2");
         // ConexionServidor.esperar(); //?????
         
         while (GestionPartida.enPartida) {
             // HABRA QUE PONERLO DONDE PEREZ
-            System.out.print("Estoy en partida?");
+            //System.out.print("Estoy en partida?");
             dado1.setDisable(true);
             dado2.setDisable(true);
 
             if (GestionPartida.miTurno == true) {
-                System.out.print("Estoy en mi turno?");
+                //System.out.print("Estoy en mi turno?");
                 while (GestionPartida.CuentaInfoRecibida < (GestionPartida.JugadoresVivos - 1)) {
                     System.out.println("cuentaInfoRecibida?2");
                     System.out.println(GestionPartida.CuentaInfoRecibida);
@@ -137,7 +137,7 @@ public class TableroController implements Initializable {
                 // si ha muerto algun jugador habra que poner en rojo su nombre y se oculta el
                 // dinero
                 System.out.println("\n");
-                System.out.println("aqui no llega no?");
+                //System.out.println("aqui no llega no?");
                 listaJugadoresController.muertos();
 
                 listaJugadoresController.actualizarDinero();
@@ -808,8 +808,8 @@ public class TableroController implements Initializable {
         //tableroSkin
         System.out.print("Skin tablero:");
         System.out.print(GestionPartida.skinTablero);
-        //File file = new File("src/main/resources/TABLEROS" + GestionPartida.skinTablero + ".png");
-        //tableroSkin.setImage(new Image(file.toURI().toString()));
+        File file = new File("src/main/resources/TABLEROS/" + GestionPartida.skinTablero + ".png"); //
+        tableroSkin.setImage(new Image(file.toURI().toString()));
 
         for (int i = 1; i <= NUM_CASAS; i++) {
             Casas.get(i - 1).setVisible(false);
