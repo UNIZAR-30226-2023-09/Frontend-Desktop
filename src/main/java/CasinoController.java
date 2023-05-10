@@ -86,7 +86,7 @@ public class CasinoController implements Initializable{
                         ConexionServidor.esperar(); //REVISAR SI ESTO TIENE QUE IR AQUI
                         //System.out.println("RESPUESTA RECIBIDA");
                         lblGanancias.setVisible(true);
-        
+                        semaphoreCasino.release();
                         if (dineroAntes < GestionPartida.dineroJugadores[GestionPartida.indiceJugador]) {
                             // si ganamos mostramos el dinero obtenido
                             lblGanancias.setStyle("-fx-text-fill: green;");
@@ -100,7 +100,11 @@ public class CasinoController implements Initializable{
                             haGanado = false;
                             System.out.println("PERDI");
                         }
-
+                        try {
+                            Thread.sleep(2000);
+                        } catch (InterruptedException e1) {
+                            e1.printStackTrace();
+                        }
                         semaphoreCasino.release();                       
                     }));
                     timeline.play();

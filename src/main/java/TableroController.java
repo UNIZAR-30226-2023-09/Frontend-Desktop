@@ -110,6 +110,8 @@ public class TableroController implements Initializable {
 
     public String[] posicion_propiedad_tablero; // devuelve la posicion de una propiedad en el tablero
 
+    public Integer eventoActual = 0;
+
     private void partida() throws IOException {
         ConexionServidor.esperar();
         // ConexionServidor.esperar(); //?????
@@ -137,6 +139,24 @@ public class TableroController implements Initializable {
                 actualizarDatosPartida();
 
                 actualizarEconomia();
+
+                Integer eventoNuevo;
+                eventoNuevo = EventosController.transformarEvento(GestionPartida.evento);
+
+                if(eventoActual != eventoNuevo){
+                    eventoActual = eventoNuevo;
+                    if(eventoNuevo != 0){
+                        datosPartida.setVisible(false);
+                        chat.setVisible(false);
+                        eventos.setVisible(true);
+
+                        eventosController.mostrarEvento(eventoNuevo);
+
+                        datosPartida.setVisible(true);
+                        chat.setVisible(false);
+                        eventos.setVisible(false);
+                    }
+                }
 
                 // mostramos los botones de las propiedades que pertenezcan al jugador
                 listaPropiedadesController.visibilidadBotonesVenta(true);

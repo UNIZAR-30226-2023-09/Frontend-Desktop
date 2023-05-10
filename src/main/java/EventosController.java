@@ -17,37 +17,37 @@ public class EventosController
     @FXML
     private ImageView imgEvento;
 
-    private Semaphore semaphore = new Semaphore(0);
+    private Semaphore semaphoreEventos = new Semaphore(0);
 
     @FXML
     public void actionEvent(ActionEvent e) throws IOException
     {
         // solo hay un boton asi que no hace falta mirar cual hemos pulsado
 
-        semaphore.release();
+        semaphoreEventos.release();
     }
 
-    public void mostrarEvento()
+    public void mostrarEvento(Integer eventoNuevo)
     {
         Platform.runLater(() -> {
-            File file = new File("src/main/resources/EVENTOS/EV" + GestionPartida.evento +".png");
+            File file = new File("src/main/resources/EVENTOS/EV" + eventoNuevo +".png");
             imgEvento.setImage(new Image(file.toURI().toString()));
         });
 
         try {
-            semaphore.acquire();
+            semaphoreEventos.acquire();
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    public  Integer transformarEvento(String event){
+    public static Integer transformarEvento(String event){
         Integer numEvent = 0;
         switch (event) {
-            case "ninguno":
+            case "Ninguno":
                 numEvent = 0;
                 break;
-            case "BancaRota ":
+            case "BancaRota":
                 numEvent = 1;
                 break;
             case "BancoDispara":
