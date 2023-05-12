@@ -481,8 +481,8 @@ public class GestionPartida {
                 for (int i = 4; i < partes.length; i++) {
                     if (!partes[i].equals("null")) {
                         String[] aux = partes[i].split(":");
-                        int propiedadActual = Integer.parseInt(aux[1].substring(9));
-                        int casas = Integer.parseInt(aux[2]);
+                        int propiedadActual = Integer.parseInt(aux[0].substring(9));
+                        int casas = Integer.parseInt(aux[1]);
                         lista.add(tablero[propiedadActual]);
                         propiedades.get(propiedadActual).casas = casas;
                         propiedades.get(propiedadActual).dueño = jugador;
