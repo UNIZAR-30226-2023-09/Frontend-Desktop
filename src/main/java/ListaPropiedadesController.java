@@ -218,7 +218,7 @@ public class ListaPropiedadesController implements Initializable {
                 // solo si la propiedad se puede ver mostraremos sus botones
                 if(hbox.isVisible())
                 {
-                botonesS.get(i-1).setVisible(b);
+                    botonesS.get(i-1).setVisible(b);
                 }
 
             }

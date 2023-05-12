@@ -762,29 +762,10 @@ public class TableroController implements Initializable {
                 "32", "33", "35", "37", "38", "40", "6", "16", "26", "36" };
 
         Casas = FXCollections.observableArrayList();
-        Casas.add(imgCasa1);
-        Casas.add(imgCasa2);
-        Casas.add(imgCasa3);
-        Casas.add(imgCasa4);
-        Casas.add(imgCasa5);
-        Casas.add(imgCasa6);
-        Casas.add(imgCasa7);
-        Casas.add(imgCasa8);
-        Casas.add(imgCasa9);
-        Casas.add(imgCasa10);
-        Casas.add(imgCasa11);
-        Casas.add(imgCasa12);
-        Casas.add(imgCasa13);
-        Casas.add(imgCasa14);
-        Casas.add(imgCasa15);
-        Casas.add(imgCasa16);
-        Casas.add(imgCasa17);
-        Casas.add(imgCasa18);
-        Casas.add(imgCasa19);
-        Casas.add(imgCasa20);
-        Casas.add(imgCasa21);
-        Casas.add(imgCasa22);
-        Casas.add(imgCasa23);
+        Casas.add(imgCasa1); Casas.add(imgCasa2); Casas.add(imgCasa3); Casas.add(imgCasa4); Casas.add(imgCasa5); Casas.add(imgCasa6); 
+        Casas.add(imgCasa7);  Casas.add(imgCasa8); Casas.add(imgCasa9); Casas.add(imgCasa10); Casas.add(imgCasa11); Casas.add(imgCasa12); 
+        Casas.add(imgCasa13); Casas.add(imgCasa14); Casas.add(imgCasa15); Casas.add(imgCasa16); Casas.add(imgCasa17); Casas.add(imgCasa18); 
+        Casas.add(imgCasa19); Casas.add(imgCasa20); Casas.add(imgCasa21); Casas.add(imgCasa22); Casas.add(imgCasa23);
 
         // mostramos y ocultamos los elementos para conseguir la vista basica del
         // tablero
@@ -990,7 +971,7 @@ public class TableroController implements Initializable {
         while (!GestionPartida.precioPropiedadRecibido) {
             // System.out.println("Acabo de entrar");
             // ConexionServidor.esperar();
-            //System.out.println("NO salgo");
+            System.out.println("NO salgo");
         }
 
         GestionPartida.precioPropiedadRecibido = false;
@@ -1020,7 +1001,13 @@ public class TableroController implements Initializable {
     }
 
     public void ocultarVentanaEdificar(int numPropiedad, Boolean edificada) {
-        // faltara poner la imagen que toque
+        // desocultamos el edificio correspondiente con el numero que toque
+        if(edificada)
+        {
+            File file = new File("src/main/resources/CASAS_HOTEL/C" + 1 + ".png");
+            Casas.get(numPropiedad-1).setImage(new Image(file.toURI().toString()));
+            Casas.get(numPropiedad-1).setVisible(true);
+        }
 
         edificar.setVisible(false);
         chat.setVisible(true);

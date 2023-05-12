@@ -7,6 +7,7 @@ import java.util.concurrent.Semaphore;
 import javafx.animation.KeyFrame;
 import javafx.animation.RotateTransition;
 import javafx.animation.Timeline;
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -77,37 +78,45 @@ public class CasinoController implements Initializable{
                     rotacion.setByAngle(360);
                     rotacion.play();
         
-                    // Espera un tiempo para que la ruleta gire
-                    Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), e2 -> {
-                        rotacion.pause();
-        
-                        // Esperar respuesta
-                        //System.out.println("ESPERANDO RESPUESTA");
-                        ConexionServidor.esperar(); //REVISAR SI ESTO TIENE QUE IR AQUI
-                        //System.out.println("RESPUESTA RECIBIDA");
-                        lblGanancias.setVisible(true);
-                        semaphoreCasino.release();
-                        if (dineroAntes < GestionPartida.dineroJugadores[GestionPartida.indiceJugador]) {
-                            // si ganamos mostramos el dinero obtenido
-                            lblGanancias.setStyle("-fx-text-fill: green;");
-                            lblGanancias.setText("+" + Integer.toString(apuesta*2) + "$");
-                            haGanado = true;
-                            System.out.println("GANE");
-                        } else {
-                            // si perdemos msotramos el dinero que se ha restado
-                            lblGanancias.setStyle("-fx-text-fill: red;");
-                            lblGanancias.setText("-" + txtDinero.getText() + "$");
-                            haGanado = false;
-                            System.out.println("PERDI");
-                        }
-                        try {
-                            Thread.sleep(2000);
-                        } catch (InterruptedException e1) {
-                            e1.printStackTrace();
-                        }
-                        semaphoreCasino.release();                       
-                    }));
+                    // Espera un tiempo para que la ruleta gire y luego para que se muestren los resultados
+                    Timeline timeline = new Timeline(
+                        new KeyFrame(Duration.seconds(2), e2 -> {
+                            rotacion.pause();
+                            // Esperar respuesta
+                            //System.out.println("ESPERANDO RESPUESTA");
+                            ConexionServidor.esperar(); //REVISAR SI ESTO TIENE QUE IR AQUI
+                            //System.out.println("RESPUESTA RECIBIDA");
+                            lblGanancias.setVisible(true);
+                            semaphoreCasino.release();
+                            if (dineroAntes < GestionPartida.dineroJugadores[GestionPartida.indiceJugador]) {
+                                // si ganamos mostramos el dinero obtenido
+                                Platform.runLater(() -> {
+                                    lblGanancias.setStyle("-fx-text-fill: green;");
+                                    lblGanancias.setText("+" + Integer.toString(apuesta*2) + "$");
+                                    haGanado = true;
+                                    System.out.println("GANE");
+                                });
+                            } else {
+                                // si perdemos msotramos el dinero que se ha restado
+                                    Platform.runLater(() -> {
+                                    lblGanancias.setStyle("-fx-text-fill: red;");
+                                    lblGanancias.setText("-" + txtDinero.getText() + "$");
+                                    haGanado = false;
+                                    System.out.println("PERDI");
+                                });
+                            }
+                        }),
+                        new KeyFrame(Duration.seconds(2), e2 -> {
+                            try {
+                                Thread.sleep(1000);
+                            } catch (InterruptedException e1) {
+                                e1.printStackTrace();
+                            }
+                            semaphoreCasino.release();
+                        })
+                    );
                     timeline.play();
+                    
                 }
             }
         }
