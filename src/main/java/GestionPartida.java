@@ -652,12 +652,12 @@ public class GestionPartida {
                 break;
             case "SUBASTA_COMPRADA":
                 // Coger la propiedad que se subasta ha comprado otro jugador
-                String propiedad = partes[3];
+                String propiedadA = partes[3];
                 // Coger la lista de mis propiedades
                 ArrayList<String> misPropiedades = vectorDePropiedades.get(indiceJugador);
                 for (int i = 0; i < misPropiedades.size(); i++) {
                     // Obtener el nombre de la propiedad
-                    int indicePropiedadVendida = Integer.parseInt(propiedad);
+                    int indicePropiedadVendida = Integer.parseInt(propiedadA);
                     if (misPropiedades.get(i).equals(tablero[indicePropiedadVendida])) {
                         misPropiedades.remove(i);
                     }
@@ -688,12 +688,12 @@ public class GestionPartida {
             case "ELIMINADO_TORNEO":
                 enPartida = false;
                 enTorneo = true;
-                //ganador = false; esto aqui?
+                // ganador = false; esto aqui?
                 break;
             case "GANADOR_TORNEO":
                 enPartida = false;
                 enTorneo = true;
-                //ganador = true;
+                // ganador = true;
                 break;
             case "CLASIFICACION_TORNEO":
                 System.out.println("Clasificacion del torneo: " + mensaje);
