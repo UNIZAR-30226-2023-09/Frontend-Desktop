@@ -996,7 +996,7 @@ public class TableroController implements Initializable {
         while (!GestionPartida.precioPropiedadRecibido) {
             // System.out.println("Acabo de entrar");
             // ConexionServidor.esperar();
-            // System.out.println("NO salgo");
+            System.out.println("NO salgo");
         }
 
         GestionPartida.precioPropiedadRecibido = false;
@@ -1094,6 +1094,7 @@ public class TableroController implements Initializable {
     private void moverFichaSuperpoder(String casilla) {
         Integer jug = GestionPartida.indiceJugador;
         String posi = "Pos" + casilla;
+        System.out.println(posi);
         String coordenadas;
         switch (jug) {
             case 0:

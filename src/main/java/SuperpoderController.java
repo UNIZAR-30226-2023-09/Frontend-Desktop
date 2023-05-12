@@ -62,7 +62,9 @@ public class SuperpoderController implements Initializable{
                     else{
                         System.out.print("Envio casilla:");
                         GestionPartida.enviarCasilla(casillaS);
-                        ConexionServidor.esperar();
+                        while (!GestionPartida.meToca) {
+                            ConexionServidor.esperar();
+                        }
                         semaphoreSuper.release();
                     }
                 }

@@ -102,6 +102,8 @@ public class GestionPartida {
 
     public static int[] clasificacionTorneo;
 
+    public static boolean ganador;
+
     public static ArrayList<String> chat = new ArrayList<String>();
     public static ArrayList<String> Usuariochat = new ArrayList<String>();
 
@@ -560,9 +562,11 @@ public class GestionPartida {
                 break;
             case "FinPartida":
                 enPartida = false;
+                // ganador=true; esto seria aqui??
                 break;
             case "ELIMINADO":
                 enPartida = false;
+                ganador = false;
                 break;
             case "JugadorMuerto":
                 jugadoresVivos[obtenerIndiceJugador(partes[1])] = false;
@@ -627,6 +631,7 @@ public class GestionPartida {
                 break;
             case "GANADOR":
                 enPartida = false;
+                ganador = true;
                 gemas = Integer.parseInt(partes[1]);
                 break;
             case "DESPLAZAR_JUGADOR_AVION":
@@ -683,10 +688,12 @@ public class GestionPartida {
             case "ELIMINADO_TORNEO":
                 enPartida = false;
                 enTorneo = true;
+                //ganador = false; esto aqui?
                 break;
             case "GANADOR_TORNEO":
                 enPartida = false;
                 enTorneo = true;
+                //ganador = true;
                 break;
             case "CLASIFICACION_TORNEO":
                 System.out.println("Clasificacion del torneo: " + mensaje);
