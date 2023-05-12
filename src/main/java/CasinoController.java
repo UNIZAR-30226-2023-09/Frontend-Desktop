@@ -82,41 +82,29 @@ public class CasinoController implements Initializable{
                     Timeline timeline = new Timeline(
                         new KeyFrame(Duration.seconds(2), e2 -> {
                             rotacion.pause();
-                            // Esperar respuesta
-                            //System.out.println("ESPERANDO RESPUESTA");
-                            ConexionServidor.esperar(); //REVISAR SI ESTO TIENE QUE IR AQUI
-                            //System.out.println("RESPUESTA RECIBIDA");
+                            ConexionServidor.esperar();
                             lblGanancias.setVisible(true);
-                            semaphoreCasino.release();
                             if (dineroAntes < GestionPartida.dineroJugadores[GestionPartida.indiceJugador]) {
-                                // si ganamos mostramos el dinero obtenido
-                                Platform.runLater(() -> {
-                                    lblGanancias.setStyle("-fx-text-fill: green;");
-                                    lblGanancias.setText("+" + Integer.toString(apuesta*2) + "$");
-                                    haGanado = true;
-                                    System.out.println("GANE");
-                                });
+                                lblGanancias.setStyle("-fx-text-fill: green;");
+                                lblGanancias.setText("+" + Integer.toString(apuesta*2) + "$");
+                                haGanado = true;
+                                System.out.println("GANE");
                             } else {
-                                // si perdemos msotramos el dinero que se ha restado
-                                    Platform.runLater(() -> {
-                                    lblGanancias.setStyle("-fx-text-fill: red;");
-                                    lblGanancias.setText("-" + txtDinero.getText() + "$");
-                                    haGanado = false;
-                                    System.out.println("PERDI");
-                                });
+                                lblGanancias.setStyle("-fx-text-fill: red;");
+                                lblGanancias.setText("-" + txtDinero.getText() + "$");
+                                haGanado = false;
+                                System.out.println("PERDI");
                             }
+                            Timeline waitTimeline = new Timeline(
+                                new KeyFrame(Duration.seconds(1), e3 -> {
+                                    semaphoreCasino.release();
+                                })
+                            );
+                            waitTimeline.play();
                         }),
-                        new KeyFrame(Duration.seconds(2), e2 -> {
-                            try {
-                                Thread.sleep(1000);
-                            } catch (InterruptedException e1) {
-                                e1.printStackTrace();
-                            }
-                            semaphoreCasino.release();
-                        })
+                        new KeyFrame(Duration.seconds(3))
                     );
                     timeline.play();
-                    
                 }
             }
         }
