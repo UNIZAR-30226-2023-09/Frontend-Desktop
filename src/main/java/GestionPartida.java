@@ -102,6 +102,8 @@ public class GestionPartida {
 
     public static int[] clasificacionTorneo;
 
+    public static boolean ganador;
+
     public static ArrayList<String> chat = new ArrayList<String>();
     public static ArrayList<String> Usuariochat = new ArrayList<String>();
 
@@ -329,6 +331,7 @@ public class GestionPartida {
             case "EMPEZAR_OK":
                 empezarPartida = true;
                 enPartida = true;
+                IDPartida = partes[1];
                 // Ningun jugador esta en la carcel
                 JugadorEnCarcel[0] = false;
                 JugadorEnCarcel[1] = false;
@@ -453,6 +456,7 @@ public class GestionPartida {
                 break;
             case "COMPRAR_OK":
                 vectorDePropiedades.get(indiceJugador).add(tablero[Integer.parseInt(partes[2])]);
+                propiedades.get(indiceJugador).dueño = nombreUser;
                 dineroJugadores[indiceJugador] = Integer.parseInt(partes[3]);
                 compraRealizada = true;
                 break;
@@ -476,10 +480,15 @@ public class GestionPartida {
                 ArrayList<String> lista = new ArrayList<String>();
                 for (int i = 4; i < partes.length; i++) {
                     if (!partes[i].equals("null")) {
-                        int propiedad = Integer.parseInt(partes[i].substring(9));
-                        lista.add(tablero[propiedad]);
+                        String[] aux = partes[i].split(":");
+                        int propiedadActual = Integer.parseInt(aux[1].substring(9));
+                        int casas = Integer.parseInt(aux[2]);
+                        lista.add(tablero[propiedadActual]);
+                        propiedades.get(propiedadActual).casas = casas;
+                        propiedades.get(propiedadActual).dueño = jugador;
                     }
                 }
+
                 vectorDePropiedades.get(indice).clear();
                 vectorDePropiedades.get(indice).addAll(lista);
                 break;
@@ -525,6 +534,8 @@ public class GestionPartida {
                 break;
             case "EDIFICAR_OK":
                 dineroJugadores[indiceJugador] = Integer.parseInt(partes[2]);
+                int propiedad = Integer.parseInt(partes[3]);
+                propiedades.get(propiedad).casas++;
                 break;
             case "EDIFICAR_NOOK":
                 break;
@@ -551,9 +562,11 @@ public class GestionPartida {
                 break;
             case "FinPartida":
                 enPartida = false;
+                // ganador=true; esto seria aqui??
                 break;
             case "ELIMINADO":
                 enPartida = false;
+                ganador = false;
                 break;
             case "JugadorMuerto":
                 jugadoresVivos[obtenerIndiceJugador(partes[1])] = false;
@@ -618,6 +631,7 @@ public class GestionPartida {
                 break;
             case "GANADOR":
                 enPartida = false;
+                ganador = true;
                 gemas = Integer.parseInt(partes[1]);
                 break;
             case "DESPLAZAR_JUGADOR_AVION":
@@ -674,10 +688,12 @@ public class GestionPartida {
             case "ELIMINADO_TORNEO":
                 enPartida = false;
                 enTorneo = true;
+                //ganador = false; esto aqui?
                 break;
             case "GANADOR_TORNEO":
                 enPartida = false;
                 enTorneo = true;
+                //ganador = true;
                 break;
             case "CLASIFICACION_TORNEO":
                 System.out.println("Clasificacion del torneo: " + mensaje);

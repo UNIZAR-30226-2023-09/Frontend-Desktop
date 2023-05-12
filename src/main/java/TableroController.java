@@ -113,19 +113,19 @@ public class TableroController implements Initializable {
     public Integer eventoActual = 0;
 
     private void partida() throws IOException {
-        //System.out.print("1");
+        // System.out.print("1");
         ConexionServidor.esperar();
-        //System.out.print("2");
+        // System.out.print("2");
         // ConexionServidor.esperar(); //?????
-        
+
         while (GestionPartida.enPartida) {
             // HABRA QUE PONERLO DONDE PEREZ
-            //System.out.print("Estoy en partida?");
+            // System.out.print("Estoy en partida?");
             dado1.setDisable(true);
             dado2.setDisable(true);
 
             if (GestionPartida.miTurno == true) {
-                //System.out.print("Estoy en mi turno?");
+                // System.out.print("Estoy en mi turno?");
                 while (GestionPartida.CuentaInfoRecibida < (GestionPartida.JugadoresVivos - 1)) {
                     System.out.println("cuentaInfoRecibida?2");
                     System.out.println(GestionPartida.CuentaInfoRecibida);
@@ -137,7 +137,7 @@ public class TableroController implements Initializable {
                 // si ha muerto algun jugador habra que poner en rojo su nombre y se oculta el
                 // dinero
                 System.out.println("\n");
-                //System.out.println("aqui no llega no?");
+                // System.out.println("aqui no llega no?");
                 listaJugadoresController.muertos();
 
                 listaJugadoresController.actualizarDinero();
@@ -149,9 +149,9 @@ public class TableroController implements Initializable {
                 Integer eventoNuevo;
                 eventoNuevo = EventosController.transformarEvento(GestionPartida.evento);
 
-                if(eventoActual != eventoNuevo){
+                if (eventoActual != eventoNuevo) {
                     eventoActual = eventoNuevo;
-                    if(eventoNuevo != 0){
+                    if (eventoNuevo != 0) {
                         datosPartida.setVisible(false);
                         chat.setVisible(false);
                         eventos.setVisible(true);
@@ -274,35 +274,35 @@ public class TableroController implements Initializable {
                                         datosPartida.setVisible(false);
                                         chat.setVisible(false);
                                         comprarPropiedad.setVisible(true);
-            
+
                                         System.out.println("Compra Propiedad");
-            
+
                                         if (comprarPropiedadController.gestionarComprarPropiedad()) {
                                             listaPropiedadesController.agnadirPropiedad(Integer
-                                                    .parseInt(GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
+                                                    .parseInt(
+                                                            GestionPartida.posicionesJugadores[GestionPartida.indiceJugador]));
                                             listaPropiedadesController.visibilidadBotonesEdificar(false);
                                             listaPropiedadesController.visibilidadBotonesEdificar(true);
                                         }
-            
+
                                         System.out.println("Propiedad");
                                         // dejamos como estaba todo
                                         datosPartida.setVisible(true);
                                         chat.setVisible(false);
                                         comprarPropiedad.setVisible(false);
-            
+
                                         GestionPartida.comprarPropiedad = false;
-            
+
                                     } else if (GestionPartida.enBanco) {
                                         // AQUI PONER QUE LA PANTALLA DE BANCO
                                         datosPartida.setVisible(false);
                                         chat.setVisible(false);
                                         banco.setVisible(true);
-            
-                                        if(bancoController.gestionBanco())
-                                        {
+
+                                        if (bancoController.gestionBanco()) {
                                             listaJugadoresController.actualizarDinero();
                                         }
-            
+
                                         datosPartida.setVisible(true);
                                         chat.setVisible(false);
                                         banco.setVisible(false);
@@ -313,17 +313,17 @@ public class TableroController implements Initializable {
                                         datosPartida.setVisible(false);
                                         chat.setVisible(false);
                                         casino.setVisible(true);
-            
+
                                         if (casinoController.gestionarRule()) {
                                             listaJugadoresController.actualizarDinero();
                                         }
-            
+
                                         datosPartida.setVisible(true);
                                         chat.setVisible(false);
                                         casino.setVisible(false);
-            
+
                                         GestionPartida.apostarDinero = false;
-            
+
                                     }
                                     break;
                                 case 2:
@@ -397,7 +397,7 @@ public class TableroController implements Initializable {
                                                                                                           // el boton de
                                                                                                           // edificar
                                             listaPropiedadesController.visibilidadBotonesEdificar(true); // ahora la
-                                                                                                         
+
                                         }
 
                                         System.out.println("Propiedad");
@@ -596,7 +596,12 @@ public class TableroController implements Initializable {
                 // mostar boton de finalizar turno y esperar a que lo pulsen
                 btnTerminarTurno.setVisible(true);
                 while (!heTerminadoTurno) {
-                    ConexionServidor.esperar();
+                    // dormir el hilo 1 segundo
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e1) {
+                        e1.printStackTrace();
+                    }
                 }
                 heTerminadoTurno = false;
                 System.out.println("FIN TURNO");
@@ -609,7 +614,9 @@ public class TableroController implements Initializable {
 
             }
             System.out.print("Estoy aqui verdad?");
-            ConexionServidor.esperar(); //ESTE COñexion esperar al morir nosotros creo que nos da problemas
+            if (GestionPartida.enPartida) {
+                ConexionServidor.esperar(); // ESTE COñexion esperar al morir nosotros creo que nos da problemas
+            }
             System.out.print("Estoy verdad?");
         }
         // si salimos del while es que la partida ha terminado para nosotros
@@ -786,7 +793,7 @@ public class TableroController implements Initializable {
 
         inicializarFichas();
 
-        //tableroSkin
+        // tableroSkin
         System.out.print("Skin tablero:");
         System.out.print(GestionPartida.skinTablero);
         File file = new File("src/main/resources/TABLEROS/" + GestionPartida.skinTablero + ".png"); //
@@ -967,7 +974,6 @@ public class TableroController implements Initializable {
 
         GestionPartida.quieroVenderPropiedad(posicion_propiedad_tablero[numPropiedad]);
 
-
         while (!GestionPartida.precioPropiedadRecibido) {
             // System.out.println("Acabo de entrar");
             // ConexionServidor.esperar();
@@ -975,7 +981,6 @@ public class TableroController implements Initializable {
         }
 
         GestionPartida.precioPropiedadRecibido = false;
-
 
         venderPropiedadController.actualizarLabel(numPropiedad);
     }
@@ -1076,6 +1081,7 @@ public class TableroController implements Initializable {
     private void moverFichaSuperpoder(String casilla) {
         Integer jug = GestionPartida.indiceJugador;
         String posi = "Pos" + casilla;
+        System.out.println(posi);
         String coordenadas;
         switch (jug) {
             case 0:
