@@ -454,6 +454,7 @@ public class GestionPartida {
                 break;
             case "COMPRAR_OK":
                 vectorDePropiedades.get(indiceJugador).add(tablero[Integer.parseInt(partes[2])]);
+                propiedades.get(indiceJugador).dueño = nombreUser;
                 dineroJugadores[indiceJugador] = Integer.parseInt(partes[3]);
                 compraRealizada = true;
                 break;
@@ -477,10 +478,15 @@ public class GestionPartida {
                 ArrayList<String> lista = new ArrayList<String>();
                 for (int i = 4; i < partes.length; i++) {
                     if (!partes[i].equals("null")) {
-                        int propiedad = Integer.parseInt(partes[i].substring(9));
-                        lista.add(tablero[propiedad]);
+                        String[] aux = partes[i].split(":");
+                        int propiedadActual = Integer.parseInt(aux[1].substring(9));
+                        int casas = Integer.parseInt(aux[2]);
+                        lista.add(tablero[propiedadActual]);
+                        propiedades.get(propiedadActual).casas = casas;
+                        propiedades.get(propiedadActual).dueño = jugador;
                     }
                 }
+
                 vectorDePropiedades.get(indice).clear();
                 vectorDePropiedades.get(indice).addAll(lista);
                 break;
@@ -526,6 +532,8 @@ public class GestionPartida {
                 break;
             case "EDIFICAR_OK":
                 dineroJugadores[indiceJugador] = Integer.parseInt(partes[2]);
+                int propiedad = Integer.parseInt(partes[3]);
+                propiedades.get(propiedad).casas++;
                 break;
             case "EDIFICAR_NOOK":
                 break;
