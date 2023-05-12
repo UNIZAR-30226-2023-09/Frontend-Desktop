@@ -21,8 +21,14 @@ public class FinPartidaController implements Initializable
         lblNombre.setText(GestionPartida.nombreUser);
         lblGemas.setText(Integer.toString(GestionPartida.gemas));
 
+        if(GestionPartida.ganador == true){
+            lblResultado.setText("Has ganado");
+        }
+        else{
+            lblResultado.setText("Has perdido");
+        }
         // indicar si he ganado o perdido
-        System.out.println("Todavia no esta implementado indicar quien gana o pierde");
+        //System.out.println("Todavia no esta implementado indicar quien gana o pierde");
     }
 
     @FXML

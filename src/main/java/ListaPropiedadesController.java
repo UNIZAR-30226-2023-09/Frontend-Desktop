@@ -211,6 +211,7 @@ public class ListaPropiedadesController implements Initializable {
         // solo mostraremos los botones si no hay ninguna subasta activa
         if((b == true && !GestionPartida.subastaOcupada) || b == false)
         {
+            System.out.println("Entro visiblidad subastar");
             for(int i=1; i<=NUM_PROPIEDADES; i++)
             {
                 HBox hbox = (HBox) propiedades.getChildren().get(i);
