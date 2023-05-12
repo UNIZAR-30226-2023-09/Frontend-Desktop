@@ -331,6 +331,7 @@ public class GestionPartida {
             case "EMPEZAR_OK":
                 empezarPartida = true;
                 enPartida = true;
+                IDPartida = partes[1];
                 // Ningun jugador esta en la carcel
                 JugadorEnCarcel[0] = false;
                 JugadorEnCarcel[1] = false;
