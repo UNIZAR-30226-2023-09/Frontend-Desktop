@@ -614,7 +614,9 @@ public class TableroController implements Initializable {
 
             }
             System.out.print("Estoy aqui verdad?");
-            ConexionServidor.esperar(); // ESTE COñexion esperar al morir nosotros creo que nos da problemas
+            if (GestionPartida.enPartida) {
+                ConexionServidor.esperar(); // ESTE COñexion esperar al morir nosotros creo que nos da problemas
+            }
             System.out.print("Estoy verdad?");
         }
         // si salimos del while es que la partida ha terminado para nosotros
