@@ -176,8 +176,15 @@ public class ListaPropiedadesController implements Initializable {
             for(int i=0; i < GestionPartida.nombresPropiedadesEdificar.size(); i++)
             {
                 int numPropiedad = Integer.parseInt(GestionPartida.nombresPropiedadesEdificar.get(i));
-                System.out.println("Trato de mostrar el boton de la propieda: " + numPropiedad + " que es " + casilla_propiedad[numPropiedad]);
-                botonesE.get(casilla_propiedad[numPropiedad]-1).setVisible(true);
+                if(GestionPartida.propiedades.get(numPropiedad).casas != 5)
+                {
+                    botonesE.get(casilla_propiedad[numPropiedad]-1).setVisible(true);
+                }
+                else
+                {
+                    // en caso de ya haber edificado 5 veces no mostramos mas el boton
+                    botonesE.get(casilla_propiedad[numPropiedad]-1).setVisible(false);
+                }
                 precio_edificar[casilla_propiedad[numPropiedad]] = GestionPartida.preciosPropiedadesEdificar.get(i);
             }
         }

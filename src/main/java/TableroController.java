@@ -1,6 +1,7 @@
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.Semaphore;
@@ -69,7 +70,7 @@ public class TableroController implements Initializable {
     private BancoController bancoController;
 
     @FXML
-    private ImageView dado1, dado2, user1, user2, user3, user4, tableroSkin;
+    private ImageView dado1, dado2, user1, user2, user3, user4, tableroSkin, imgChat;
 
     @FXML
     private ImageView imgCasa1, imgCasa2, imgCasa3, imgCasa4, imgCasa5, imgCasa6, imgCasa7, imgCasa8, imgCasa9,
@@ -176,6 +177,8 @@ public class TableroController implements Initializable {
 
                     if (subastarController.subastaExitosa()) {
                         listaPropiedadesController.eliminarPropiedad(subastarController.propiedadSubastada);
+                        edificarController.edificios_propiedad[subastarController.propiedadSubastada] = 0;
+                        Casas.get(subastarController.propiedadSubastada-1).setVisible(false);
                     }
                 }
 
@@ -790,6 +793,7 @@ public class TableroController implements Initializable {
         fianza.setVisible(false);
         eventos.setVisible(false);
         btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
+        imgChat.setVisible(true);
 
         inicializarFichas();
 
@@ -873,6 +877,18 @@ public class TableroController implements Initializable {
             System.out.println("LE DI AL BOTON DE TERMINAR TURNO");
         }
 
+    }
+
+    @FXML
+    public void visibilidadChat(MouseEvent e)
+    {
+        if (!chat.isVisible()) {
+            chatController.actualizarChat(GestionPartida.chat);
+        }
+        datosPartida.setVisible(!datosPartida.isVisible());
+        // TODO: Ocultar el resto de cosas
+
+        chat.setVisible(!chat.isVisible());
     }
 
     private boolean estamosActualizando = false;
@@ -989,6 +1005,8 @@ public class TableroController implements Initializable {
         if (vendida) {
             listaJugadoresController.actualizarDinero();
             listaPropiedadesController.eliminarPropiedad(numPropiedad);
+            edificarController.edificios_propiedad[numPropiedad] = 0;
+            Casas.get(numPropiedad-1).setVisible(false);
         }
 
         venderPropiedad.setVisible(false);
@@ -1009,9 +1027,10 @@ public class TableroController implements Initializable {
         // desocultamos el edificio correspondiente con el numero que toque
         if(edificada)
         {
-            File file = new File("src/main/resources/CASAS_HOTEL/C" + 1 + ".png");
+            File file = new File("src/main/resources/CASAS_HOTEL/C" + edificarController.edificios_propiedad[numPropiedad] + ".png");
             Casas.get(numPropiedad-1).setImage(new Image(file.toURI().toString()));
             Casas.get(numPropiedad-1).setVisible(true);
+            listaPropiedadesController.visibilidadBotonesEdificar(true); // actualizamos los botones que se podran mostrar
         }
 
         edificar.setVisible(false);
