@@ -176,7 +176,6 @@ public class TableroController implements Initializable {
 
                     if (subastarController.subastaExitosa()) {
                         listaPropiedadesController.eliminarPropiedad(subastarController.propiedadSubastada);
-                        edificarController.edificios_propiedad[subastarController.propiedadSubastada] = 0;
                         Casas.get(subastarController.propiedadSubastada-1).setVisible(false);
                     }
                 }
@@ -993,7 +992,6 @@ public class TableroController implements Initializable {
             listaPropiedadesController.eliminarPropiedad(numPropiedad);
             if(numPropiedad <= 23)
             {
-                edificarController.edificios_propiedad[numPropiedad] = 0;
                 Casas.get(numPropiedad-1).setVisible(false);
             }
         }
