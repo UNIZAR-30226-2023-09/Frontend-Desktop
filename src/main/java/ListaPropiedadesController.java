@@ -176,7 +176,7 @@ public class ListaPropiedadesController implements Initializable {
             for(int i=0; i < GestionPartida.nombresPropiedadesEdificar.size(); i++)
             {
                 int numPropiedad = Integer.parseInt(GestionPartida.nombresPropiedadesEdificar.get(i));
-                if(GestionPartida.propiedades.get(numPropiedad).casas != 5)
+                if(GestionPartida.propiedades.get(numPropiedad).casas < 5)
                 {
                     botonesE.get(casilla_propiedad[numPropiedad]-1).setVisible(true);
                 }

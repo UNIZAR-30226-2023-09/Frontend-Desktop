@@ -1030,7 +1030,7 @@ public class TableroController implements Initializable {
         // desocultamos el edificio correspondiente con el numero que toque
         if(edificada)
         {
-            File file = new File("src/main/resources/CASAS_HOTEL/C" + edificarController.edificios_propiedad[numPropiedad] + ".png");
+            File file = new File("src/main/resources/CASAS_HOTEL/C" + GestionPartida.propiedades.get(Integer.parseInt(posicion_propiedad_tablero[numPropiedad])).casas + ".png");
             Casas.get(numPropiedad-1).setImage(new Image(file.toURI().toString()));
             Casas.get(numPropiedad-1).setVisible(true);
             listaPropiedadesController.visibilidadBotonesEdificar(true); // actualizamos los botones que se podran mostrar

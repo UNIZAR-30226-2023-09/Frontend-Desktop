@@ -52,7 +52,7 @@ public class SubastarController implements Initializable{
                 System.out.println("Subastamos la propiedad por " + dinero);
 
                 habiamosSubastado = true;
-                propiedadSubastada = numPropiedad;
+                propiedadSubastada = Integer.parseInt(tableroController.posicion_propiedad_tablero[numPropiedad]);
 
                 tableroController.ocultarVentanaSubastar(true,numPropiedad);
             }
