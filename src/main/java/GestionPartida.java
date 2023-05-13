@@ -108,6 +108,10 @@ public class GestionPartida {
     public static ArrayList<String> chat = new ArrayList<String>();
     public static ArrayList<String> Usuariochat = new ArrayList<String>();
 
+    public static boolean resultadosTorneo;
+
+    private static int cuentaResultados;
+
     // Struct que almacena el dueño de una propiedad, el id de la propiedad, el
     // nombre de la propiedad y el numero de casas que tiene
     public static class Propiedad {
@@ -709,10 +713,6 @@ public class GestionPartida {
                 break;
             case "CLASIFICACION_TORNEO":
                 System.out.println("Clasificacion del torneo: " + mensaje);
-
-                break;
-            case "TORNEO_FINALIZADO":
-                enTorneo = false;
                 String jugadorActual = partes[1];
                 // Obtener el indice del jugador
                 int indiceJugadorTorneo = 0;
@@ -722,6 +722,13 @@ public class GestionPartida {
                     }
                 }
                 clasificacionTorneo[indiceJugadorTorneo] = Integer.parseInt(partes[2]);
+                cuentaResultados++;
+                if (cuentaResultados == 4) {
+                    resultadosTorneo = true;
+                }
+                break;
+            case "TORNEO_FINALIZADO":
+                enTorneo = false;
                 System.out.println("El torneo ha finalizado");
                 break;
             case "CHAT":
