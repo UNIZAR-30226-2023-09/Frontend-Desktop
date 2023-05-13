@@ -415,6 +415,8 @@ public class GestionPartida {
                 break;
             case "VENDER_OK":
                 vectorDePropiedades.get(indiceJugador).remove(partes[1]);
+                propiedades.get(Integer.parseInt(partes[1])).casas = 0;
+                propiedades.get(Integer.parseInt(partes[1])).dueño = null;
                 dineroJugadores[indiceJugador] = Integer.parseInt(partes[2]);
                 break;
             case "VENDER_NO_OK":
