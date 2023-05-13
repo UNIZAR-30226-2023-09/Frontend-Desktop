@@ -1005,8 +1005,11 @@ public class TableroController implements Initializable {
         if (vendida) {
             listaJugadoresController.actualizarDinero();
             listaPropiedadesController.eliminarPropiedad(numPropiedad);
-            edificarController.edificios_propiedad[numPropiedad] = 0;
-            Casas.get(numPropiedad-1).setVisible(false);
+            if(numPropiedad <= 23)
+            {
+                edificarController.edificios_propiedad[numPropiedad] = 0;
+                Casas.get(numPropiedad-1).setVisible(false);
+            }
         }
 
         venderPropiedad.setVisible(false);
