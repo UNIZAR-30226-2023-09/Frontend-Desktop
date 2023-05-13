@@ -98,7 +98,7 @@ public class TableroController implements Initializable {
     public Circle indicador;
 
     @FXML
-    private Label lblEvento, lblRonda, lblEconomia, lblBote, lblBanco;
+    private Label lblRonda, lblEconomia, lblBote, lblBanco;
 
     Random random = new Random();
 
@@ -1060,11 +1060,10 @@ public class TableroController implements Initializable {
 
     private void actualizarDatosPartida() {
         Platform.runLater(() -> {
-            lblEvento.setText(GestionPartida.evento);
-            lblRonda.setText(Integer.toString(GestionPartida.ronda));
+            lblRonda.setText("Ronda: " + Integer.toString(GestionPartida.ronda));
             lblEconomia.setText(Double.toString(GestionPartida.economia));
-            lblBote.setText(Integer.toString(GestionPartida.dineroBote));
-            lblBanco.setText(Integer.toString(GestionPartida.dineroEnBanco));
+            lblBote.setText("Bote: " + Integer.toString(GestionPartida.dineroBote));
+            lblBanco.setText("Banco: " + Integer.toString(GestionPartida.dineroEnBanco));
         });
     }
 
