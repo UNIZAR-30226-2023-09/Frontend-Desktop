@@ -573,6 +573,14 @@ public class GestionPartida {
             case "JugadorMuerto":
                 jugadoresVivos[obtenerIndiceJugador(partes[1])] = false;
                 JugadoresVivos--;
+                ArrayList<Propiedad> propiedadesDevolver = new ArrayList<Propiedad>();
+                for (Integer key : propiedades.keySet()) {
+                    Propiedad prop = propiedades.get(key);
+                    if (prop.dueño.equals(partes[1])) {
+                        propiedades.get(key).dueño = "";
+                        propiedades.get(key).casas = 0;
+                    }
+                }
                 break;
             case "EVENTO":
                 evento = partes[1];
