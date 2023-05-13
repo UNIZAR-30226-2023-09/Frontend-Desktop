@@ -104,7 +104,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label text="Jugador 1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+            <Label fx:id="lblJ1" text="Jugador 1" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -116,7 +116,7 @@
                   </ImageView>
                </graphic>
             </Label>
-            <Label text="Jugador 2" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+            <Label fx:id="lblJ2" text="Jugador 2" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -128,7 +128,7 @@
                   </ImageView>
                </graphic>
             </Label>
-            <Label text="Jugador 3" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
+            <Label fx:id="lblJ3" text="Jugador 3" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -140,7 +140,7 @@
                   </ImageView>
                </graphic>
             </Label>
-            <Label text="Jugador 4" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
+            <Label fx:id="lblJ4" text="Jugador 4" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
@@ -152,32 +152,42 @@
                   </ImageView>
                </graphic>
             </Label>
-            <Label text="99" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
+            <Label fx:id="lblP1" text="0" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="1">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label text="99" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
+            <Label fx:id="lblP2" text="0" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="2">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label text="99" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
+            <Label fx:id="lblP3" text="0" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="3">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label text="99" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
+            <Label fx:id="lblP4" text="0" textFill="WHITE" GridPane.columnIndex="2" GridPane.rowIndex="4">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
          </children>
       </GridPane>
-      <Button fx:id="btnEmpezar" layoutX="712.0" layoutY="778.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="100.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@fondo.css" text="Empezar" textFill="#684411">
+      <Button fx:id="btnEmpezar" layoutX="712.0" layoutY="778.0" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="100.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@fondo.css" text="Empezar" textFill="#684411">
          <font>
             <Font name="System Bold" size="15.0" />
          </font>
       </Button>
+      <Button fx:id="btnSalir" layoutX="712.0" layoutY="778.0" mnemonicParsing="false" onAction="#actionEvent" prefHeight="30.0" prefWidth="100.0" style="-fx-border-color: #684411; -fx-border-radius: 5px; -fx-background-radius: 5px;" styleClass="dorado" stylesheets="@fondo.css" text="Salir" textFill="#684411">
+         <font>
+            <Font name="System Bold" size="15.0" />
+         </font>
+      </Button>
+      <Label fx:id="lblEsperar" layoutX="618.0" layoutY="726.0" text="Esperando al anfitrion" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="23.0" />
+         </font>
+      </Label>
    </children>
 </AnchorPane>

@@ -21,7 +21,13 @@ public class FinPartidaController implements Initializable
         lblNombre.setText(GestionPartida.nombreUser);
         lblGemas.setText(Integer.toString(GestionPartida.gemas));
 
-        if(GestionPartida.ganador == true){
+        if(GestionPartida.enTorneo)
+        {
+            btnVolver.setText("Clasificacion");
+        }
+
+        if(GestionPartida.ganador == true)
+        {
             lblResultado.setText("Has ganado");
         }
         else{
@@ -34,9 +40,15 @@ public class FinPartidaController implements Initializable
     @FXML
     public void actionEvent(ActionEvent e) throws IOException
     {
-        // solo hay un boton asi que si lo pulsan seguro que es el de ir al menu
-        App.setRoot("MenuPrincipal");
-
+        if(GestionPartida.enTorneo)
+        {
+            App.setRoot("Clasificacion");
+        }
+        else
+        {
+            // si no estamos en un torneo salimos directamente
+            App.setRoot("MenuPrincipal");
+        }
     }
     
 }

@@ -615,15 +615,7 @@ public class TableroController implements Initializable {
             System.out.print("Estoy verdad?");
         }
         
-        if(GestionPartida.enTorneo)
-        {
-            App.setRoot("Clasificacion");
-        }
-        else
-        {
-            // si no estamos en un torneo salimos directamente
-            App.setRoot("FinPartida");
-        }
+        App.setRoot("FinPartida");
     }
 
     @FXML
@@ -969,8 +961,6 @@ public class TableroController implements Initializable {
         // datosPartida.setVisible(false);
         listaPropiedades.setVisible(false);
 
-        System.out.println("En el tablero es la posicion: " + posicion_propiedad_tablero[numPropiedad]);
-
         GestionPartida.quieroVenderPropiedad(posicion_propiedad_tablero[numPropiedad]);
 
         while (!GestionPartida.precioPropiedadRecibido) {
@@ -1069,7 +1059,6 @@ public class TableroController implements Initializable {
         for(int i=1; i<=23; i++)
         {
             numCasas = GestionPartida.propiedades.get(Integer.parseInt(posicion_propiedad_tablero[i])).casas;
-            System.out.println("LA propiedad " + posicion_propiedad_tablero[i] + " tiene " + Integer.toString(numCasas));
             if(numCasas > 0)
             {
                 File file = new File("src/main/resources/CASAS_HOTEL/C" + numCasas + ".png");
