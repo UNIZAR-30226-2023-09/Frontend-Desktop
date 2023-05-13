@@ -615,6 +615,9 @@ public class TableroController implements Initializable {
             System.out.print("Estoy verdad?");
         }
         
+        GestionPartida.enPartida = false;
+        GestionPartida.empezarPartida = false;
+
         App.setRoot("FinPartida");
     }
 

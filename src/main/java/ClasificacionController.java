@@ -110,9 +110,7 @@ public class ClasificacionController implements Initializable{
                 // todo lo relacionado con no ser el dueño
                 lblEsperar.setVisible(true);
 
-                GestionPartida.unirseTorneo(GestionPartida.IDTorneo);
-
-                while (!GestionPartida.empezarPartida) {
+                while (!GestionPartida.enPartida) {
                     ConexionServidor.esperar();
                 }
 
