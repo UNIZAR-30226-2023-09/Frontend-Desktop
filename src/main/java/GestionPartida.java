@@ -709,6 +709,7 @@ public class GestionPartida {
                 break;
             case "CLASIFICACION_TORNEO":
                 System.out.println("Clasificacion del torneo: " + mensaje);
+
                 break;
             case "TORNEO_FINALIZADO":
                 enTorneo = false;

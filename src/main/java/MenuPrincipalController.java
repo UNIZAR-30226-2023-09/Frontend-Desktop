@@ -77,7 +77,8 @@ public class MenuPrincipalController implements Initializable {
                 System.out.println("No se ha podido crear el torneo");
             }
         } else if (btnUnirseTorneo.equals(evt)) {
-
+            // unirse a un torneo
+            App.setRoot("UnirseTorneo");
         }
     }
 }
