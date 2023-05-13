@@ -53,6 +53,7 @@ public class GestionPartida {
     public static String tengoSuerte;
     public static boolean elegirCasilla;
     public static String evento = "Ninguno";
+    public static boolean edificarOK = false;
     // Para mostrar la tarjeta correspondiente al superpoder
     public static String superPoder = "0";
     public static boolean mostrarEvento;
@@ -535,6 +536,7 @@ public class GestionPartida {
                 esperarListaEdificar = true;
                 break;
             case "EDIFICAR_OK":
+                edificarOK = true;
                 dineroJugadores[indiceJugador] = Integer.parseInt(partes[2]);
                 int propiedad = Integer.parseInt(partes[1]);
                 propiedades.get(propiedad).casas++;

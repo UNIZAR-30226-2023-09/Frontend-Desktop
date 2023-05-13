@@ -31,6 +31,12 @@ public class EdificarController {
             // enviar el mensaje para vender la propiedad
             GestionPartida.edificarPropiedad(tableroController.posicion_propiedad_tablero[numPropiedad], Integer.toString(precio));
             edificado = true;
+
+            while(!GestionPartida.edificarOK)
+            {
+                ConexionServidor.esperar();
+            }
+            GestionPartida.edificarOK = false;
         }
         
         // por ultimo ocultamos la pantalla de vender
