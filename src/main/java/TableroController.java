@@ -614,10 +614,16 @@ public class TableroController implements Initializable {
             }
             System.out.print("Estoy verdad?");
         }
-        // si salimos del while es que la partida ha terminado para nosotros
-        System.out.println("Ganaste rey, ahora sal de aqui");
-
-        App.setRoot("FinPartida");
+        
+        if(GestionPartida.enTorneo)
+        {
+            App.setRoot("Clasificacion");
+        }
+        else
+        {
+            // si no estamos en un torneo salimos directamente
+            App.setRoot("FinPartida");
+        }
     }
 
     @FXML
