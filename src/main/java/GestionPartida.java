@@ -456,7 +456,7 @@ public class GestionPartida {
                 break;
             case "COMPRAR_OK":
                 vectorDePropiedades.get(indiceJugador).add(tablero[Integer.parseInt(partes[2])]);
-                propiedades.get(indiceJugador).dueño = nombreUser;
+                propiedades.get(Integer.parseInt(partes[2])).dueño = nombreUser;
                 dineroJugadores[indiceJugador] = Integer.parseInt(partes[3]);
                 compraRealizada = true;
                 break;
@@ -534,7 +534,7 @@ public class GestionPartida {
                 break;
             case "EDIFICAR_OK":
                 dineroJugadores[indiceJugador] = Integer.parseInt(partes[2]);
-                int propiedad = Integer.parseInt(partes[3]);
+                int propiedad = Integer.parseInt(partes[1]);
                 propiedades.get(propiedad).casas++;
                 break;
             case "EDIFICAR_NOOK":
