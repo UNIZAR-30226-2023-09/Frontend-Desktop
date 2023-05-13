@@ -272,7 +272,7 @@ public class GestionPartida {
         client.send("unirseTorneo," + nombreUser + "," + ID_Torneo);
     }
 
-    public void empezarPartidaTorneo(String ID_Torneo) {
+    public static void empezarPartidaTorneo(String ID_Torneo) {
         client.send("empezarPartidaTorneo," + ID_Torneo + "," + nombreUser);
     }
 

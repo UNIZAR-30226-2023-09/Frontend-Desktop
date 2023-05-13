@@ -18,9 +18,9 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 public class MenuPrincipalController implements Initializable {
-    
+
     @FXML
-    private Button btnSignOut, btnUnirse, btnTienda, btnCrear;
+    private Button btnSignOut, btnUnirse, btnTienda, btnCrearTorneo, btnUnirseTorneo, btnCrear;
 
     @FXML
     private Label lblNombre, lblGemas;
@@ -49,19 +49,35 @@ public class MenuPrincipalController implements Initializable {
 
                 System.out.println(GestionPartida.IDPartida);
 
-
                 // crear una partida
                 App.setRoot("CrearPartida");
             } else {
                 System.out.println("No se ha podido crear la partida");
             }
-        } else if (btnUnirse.equals(evt))
-        {
+        } else if (btnUnirse.equals(evt)) {
             // unirse a una partida
             App.setRoot("UnirsePartida");
         } else if (btnTienda.equals(evt)) {
             // abrir la tienda
             App.setRoot("Tienda");
+        } else if (btnCrearTorneo.equals(evt)) {
+            // poner codigo de la partida
+            GestionPartida.crearTorneo();
+
+            // esperamos respuesta
+            ConexionServidor.esperar();
+
+            if (GestionPartida.enTorneo) {
+
+                System.out.println(GestionPartida.IDTorneo);
+
+                // crear una partida
+                App.setRoot("CrearTorneo");
+            } else {
+                System.out.println("No se ha podido crear el torneo");
+            }
+        } else if (btnUnirseTorneo.equals(evt)) {
+
         }
     }
 }
