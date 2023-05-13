@@ -92,12 +92,6 @@ public class TableroController implements Initializable {
     private StackPane containerForm;
 
     @FXML
-    public ProgressBar barraEconomia;
-
-    @FXML
-    public Circle indicador;
-
-    @FXML
     private Label lblRonda, lblEconomia, lblBote, lblBanco;
 
     Random random = new Random();
@@ -143,8 +137,6 @@ public class TableroController implements Initializable {
                 listaJugadoresController.actualizarDinero();
 
                 actualizarDatosPartida();
-
-                actualizarEconomia();
 
                 Integer eventoNuevo;
                 eventoNuevo = EventosController.transformarEvento(GestionPartida.evento);
@@ -821,8 +813,6 @@ public class TableroController implements Initializable {
 
             actualizarDatosPartida();
 
-            actualizarEconomia();
-
             // jugadores muertos -> se hace con el actualizarrrr
 
             // ponemos a false la variable una vez hemos actualizado toda la informacion
@@ -1059,28 +1049,10 @@ public class TableroController implements Initializable {
     private void actualizarDatosPartida() {
         Platform.runLater(() -> {
             lblRonda.setText("Ronda: " + Integer.toString(GestionPartida.ronda));
-            lblEconomia.setText(Double.toString(GestionPartida.economia));
+            lblEconomia.setText("Economia: " + Double.toString(GestionPartida.economia));
             lblBote.setText("Bote: " + Integer.toString(GestionPartida.dineroBote));
             lblBanco.setText("Banco: " + Integer.toString(GestionPartida.dineroEnBanco));
         });
-    }
-
-    private void actualizarEconomia() {
-        // double valor = -0.5;
-        barraEconomia.setStyle("-fx-accent: green; -fx-base: red;");
-
-        double minValue = 0.5;
-        double maxValue = 2.0;
-        double progress = (GestionPartida.economia - minValue) / (maxValue - minValue); // Calcular el progreso en base
-                                                                                        // al valor
-        barraEconomia.setProgress(progress); // Actualizar el progreso de la barra
-
-        double progressBarWidth = barraEconomia.getWidth();
-        double circleRadius = indicador.getRadius();
-        double circleCenterX = progressBarWidth * progress + circleRadius; // Calcular la posición X del círculo
-        indicador.setCenterX(circleCenterX);
-
-        // barraEconomia.setProgress(GestionPartida.economia);
     }
 
     private void moverFichaSuperpoder(String casilla) {

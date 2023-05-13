@@ -3,7 +3,6 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ProgressBar?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -61,12 +60,6 @@
                   <Image url="@FICHAS/AMARILLO4.png" />
                </image>
             </ImageView>
-            <Label fx:id="lblEconomia" layoutX="447.0" layoutY="689.0" prefHeight="40.0" prefWidth="126.0" text="Economia">
-               <font>
-                  <Font name="System Bold" size="22.0" />
-               </font>
-            </Label>
-            <ProgressBar fx:id="barraEconomia" layoutX="373.0" layoutY="669.0" prefWidth="200.0" progress="0.0" />
             <Circle fx:id="indicador" fill="DODGERBLUE" layoutX="365.0" layoutY="679.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
             <ImageView fx:id="imgCasa1" fitHeight="26.0" fitWidth="26.0" layoutX="713.0" layoutY="739.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -183,27 +176,35 @@
                   <Image url="@CASAS_HOTEL/C1.png" />
                </image>
             </ImageView>
-            <VBox layoutX="375.0" layoutY="161.0" prefHeight="107.0" prefWidth="209.0" styleClass="blur-box-InfoPartida" stylesheets="@fondo.css" AnchorPane.leftAnchor="372.0" AnchorPane.topAnchor="163.0">
+            <VBox layoutX="375.0" layoutY="161.0" prefHeight="107.0" prefWidth="209.0" spacing="3.0" styleClass="blur-box-InfoPartida" stylesheets="@fondo.css" AnchorPane.leftAnchor="372.0" AnchorPane.topAnchor="163.0">
                <children>
-                  <Label fx:id="lblBote" prefHeight="40.0" prefWidth="195.0" text="Bote: 1" textFill="WHITE">
+                  <Label fx:id="lblBote" prefWidth="195.0" text="Bote: 1" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="System Bold" size="19.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lblBanco" prefHeight="34.0" prefWidth="195.0" text="Banco: 1" textFill="WHITE">
+                  <Label fx:id="lblBanco" prefWidth="195.0" text="Banco: 1" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="System Bold" size="19.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lblRonda" prefHeight="37.0" prefWidth="195.0" text="Ronda: 1" textFill="WHITE">
+                  <Label fx:id="lblRonda" prefWidth="195.0" text="Ronda: 1" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="22.0" />
+                        <Font name="System Bold" size="19.0" />
+                     </font>
+                     <VBox.margin>
+                        <Insets left="5.0" />
+                     </VBox.margin>
+                  </Label>
+                  <Label fx:id="lblEconomia" prefWidth="195.0" text="Economia: 1" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="19.0" />
                      </font>
                      <VBox.margin>
                         <Insets left="5.0" />
