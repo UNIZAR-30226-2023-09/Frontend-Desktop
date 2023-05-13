@@ -47,8 +47,6 @@ public class PujarController implements Initializable{
                 // System.out.println("Todavia no esta implementada la compra de una subasta");
 
                 GestionPartida.ComprarSubasta();
-
-                GestionPartida.subasta = false;
     
                 propiedadComprada = true;
                 semaphoreComprar.release();
@@ -57,8 +55,8 @@ public class PujarController implements Initializable{
             {
                 lblError.setVisible(true);
             }
-        } else if (btnRechazar.equals(evt)) {
-            GestionPartida.subasta = false;
+        } else if (btnRechazar.equals(evt))
+        {
             semaphoreComprar.release();
         }
     }

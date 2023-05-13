@@ -55,10 +55,10 @@
          </font>
       </Label>
       <VBox alignment="CENTER" />
-      <GridPane alignment="CENTER" layoutX="425.0" layoutY="200.0" prefHeight="500.0" prefWidth="650.0" styleClass="blur-box-Clasificacion" stylesheets="@fondo.css">
+      <GridPane alignment="CENTER" layoutX="251.0" layoutY="200.0" prefHeight="500.0" prefWidth="1000.0" styleClass="blur-box-Clasificacion" stylesheets="@fondo.css">
         <columnConstraints>
-          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+          <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="460.0" minWidth="10.0" prefWidth="81.0" />
+            <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" maxWidth="583.0" minWidth="10.0" prefWidth="583.0" />
           <ColumnConstraints halignment="CENTER" hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
         </columnConstraints>
         <rowConstraints>

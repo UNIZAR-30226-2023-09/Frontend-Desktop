@@ -44,7 +44,7 @@
 
 .blur-box-Clasificacion {
     -fx-background-color: rgba(125, 125, 125, 0.7);
-    -fx-pref-width: 650px;
+    -fx-pref-width: 1000px;
     -fx-pref-height: 500px;
     -fx-border-color: white;
     -fx-border-width: 2px;
