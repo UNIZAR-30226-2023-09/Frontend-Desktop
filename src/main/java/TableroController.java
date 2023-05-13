@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.Semaphore;
@@ -70,7 +69,7 @@ public class TableroController implements Initializable {
     private BancoController bancoController;
 
     @FXML
-    private ImageView dado1, dado2, user1, user2, user3, user4, tableroSkin, imgChat;
+    private ImageView dado1, dado2, user1, user2, user3, user4, tableroSkin;
 
     @FXML
     private ImageView imgCasa1, imgCasa2, imgCasa3, imgCasa4, imgCasa5, imgCasa6, imgCasa7, imgCasa8, imgCasa9,
@@ -793,7 +792,6 @@ public class TableroController implements Initializable {
         fianza.setVisible(false);
         eventos.setVisible(false);
         btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
-        imgChat.setVisible(true);
 
         inicializarFichas();
 
@@ -877,18 +875,6 @@ public class TableroController implements Initializable {
             System.out.println("LE DI AL BOTON DE TERMINAR TURNO");
         }
 
-    }
-
-    @FXML
-    public void visibilidadChat(MouseEvent e)
-    {
-        if (!chat.isVisible()) {
-            chatController.actualizarChat(GestionPartida.chat);
-        }
-        datosPartida.setVisible(!datosPartida.isVisible());
-        // TODO: Ocultar el resto de cosas
-
-        chat.setVisible(!chat.isVisible());
     }
 
     private boolean estamosActualizando = false;

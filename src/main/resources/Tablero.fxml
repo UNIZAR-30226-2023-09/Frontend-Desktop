@@ -249,13 +249,11 @@
                </children></StackPane>
             <AnchorPane prefHeight="50.0" prefWidth="200.0">
                <children>
-                  <ImageView fx:id="imgChat" fitHeight="40.0" fitWidth="100.0" layoutX="483.0" layoutY="5.0" onMouseClicked="#visibilidadChat" pickOnBounds="true" preserveRatio="true" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="483.0" AnchorPane.rightAnchor="77.0" AnchorPane.topAnchor="5.0">
-                     <image>
-                        <Image url="@iconoChat.png" />
-                     </image>
-                  </ImageView>
-                  <Button fx:id="btnChat" layoutX="537.0" maxWidth="150.0" mnemonicParsing="false" onAction="#actionEvent" prefHeight="40.0" text="Chat" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0" />
-                  <Button fx:id="btnTerminarTurno" layoutX="56.0" layoutY="13.0" maxWidth="150.0" mnemonicParsing="false" onAction="#actionEvent" prefHeight="40.0" style="-fx-background-color: red;" text="terminar turno" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
+                  <Button fx:id="btnChat" layoutX="537.0" maxWidth="150.0" mnemonicParsing="false" onAction="#actionEvent" prefHeight="40.0" style="-fx-background-color: #ebe122; -fx-background-radius: 5px;" text="Chat" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="5.0">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Button>
+                  <Button fx:id="btnTerminarTurno" layoutX="56.0" layoutY="13.0" maxWidth="150.0" mnemonicParsing="false" onAction="#actionEvent" prefHeight="40.0" style="-fx-background-color: red; -fx-background-radius: 5px;" text="terminar turno" textFill="WHITE" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.topAnchor="5.0">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
