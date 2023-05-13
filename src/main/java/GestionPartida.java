@@ -504,9 +504,18 @@ public class GestionPartida {
                     }
                 }
 
+                // Verificar si las propiedades del diccionario no están en la lista
+                for (Propiedad propiedad : propiedades.values()) {
+                    if (propiedad.dueño.equals(jugador) && !lista.contains(propiedad.nombre)) {
+                        propiedad.dueño = "";
+                        propiedad.casas = 0;
+                    }
+                }
+
                 vectorDePropiedades.get(indice).clear();
                 vectorDePropiedades.get(indice).addAll(lista);
                 break;
+
             case "DINERO_APOSTAR":
                 // He caido en la casilla del banco
                 apostarDinero = true;
