@@ -3,6 +3,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.Semaphore;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,9 +30,11 @@ public class ClasificacionController implements Initializable{
         btnSalir.setVisible(false);
         lblEsperar.setVisible(false);
 
+        lblPuntos = FXCollections.observableArrayList();
         lblPuntos.add(lblP1); lblPuntos.add(lblP2);
         lblPuntos.add(lblP3); lblPuntos.add(lblP4);
 
+        lblJugadores = FXCollections.observableArrayList();
         lblJugadores.add(lblJ1); lblJugadores.add(lblJ2);
         lblJugadores.add(lblJ3); lblJugadores.add(lblJ4);
 
