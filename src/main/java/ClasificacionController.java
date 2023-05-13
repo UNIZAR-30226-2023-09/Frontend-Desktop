@@ -3,6 +3,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.concurrent.Semaphore;
 
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -43,7 +44,12 @@ public class ClasificacionController implements Initializable{
         {
             public void run()
             {
-                mostrarClasificacion();
+                try {
+                    mostrarClasificacion();
+                } catch (IOException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
             }
         };
 
@@ -57,6 +63,11 @@ public class ClasificacionController implements Initializable{
         if(evt.equals(btnEmpezar))
         {
             // empezar la siguiente partida
+            GestionPartida.empezarPartidaTorneo(GestionPartida.IDTorneo);
+
+            ConexionServidor.esperar();
+
+            App.setRoot("Tablero");
         }
         else if(evt.equals(btnSalir))
         {
@@ -65,7 +76,7 @@ public class ClasificacionController implements Initializable{
         }
     }
 
-    private void mostrarClasificacion()
+    private void mostrarClasificacion() throws IOException
     {
         while(!GestionPartida.resultadosTorneo)
         {
@@ -73,11 +84,14 @@ public class ClasificacionController implements Initializable{
         }
 
         // actualizar los resultados del torneo
-        for(int i=0; i<4; i++)
-        {
-            lblJugadores.get(i).setText(GestionPartida.ordenJugadores[i]);
-            lblPuntos.get(i).setText(Integer.toString(GestionPartida.clasificacionTorneo[i]));
-        }
+        Platform.runLater(() -> {
+            for(int i=0; i<4; i++)
+            {
+                
+                lblJugadores.get(i).setText(GestionPartida.ordenJugadores[i]);
+                lblPuntos.get(i).setText(Integer.toString(GestionPartida.clasificacionTorneo[i]));
+            }
+        });
 
         if(!GestionPartida.enTorneo)
         {
@@ -93,7 +107,16 @@ public class ClasificacionController implements Initializable{
             }
             else
             {
+                // todo lo relacionado con no ser el dueño
                 lblEsperar.setVisible(true);
+
+                GestionPartida.unirseTorneo(GestionPartida.IDTorneo);
+
+                while (!GestionPartida.empezarPartida) {
+                    ConexionServidor.esperar();
+                }
+
+                App.setRoot("Tablero");
             }
         }
     }
