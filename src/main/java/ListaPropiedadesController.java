@@ -225,6 +225,11 @@ public class ListaPropiedadesController implements Initializable {
                 // solo si la propiedad se puede ver mostraremos sus botones
                 if(hbox.isVisible())
                 {
+                    // si lo vamos a mostrar hay que asegurarse de que no tenga casas
+                    if(i<=23 && b==true)
+                    {
+                        b = !(GestionPartida.propiedades.get(Integer.parseInt(tableroController.posicion_propiedad_tablero[i])).casas > 0);
+                    }
                     botonesS.get(i-1).setVisible(b);
                 }
 
