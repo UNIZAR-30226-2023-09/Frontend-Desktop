@@ -9,7 +9,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-public class EdificarController implements Initializable{
+public class EdificarController {
 
     private TableroController tableroController;
     
@@ -21,8 +21,6 @@ public class EdificarController implements Initializable{
 
     private int numPropiedad, precio;
 
-    public int[] edificios_propiedad;
-
     @FXML
     public void actionEvent(ActionEvent e) throws IOException 
     {
@@ -33,7 +31,12 @@ public class EdificarController implements Initializable{
             // enviar el mensaje para vender la propiedad
             GestionPartida.edificarPropiedad(tableroController.posicion_propiedad_tablero[numPropiedad], Integer.toString(precio));
             edificado = true;
-            edificios_propiedad[numPropiedad]++;
+
+            while(!GestionPartida.edificarOK)
+            {
+                ConexionServidor.esperar();
+            }
+            GestionPartida.edificarOK = false;
         }
         
         // por ultimo ocultamos la pantalla de vender
@@ -53,16 +56,5 @@ public class EdificarController implements Initializable{
     public void setTableroController(TableroController tableroController)
     {
         this.tableroController = tableroController;
-    }
-
-    @Override
-    public void initialize(URL location, ResourceBundle resources) {
-        edificios_propiedad = new int[] 
-        {0,0,0,0,0,0,
-            0,0,0,0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,
-            0,0,0,0,0,0,0,
-            0,0,0,0};
     }
 }

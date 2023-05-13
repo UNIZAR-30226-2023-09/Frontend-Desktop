@@ -176,7 +176,7 @@ public class ListaPropiedadesController implements Initializable {
             for(int i=0; i < GestionPartida.nombresPropiedadesEdificar.size(); i++)
             {
                 int numPropiedad = Integer.parseInt(GestionPartida.nombresPropiedadesEdificar.get(i));
-                if(GestionPartida.propiedades.get(numPropiedad).casas != 5)
+                if(GestionPartida.propiedades.get(numPropiedad).casas < 5)
                 {
                     botonesE.get(casilla_propiedad[numPropiedad]-1).setVisible(true);
                 }
@@ -218,7 +218,6 @@ public class ListaPropiedadesController implements Initializable {
         // solo mostraremos los botones si no hay ninguna subasta activa
         if((b == true && !GestionPartida.subastaOcupada) || b == false)
         {
-            System.out.println("Entro visiblidad subastar");
             for(int i=1; i<=NUM_PROPIEDADES; i++)
             {
                 HBox hbox = (HBox) propiedades.getChildren().get(i);
@@ -226,6 +225,11 @@ public class ListaPropiedadesController implements Initializable {
                 // solo si la propiedad se puede ver mostraremos sus botones
                 if(hbox.isVisible())
                 {
+                    // si lo vamos a mostrar hay que asegurarse de que no tenga casas
+                    if(i<=23 && b==true)
+                    {
+                        b = !(GestionPartida.propiedades.get(Integer.parseInt(tableroController.posicion_propiedad_tablero[i])).casas > 0);
+                    }
                     botonesS.get(i-1).setVisible(b);
                 }
 

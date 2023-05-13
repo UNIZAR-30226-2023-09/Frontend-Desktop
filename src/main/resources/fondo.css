@@ -51,6 +51,15 @@
     -fx-border-radius: 5px;
 }
 
+.blur-box-InfoPartida {
+    -fx-background-color: rgba(125, 125, 125, 0.7);
+    -fx-pref-width: 209px;
+    -fx-pref-height: 107px;
+    -fx-border-color: white;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+}
+
 .dorado
 {
     -fx-gold: linear-gradient(to bottom, #dabf66 , #947631, #f7d778, #f7d161);

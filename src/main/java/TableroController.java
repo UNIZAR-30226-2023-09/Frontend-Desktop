@@ -1,7 +1,6 @@
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
-import java.util.ArrayList;
 import java.util.Random;
 import java.util.ResourceBundle;
 import java.util.concurrent.Semaphore;
@@ -70,7 +69,7 @@ public class TableroController implements Initializable {
     private BancoController bancoController;
 
     @FXML
-    private ImageView dado1, dado2, user1, user2, user3, user4, tableroSkin, imgChat;
+    private ImageView dado1, dado2, user1, user2, user3, user4, tableroSkin;
 
     @FXML
     private ImageView imgCasa1, imgCasa2, imgCasa3, imgCasa4, imgCasa5, imgCasa6, imgCasa7, imgCasa8, imgCasa9,
@@ -93,13 +92,7 @@ public class TableroController implements Initializable {
     private StackPane containerForm;
 
     @FXML
-    public ProgressBar barraEconomia;
-
-    @FXML
-    public Circle indicador;
-
-    @FXML
-    private Label lblEvento, lblRonda, lblEconomia, lblBote, lblBanco;
+    private Label lblRonda, lblEconomia, lblBote, lblBanco;
 
     Random random = new Random();
 
@@ -145,7 +138,7 @@ public class TableroController implements Initializable {
 
                 actualizarDatosPartida();
 
-                actualizarEconomia();
+                actualizarCasas();
 
                 Integer eventoNuevo;
                 eventoNuevo = EventosController.transformarEvento(GestionPartida.evento);
@@ -177,7 +170,6 @@ public class TableroController implements Initializable {
 
                     if (subastarController.subastaExitosa()) {
                         listaPropiedadesController.eliminarPropiedad(subastarController.propiedadSubastada);
-                        edificarController.edificios_propiedad[subastarController.propiedadSubastada] = 0;
                         Casas.get(subastarController.propiedadSubastada-1).setVisible(false);
                     }
                 }
@@ -793,7 +785,6 @@ public class TableroController implements Initializable {
         fianza.setVisible(false);
         eventos.setVisible(false);
         btnTerminarTurno.setVisible(false); // hasta que no sea mi turno no mostramos el boton
-        imgChat.setVisible(true);
 
         inicializarFichas();
 
@@ -823,8 +814,6 @@ public class TableroController implements Initializable {
             listaJugadoresController.actualizarDinero();
 
             actualizarDatosPartida();
-
-            actualizarEconomia();
 
             // jugadores muertos -> se hace con el actualizarrrr
 
@@ -877,18 +866,6 @@ public class TableroController implements Initializable {
             System.out.println("LE DI AL BOTON DE TERMINAR TURNO");
         }
 
-    }
-
-    @FXML
-    public void visibilidadChat(MouseEvent e)
-    {
-        if (!chat.isVisible()) {
-            chatController.actualizarChat(GestionPartida.chat);
-        }
-        datosPartida.setVisible(!datosPartida.isVisible());
-        // TODO: Ocultar el resto de cosas
-
-        chat.setVisible(!chat.isVisible());
     }
 
     private boolean estamosActualizando = false;
@@ -1007,7 +984,6 @@ public class TableroController implements Initializable {
             listaPropiedadesController.eliminarPropiedad(numPropiedad);
             if(numPropiedad <= 23)
             {
-                edificarController.edificios_propiedad[numPropiedad] = 0;
                 Casas.get(numPropiedad-1).setVisible(false);
             }
         }
@@ -1030,7 +1006,7 @@ public class TableroController implements Initializable {
         // desocultamos el edificio correspondiente con el numero que toque
         if(edificada)
         {
-            File file = new File("src/main/resources/CASAS_HOTEL/C" + edificarController.edificios_propiedad[numPropiedad] + ".png");
+            File file = new File("src/main/resources/CASAS_HOTEL/C" + GestionPartida.propiedades.get(Integer.parseInt(posicion_propiedad_tablero[numPropiedad])).casas + ".png");
             Casas.get(numPropiedad-1).setImage(new Image(file.toURI().toString()));
             Casas.get(numPropiedad-1).setVisible(true);
             listaPropiedadesController.visibilidadBotonesEdificar(true); // actualizamos los botones que se podran mostrar
@@ -1074,30 +1050,31 @@ public class TableroController implements Initializable {
 
     private void actualizarDatosPartida() {
         Platform.runLater(() -> {
-            lblEvento.setText(GestionPartida.evento);
-            lblRonda.setText(Integer.toString(GestionPartida.ronda));
-            lblEconomia.setText(Double.toString(GestionPartida.economia));
-            lblBote.setText(Integer.toString(GestionPartida.dineroBote));
-            lblBanco.setText(Integer.toString(GestionPartida.dineroEnBanco));
+            lblRonda.setText("Ronda: " + Integer.toString(GestionPartida.ronda));
+            lblEconomia.setText("Economia: " + Double.toString(GestionPartida.economia));
+            lblBote.setText("Bote: " + Integer.toString(GestionPartida.dineroBote));
+            lblBanco.setText("Banco: " + Integer.toString(GestionPartida.dineroEnBanco));
         });
     }
 
-    private void actualizarEconomia() {
-        // double valor = -0.5;
-        barraEconomia.setStyle("-fx-accent: green; -fx-base: red;");
-
-        double minValue = 0.5;
-        double maxValue = 2.0;
-        double progress = (GestionPartida.economia - minValue) / (maxValue - minValue); // Calcular el progreso en base
-                                                                                        // al valor
-        barraEconomia.setProgress(progress); // Actualizar el progreso de la barra
-
-        double progressBarWidth = barraEconomia.getWidth();
-        double circleRadius = indicador.getRadius();
-        double circleCenterX = progressBarWidth * progress + circleRadius; // Calcular la posición X del círculo
-        indicador.setCenterX(circleCenterX);
-
-        // barraEconomia.setProgress(GestionPartida.economia);
+    private void actualizarCasas()
+    {
+        int numCasas = 0;
+        for(int i=1; i<=23; i++)
+        {
+            numCasas = GestionPartida.propiedades.get(Integer.parseInt(posicion_propiedad_tablero[i])).casas;
+            System.out.println("LA propiedad " + posicion_propiedad_tablero[i] + " tiene " + Integer.toString(numCasas));
+            if(numCasas > 0)
+            {
+                File file = new File("src/main/resources/CASAS_HOTEL/C" + numCasas + ".png");
+                Casas.get(i-1).setImage(new Image(file.toURI().toString()));
+                Casas.get(i-1).setVisible(true);
+            }
+            else
+            {
+                Casas.get(i-1).setVisible(false);
+            }
+        }
     }
 
     private void moverFichaSuperpoder(String casilla) {
