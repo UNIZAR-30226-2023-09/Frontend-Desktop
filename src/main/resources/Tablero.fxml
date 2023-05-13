@@ -185,7 +185,7 @@
             </ImageView>
             <VBox layoutX="375.0" layoutY="161.0" prefHeight="107.0" prefWidth="209.0" styleClass="blur-box-InfoPartida" stylesheets="@fondo.css" AnchorPane.leftAnchor="372.0" AnchorPane.topAnchor="163.0">
                <children>
-                  <Label fx:id="lblBote" prefHeight="40.0" prefWidth="135.0" text="Bote: 1" textFill="WHITE">
+                  <Label fx:id="lblBote" prefHeight="40.0" prefWidth="195.0" text="Bote: 1" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
@@ -193,7 +193,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lblBanco" prefHeight="40.0" prefWidth="158.0" text="Banco: 1" textFill="WHITE">
+                  <Label fx:id="lblBanco" prefHeight="34.0" prefWidth="195.0" text="Banco: 1" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
@@ -201,7 +201,7 @@
                         <Insets left="5.0" />
                      </VBox.margin>
                   </Label>
-                  <Label fx:id="lblRonda" prefHeight="40.0" prefWidth="137.0" text="Ronda: 1" textFill="WHITE">
+                  <Label fx:id="lblRonda" prefHeight="37.0" prefWidth="195.0" text="Ronda: 1" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="22.0" />
                      </font>
