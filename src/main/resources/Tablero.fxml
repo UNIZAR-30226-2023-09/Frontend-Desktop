@@ -11,7 +11,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.shape.Circle?>
 <?import javafx.scene.text.Font?>
 
 <GridPane prefHeight="900.0" prefWidth="1500.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="TableroController">
@@ -60,7 +59,6 @@
                   <Image url="@FICHAS/AMARILLO4.png" />
                </image>
             </ImageView>
-            <Circle fx:id="indicador" fill="DODGERBLUE" layoutX="365.0" layoutY="679.0" radius="10.0" stroke="BLACK" strokeType="INSIDE" />
             <ImageView fx:id="imgCasa1" fitHeight="26.0" fitWidth="26.0" layoutX="713.0" layoutY="739.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@CASAS_HOTEL/C1.png" />

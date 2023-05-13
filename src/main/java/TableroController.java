@@ -138,6 +138,8 @@ public class TableroController implements Initializable {
 
                 actualizarDatosPartida();
 
+                actualizarCasas();
+
                 Integer eventoNuevo;
                 eventoNuevo = EventosController.transformarEvento(GestionPartida.evento);
 
@@ -1053,6 +1055,26 @@ public class TableroController implements Initializable {
             lblBote.setText("Bote: " + Integer.toString(GestionPartida.dineroBote));
             lblBanco.setText("Banco: " + Integer.toString(GestionPartida.dineroEnBanco));
         });
+    }
+
+    private void actualizarCasas()
+    {
+        int numCasas = 0;
+        for(int i=1; i<=23; i++)
+        {
+            numCasas = GestionPartida.propiedades.get(Integer.parseInt(posicion_propiedad_tablero[i])).casas;
+            System.out.println("LA propiedad " + posicion_propiedad_tablero[i] + " tiene " + Integer.toString(numCasas));
+            if(numCasas > 0)
+            {
+                File file = new File("src/main/resources/CASAS_HOTEL/C" + numCasas + ".png");
+                Casas.get(i-1).setImage(new Image(file.toURI().toString()));
+                Casas.get(i-1).setVisible(true);
+            }
+            else
+            {
+                Casas.get(i-1).setVisible(false);
+            }
+        }
     }
 
     private void moverFichaSuperpoder(String casilla) {
