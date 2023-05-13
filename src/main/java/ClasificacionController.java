@@ -70,10 +70,6 @@ public class ClasificacionController implements Initializable{
         }
 
         // actualizar los resultados del torneo
-        // GestionPartida.clasificacionTorneo[i] // el numero
-
-        // GestionPartida.ordenJugadores[i] devuelve el nombre
-
         for(int i=0; i<4; i++)
         {
             lblJugadores.get(i).setText(GestionPartida.ordenJugadores[i]);
