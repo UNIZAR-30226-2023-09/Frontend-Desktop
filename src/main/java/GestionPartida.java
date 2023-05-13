@@ -101,7 +101,7 @@ public class GestionPartida {
 
     public static String IDTorneo;
 
-    public static int[] clasificacionTorneo;
+    public static int[] clasificacionTorneo = new int[4];
 
     public static boolean ganador;
 
@@ -162,10 +162,18 @@ public class GestionPartida {
     public static void unirsePartida(String _IDPartida) {
         client.send("unirsePartida," + nombreUser + "," + _IDPartida);
         IDPartida = _IDPartida;
+        clasificacionTorneo[0] = 0;
+        clasificacionTorneo[1] = 0;
+        clasificacionTorneo[2] = 0;
+        clasificacionTorneo[3] = 0;
     }
 
     public static void crearPartida() {
         client.send("crearPartida," + nombreUser);
+        clasificacionTorneo[0] = 0;
+        clasificacionTorneo[1] = 0;
+        clasificacionTorneo[2] = 0;
+        clasificacionTorneo[3] = 0;
     }
 
     public static void empezarPartida(String iDPartida) {
@@ -725,10 +733,30 @@ public class GestionPartida {
                 cuentaResultados++;
                 if (cuentaResultados == 4) {
                     resultadosTorneo = true;
+                    // ordenar clasificacionTorneo de menor a mayor
+                    int aux;
+                    String aux2;
+                    for (int i = 0; i < clasificacionTorneo.length - 1; i++) {
+                        for (int j = i + 1; j < clasificacionTorneo.length; j++) {
+                            if (clasificacionTorneo[i] > clasificacionTorneo[j]) {
+                                aux = clasificacionTorneo[i];
+                                clasificacionTorneo[i] = clasificacionTorneo[j];
+                                clasificacionTorneo[j] = aux;
+                                aux2 = ordenJugadores[i];
+                                ordenJugadores[i] = ordenJugadores[j];
+                                ordenJugadores[j] = aux2;
+                            }
+                        }
+                    }
+                    System.out.println("Clasificacion del torneo: ");
+                    for (int i = 0; i < ordenJugadores.length; i++) {
+                        System.out.println(ordenJugadores[i] + " " + clasificacionTorneo[i]);
+                    }
                 }
                 break;
             case "TORNEO_FINALIZADO":
                 enTorneo = false;
+                dueñoPartida = false;
                 System.out.println("El torneo ha finalizado");
                 break;
             case "CHAT":

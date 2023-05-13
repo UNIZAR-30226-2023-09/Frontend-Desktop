@@ -36,7 +36,7 @@ public class FinPartidaController implements Initializable
     {
         // solo hay un boton asi que si lo pulsan seguro que es el de ir al menu
         App.setRoot("MenuPrincipal");
-
+        
     }
     
 }
