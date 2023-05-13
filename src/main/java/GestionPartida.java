@@ -490,10 +490,12 @@ public class GestionPartida {
                         indice = i;
                     }
                 }
+                boolean entrado = false;
                 dineroJugadores[indice] = Integer.parseInt(partes[2]);
                 posicionesJugadores[indice] = partes[3];
                 ArrayList<String> lista = new ArrayList<String>();
                 for (int i = 4; i < partes.length; i++) {
+                    entrado = true;
                     if (!partes[i].equals("null")) {
                         String[] aux = partes[i].split(":");
                         int propiedadActual = Integer.parseInt(aux[0].substring(9));
@@ -503,15 +505,15 @@ public class GestionPartida {
                         propiedades.get(propiedadActual).dueño = jugador;
                     }
                 }
-
-                // Verificar si las propiedades del diccionario no están en la lista
-                for (Propiedad propiedad : propiedades.values()) {
-                    if (propiedad.dueño.equals(jugador) && !lista.contains(propiedad.nombre)) {
-                        propiedad.dueño = "";
-                        propiedad.casas = 0;
+                if (entrado) {
+                    // Verificar si las propiedades del diccionario no están en la lista
+                    for (Propiedad propiedad : propiedades.values()) {
+                        if (propiedad.dueño.equals(jugador) && !lista.contains(propiedad.nombre)) {
+                            propiedad.dueño = "";
+                            propiedad.casas = 0;
+                        }
                     }
                 }
-
                 vectorDePropiedades.get(indice).clear();
                 vectorDePropiedades.get(indice).addAll(lista);
                 break;
