@@ -581,7 +581,7 @@ public class TableroController implements Initializable {
                     } else {
                         fianzaController.pagar();
                     }
-
+                    listaJugadoresController.actualizarDinero();
                 } while (GestionPartida.dadosDobles);
 
                 System.out.println("Pulsa el boton para terminar el turno");
@@ -606,11 +606,9 @@ public class TableroController implements Initializable {
                 listaPropiedadesController.visibilidadBotonesSubastar(false);
 
             }
-            System.out.print("Estoy aqui verdad?");
             if (GestionPartida.enPartida) {
                 ConexionServidor.esperar(); // ESTE COñexion esperar al morir nosotros creo que nos da problemas
             }
-            System.out.print("Estoy verdad?");
         }
         
         GestionPartida.enPartida = false;
