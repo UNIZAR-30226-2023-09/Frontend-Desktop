@@ -839,7 +839,8 @@ public class TableroController implements Initializable {
 
             actualizarDatosPartida();
 
-            // jugadores muertos -> se hace con el actualizarrrr
+            listaPropiedadesController.visibilidadBotonesEdificar(false);
+            listaPropiedadesController.visibilidadBotonesEdificar(true);
 
             // ponemos a false la variable una vez hemos actualizado toda la informacion
             GestionPartida.actualizar_cambio_dispositivo = false;
