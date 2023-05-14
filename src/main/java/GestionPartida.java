@@ -112,6 +112,8 @@ public class GestionPartida {
 
     private static int cuentaResultados;
 
+    public static boolean torneoFinalizado = false;
+
     // Struct que almacena el dueño de una propiedad, el id de la propiedad, el
     // nombre de la propiedad y el numero de casas que tiene
     public static class Propiedad {
@@ -342,6 +344,7 @@ public class GestionPartida {
                 System.out.println("Error en unirse a partida");
                 break;
             case "EMPEZAR_OK":
+                torneoFinalizado = false;
                 empezarPartida = true;
                 enPartida = true;
                 IDPartida = partes[1];
@@ -766,7 +769,8 @@ public class GestionPartida {
                 }
                 break;
             case "TORNEO_FINALIZADO":
-                enTorneo = false;
+                enTorneo = true;
+                torneoFinalizado = true;
                 dueñoPartida = false;
                 System.out.println("El torneo ha finalizado");
                 break;

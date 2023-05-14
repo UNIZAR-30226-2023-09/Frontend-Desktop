@@ -1,22 +1,44 @@
-.my-alert {
-    -fx-background-color: #F8F8F8;
+.alerta2 {
+    -fx-font-weight: bold;
+    -fx-background-color: rgb(255, 210, 253);
+    -fx-text-fill: black;
+    -fx-font-size: 16px;
+    -fx-padding: 12px 24px;
+    -fx-border-color: black;
+    -fx-border-width: 2px;
+    -fx-border-radius: 4px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 0, 2, 0, 0);
+    -fx-alignment: center;
 }
 
-.my-alert .dialog-pane {
-    -fx-background-color: #F8F8F8;
-    -fx-border-color: #CCCCCC;
+.alerta2 .imagen2 {
+    -fx-margin-right: 20px;
+    -fx-fit-width: 40px;
+    -fx-fit-height: 40px;
 }
 
-.my-alert .dialog-pane .content-label {
-    -fx-text-fill: #333333;
-    -fx-font-size: 14px;
+.alerta2 .contadorDiv2 {
+    -fx-margin-left: 20px;
+    -fx-text-fill: red;
+    -fx-font-weight: bolder;
+    -fx-background-color: #FEE;
+    -fx-shape: "M15.5,15.5L30,0,0,0Z";
+    -fx-background-radius: 50%;
+    -fx-pref-width: 30px;
+    -fx-pref-height: 30px;
+    -fx-alignment: center;
 }
 
-.my-alert .dialog-pane .button {
-    -fx-text-fill: #FFFFFF;
-    -fx-background-color: #ff0000;
+.alerta2 .salir2 {
+    -fx-animation: desaparecer 0.5s ease-in-out forwards;
 }
 
-.my-alert .dialog-pane .button:hover {
-    -fx-background-color: #0056b3;
+@keyframes desaparecer {
+    from {
+        top: 1%;
+    }
+
+    to {
+        top: -50px;
+    }
 }
