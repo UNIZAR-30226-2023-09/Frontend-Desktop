@@ -114,6 +114,8 @@ public class GestionPartida {
 
     public static boolean torneoFinalizado = false;
 
+    public static boolean subasta_comprada = false;
+
     // Struct que almacena el dueño de una propiedad, el id de la propiedad, el
     // nombre de la propiedad y el numero de casas que tiene
     public static class Propiedad {
@@ -678,9 +680,11 @@ public class GestionPartida {
                 // propiedadADesplazarse;
                 break;
             case "SUBASTA_OK":
+                subasta_comprada = true;
                 System.out.println("Subasta realizada con exito");
                 break;
             case "SUBASTA_NO_OK":
+                subasta_comprada = false;
                 System.out.println("Subasta no realizada");
                 break;
             case "SUBASTA_COMPRADA_TU":
@@ -746,6 +750,7 @@ public class GestionPartida {
                 clasificacionTorneo[indiceJugadorTorneo] = Integer.parseInt(partes[2]);
                 cuentaResultados++;
                 if (cuentaResultados == 4) {
+                    cuentaResultados = 0;
                     resultadosTorneo = true;
                     // ordenar clasificacionTorneo de menor a mayor
                     int aux;
