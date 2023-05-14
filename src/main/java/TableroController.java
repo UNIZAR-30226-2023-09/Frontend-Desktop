@@ -13,6 +13,7 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -22,6 +23,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.stage.Screen;
+import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class TableroController implements Initializable {
@@ -1237,10 +1240,19 @@ public class TableroController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText(mensaje);
 
-            // // Estilos CSS personalizadosmnj
-            alert.getDialogPane().getStylesheets().add(
-                    getClass().getResource("alert.css").toExternalForm());
-            alert.getDialogPane().getStyleClass().add("my-alert");
+            // Cargar el archivo CSS correctamente
+            String cssFile = getClass().getResource("alert.css").toExternalForm();
+            alert.getDialogPane().getStylesheets().add(cssFile);
+
+            // Aplicar la clase de estilo al dialog pane
+            alert.getDialogPane().getStyleClass().add("alerta2"); // Cambiado a "alerta2" según el estilo CSS
+                                                                  // proporcionado
+
+            // Obtener la ventana de diálogo
+            Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+
+            // Establecer la posición de la ventana de diálogo
+            stage.centerOnScreen();
 
             alert.show();
 
@@ -1251,4 +1263,5 @@ public class TableroController implements Initializable {
             timeline.play();
         });
     }
+
 }
