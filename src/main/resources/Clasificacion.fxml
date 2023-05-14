@@ -73,7 +73,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="112.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="img1" fitHeight="112.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@skins/LUCAS.png" />
                      </image>
@@ -85,7 +85,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="112.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="img2" fitHeight="112.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@skins/LUCAS.png" />
                      </image>
@@ -97,7 +97,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="112.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="img3" fitHeight="112.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@skins/LUCAS.png" />
                      </image>
@@ -109,7 +109,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
                <graphic>
-                  <ImageView fitHeight="112.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fx:id="img4" fitHeight="112.0" fitWidth="88.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@skins/LUCAS.png" />
                      </image>

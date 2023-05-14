@@ -1,3 +1,4 @@
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -11,6 +12,8 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 
 public class ClasificacionController implements Initializable {
 
@@ -22,7 +25,12 @@ public class ClasificacionController implements Initializable {
             lblP1, lblP2, lblP3, lblP4,
             lblJ1, lblJ2, lblJ3, lblJ4;
 
+    @FXML
+    private ImageView img1, img2, img3, img4;
+
     private ObservableList<Label> lblPuntos, lblJugadores;
+
+    private ObservableList<ImageView> imgJugadores;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -42,11 +50,19 @@ public class ClasificacionController implements Initializable {
         lblJugadores.add(lblJ3);
         lblJugadores.add(lblJ4);
 
+        imgJugadores = FXCollections.observableArrayList();
+        imgJugadores.add(img1);
+        imgJugadores.add(img2);
+        imgJugadores.add(img3);
+        imgJugadores.add(img4);
+
         // quitamos los valores por defecto
         for(int i=0; i<4; i++)
         {
             lblJugadores.get(i).setText(GestionPartida.ordenJugadores[i]);
             lblPuntos.get(i).setText(Integer.toString(GestionPartida.clasificacionTorneo[i]));
+            File file = new File("src/main/resources/skins/" + GestionPartida.skinsJugadores[i] + ".png");
+            imgJugadores.get(i).setImage(new Image(file.toURI().toString()));
         }
 
         // esperamos a que terminen todos
@@ -92,6 +108,8 @@ public class ClasificacionController implements Initializable {
 
                 lblJugadores.get(i).setText(GestionPartida.ordenJugadores[i]);
                 lblPuntos.get(i).setText(Integer.toString(GestionPartida.clasificacionTorneo[i]));
+                File file = new File("src/main/resources/skins/" + GestionPartida.skinsJugadores[i] + ".png");
+                imgJugadores.get(i).setImage(new Image(file.toURI().toString()));
             }
         });
 
