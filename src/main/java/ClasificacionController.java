@@ -39,6 +39,13 @@ public class ClasificacionController implements Initializable{
         lblJugadores.add(lblJ1); lblJugadores.add(lblJ2);
         lblJugadores.add(lblJ3); lblJugadores.add(lblJ4);
 
+        // quitamos los valores por defecto
+        for(int i=0; i<4; i++)
+        {
+            lblJugadores.get(i).setText(GestionPartida.ordenJugadores[i]);
+            lblPuntos.get(i).setText(Integer.toString(GestionPartida.clasificacionTorneo[i]));
+        }
+
         // esperamos a que terminen todos
         Thread thread = new Thread()
         {
