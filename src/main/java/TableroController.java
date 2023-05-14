@@ -1241,13 +1241,22 @@ public class TableroController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText(mensaje);
 
-            // Cargar el archivo CSS correctamente
-            String cssFile = getClass().getResource("alert.css").toExternalForm();
-            alert.getDialogPane().getStylesheets().add(cssFile);
+            String cssFile = null;
+            try {
+                cssFile = getClass().getResource("alert.css").toExternalForm();
+            } catch (NullPointerException e) {
+                // Manejar la excepción
+                System.out.println("No se pudo encontrar el archivo CSS.");
+                e.printStackTrace();
+            }
 
-            // Aplicar la clase de estilo al dialog pane
-            alert.getDialogPane().getStyleClass().add("alerta2"); // Cambiado a "alerta2" según el estilo CSS
-                                                                  // proporcionado
+            // Verificar si se pudo obtener el archivo CSS antes de usarlo
+            if (cssFile != null) {
+                alert.getDialogPane().getStylesheets().add(cssFile);
+                // Aplicar la clase de estilo al dialog pane
+                alert.getDialogPane().getStyleClass().add("alerta2"); // Cambiado a "alerta2" según el estilo CSS
+                                                                      // proporcionado
+            }
 
             // Obtener la ventana de diálogo
             Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
