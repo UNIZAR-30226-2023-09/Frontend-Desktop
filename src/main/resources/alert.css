@@ -1,0 +1,22 @@
+.my-alert {
+    -fx-background-color: #F8F8F8;
+}
+
+.my-alert .dialog-pane {
+    -fx-background-color: #F8F8F8;
+    -fx-border-color: #CCCCCC;
+}
+
+.my-alert .dialog-pane .content-label {
+    -fx-text-fill: #333333;
+    -fx-font-size: 14px;
+}
+
+.my-alert .dialog-pane .button {
+    -fx-text-fill: #FFFFFF;
+    -fx-background-color: #ff0000;
+}
+
+.my-alert .dialog-pane .button:hover {
+    -fx-background-color: #0056b3;
+}

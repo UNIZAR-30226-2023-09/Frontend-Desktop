@@ -13,8 +13,10 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
@@ -119,16 +121,16 @@ public class TableroController implements Initializable {
             if (GestionPartida.miTurno == true) {
                 // System.out.print("Estoy en mi turno?");
                 while (GestionPartida.CuentaInfoRecibida < (GestionPartida.JugadoresVivos - 1)) {
-                    System.out.println("cuentaInfoRecibida?2");
+                    // System.out.println("cuentaInfoRecibida?2");
                     System.out.println(GestionPartida.CuentaInfoRecibida);
-                    System.out.println(" ");
-                    System.out.println(" ");
+                    // System.out.println(" ");
+                    // System.out.println(" ");
                     ConexionServidor.esperar();
                 }
 
                 // si ha muerto algun jugador habra que poner en rojo su nombre y se oculta el
                 // dinero
-                System.out.println("\n");
+                // System.out.println("\n");
                 // System.out.println("aqui no llega no?");
                 listaJugadoresController.muertos();
 
@@ -168,7 +170,7 @@ public class TableroController implements Initializable {
 
                     if (subastarController.subastaExitosa()) {
                         listaPropiedadesController.eliminarPropiedad(subastarController.propiedadSubastada);
-                        Casas.get(subastarController.propiedadSubastada-1).setVisible(false);
+                        Casas.get(subastarController.propiedadSubastada - 1).setVisible(false);
                     }
                 }
 
@@ -195,6 +197,9 @@ public class TableroController implements Initializable {
                 }
 
                 do {
+
+                    mostrarAlertaTemporal("Es tu turno, lanza los dados");
+
                     dado1.setDisable(false);
                     dado2.setDisable(false);
 
@@ -610,7 +615,7 @@ public class TableroController implements Initializable {
                 ConexionServidor.esperar(); // ESTE COñexion esperar al morir nosotros creo que nos da problemas
             }
         }
-        
+
         GestionPartida.enPartida = false;
         GestionPartida.empezarPartida = false;
 
@@ -761,10 +766,29 @@ public class TableroController implements Initializable {
                 "32", "33", "35", "37", "38", "40", "6", "16", "26", "36" };
 
         Casas = FXCollections.observableArrayList();
-        Casas.add(imgCasa1); Casas.add(imgCasa2); Casas.add(imgCasa3); Casas.add(imgCasa4); Casas.add(imgCasa5); Casas.add(imgCasa6); 
-        Casas.add(imgCasa7);  Casas.add(imgCasa8); Casas.add(imgCasa9); Casas.add(imgCasa10); Casas.add(imgCasa11); Casas.add(imgCasa12); 
-        Casas.add(imgCasa13); Casas.add(imgCasa14); Casas.add(imgCasa15); Casas.add(imgCasa16); Casas.add(imgCasa17); Casas.add(imgCasa18); 
-        Casas.add(imgCasa19); Casas.add(imgCasa20); Casas.add(imgCasa21); Casas.add(imgCasa22); Casas.add(imgCasa23);
+        Casas.add(imgCasa1);
+        Casas.add(imgCasa2);
+        Casas.add(imgCasa3);
+        Casas.add(imgCasa4);
+        Casas.add(imgCasa5);
+        Casas.add(imgCasa6);
+        Casas.add(imgCasa7);
+        Casas.add(imgCasa8);
+        Casas.add(imgCasa9);
+        Casas.add(imgCasa10);
+        Casas.add(imgCasa11);
+        Casas.add(imgCasa12);
+        Casas.add(imgCasa13);
+        Casas.add(imgCasa14);
+        Casas.add(imgCasa15);
+        Casas.add(imgCasa16);
+        Casas.add(imgCasa17);
+        Casas.add(imgCasa18);
+        Casas.add(imgCasa19);
+        Casas.add(imgCasa20);
+        Casas.add(imgCasa21);
+        Casas.add(imgCasa22);
+        Casas.add(imgCasa23);
 
         // mostramos y ocultamos los elementos para conseguir la vista basica del
         // tablero
@@ -977,9 +1001,8 @@ public class TableroController implements Initializable {
         if (vendida) {
             listaJugadoresController.actualizarDinero();
             listaPropiedadesController.eliminarPropiedad(numPropiedad);
-            if(numPropiedad <= 23)
-            {
-                Casas.get(numPropiedad-1).setVisible(false);
+            if (numPropiedad <= 23) {
+                Casas.get(numPropiedad - 1).setVisible(false);
             }
         }
 
@@ -999,12 +1022,14 @@ public class TableroController implements Initializable {
 
     public void ocultarVentanaEdificar(int numPropiedad, Boolean edificada) {
         // desocultamos el edificio correspondiente con el numero que toque
-        if(edificada)
-        {
-            File file = new File("src/main/resources/CASAS_HOTEL/C" + GestionPartida.propiedades.get(Integer.parseInt(posicion_propiedad_tablero[numPropiedad])).casas + ".png");
-            Casas.get(numPropiedad-1).setImage(new Image(file.toURI().toString()));
-            Casas.get(numPropiedad-1).setVisible(true);
-            listaPropiedadesController.visibilidadBotonesEdificar(true); // actualizamos los botones que se podran mostrar
+        if (edificada) {
+            File file = new File("src/main/resources/CASAS_HOTEL/C"
+                    + GestionPartida.propiedades.get(Integer.parseInt(posicion_propiedad_tablero[numPropiedad])).casas
+                    + ".png");
+            Casas.get(numPropiedad - 1).setImage(new Image(file.toURI().toString()));
+            Casas.get(numPropiedad - 1).setVisible(true);
+            listaPropiedadesController.visibilidadBotonesEdificar(true); // actualizamos los botones que se podran
+                                                                         // mostrar
         }
 
         edificar.setVisible(false);
@@ -1052,21 +1077,16 @@ public class TableroController implements Initializable {
         });
     }
 
-    private void actualizarCasas()
-    {
+    private void actualizarCasas() {
         int numCasas = 0;
-        for(int i=1; i<=23; i++)
-        {
+        for (int i = 1; i <= 23; i++) {
             numCasas = GestionPartida.propiedades.get(Integer.parseInt(posicion_propiedad_tablero[i])).casas;
-            if(numCasas > 0)
-            {
+            if (numCasas > 0) {
                 File file = new File("src/main/resources/CASAS_HOTEL/C" + numCasas + ".png");
-                Casas.get(i-1).setImage(new Image(file.toURI().toString()));
-                Casas.get(i-1).setVisible(true);
-            }
-            else
-            {
-                Casas.get(i-1).setVisible(false);
+                Casas.get(i - 1).setImage(new Image(file.toURI().toString()));
+                Casas.get(i - 1).setVisible(true);
+            } else {
+                Casas.get(i - 1).setVisible(false);
             }
         }
     }
@@ -1209,5 +1229,26 @@ public class TableroController implements Initializable {
                     break;
             }
         }
+    }
+
+    public void mostrarAlertaTemporal(String mensaje) {
+        Platform.runLater(() -> {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setHeaderText(null);
+            alert.setContentText(mensaje);
+
+            // // Estilos CSS personalizadosmnj
+            alert.getDialogPane().getStylesheets().add(
+                    getClass().getResource("alert.css").toExternalForm());
+            alert.getDialogPane().getStyleClass().add("my-alert");
+
+            alert.show();
+
+            Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(2), event -> {
+                alert.hide();
+            }));
+
+            timeline.play();
+        });
     }
 }
