@@ -196,7 +196,7 @@ public class TableroController implements Initializable {
 
                     pujar.setVisible(false);
                     datosPartida.setVisible(true);
-                    chat.setVisible(true);
+                    chat.setVisible(false);
                 }
 
                 do {
@@ -879,9 +879,6 @@ public class TableroController implements Initializable {
             if (!chat.isVisible()) {
                 chatController.actualizarChat(GestionPartida.chat);
             }
-            datosPartida.setVisible(!datosPartida.isVisible());
-            // TODO: Ocultar el resto de cosas
-
             chat.setVisible(!chat.isVisible());
         } else if (evt.equals(btnTerminarTurno)) {
             // mirar que hacer cuando le den al boton
@@ -1011,7 +1008,7 @@ public class TableroController implements Initializable {
         }
 
         venderPropiedad.setVisible(false);
-        chat.setVisible(true);
+        chat.setVisible(false);
         // datosPartida.setVisible(true);
         listaPropiedades.setVisible(true);
     }
@@ -1037,7 +1034,7 @@ public class TableroController implements Initializable {
         }
 
         edificar.setVisible(false);
-        chat.setVisible(true);
+        chat.setVisible(false);
         listaPropiedades.setVisible(true);
     }
 
@@ -1056,7 +1053,7 @@ public class TableroController implements Initializable {
         }
 
         subastar.setVisible(false);
-        chat.setVisible(true);
+        chat.setVisible(false);
         listaPropiedades.setVisible(true);
     }
 
@@ -1068,7 +1065,7 @@ public class TableroController implements Initializable {
 
     public void ocultarVentanaFianza() {
         fianza.setVisible(false);
-        chat.setVisible(true);
+        chat.setVisible(false);
         datosPartida.setVisible(true);
     }
 
@@ -1241,23 +1238,22 @@ public class TableroController implements Initializable {
             alert.setHeaderText(null);
             alert.setContentText(mensaje);
 
-            // String cssFile = null;
-            // try {
-            // cssFile = getClass().getResource("alert.css").toExternalForm();
-            // } catch (NullPointerException e) {
-            // // Manejar la excepción
-            // System.out.println("No se pudo encontrar el archivo CSS.");
-            // e.printStackTrace();
-            // }
+            String cssFile = null;
+            try {
+                cssFile = getClass().getResource("alert.css").toExternalForm();
+            } catch (NullPointerException e) {
+                // Manejar la excepción
+                System.out.println("No se pudo encontrar el archivo CSS.");
+                e.printStackTrace();
+            }
 
-            // // Verificar si se pudo obtener el archivo CSS antes de usarlo
-            // if (cssFile != null) {
-            // alert.getDialogPane().getStylesheets().add(cssFile);
-            // // Aplicar la clase de estilo al dialog pane
-            // alert.getDialogPane().getStyleClass().add("alerta2"); // Cambiado a "alerta2"
-            // según el estilo CSS
-            // // proporcionado
-            // }
+            // Verificar si se pudo obtener el archivo CSS antes de usarlo
+            if (cssFile != null) {
+                alert.getDialogPane().getStylesheets().add(cssFile);
+                // Aplicar la clase de estilo al dialog pane
+                alert.getDialogPane().getStyleClass().add("alerta2"); // Cambiado a "alerta2" según el estilo CSS
+                                                                      // proporcionado
+            }
 
             // Obtener la ventana de diálogo
             Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
