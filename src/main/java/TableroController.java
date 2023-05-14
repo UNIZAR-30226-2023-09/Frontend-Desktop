@@ -15,13 +15,11 @@ import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.shape.Circle;
 import javafx.util.Duration;
 
 public class TableroController implements Initializable {
@@ -1201,6 +1199,12 @@ public class TableroController implements Initializable {
                     System.out.println("MARRON");
                     File file8 = new File("src/main/resources/FICHAS/MARRON" + (i + 1) + ".png");
                     aux.setImage(new Image(file8.toURI().toString()));
+                    break;
+                case "VECTOR":
+                    // marron
+                    System.out.println("FOSFO");
+                    File file9 = new File("src/main/resources/FICHAS/FOSFO" + (i + 1) + ".png");
+                    aux.setImage(new Image(file9.toURI().toString()));
                     break;
                 default:
                     System.out.println("ERROR SKIN2");
