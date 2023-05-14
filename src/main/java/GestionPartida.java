@@ -809,6 +809,15 @@ public class GestionPartida {
         String[] partesJugadores = aux[2].split(";");
         asignarInformacionJugadores(partesJugadores);
 
+        // Quitarle
+        String soyDueño = aux[3];
+        if (soyDueño.equals("1")) {
+            dueñoPartida = true;
+        } else {
+            dueñoPartida = false;
+        }
+        IDTorneo = aux[4];
+
         CuentaInfoRecibida = 4;
 
         // Scanner scanner = new Scanner(System.in);
@@ -924,7 +933,7 @@ public class GestionPartida {
         dineroBote = Integer.parseInt(partesPartida[3]);
         economia = Double.parseDouble(partesPartida[4]);
         evento = partesPartida[5];
-        // perteneceTorneo = Boolean.parseBoolean(partesPartida[6]);
+        enTorneo = Boolean.parseBoolean(partesPartida[6]);
         String turno = partesPartida[7];
         return turno;
     }
